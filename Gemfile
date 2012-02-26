@@ -21,3 +21,8 @@ group :test do
   # gem 'autotest-fsevent', '0.2.4'
   # gem 'autotest-growl', '0.2.9'
 end
+
+group :production do
+  # gems specifically for Heroku go here
+  gem "pg" 
+end
