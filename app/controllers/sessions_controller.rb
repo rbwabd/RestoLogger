@@ -9,7 +9,6 @@ class SessionsController < Devise::SessionsController
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     if authentication && authentication.user.present?
       flash[:notice] = "Signed in successfully."
-			session[:user_id] = user.id  
 			#this is a devise method
       sign_in_and_redirect(:user, authentication.user)
     elsif current_user
@@ -22,18 +21,12 @@ class SessionsController < Devise::SessionsController
       user.apply_omniauth(omniauth)
       if user.save
         flash[:notice] = "Signed in new user successfully."
-        #sign_in(:user, user)
-				sign_in(user)
-				redirect_to(user)
-				#sign_in_and_redirect(:user, user)
+				sign_in_and_redirect(:user, user)
 			else
         session[:omniauth] = omniauth.except('extra')
         redirect_to new_user_registration_url
       end
     end
-#old code	
-#      sign_in user
-#      redirect_back_or user
   end
   
   def destroy

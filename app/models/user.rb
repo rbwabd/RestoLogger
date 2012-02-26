@@ -15,27 +15,12 @@ class User < ActiveRecord::Base
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
-	# have problems with trackable for the moment so disabled
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable #:trackable
+         :recoverable, :rememberable, :validatable, :trackable
 
-#  email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  
   validates :name,  :presence => true,
                     :length   => { :maximum => 50 }
-#  validates :email, :presence   => true,
-#                    :format     => { :with => email_regex },
-#                    :uniqueness => { :case_sensitive => false }
-#  validates :password, :presence => true,
-#                       :confirmation => true,
-#                       :length => { :within => 6..40 }
 
-#  before_save :encrypt_password
-  
-#  def has_password?(submitted_password)
-#    encrypted_password == encrypt(submitted_password)
-#  end
-  
   def feed
     Micropost.from_users_followed_by(self)
   end
@@ -52,55 +37,14 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(followed).destroy
   end
 
-#	def self.create_with_omniauth(auth)  
-#    create! do |user|  
-#      user.provider = auth["provider"]  
-#      user.uid = auth["uid"]  
-#      user.name = auth["info"]["name"]  
-#			user.email= auth["info"]["email"]
-#			user.password="grep97"
-#    end  
-#  end 
-
   def apply_omniauth(omniauth)
     self.email = omniauth["info"]["email"] if email.blank?
 		self.name=omniauth["info"]["name"] if name.blank?
-		self.password="grep97"
-    #creates the authentication object in database
+    #creates the authentication object in database that belongs to self (user object)
 		authentications.build(:provider => omniauth["provider"], :uid => omniauth["uid"])
   end
   
   def password_required?
     (authentications.empty? || !password.blank?) && super
   end	
-	
-  class << self
-#    def authenticate(email, submitted_password)
-#      user = find_by_email(email)
-#      (user && user.has_password?(submitted_password)) ? user : nil
-#    end
-    
-#    def authenticate_with_salt(id, cookie_salt)
-#      user = find_by_id(id)
-#      (user && user.salt == cookie_salt) ? user : nil
-#    end
-  end
-	
-  private
-#    def encrypt_password
-#      self.salt = make_salt unless has_password?(password)
-#      self.encrypted_password = encrypt(password)
-#    end
-  
-#    def encrypt(string)
-#      secure_hash("#{salt}--#{string}")
-#    end
-    
-#    def make_salt
-#      secure_hash("#{Time.now.utc}--#{password}")
-#    end
-    
-#    def secure_hash(string)
-#      Digest::SHA2.hexdigest(string)
-#    end
 end

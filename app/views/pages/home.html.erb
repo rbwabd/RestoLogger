@@ -1,4 +1,4 @@
-<% if signed_in? %>
+<% if user_signed_in? %>
 
   <table class="front" summary="For signed-in users">
     <tr>
@@ -23,5 +23,4 @@
 
 <!--<%= link_to "Sign up now!", signup_path, :class => "signup_button round" %> -->
 <%= link_to "Log in with Facebook", "/auth/facebook", :class => "fb_signup_button round" %>
-
 <% end %>
