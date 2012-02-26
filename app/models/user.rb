@@ -38,13 +38,26 @@ class User < ActiveRecord::Base
   end
 
   def apply_omniauth(omniauth)
-    self.email = omniauth["info"]["email"] if email.blank?
-		self.name=omniauth["info"]["name"] if name.blank?
-    #creates the authentication object in database that belongs to self (user object)
+    case omniauth['provider']
+		when 'facebook'
+			self.apply_facebook(omniauth)
+		end
+    
+		#creates the authentication object in database that belongs to self (user object)
 		authentications.build(:provider => omniauth["provider"], :uid => omniauth["uid"])
   end
   
+	def facebook
+		@fb_user ||= FbGraph::User.me(self.authentications.find_by_provider('facebook').token)
+	end
+
   def password_required?
     (authentications.empty? || !password.blank?) && super
   end	
+	
+	protected
+		def apply_facebook(omniauth)
+			self.email = omniauth["info"]["email"] if email.blank?
+		  self.name=omniauth["info"]["name"] if name.blank?
+		end	
 end
