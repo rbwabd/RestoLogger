@@ -6,6 +6,8 @@ gem 'will_paginate', '3.0.pre2'
 gem 'sqlite3', '1.3.4'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'fb_graph'
+gem 'devise'
 
 group :development do
   gem 'rspec-rails', '2.6.1'
