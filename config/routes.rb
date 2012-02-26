@@ -10,6 +10,9 @@ SampleApp::Application.routes.draw do
   resources :microposts,    :only => [:create, :destroy]
   resources :relationships, :only => [:create, :destroy]
   
+	#omniauth stuff
+	match "/auth/:provider/callback" => "sessions#create" 
+
   root :to => "pages#home"
 
   match '/contact', :to => 'pages#contact'

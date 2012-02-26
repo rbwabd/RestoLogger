@@ -60,6 +60,16 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(followed).destroy
   end
 
+  def self.create_with_omniauth(auth)  
+    create! do |user|  
+      user.provider = auth["provider"]  
+      user.uid = auth["uid"]  
+      user.name = "hellofake" #auth["user_info"]["name"]  
+			user.email="fake@fake.com"
+			user.password="grep97"
+    end  
+  end 
+
   class << self
     def authenticate(email, submitted_password)
       user = find_by_email(email)
@@ -73,7 +83,6 @@ class User < ActiveRecord::Base
   end
   
   private
-  
     def encrypt_password
       self.salt = make_salt unless has_password?(password)
       self.encrypted_password = encrypt(password)
