@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
 		end
     
 		#creates the authentication object in database that belongs to self (user object)
-		authentications.build(:provider => omniauth["provider"], :uid => omniauth["uid"])
+		authentications.build(:provider => omniauth["provider"], :uid => omniauth["uid"], :token => omniauth["credentials"]["token"])
   end
   
 	def facebook
@@ -58,6 +58,6 @@ class User < ActiveRecord::Base
 	protected
 		def apply_facebook(omniauth)
 			self.email = omniauth["info"]["email"] if email.blank?
-		  self.name=omniauth["info"]["name"] if name.blank?
+		  self.name = omniauth["info"]["name"] if name.blank?
 		end	
 end
