@@ -40,6 +40,7 @@ class SessionsController < Devise::SessionsController
   
   def destroy
     sign_out
+		flash[:notice] = "Sign out successful."
     redirect_to root_path
   end
 end
