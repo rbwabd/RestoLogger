@@ -1,7 +1,7 @@
 # == Schema Information
 # Schema version: 20100829210229
 #
-# Table name: microposts
+# Table name: visits
 #
 #  id         :integer         not null, primary key
 #  content    :string(255)
@@ -10,7 +10,7 @@
 #  updated_at :datetime
 #
 
-class Micropost < ActiveRecord::Base
+class Visit < ActiveRecord::Base
   attr_accessible :content
   
   belongs_to :user
@@ -18,7 +18,7 @@ class Micropost < ActiveRecord::Base
   validates :content, :presence => true, :length => { :maximum => 140 }
   validates :user_id, :presence => true
   
-  default_scope :order => 'microposts.created_at DESC'
+  default_scope :order => 'visits.created_at DESC'
   
   scope :from_users_followed_by, lambda { |user| followed_by(user) }
   

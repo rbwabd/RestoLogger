@@ -203,33 +203,33 @@ ul.users li {
   list-style: none;
 }
 
-/*  Micropost styling */
+/*  Visit styling */
 
-h1.micropost {
+h1.visit {
   margin-bottom: 0.3em;
 }
 
-table.microposts {
+table.visits {
   margin-top: 1em;
 }
 
-table.microposts tr {
+table.visits tr {
   height: 70px;
 }
 
-table.microposts tr td.gravatar {
+table.visits tr td.gravatar {
   border-top: 1px solid #ccc;
   vertical-align: top;
   width: 50px;
 }
 
-table.microposts tr td.micropost {
+table.visits tr td.visit {
   border-top: 1px solid #ccc;
   vertical-align: top;
   padding-top: 10px;
 }
 
-table.microposts tr td.micropost span.timestamp {
+table.visits tr td.visit span.timestamp {
   display: block;
   font-size: 85%;
   color: #666;
@@ -247,15 +247,27 @@ div.user_info span.user_name {
   position: absolute;
 }
 
-div.user_info span.microposts {
+div.user_info span.visits {
   font-size: 80%;
 }
 
-form.new_micropost {
+form.new_visit {
   margin-bottom: 2em;
 }
 
-form.new_micropost textarea {
+form.new_visit textarea {
   height: 4em;
   margin-bottom: 0;
+}
+
+
+.auth_provider img {
+  display: block;
+}
+
+.auth_provider {
+  text-decoration: none;
+  margin-right: 20px;
+  text-align: center;
+  margin-bottom: 10px;
 }

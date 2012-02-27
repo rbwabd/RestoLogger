@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
                     :length   => { :maximum => 50 }
 
 	has_many :authentications
-  has_many :microposts,    :dependent => :destroy
+  has_many :visits,    :dependent => :destroy
   has_many :relationships, :dependent => :destroy,
                            :foreign_key => "follower_id"
   has_many :reverse_relationships, :dependent => :destroy,
@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable
 
   def feed
-    Micropost.from_users_followed_by(self)
+    Visit.from_users_followed_by(self)
   end
   
   def following?(followed)

@@ -3,8 +3,8 @@
   <table class="front" summary="For signed-in users">
     <tr>
       <td class="main">
-        <h1 class="micropost">What's up?</h1>
-        <%= render 'shared/micropost_form' %>
+        <h1 class="visit">What's up?</h1>
+        <%= render 'shared/visit_form' %>
         <%= render 'shared/feed' %>
       </td>
       <td class="sidebar round">
@@ -18,10 +18,8 @@
 
 	<h1>RestoLogger</h1>
 	<p>
-		Welcome to Restologger!
+		Please login through one of the providers below: (only facebook enabled for now...)
 	</p>
-
-	<!-- <%= link_to "Log in with Facebook", "/auth/facebook", :class => "fb_signup_button round" %> -->
 
 	<a href="/auth/facebook" class="auth_provider">
 		<%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
