@@ -18,7 +18,7 @@ class SessionsController < Devise::SessionsController
       sign_in_and_redirect(:user, authentication.user)
     elsif current_user
 			session[:user_id] = current_user.id 
-			#not quite sure what this case protects against actually (user logged in but no auth in DB), maybe can delete this code later?
+			#not quite sure what this case protects against actually (user logged in but no authentication in DB), maybe useless?
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'], :token => omniauth["credentials"]["token"])
 			flash[:notice] = "Authentication successful."
       redirect_to authentications_url
@@ -43,39 +43,3 @@ class SessionsController < Devise::SessionsController
     redirect_to root_path
   end
 end
-=begin
-Also note that if you're already logged in, connecting to a facebook user won't save the token without making sure the authentication object is created with a token in the authentications controller:
-
-if authentication
-flash[:notice] = "Signed in successfully."
-sign_in_and_redirect(:user, authentication.user)
-elsif current_user
-current_user.apply_omniauth!(omniauth)
-flash[:notice] = "Authentication successful."
-redirect_to authentications_url
-
-where you can define apply_omniauth as:
-
-def apply_omniauth(omniauth, save_it = false)
-case omniauth['provider']
-when 'facebook'
-self.apply_facebook(omniauth)
-end
-self.email = omniauth['user_info']['email'] if email.blank?
-build_authentications(omniauth, save_it)
-end
-
-def build_authentications(omniauth, save_it = false)
-auth_params = {:provider => omniauth['provider'], :uid => omniauth['uid'], :token =>(omniauth['credentials']['token'] rescue nil)}
-if save_it
-authentications.create!(auth_params)
-else
-authentications.build(auth_params)
-end
-end
-
-def apply_omniauth!(omniauth)
-apply_omniauth(omniauth, true)
-end
-=end
-

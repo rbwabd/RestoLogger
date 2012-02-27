@@ -21,6 +21,11 @@
   Welcome to Restologger!
 </p>
 
-<!--<%= link_to "Sign up now!", signup_path, :class => "signup_button round" %> -->
-<%= link_to "Log in with Facebook", "/auth/facebook", :class => "fb_signup_button round" %>
+<!-- <%= link_to "Log in with Facebook", "/auth/facebook", :class => "fb_signup_button round" %> -->
+
+<a href="/auth/facebook" class="auth_provider">
+  <%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
+  Facebook
+</a>
+
 <% end %>

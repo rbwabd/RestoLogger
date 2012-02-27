@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
   attr_accessor   :password
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :email #, :password, :password_confirmation, :remember_me
   
+  validates :name,  :presence => true,
+                    :length   => { :maximum => 50 }
+
 	has_many :authentications
   has_many :microposts,    :dependent => :destroy
   has_many :relationships, :dependent => :destroy,
@@ -9,17 +12,14 @@ class User < ActiveRecord::Base
   has_many :reverse_relationships, :dependent => :destroy,
                                    :foreign_key => "followed_id",
                                    :class_name => "Relationship"
-  has_many :following, :through => :relationships, :source => :followed
-  has_many :followers, :through => :reverse_relationships,
-                       :source  => :follower
+  has_many :following, :through => :relationships, 
+											 :source => :followed
+  has_many :followers, :through => :reverse_relationships, 
+											 :source  => :follower
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :trackable
-
-  validates :name,  :presence => true,
-                    :length   => { :maximum => 50 }
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable
 
   def feed
     Micropost.from_users_followed_by(self)
@@ -42,9 +42,9 @@ class User < ActiveRecord::Base
 		when 'facebook'
 			self.apply_facebook(omniauth)
 		end
-    
-		#creates the authentication object in database that belongs to self (user object)
-		authentications.build(:provider => omniauth["provider"], :uid => omniauth["uid"], :token => omniauth["credentials"]["token"])
+    #creates the authentication object in database that belongs to self (user object)
+		authentications.build(:provider => omniauth["provider"], :uid => omniauth["uid"], 
+													:token => omniauth["credentials"]["token"])
   end
   
 	def facebook

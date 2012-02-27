@@ -1,16 +1,13 @@
 SampleApp::Application.routes.draw do
   
-	devise_for :users, :controllers => {:registrations => 'registrations'}
-
-#	devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" } do
-#		get 'sign_in', :to => 'users/sessions#new', :as => :new_user_session
-#		get 'sign_out', :to => 'users/sessions#destroy', :as => :destroy_user_session
-#	end
-	
-	#omniauth stuff
-	#match '/auth/:provider/callback' => 'authentications#create'
-	devise_scope :user do
-		#get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
+	devise_for :users#, :skip => [:sessions]
+	#as :user do is the same as devise_scope :user do
+	as :user do
+		get 'signin' => 'pages#home', :as => :new_user_session
+		#this is a dummy - we have no signin page at the moment so no create page
+		#post 'signin' => 'sessions#create', :as => :user_session
+		post 'signin' => 'pages#home', :as => :user_session
+		delete 'signout' => 'sessions#destroy', :as => :destroy_user_session
 		match '/auth/:provider/callback' => 'sessions#create' 
 	end
 
@@ -23,13 +20,9 @@ SampleApp::Application.routes.draw do
   resources :microposts,    :only => [:create, :destroy]
   resources :relationships, :only => [:create, :destroy]
   
-	
-  root :to => "pages#home"
+	root :to => "pages#home"
 
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about'
   match '/help',    :to => 'pages#help'
-  match '/signup',  :to => 'users#new'
-  match '/signin',  :to => 'sessions#new'
-  match '/signout', :to => 'sessions#destroy'
 end
