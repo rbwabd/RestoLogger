@@ -1,0 +1,14 @@
+<%= form_for @picture, :html => {:multipart => true} do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  <p>
+    <%= f.label :genre %><br />
+    <%= f.text_field :genre %>
+  </p>
+  <p>
+    <%= f.file_field :image %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+

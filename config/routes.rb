@@ -20,6 +20,7 @@ SampleApp::Application.routes.draw do
   resources :visits,    		:only => [:create, :destroy]
   resources :relationships, :only => [:create, :destroy]
 	resources :authentications#, :only => [:destroy]
+  resources :pictures#,      :only => [:new, :create, :destroy]
   
 	root :to => "authentications#index"
 	#root :to => "pages#home"

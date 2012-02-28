@@ -1,7 +1,7 @@
 class CreatePictures < ActiveRecord::Migration
   def self.up
     create_table :pictures do |t|
-      t.string :type
+      t.string :genre
       t.string :filename
 
       t.timestamps
