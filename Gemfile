@@ -8,6 +8,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'fb_graph'
 gem 'devise'
+gem 'carrierwave'
 
 group :development do
   gem 'rspec-rails', '2.6.1'
