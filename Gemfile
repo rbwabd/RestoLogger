@@ -9,8 +9,7 @@ gem 'omniauth-facebook'
 gem 'fb_graph'
 gem 'devise'
 gem 'carrierwave'
-#doesn't work on windows 7 - installed otherwise
-#gem 'rmagick-win32'
+gem 'mini_magick'
 
 group :development do
   gem 'rspec-rails', '2.6.1'
