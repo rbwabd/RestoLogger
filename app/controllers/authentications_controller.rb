@@ -1,9 +1,7 @@
 class AuthenticationsController < ApplicationController
   def index
+		@title = "Sign In Options"
     @authentications = current_user.authentications if current_user
-  end
-  
-  def create
   end
   
   def destroy
