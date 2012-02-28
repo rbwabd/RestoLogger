@@ -47,11 +47,15 @@ class User < ActiveRecord::Base
 													:token => omniauth["credentials"]["token"])
   end
   
+  # i added the fetch at the end so the user data is fetched. not sure if this is a performance hit
 	def facebook
 		@fb_user ||= FbGraph::User.me(self.authentications.find_by_provider('facebook').token).fetch
 	end
 
-	def password_required?
+	# this is an override of a default devise method! hence the call to super
+  # if authentications is not empty AND password is blank then password is not required
+  # stole this code so not 100% sure why this is needed
+  def password_required?
     (authentications.empty? || !password.blank?) && super
   end	
 	
