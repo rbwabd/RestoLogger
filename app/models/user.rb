@@ -58,6 +58,10 @@ class User < ActiveRecord::Base
   def password_required?
     (authentications.empty? || !password.blank?) && super
   end	
+  
+  def self.localelist
+    a=[[I18n.t(:english),"en"], [I18n.t(:french),"fr"],[I18n.t(:german), "de"]]
+  end
 	
 	protected
 		def apply_facebook(omniauth)

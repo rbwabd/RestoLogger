@@ -1,18 +1,15 @@
 <!--
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name, t(:user_name) %><br />
     <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email, t(:user_email) %><br />
     <%= f.text_field :email %>
   </div>
 -->
 <div class="field">
-  <label for="user_locale">Language</label><br />
-  <select id="user_locale" name= "user[locale]" >
-    <option value="en" selected="selected">English</option>
-    <option value="fr">French</option>
-  </select>
+  <%= f.label :locale, t(:user_locale) %><br />
+  <%= select(:user, :locale, User.localelist) %>
 </div>
