@@ -3,7 +3,7 @@
   <table class="front" summary="For signed-in users">
     <tr>
       <td class="main">
-        <h1 class="visit">What's up?</h1>
+        <h1 class="visit"><%= t :home_whats_up %></h1>
         <%= render 'shared/visit_form' %>
         <%= render 'shared/feed' %>
       </td>
@@ -16,9 +16,9 @@
 
 <% else %>
 
-	<h1>RestoLogger</h1>
+	<h1><%= t :restologger_appname %></h1>
 	<p>
-		Please login through one of the providers below: (only facebook enabled for now...)
+		<%= t :home_login_prompt %>
 	</p>
 
 	<a href="/auth/facebook" class="auth_provider">

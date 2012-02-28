@@ -1,0 +1,15 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+fr:
+  restologger_appname: RestoLogger
+  about_title: Sur nous
+  about_message: Vous utilisez l'application RestoLogger
+  help_title: Aide
+  help_message: Il n'y aura pas d'aide pour vous
+  contact_title: 'Pour nous contacter:'  
+  contact_message: Pas disponible
+  home_whats_up: Ca va?
+  home_login_prompt: Utilisez le login ci-desssous svp
+  
+  

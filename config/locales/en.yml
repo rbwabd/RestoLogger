@@ -2,4 +2,13 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  restologger_appname: RestoLogger
+  about_title: About us
+  about_message: This is the RestoLogger application
+  help_title: Help
+  help_message: No help will be coming
+  contact_title: 'Contacts:'
+  contact_message: You can't contact us
+  home_whats_up: What's up?
+  home_login_prompt: 'Please login through one of the providers below: (only facebook enabled for now...)'
+  
