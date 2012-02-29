@@ -9,6 +9,7 @@ gem 'omniauth-facebook'
 gem 'fb_graph'
 gem 'devise'
 gem 'carrierwave'
+gem 'fog'
 gem 'mini_magick'
 gem 'aws-s3', '0.6.2', :require => 'aws/s3'
 

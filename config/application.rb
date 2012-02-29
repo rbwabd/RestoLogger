@@ -31,11 +31,6 @@ module SampleApp
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     config.i18n.default_locale = :en
 
-    AWS::S3::Base.establish_connection!(
-      :access_key_id     => 'AKIAJ5MS5WRS5BWUKKEA',
-      :secret_access_key => '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'
-    )
-    
     # JavaScript files you want as :defaults (application.js is always included).
     # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
 
