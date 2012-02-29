@@ -8,6 +8,10 @@
     <%= f.file_field :image %>
   </p>
   <p>
+		<%= f.label :remote_image_url, "or image URL" %>
+    <%= f.text_field :remote_image_url %>
+  </p>
+	<p>
     <%= f.submit %>
   </p>
 <% end %>
