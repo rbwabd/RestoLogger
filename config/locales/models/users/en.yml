@@ -3,5 +3,6 @@ en:
   user_email:  Email
   user_locale: Language
   user_select_language_prompt: Please choose language
+  edit_user_title: Edit User Settings
   
   

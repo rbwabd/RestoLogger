@@ -1,9 +1,9 @@
-<h1><%= t :edit_user_title %></h1>
+<h1>New Visit</h1>
 
-<%= form_for(@user) do |f| %>
+<%= form_for(@visit) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <%= render 'fields', :f => f %>
   <div class="actions">
-    <%= f.submit t(:update_button) %>
-  </div>
+    <%= f.submit "Sign up" %>
+  </div>  
 <% end %>

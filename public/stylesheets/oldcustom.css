@@ -1,0 +1,375 @@
+.container {
+  width: 710px;
+}
+
+body {
+  background: #cff;
+}
+
+header {
+  padding-top: 20px;
+}
+
+header img {
+  padding: 1em;
+  background: #fff;
+}
+
+section {
+  margin-top: 1em;
+  font-size: 120%;
+  padding: 20px;
+  background: #fff;
+}
+
+section h1 {
+  font-size: 200%;
+}
+
+/* Links */
+
+a {
+  color: #09c;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #069;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #069;
+}
+
+/* Navigation */
+
+nav {
+  float: right;
+  background: white;
+  padding: 0 0.7em;
+  /*white-space: nowrap;*/
+}
+
+nav ul {
+  below makes my vertical menus not correct 
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  list-style-type: none;
+  /*display: inline-block;*/
+  padding: 0.2em 0;
+}
+
+nav ul li a {
+  padding: 0 5px;
+  font-weight: bold;
+}
+
+nav ul li a:visited {
+  color: #09c;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Sign up button not used now i think*/
+
+a.signup_button {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 190px;
+  color: #fff;
+  background: #006400;
+  font-size: 150%;
+  font-weight: bold;
+  padding: 20px;
+}
+
+a.fb_signup_button {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 190px;
+  color: #fff;
+  background: #0033CC;
+  font-size: 150%;
+  font-weight: bold;
+  padding: 20px;
+}
+/* Round corners */
+
+.round {
+  -moz-border-radius:    10px;
+  -webkit-border-radius: 10px;
+  border-radius:         10px;
+}
+
+/* Footer */
+
+footer {
+  text-align: center;
+  margin-top: 10px;
+  width: 710px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer nav {
+  float: none;
+}
+
+/* User show page */
+
+table.profile {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+td.main {
+  width: 70%;
+  padding: 1em;
+}
+
+td.sidebar {
+  width: 30%;
+  padding: 1em;
+  vertical-align: top;
+  background: #ffc;
+}
+
+.profile img.gravatar {
+  border: 1px solid #999;
+  margin-bottom: -15px;
+}
+
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+/*  Error messages */
+
+.field_with_errors {
+  margin-top: 10px;
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+.field_with_errors label {
+  color: #fff;
+}
+
+#error_explanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+ul.users {
+  margin-top: 1em;
+}
+
+ul.users li {
+  list-style: none;
+}
+
+/*  Visit styling */
+
+h1.visit {
+  margin-bottom: 0.3em;
+}
+
+table.visits {
+  margin-top: 1em;
+}
+
+table.visits tr {
+  height: 70px;
+}
+
+table.visits tr td.gravatar {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  width: 50px;
+}
+
+table.visits tr td.visit {
+  border-top: 1px solid #ccc;
+  vertical-align: top;
+  padding-top: 10px;
+}
+
+table.visits tr td.visit span.timestamp {
+  display: block;
+  font-size: 85%;
+  color: #666;
+}
+
+div.user_info img {
+  padding-right: 0.1em;
+}
+
+div.user_info a {
+  text-decoration: none;
+}
+
+div.user_info span.user_name {
+  position: absolute;
+}
+
+div.user_info span.visits {
+  font-size: 80%;
+}
+
+form.new_visit {
+  margin-bottom: 2em;
+}
+
+form.new_visit textarea {
+  height: 4em;
+  margin-bottom: 0;
+}
+/* authentication related css (imported from omniauth example*/
+.authentications {
+  margin-bottom: 30px;
+}
+
+.authentication {
+  float: left;
+  background-color: #EEE;
+  border: solid 1px #999;
+  padding: 5px 10px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  position: relative;
+  margin-right: 10px;
+}
+
+.authentication .remove {
+  text-decoration: none;
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  color: #333;
+  padding: 2px 4px;
+  font-size: 10px;
+}
+
+.authentication .remove:hover {
+  color: #FFF;
+  background-color: #777;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+}
+
+.authentication img {
+  float: left;
+}
+
+.authentication .provider, .authentication .uid {
+  margin-left: 38px;
+  margin-right: 20px;
+}
+
+.authentication .provider {
+  font-weight: bold;
+}
+
+.authentication .uid {
+  color: #666;
+  font-size: 11px;
+}
+
+.auth_provider img {
+	/*below code shows the logos below each other (as blocks)*/
+  display: block;
+}
+
+.auth_provider {
+  text-decoration: none;
+  margin-right: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.clear {
+  clear: both;
+  height: 0;
+  overflow: hidden;
+}
+
+/* stolen from carrierwave example source code */
+
+.picture {
+  border: solid 1px #CCC;
+  padding: 10px 10px;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.picture .genre {
+  padding-top: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.picture .image_placeholder {
+  width: 200px;
+  height: 150px;
+  background-color: #B6B6B6;
+}
+
+/* for links placed next to the pictures */
+.picture .actions {
+  font-size: 15px;
+  text-align: center;
+  color: #777;
+}
+
+/* Arby classes */
+.vertical_align {
+  vertical-align: middle;
+  margin-bottom: 5px;
+}
+
+.leftmenu{
+  float: left;
+  display: block;
+  margin-top:2px; 
+}
+
+.horizontalmenu{
+  display: inline-block;
+}  

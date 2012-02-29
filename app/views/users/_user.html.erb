@@ -2,12 +2,12 @@
   <% if user.profilepicurl.nil? %>
     <%= gravatar_for user, :size => 35 %>
   <% else %>
-    <%= image_tag(user.profilepicurl, :size => "35x35", :alt => "", :class => "round")%> 
+    <%= image_tag(user.profilepicurl, :size => "35x35", :alt => "", :class => "round vertical_align")%> 
   <% end %>
   
   <%= link_to user.name, user %>
   <% if current_user.admin? %>
-  |
+  
   <%= link_to "delete", user, :method => :delete, :confirm => "You sure?",
                               :title => "Delete #{user.name}" %>
   <% end %>

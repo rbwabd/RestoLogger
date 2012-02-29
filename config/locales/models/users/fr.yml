@@ -3,5 +3,6 @@ fr:
   user_email:  Email
   user_locale: Langue
   user_select_language_prompt: Choisir langue
+  edit_user_title: Modifier les parametres utilisateur
   
   
