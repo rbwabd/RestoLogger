@@ -17,14 +17,5 @@ class PagesController < ApplicationController
   
   def help
     @title = "Help"
-    @picture = Picture.new()
-    @picture.remote_image_url=current_user.facebook.picture
-    @picture.genre="ProfilePic"
-    if @picture.save
-      flash.now[:notice] = "Successfully created picture."
-    else 
-      flash[:notice] = "failed creating picture."
-      redirect_to root_path
-    end  
   end
 end

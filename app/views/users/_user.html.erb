@@ -1,5 +1,10 @@
 <li>
-  <%= gravatar_for user, :size => 30 %>
+  <% if user.profilepicurl.nil? %>
+    <%= gravatar_for user, :size => 35 %>
+  <% else %>
+    <%= image_tag(user.profilepicurl, :size => "35x35", :alt => "", :class => "round")%> 
+  <% end %>
+  
   <%= link_to user.name, user %>
   <% if current_user.admin? %>
   |

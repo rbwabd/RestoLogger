@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessor   :password
-  attr_accessible :name, :email, :locale #, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :email, :locale, :profilepicurl #, :password, :password_confirmation, :remember_me
   
   validates :name,  :presence => true,
                     :length   => { :maximum => 50 }
@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
     case omniauth['provider']
 		when 'facebook'
 			self.apply_facebook(omniauth)
-		end
+    end
     #creates the authentication object in database that belongs to self (user object)
 		authentications.build(:provider => omniauth["provider"], :uid => omniauth["uid"], 
 													:token => omniauth["credentials"]["token"])

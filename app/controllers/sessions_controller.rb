@@ -9,6 +9,7 @@ class SessionsController < Devise::SessionsController
     #end
 		if authentication && authentication.user.present?
 			session[:user_id] = authentication.user.id 
+      check_updated_profilepic(authentication.user, omniauth)
 			flash[:notice] = "Signed in successfully."
 			#this is a devise method
       sign_in_and_redirect(:user, authentication.user)
@@ -16,19 +17,23 @@ class SessionsController < Devise::SessionsController
 			session[:user_id] = current_user.id 
 			#this is when user is logged in but is adding another authentication method
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'], :token => omniauth["credentials"]["token"])
-			flash[:notice] = "Authentication successful."
+      check_updated_profilepic(current_user, omniauth)
+      flash[:notice] = "Authentication successful."
       redirect_to authentications_url
     else
       user = User.new
-			#the below also creates a new authentication object in DB
+      user.locale = I18n.default_locale
+      #the below also creates a new authentication object in DB
       user.apply_omniauth(omniauth)
+      user.profilepicurl=set_user_profilepic(omniauth)
       session[:user_id] = user.id 
 			if user.save
         flash[:notice] = "Signed in new user successfully."
 				sign_in_and_redirect(:user, user)
 			else
 			  #this part needs to be rewritten...
-        #could result in cookie-overflow due to exceeding 4k size in session - better use session[:omniauth] = omniauth.except('extra')
+
+        #next statementcould result in cookie-overflow due to exceeding 4k size in session - better use session[:omniauth] = omniauth.except('extra')
 				#session[:omniauth] = omniauth
 				redirect_to new_user_registration_url
       end
@@ -41,4 +46,27 @@ class SessionsController < Devise::SessionsController
     flash[:notice] = "Sign out successful."
     redirect_to root_path
   end
+  
+  private
+    #check whether profile pic url for user exists, if not update through omniauth
+    def check_updated_profilepic(user, omniauth)
+      if user.profilepicurl.nil? then 
+        user.profilepicurl=set_user_profilepic(omniauth)
+        if !user.save
+          flash[:error] = "Profile Picture update failed!"
+        end
+      end
+    end
+  
+    # gets remote profile pic, uploads to AWS and puts url into user table
+    def set_user_profilepic(omniauth)
+      case omniauth['provider']
+      when 'facebook'
+        fb_user = FbGraph::User.me(omniauth["credentials"]["token"]).fetch
+        picture = Picture.new()
+        picture.remote_image_url=fb_user.picture
+        picture.save
+        return picture.image_url
+      end
+    end
 end

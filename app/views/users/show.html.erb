@@ -2,7 +2,11 @@
   <tr>
     <td class="main">
       <h1>
-        <%= gravatar_for @user %>
+        <% if @user.profilepicurl.nil? %>
+          <%= gravatar_for @user %>
+        <% else %>
+          <%= image_tag(@user.profilepicurl, :size => "60x60", :alt => "", :class => "round")%> 
+        <% end %>
         <%= @user.name %>
       </h1>
       <%= render 'follow_form' if signed_in? %>
