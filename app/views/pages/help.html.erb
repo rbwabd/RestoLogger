@@ -2,5 +2,5 @@
 <p>
   <%= t :help_message %>
 <br>
-	<%= image_tag(current_user.facebook.picture, :size => "50x50", :alt => "User", :class => "round")%>
+  <%= image_tag(@picture.image_url, :size => "50x50", :alt => "User", :class => "round")%> 
 </p>

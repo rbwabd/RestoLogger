@@ -75,7 +75,7 @@ nav ul li a:hover {
   text-decoration: underline;
 }
 
-/* Sign up button */
+/* Sign up button not used now i think*/
 
 a.signup_button {
   margin-left: auto;
@@ -334,11 +334,12 @@ form.new_visit textarea {
   border: solid 1px #CCC;
   padding: 10px 10px;
   float: left;
+  align: center
   margin-right: 20px;
   margin-bottom: 20px;
 }
 
-.picture .name {
+.picture .genre {
   padding-top: 5px;
   text-align: center;
   font-weight: bold;
@@ -350,8 +351,9 @@ form.new_visit textarea {
   background-color: #B6B6B6;
 }
 
+/* for links placed next to the pictures */
 .picture .actions {
-  font-size: 10px;
+  font-size: 15px;
   text-align: center;
   color: #777;
 }
