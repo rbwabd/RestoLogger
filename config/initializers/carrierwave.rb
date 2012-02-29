@@ -1,5 +1,6 @@
 CarrierWave.configure do |config|
-  config.cache_dir = 'carrierwave'
+  #following line doesn't seem to be working -> tmp pics still stored in tmp/uploads
+  #config.cache_dir = 'carrierwave'
   config.fog_credentials = {
     :provider               => 'AWS',       # required
     :aws_access_key_id      => 'AKIAJ5MS5WRS5BWUKKEA',       # required
