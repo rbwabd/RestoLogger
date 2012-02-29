@@ -5,10 +5,10 @@ CarrierWave.configure do |config|
     :provider               => 'AWS',       # required
     :aws_access_key_id      => 'AKIAJ5MS5WRS5BWUKKEA',       # required
     :aws_secret_access_key  => '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',       # required
-    #:region                 => 'eu-west-1'  # optional, defaults to 'us-east-1'
+    :region                 => 'eu-west-1'  # optional, defaults to 'us-east-1'  #eu-west-1 is ireland
   }
   config.permissions = 0777 
-  config.fog_directory  = 'resto-tester'                     # bucket name - required
+  config.fog_directory  = 'resto-logger'                     # bucket name - required
   #config.fog_host       = 'https://assets.example.com'            # optional, defaults to nil
   #config.fog_public     = false                                   # optional, defaults to true
   #config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}  # optional, defaults to {}
