@@ -1,9 +1,8 @@
 <% if user_signed_in? %>
-
-  <table class="front" summary="For signed-in users">
+  <table class="" summary="For signed-in users">
     <tr>
-      <td class="main">
-        <h1 class="visit"><%= t :home_whats_up %></h1>
+      <td class="">
+        <h1 class=""><%= t :home_whats_up %></h1>
         <%= render 'shared/visit_form' %>
         <%= render 'shared/feed' %>
       </td>
@@ -13,14 +12,11 @@
       </td>
     </tr>
   </table>
-
 <% else %>
-
 	<h1><%= t :restologger_appname %></h1>
 	<p>
 		<%= t :home_login_prompt %>
 	</p>
-
 	<a href="/auth/facebook" class="auth_provider">
 		<%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
 		Facebook

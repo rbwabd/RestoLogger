@@ -1,16 +1,16 @@
 <table summary="Information about following/followers">
   <tr>
-    <td class="main">
+    <td class="">
       <h1><%= @title %></h1>
       
       <% if @users.any? %>
-        <ul class="users">
+        <ul class="">
           <%= render @users %>
         </ul>  
         <%= will_paginate @users %>
       <% end %>
     </td>
-    <td class="sidebar round">
+    <td class="round">
       <strong>Name</strong> <%= @user.name %><br />
       <strong>URL</strong> <%= link_to user_path(@user), @user %><br />
       <strong>Visits</strong> <%= @user.visits.count %>

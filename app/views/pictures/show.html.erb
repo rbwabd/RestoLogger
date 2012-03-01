@@ -1,5 +1,4 @@
 <h1><%= @title %></h1>
-
   <div class="picture">
     <%= image_tag @picture.image_url(:thumb) if @picture.image? %>
     <div class="genre"><%= @picture.genre %></div>
@@ -8,7 +7,6 @@
       <%= link_to "remove", @picture, :confirm => 'Are you sure?', :method => :delete %>
     </div>
   </div>
-
 <p>
   <%= link_to "Add a Picture", new_picture_path() %> |
 </p>
