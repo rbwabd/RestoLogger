@@ -1,5 +1,13 @@
 SampleApp::Application.routes.draw do
   
+  get "states/create"
+
+  get "states/destroy"
+
+  get "countries/create"
+
+  get "countries/destroy"
+
 	devise_for :users#, :skip => [:sessions]
 	#as :user do is the same as devise_scope :user do
 	as :user do

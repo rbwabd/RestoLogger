@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120301081227) do
+ActiveRecord::Schema.define(:version => 20120301164124) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -21,6 +21,60 @@ ActiveRecord::Schema.define(:version => 20120301081227) do
     t.datetime "updated_at"
     t.string   "token"
   end
+
+  create_table "chains", :force => true do |t|
+    t.string   "name"
+    t.string   "shortname"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cities", :force => true do |t|
+    t.string   "name"
+    t.string   "location"
+    t.string   "country_id"
+    t.string   "state_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "countries", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "dish_reviews", :force => true do |t|
+    t.integer  "rating"
+    t.string   "tagline"
+    t.string   "review"
+    t.integer  "dish_id"
+    t.integer  "user_id"
+    t.integer  "visit_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "dish_reviews", ["dish_id", "user_id", "visit_id"], :name => "index_dish_reviews_on_dish_id_and_user_id_and_visit_id"
+
+  create_table "dish_types", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "dishes", :force => true do |t|
+    t.string   "name"
+    t.string   "alt_name"
+    t.integer  "category"
+    t.integer  "dish_type_id"
+    t.string   "keyword"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "dishes", ["dish_type_id"], :name => "index_dishes_on_dish_type_id"
 
   create_table "pictures", :force => true do |t|
     t.string   "genre"
@@ -44,6 +98,39 @@ ActiveRecord::Schema.define(:version => 20120301081227) do
   add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id", :unique => true
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
 
+  create_table "states", :force => true do |t|
+    t.string   "name"
+    t.string   "country_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "store_types", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "stores", :force => true do |t|
+    t.string   "name"
+    t.string   "shortname"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "phone2"
+    t.string   "address"
+    t.string   "postcode"
+    t.string   "city"
+    t.integer  "city_id"
+    t.integer  "chain_id"
+    t.integer  "store_type_id"
+    t.string   "keyword"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "stores", ["city_id", "chain_id", "store_type_id"], :name => "index_stores_on_city_id_and_chain_id_and_store_type_id"
+
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "",    :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "",    :null => false
@@ -63,6 +150,13 @@ ActiveRecord::Schema.define(:version => 20120301081227) do
     t.string   "profilepicurl"
     t.string   "rank"
     t.integer  "status"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.date     "birth_date"
+    t.string   "phone"
+    t.string   "phone2"
+    t.string   "address"
+    t.integer  "gender"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
@@ -73,6 +167,13 @@ ActiveRecord::Schema.define(:version => 20120301081227) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "overall_rating"
+    t.integer  "service_rating"
+    t.integer  "speed_rating"
+    t.integer  "mood_rating"
+    t.string   "tagline"
+    t.string   "review"
+    t.integer  "guest_number"
   end
 
   add_index "visits", ["user_id", "created_at"], :name => "index_visits_on_user_id_and_created_at"
