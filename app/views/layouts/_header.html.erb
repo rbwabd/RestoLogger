@@ -1,18 +1,37 @@
 <header>
-  <%= link_to logo, root_path %>
-  <nav class="round horizontalmenu">
+  <div id="logo">
+    <h1><a href="http://restologger.heroku.com">Resto<span>Logger</span></a></h1>
+  </div>
+  <!--<%= link_to logo, root_path %>-->
+  <div id="menu">
     <ul>
-      <li class="horizontalmenu"><%= link_to "Home", root_path %></li>
+      <li>
+        <div id="search" >
+          <form method="get" action="#">
+            <div>
+              <input type="text" name="s" id="search-text" value="" />
+              <input type="submit" id="search-submit" value="GO" />
+            </div>
+          </form>
+        </div>
+      </li>
+      <li><%= link_to "Home", root_path %></li>
       <% if user_signed_in? %>
-        <li class="horizontalmenu"><%= link_to "Profile", current_user %></li>
-        <li class="horizontalmenu"><%= link_to "Users", users_path %></li>
-        <li class="horizontalmenu"><%= link_to "Settings", edit_user_path(current_user) %></li>
+        <li><%= link_to "Profile", current_user %></li>
+        <li><%= link_to "Users", users_path %></li>
+        <li><%= link_to "Settings", edit_user_path(current_user) %></li>
       <% end %>
-      <li class="horizontalmenu"><%= link_to "Help", help_path %></li>
+      <li><%= link_to "Help", help_path %></li>
       <% if user_signed_in? %>
-        <li class="horizontalmenu"><%= link_to "Sign out", destroy_user_session_path, :method=> 'delete' %></li>
+        <li><%= link_to "Sign out", destroy_user_session_path, :method=> 'delete' %></li>
       <% else %>
       <% end %>
     </ul>
-  </nav>
+  </div>
 </header>
+
+
+
+
+
+ 
