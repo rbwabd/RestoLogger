@@ -1,0 +1,47 @@
+  <div id="sidebar">
+    <ul>
+      <li>
+        <% if user_signed_in? %>
+          <h2>
+            <% if current_user.profilepicurl.nil? %>
+              <%= gravatar_image_tag(current_user.email, :gravatar => { :size => 35 }, :alt => "", :class => "round vertical_align")%>
+            <% else %>
+              <%= image_tag(current_user.profilepicurl, :size => "60x60", :alt => "", :class => "round vertical_align")%> 
+            <% end %>
+            &nbsp;<%= current_user.name %>
+          </h2>
+          <ul>
+            <li><%= link_to "My Visits", "#" %></li>
+            <li><%= link_to "My Favourite Places", "#" %></li>
+            <li><%= link_to "My Favourite Dishes", "#" %></li>
+            <li><%= link_to "My Dish Reviews", "#" %></li>
+            <li><%= link_to "My Network", "#" %></li>
+            <li><%= link_to "My Statistics", "#" %></li>
+            <br/>
+            <li><%= link_to "Add a Visit", "#" %></li>
+          </ul>
+        <% end %>
+      </li>
+      <li>
+        <% if user_signed_in? %>
+          <h2>
+            Messages
+          </h2>
+          <ul>
+            <li>Albert started following you</li>
+            <li>Frank posted a great review</li>
+            <li>John edited information you posted</li>
+          </ul>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+
+
+
+
+
+
+
+
+
