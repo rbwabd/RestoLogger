@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120301164124) do
+ActiveRecord::Schema.define(:version => 20120303090049) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -131,6 +131,16 @@ ActiveRecord::Schema.define(:version => 20120301164124) do
 
   add_index "stores", ["city_id", "chain_id", "store_type_id"], :name => "index_stores_on_city_id_and_chain_id_and_store_type_id"
 
+  create_table "user_settings", :force => true do |t|
+    t.string   "locale"
+    t.integer  "current_city"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_settings", ["user_id"], :name => "index_user_settings_on_user_id"
+
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "",    :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "",    :null => false
@@ -146,7 +156,6 @@ ActiveRecord::Schema.define(:version => 20120301164124) do
     t.datetime "updated_at"
     t.boolean  "admin",                               :default => false
     t.string   "name"
-    t.string   "locale"
     t.string   "profilepicurl"
     t.string   "rank"
     t.integer  "status"
