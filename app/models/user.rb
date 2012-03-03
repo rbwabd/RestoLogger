@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
 											 :source => :followed
   has_many :followers, :through => :reverse_relationships, 
 											 :source  => :follower
+  has_one :user_setting
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
@@ -45,6 +46,7 @@ class User < ActiveRecord::Base
     #creates the authentication object in database that belongs to self (user object)
 		authentications.build(:provider => omniauth["provider"], :uid => omniauth["uid"], 
 													:token => omniauth["credentials"]["token"])
+    build_user_setting(:locale => I18n.default_locale)
   end
   
   # i added the fetch at the end so the user data is fetched. not sure if this is a performance hit
@@ -61,6 +63,10 @@ class User < ActiveRecord::Base
   
   def self.localelist
     a=[[I18n.t(:english),"en"], [I18n.t(:french),"fr"],[I18n.t(:german), "de"]]
+  end
+  
+  def locale
+    user_setting.locale
   end
 	
 	protected

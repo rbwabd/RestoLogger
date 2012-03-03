@@ -50,7 +50,7 @@ class UsersController < ApplicationController
   end
   
   def update
-    if @user.update_attributes(params[:user])
+    if @user.update_attributes(params[:user]) && @user.user_setting.update_attributes(params[:user_setting])
       redirect_to @user, :flash => { :success => "Profile updated." }
     else
       @title = "Edit user"

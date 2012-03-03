@@ -22,7 +22,6 @@ class SessionsController < Devise::SessionsController
       redirect_to authentications_url
     else
       user = User.new
-      user.locale = I18n.default_locale
       #the below also creates a new authentication object in DB
       user.apply_omniauth(omniauth)
       user.profilepicurl=set_user_profilepic(omniauth)
@@ -42,7 +41,7 @@ class SessionsController < Devise::SessionsController
   
   def destroy
     sign_out
-    I18n.locale=
+    I18n.locale="en"
     flash[:notice] = "Sign out successful."
     redirect_to root_path
   end
