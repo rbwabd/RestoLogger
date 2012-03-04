@@ -2,12 +2,12 @@
 <div id="content">
 <%= render 'shared/flash_box' %>
 
-<h1>New Visit</h1>
+<h1><%= I18n.t(@title) %></h1>
 
 <%= form_for(@visit) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <%= render 'fields', :f => f %>
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit I18n.t(@button) %>
   </div>  
 <% end %>

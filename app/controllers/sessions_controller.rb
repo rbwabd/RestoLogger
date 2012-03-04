@@ -8,6 +8,7 @@ class SessionsController < Devise::SessionsController
     #  a.update_attributes(:token => omniauth["credentials"]["token"]) if a
     #end
 		if authentication && authentication.user.present?
+
 			session[:user_id] = authentication.user.id 
       check_updated_profilepic(authentication.user, omniauth)
 			flash[:notice] = "Signed in successfully."
@@ -34,6 +35,8 @@ class SessionsController < Devise::SessionsController
 
         #next statementcould result in cookie-overflow due to exceeding 4k size in session - better use session[:omniauth] = omniauth.except('extra')
 				#session[:omniauth] = omniauth
+        #could be because DB got corrupted and there are orphan authentications without allocated user (but user was recreated with new authentication
+        flash[:error] = "Save of new user failed"
 				redirect_to new_user_registration_url
       end
     end

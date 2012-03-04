@@ -10,6 +10,6 @@
   </div>
 -->
 <div class="field">
-  <%= f.label :locale, t(:user_locale) %><br />
-  <%= select(:user_setting, :locale, User.localelist) %>
+  <%= label :user_setting, :locale, t(:user_locale) %><br />
+  <%= select :user_setting, :locale, User.localelist %>
 </div>

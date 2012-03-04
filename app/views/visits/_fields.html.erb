@@ -1,0 +1,31 @@
+<span class="field">
+  <%= label :city, :name, "City:" %>&nbsp;
+  <%= text_field :city, :name%>
+</span>
+<span>
+  <%= label :state, :name, "State:" %>&nbsp;
+  <%= select :state, :id, State.find_all_by_country_id(@country.id).collect {|p| [ p.name, p.id ] } %>
+</span>
+<span>
+  <%= label :country, :name, "Country:" %>&nbsp;
+  <%= select :country, :id, Country.all.collect {|p| [ p.name, p.id ] } %>
+</span>
+<br/>
+<br/>
+<div class="field">
+  <%= label :store, :name, "Restaurant Name:" %>&nbsp;
+  <%= text_field :store, :name%>
+</div>
+<div class="field">
+  <%= label :visit, :visit_date, "Visit Date:" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <%= text_field :visit, :visit_date, :size => 10 %>
+</div>
+<div class="field">
+  <%= label :visit, :tagline, "Tagline:" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <%= text_field :tagline, :tagline, :size => 81 %>
+</div>
+<div class="visitreview"> 
+  <%= label :visit, :review, "Full Review:" %>&nbsp;
+  <%= text_area :visit, :review, :size => "60x8" %>
+</div>
+

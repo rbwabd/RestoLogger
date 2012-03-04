@@ -3,11 +3,17 @@ class VisitsController < ApplicationController
   before_filter :authorized_user, :only => :destroy
   
   def index
+    @title = "index_title"
     @visits = @current_user.visits.paginate(:page => params[:page])
   end
 
   def new
     @visit  = Visit.new
+    @title = "new_title"
+    @button = "new_button"
+    @city = City.new(:name => "London")
+    @country = Country.find_by_name("United Kingdom")
+    @state = State.find_by_name("London")
   end
   
   def create

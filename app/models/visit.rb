@@ -1,29 +1,18 @@
-# == Schema Information
-# Schema version: 20100829210229
-#
-# Table name: visits
-#
-#  id         :integer         not null, primary key
-#  content    :string(255)
-#  user_id    :integer
-#  created_at :datetime
-#  updated_at :datetime
-#
-
 class Visit < ActiveRecord::Base
   attr_accessible :content
   
   belongs_to :user
+  has_one :store
+  has_one :city
   
-  validates :content, :presence => true, :length => { :maximum => 140 }
-  validates :user_id, :presence => true
+  #validates :content, :presence => true, :length => { :maximum => 140 }
+  #validates :user_id, :presence => true
   
   default_scope :order => 'visits.created_at DESC'
   
   scope :from_users_followed_by, lambda { |user| followed_by(user) }
   
-  private
-  
+  private 
     def self.followed_by(user)
       following_ids = %(SELECT followed_id FROM relationships
                         WHERE follower_id = :user_id)

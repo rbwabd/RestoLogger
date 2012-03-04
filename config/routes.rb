@@ -24,11 +24,11 @@ SampleApp::Application.routes.draw do
       get :following, :followers
     end
   end
-  resources :sessions,      :only => [:new, :create, :destroy]
-  resources :visits,    		:only => [:create, :destroy]
-  resources :relationships, :only => [:create, :destroy]
-	resources :authentications#, :only => [:destroy]
-  resources :pictures#,      :only => [:new, :create, :destroy]
+  resources :sessions,        :only => [:new, :create, :destroy]
+  resources :visits
+  resources :relationships,   :only => [:create, :destroy]
+	resources :authentications
+  resources :pictures
   
 	root :to => "authentications#index"
 	#root :to => "pages#home"

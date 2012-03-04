@@ -463,30 +463,17 @@ header {
   list-style: square;
 }
 
-table.visits {
+.visitreview {
   margin-top: 1em;
-}
+  height: 180px;
+  #width: 300px
+  #display: block;
+  #font-size: 85%;
+  #color: #666;
+} 
 
-table.visits tr {
-  height: 70px;
-}
-
-table.visits tr td.gravatar {
-  border-top: 1px solid #ccc;
+.visitreview label{
   vertical-align: top;
-  width: 50px;
-}
-
-table.visits tr td.visit {
-  border-top: 1px solid #ccc;
-  vertical-align: top;
-  padding-top: 10px;
-}
-
-table.visits tr td.visit span.timestamp {
-  display: block;
-  font-size: 85%;
-  color: #666;
 }
 
 div.user_info img {

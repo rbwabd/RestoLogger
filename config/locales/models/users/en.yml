@@ -1,8 +1,13 @@
 en:
+  index_title: All Users
+  new_title: Sign Up
+  new_button: Sign Up
+  edit_title: Edit User Settings
+  edit_button: Update
   user_name:  Name
   user_email:  Email
   user_locale: Language
   user_select_language_prompt: Please choose language
-  edit_user_title: Edit User Settings
-  
+  following:  Following
+  followers:  Followers
   

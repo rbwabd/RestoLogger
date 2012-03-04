@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120303090049) do
+ActiveRecord::Schema.define(:version => 20120303113309) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -183,8 +183,12 @@ ActiveRecord::Schema.define(:version => 20120303090049) do
     t.string   "tagline"
     t.string   "review"
     t.integer  "guest_number"
+    t.integer  "city_id"
+    t.integer  "store_id"
+    t.date     "visit_date"
   end
 
+  add_index "visits", ["city_id", "store_id"], :name => "index_visits_on_city_id_and_store_id"
   add_index "visits", ["user_id", "created_at"], :name => "index_visits_on_user_id_and_created_at"
 
 end
