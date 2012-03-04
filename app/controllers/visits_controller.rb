@@ -15,9 +15,18 @@ class VisitsController < ApplicationController
     @visit  = Visit.new
     @title = "new_title"
     @button = "new_button"
-    @city = City.new(:name => "London")
+    @city = City.find_city("London", "London", "United Kingdom")
     @country = Country.find_by_name("United Kingdom")
     @state = State.find_by_name("London")
+  end
+  
+  def update_stores
+    #updates what stores we return based on city selected
+    city = City.find_by_id(params[:city_id])
+
+    render :update do |page|
+      page.replace_html 'store', :partial => 'store', :object => store
+    end    
   end
   
   def create
