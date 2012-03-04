@@ -8,8 +8,8 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 module SampleApp
   class Application < Rails::Application
-    #allows to serve jquery.js jquery_ujs.js and such dynamically
-    #config.assets.enabled = true
+    #allows to serve jquery.js jquery_ujs.js and such dynamically as asset pipeline is enabled
+    config.assets.enabled = true
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
