@@ -2,6 +2,9 @@
   <%= label :city, :name, "City:" %>&nbsp;
   <%= text_field :city, :name%>
 </span>
+<span class="field">
+  <%=  f.autocomplete_field :city_name, visits_autocomplete_city_name_path %>
+</span>
 <span>
   <%= label :state, :name, "State:" %>&nbsp;
   <%= select :state, :id, State.find_all_by_country_id(@country.id).collect {|p| [ p.name, p.id ] } %>

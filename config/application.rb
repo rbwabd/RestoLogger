@@ -2,10 +2,13 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
+
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
+#this shouldn't be required but somehow jquery wasn't being properly loaded
+require "jquery-rails"
 module SampleApp
   class Application < Rails::Application
     #allows to serve jquery.js jquery_ujs.js and such dynamically as asset pipeline is enabled

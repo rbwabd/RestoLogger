@@ -12,7 +12,7 @@ gem 'carrierwave'
 gem 'fog'
 gem 'mini_magick'
 gem 'aws-s3', :require => 'aws/s3'
-#gem 'jquery-rails'
+gem 'jquery-rails'
 gem 'rails3-jquery-autocomplete'
 
 group :development do

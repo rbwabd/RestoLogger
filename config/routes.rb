@@ -4,7 +4,8 @@ SampleApp::Application.routes.draw do
   get "states/destroy"
   get "countries/create"
   get "countries/destroy"
-
+  get "visits/autocomplete_city_name"
+  
 	devise_for :users  #, :skip => [:sessions]
   #as :user do is the same as devise_scope :user do
 	as :user do
@@ -21,6 +22,9 @@ SampleApp::Application.routes.draw do
       get :following, :followers
     end
   end
+  #resources :visits do
+  #  get :autocomplete_visit_name, :on => :collection
+  #end
   resources :sessions,        :only => [:new, :create, :destroy]
   resources :visits
   resources :relationships,   :only => [:create, :destroy]

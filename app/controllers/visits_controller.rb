@@ -1,10 +1,16 @@
 class VisitsController < ApplicationController
+  autocomplete :city, :name
+  
   before_filter :authenticate_user!
   before_filter :authorized_user, :only => :destroy
-  
+
   def index
     @title = "index_title"
     @visits = @current_user.visits.paginate(:page => params[:page])
+  end
+  
+  def show
+    @visit = Visit.new
   end
 
   def new

@@ -1,4 +1,5 @@
 class Visit < ActiveRecord::Base
+  attr_accessor :city_name
   attr_accessible :content
   
   belongs_to :user
