@@ -1,9 +1,7 @@
 <span class="field">
   <%= label :city, :name, "City:" %>&nbsp;
-  <%= text_field :city, :name%>
-</span>
-<span class="field">
-  <%=  f.autocomplete_field :city_name, visits_autocomplete_city_name_path %>
+  <%= f.autocomplete_field :city_name, visits_autocomplete_city_name_path, :id_element => "#id_element_placeholder" %>
+  <%= text_field_tag :id_element_placeholder, '' %>
 </span>
 <span>
   <%= label :state, :name, "State:" %>&nbsp;
