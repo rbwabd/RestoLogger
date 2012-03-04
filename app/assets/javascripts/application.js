@@ -3,7 +3,32 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require autocomplete-rails
 jQuery(function() {
   jQuery("#tabs").tabs();
+});
+$(function() {
+  $('#visit_city_name').autocomplete({
+    minLength: 2,
+    source: '/autocomplete/cities',
+    focus: function(event, ui) {
+      $('#visit_city_name').val(ui.item.name);
+      return false;
+    },
+    select: function(event, ui) {
+      $('#visit_city_id').val(ui.item.id);
+      return false;
+    }
+  });
+  $('#visit_store_name').autocomplete({
+    minLength: 2,
+    source: '/autocomplete/stores',
+    focus: function(event, ui) {
+      $('#visit_store_name').val(ui.item.name);
+      return false;
+    },
+    select: function(event, ui) {
+       $('#visit_store_id').val(ui.item.id);
+         return false;
+    }
+  });
 });

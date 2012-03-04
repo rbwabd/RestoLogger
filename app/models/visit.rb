@@ -1,6 +1,6 @@
 class Visit < ActiveRecord::Base
-  attr_accessor :city_name
-  attr_accessible :content
+  attr_accessor :city_name, :store_name
+  attr_accessible :content, :city_id, :review, :tagline, :store_id, :visit_date
   
   belongs_to :user
   has_one :store
@@ -13,6 +13,14 @@ class Visit < ActiveRecord::Base
   
   scope :from_users_followed_by, lambda { |user| followed_by(user) }
   
+  def city_name
+    city.name if city_id
+  end
+  
+  def store_name
+    store.name if store_id
+  end
+
   private 
     def self.followed_by(user)
       following_ids = %(SELECT followed_id FROM relationships

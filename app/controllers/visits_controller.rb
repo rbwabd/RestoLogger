@@ -1,6 +1,4 @@
 class VisitsController < ApplicationController
-  autocomplete :city, :name
-  
   before_filter :authenticate_user!
   before_filter :authorized_user, :only => :destroy
 
@@ -23,7 +21,9 @@ class VisitsController < ApplicationController
   end
   
   def create
-    @visit = current_user.visits.build(params[:visit])
+    @visit  = Visit.new(params[:visit])
+    @visit.user_id=current_user.id
+     
     if @visit.save
       redirect_to root_path, :flash => { :success => "Visit created!" }
     else

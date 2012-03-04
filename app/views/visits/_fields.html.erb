@@ -1,7 +1,7 @@
 <span class="field">
-  <%= label :city, :name, "City:" %>&nbsp;
-  <%= f.autocomplete_field :city_name, visits_autocomplete_city_name_path, :id_element => "#id_element_placeholder" %>
-  <%= text_field_tag :id_element_placeholder, '' %>
+  <%= f.label :name, "City:" %>&nbsp;
+  <%= f.text_field :city_name %>
+  <%= f.hidden_field :city_id %>
 </span>
 <span>
   <%= label :state, :name, "State:" %>&nbsp;
@@ -14,19 +14,20 @@
 <br/>
 <br/>
 <div class="field">
-  <%= label :store, :name, "Restaurant Name:" %>&nbsp;
-  <%= text_field :store, :name%>
+  <%= f.label :store_name, "Restaurant Name:" %>&nbsp;
+  <%= f.text_field :store_name %>
+  <%= f.hidden_field :store_id %>
 </div>
 <div class="field">
-  <%= label :visit, :visit_date, "Visit Date:" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= text_field :visit, :visit_date, :size => 10 %>
+  <%= f.label :visit_date, "Visit Date:" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <%= f.text_field :visit_date, :size => 10 %>
 </div>
 <div class="field">
-  <%= label :visit, :tagline, "Tagline:" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= text_field :tagline, :tagline, :size => 81 %>
+  <%= f.label :tagline, "Tagline:" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <%= f.text_field :tagline, :size => 81 %>
 </div>
 <div class="visitreview"> 
-  <%= label :visit, :review, "Full Review:" %>&nbsp;
-  <%= text_area :visit, :review, :size => "60x8" %>
+  <%= f.label :review, "Full Review:" %>&nbsp;
+  <%= f.text_area :review, :size => "60x8" %>
 </div>
 

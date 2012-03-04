@@ -13,7 +13,7 @@ gem 'fog'
 gem 'mini_magick'
 gem 'aws-s3', :require => 'aws/s3'
 gem 'jquery-rails'
-gem 'rails3-jquery-autocomplete'
+#gem 'rails3-jquery-autocomplete'
 
 group :development do
   gem 'rspec-rails', '2.6.1'
