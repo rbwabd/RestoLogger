@@ -1,6 +1,12 @@
 # Use this hook to configure devise mailer, warden hooks and so forth. The first
 # four configuration values can also be set straight in your models.
 Devise.setup do |config|
+  #new stuff added after installing Rails 3.2.2 and new version of devise
+  #complaint on start of rails server
+  config.case_insensitive_keys = []
+  #otherwise /signout path not found
+  config.sign_out_via = :delete
+  
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
   config.mailer_sender = "please-change-me@config-initializers-devise.com"

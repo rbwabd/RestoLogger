@@ -1,9 +1,9 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.11'
+gem 'rails'
 gem 'gravatar_image_tag', '1.0.0.pre2'
-gem 'will_paginate', '3.0.pre2'
-gem 'sqlite3', '1.3.4'
+gem 'will_paginate'
+gem 'sqlite3'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'fb_graph'
@@ -11,7 +11,9 @@ gem 'devise'
 gem 'carrierwave'
 gem 'fog'
 gem 'mini_magick'
-gem 'aws-s3', '0.6.2', :require => 'aws/s3'
+gem 'aws-s3', :require => 'aws/s3'
+#gem 'jquery-rails'
+gem 'rails3-jquery-autocomplete'
 
 group :development do
   gem 'rspec-rails', '2.6.1'

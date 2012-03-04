@@ -1,11 +1,8 @@
 SampleApp::Application.routes.draw do
   
   get "states/create"
-
   get "states/destroy"
-
   get "countries/create"
-
   get "countries/destroy"
 
 	devise_for :users#, :skip => [:sessions]
