@@ -6,6 +6,8 @@ Devise.setup do |config|
   config.case_insensitive_keys = []
   #otherwise /signout path not found
   config.sign_out_via = :delete
+  config.use_salt_as_remember_token = true
+  config.reset_password_within = 24.hours
   
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
