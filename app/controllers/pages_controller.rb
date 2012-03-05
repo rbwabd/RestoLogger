@@ -23,10 +23,38 @@ require 'open-uri'
     @store_name = nil
     @store_address = nil
     @store_url = nil
+    search_url = nil
         
-    base_url = "http://www.yelp.co.uk/biz/the-ledbury-london"
+    google_url= 'https://www.google.com/search?as_q=yelp+restaurant+boston+aujourd+hui'
+    search = "london yelp restaurant red sun"
 
-    open("#{base_url}") {|f|
+    #file for debugging purposes
+    #File.open("tmpzfile.txt",'w') do |filea|
+      open("#{google_url}") {|f|
+        #raise 'web service error' if (f.status.first != '200')
+        f.each_line {|line|
+          #filea.puts line
+          offset=0
+
+          while offset != -1
+            if !search_url && results=find_str(line, offset, '<h3 class="r"><a href="/url?q=', '"') then
+              offset=results[:offset]
+              tmp_url=results[:result_string]
+              if tmp_url.index('yelp') then 
+                idx1=tmp_url.index('&')
+                search_url=tmp_url.slice(0,idx1)
+                #@store_name=tmp_url.slice(0,idx1)
+              end
+            else
+              # go to process next line
+              offset = -1
+            end  
+          end
+        }
+      }
+    #end
+
+    open("#{search_url}") {|f|
       #raise 'web service error' if (f.status.first != '200')
       f.each_line {|line|
         offset=0
@@ -45,25 +73,39 @@ require 'open-uri'
         if !@store_address then 
           if results=find_str(line, offset, '<span class="street-address">', '</span>') then
             store_street=results[:result_string]
+            if tmpidx=store_street.index("<br>") then
+              store_street=store_street.split('<br>').join(', ')
+            end
             offset=results[:offset]
-            results=find_str(line, offset, '<span class="locality">', '</span> <span class="postal-code">')
-            store_locality=results[:result_string]
-            offset=results[:offset]
-            results=find_str(line, offset, '</span> <span class="postal-code">', '</span><br>')
-            store_zipcode=results[:result_string]
+            if results=find_str(line, offset, '<span class="locality">', '</span> <span class="postal-code">') then
+              store_locality=results[:result_string]
+              offset=results[:offset]
+            else
+              store_locality=""
+            end
+            if results=find_str(line, offset, '</span> <span class="postal-code">', '</span><br>') then
+              store_zipcode=results[:result_string]
+            else
+              store_zipcode=""
+            end
             @store_address=store_street+", "+store_locality+" "+store_zipcode
           end
         end
       }  
-    }
+    }   
   end
   
   private
     def find_str(line, offset, sstr1, sstr2)
       idx1=line.index(sstr1, offset)
       if idx1
-        idx2=line.index(sstr2, offset)
+        #puts "idx1o "+idx1.to_s
+        #puts sstr1+" "+sstr2
+        #puts line.slice(idx1, 60)
         idx1+=sstr1.size
+        idx2=line.index(sstr2, idx1)
+        #puts "idx1 "+idx1.to_s
+        #puts "idx2 "+idx2.to_s
         return {:offset => idx2, :result_string => line.slice(idx1, idx2-idx1)}
       end
       return nil
