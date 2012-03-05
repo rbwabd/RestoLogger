@@ -34,7 +34,6 @@ $(function() {
         }
       });
     },
-
     focus: function(event, ui) {
       $('#visit_store_name').val(ui.item.name);
       return false;

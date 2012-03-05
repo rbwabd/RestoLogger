@@ -1,4 +1,4 @@
-SampleApp::Application.routes.draw do
+RestoLogger::Application.routes.draw do
   
   get "autocomplete/cities"
   get "autocomplete/stores"

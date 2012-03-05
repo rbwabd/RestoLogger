@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
-      redirect_to @user, :flash => { :success => "Welcome to the Sample App!" }
+      redirect_to @user, :flash => { :success => "Welcome to RestoLogger!" }
     else
       @title = "new_title"
       @button = "new_button"
