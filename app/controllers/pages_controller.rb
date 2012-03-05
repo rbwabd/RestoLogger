@@ -1,4 +1,7 @@
 class PagesController < ApplicationController
+require 'json'
+require 'open-uri'
+
   def home
     @title = "Home"
     if user_signed_in?
@@ -17,5 +20,6 @@ class PagesController < ApplicationController
   
   def help
     @title = "Help"
+        
   end
 end

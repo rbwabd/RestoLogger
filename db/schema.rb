@@ -11,22 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120303113313) do
+ActiveRecord::Schema.define(:version => 20120303113309) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
     t.string   "provider"
     t.string   "uid"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.string   "token"
   end
 
   create_table "chains", :force => true do |t|
     t.string   "name"
     t.string   "shortname"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "cities", :force => true do |t|
@@ -34,14 +34,14 @@ ActiveRecord::Schema.define(:version => 20120303113313) do
     t.string   "location"
     t.string   "country_id"
     t.string   "state_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "countries", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "dish_reviews", :force => true do |t|
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(:version => 20120303113313) do
     t.integer  "dish_id"
     t.integer  "user_id"
     t.integer  "visit_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "dish_reviews", ["dish_id", "user_id", "visit_id"], :name => "index_dish_reviews_on_dish_id_and_user_id_and_visit_id"
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(:version => 20120303113313) do
   create_table "dish_types", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "dishes", :force => true do |t|
@@ -70,8 +70,8 @@ ActiveRecord::Schema.define(:version => 20120303113313) do
     t.integer  "category"
     t.integer  "dish_type_id"
     t.string   "keyword"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   add_index "dishes", ["dish_type_id"], :name => "index_dishes_on_dish_type_id"
@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(:version => 20120303113313) do
   create_table "pictures", :force => true do |t|
     t.string   "genre"
     t.string   "filename"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "image"
     t.string   "url"
     t.string   "tagline"
@@ -90,8 +90,8 @@ ActiveRecord::Schema.define(:version => 20120303113313) do
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   add_index "relationships", ["followed_id"], :name => "index_relationships_on_followed_id"
@@ -101,15 +101,15 @@ ActiveRecord::Schema.define(:version => 20120303113313) do
   create_table "states", :force => true do |t|
     t.string   "name"
     t.string   "country_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "store_types", :force => true do |t|
     t.string   "name"
     t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "stores", :force => true do |t|
@@ -125,8 +125,8 @@ ActiveRecord::Schema.define(:version => 20120303113313) do
     t.integer  "chain_id"
     t.integer  "store_type_id"
     t.string   "keyword"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   add_index "stores", ["city_id", "chain_id", "store_type_id"], :name => "index_stores_on_city_id_and_chain_id_and_store_type_id"
@@ -135,25 +135,26 @@ ActiveRecord::Schema.define(:version => 20120303113313) do
     t.string   "locale"
     t.integer  "current_city"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   add_index "user_settings", ["user_id"], :name => "index_user_settings_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                               :default => "",    :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "",    :null => false
+    t.string   "email",                                 :default => "",    :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "",    :null => false
     t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                       :default => 0
+    t.integer  "sign_in_count",                         :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "admin",                               :default => false
+    t.datetime "created_at",                                               :null => false
+    t.datetime "updated_at",                                               :null => false
+    t.boolean  "admin",                                 :default => false
     t.string   "name"
     t.string   "profilepicurl"
     t.string   "rank"
@@ -173,8 +174,8 @@ ActiveRecord::Schema.define(:version => 20120303113313) do
   create_table "visits", :force => true do |t|
     t.string   "content"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.integer  "overall_rating"
     t.integer  "service_rating"
     t.integer  "speed_rating"
