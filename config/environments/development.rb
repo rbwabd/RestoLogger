@@ -28,5 +28,6 @@ RestoLogger::Application.configure do
   config.assets.debug = true
   
   # allegedly can reduce ruby interpreter crashes???
-  config.log_level = :warn
+  # The available log levels are: :debug, :info, :warn, :error, :fatal. 
+  config.log_level = :info
 end
