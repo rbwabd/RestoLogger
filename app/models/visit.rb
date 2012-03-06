@@ -5,6 +5,7 @@ class Visit < ActiveRecord::Base
   belongs_to :user
   has_one :store
   has_one :city
+  has_many :pictures
   
   #validates :content, :presence => true, :length => { :maximum => 140 }
   #validates :user_id, :presence => true
@@ -19,6 +20,10 @@ class Visit < ActiveRecord::Base
   
   def store_name
     store.name if store_id
+  end
+  
+  def pictures?
+    return pictures
   end
 
   private 

@@ -11,3 +11,14 @@
     <%= f.submit I18n.t(@button) %>
   </div>  
 <% end %>
+
+<%= button_to_function "Greeting", "alert('Hello world!')", :class => "ok" %>
+
+  <div id="pics_form">
+    <% if @visit.pictures? %>
+      <% @visit.pictures.each do |pic| %>
+        <%= render 'pic_form' %>
+      <% end %>
+    <% end %>
+  </div>
+
