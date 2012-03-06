@@ -15,7 +15,7 @@ RestoLogger::Application.routes.draw do
 		#this is a dummy - we have no signin page at the moment so no create page
 		#post 'signin' => 'sessions#create', :as => :user_session
 		post 'signin' => 'users#show', :as => :user_session
-		get 'signout' => 'sessions#destroy', :as => :destroy_user_session
+		delete 'signout' => 'sessions#destroy', :as => :destroy_user_session
 		match '/auth/:provider/callback' => 'sessions#create' 
 	end
 
