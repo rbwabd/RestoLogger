@@ -26,4 +26,7 @@ RestoLogger::Application.configure do
    
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  # allegedly can reduce ruby interpreter crashes???
+  config.log_level = :warn
 end
