@@ -1,6 +1,6 @@
-<%= render 'shared/main_sidebar' %>
-<div id="content">
-<%= render 'shared/flash_box' %>
+<% content_for :sidebar do %>
+  <%= render 'shared/main_sidebar' %>
+<% end %>
 
 <% if user_signed_in? %>
   <table class="" summary="For signed-in users">

@@ -16,8 +16,10 @@
 <div class="container">
   <%= render 'layouts/header' %>
   <div id="page">
-    <%= yield %>
-      <!-- the 2 lines below correspond to section openings contained in the yield - unclear structure to improve -->
+    <%= yield :sidebar %>
+    <div id="content">
+      <%= render 'shared/flash_box' %>
+      <%= yield %>
       <div style="clear: both;">&nbsp;</div>
     </div>
   </div>

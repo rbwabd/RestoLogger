@@ -1,6 +1,6 @@
-<%= render 'shared/main_sidebar' %>
-<div id="content">
-<%= render 'shared/flash_box' %>
+<% content_for :sidebar do %>
+  <%= render 'shared/main_sidebar' %>
+<% end %>
 
 <h1><%= @title %></h1>
   <div class="picture">
