@@ -43,11 +43,6 @@ require 'open-uri'
             if !search_url && results=find_str(line, offset, '<h3 class="r"><a href="/url?q=', '"') then
               offset=results[:offset]
               tmp_url=CGI::unescape(results[:result_string])
-              p tmp_url
-              p "head"
-              p "head"
-              p "head"
-              p "head"
               if tmp_url.index('yelp') then 
                 idx1=tmp_url.index('&')
                 search_url=tmp_url.slice(0,idx1)

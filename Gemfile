@@ -13,12 +13,19 @@ gem 'fog'
 gem 'mini_magick'
 gem 'aws-s3', :require => 'aws/s3'
 gem 'jquery-rails'
-#gem 'rails3-jquery-autocomplete'
 
 group :development do
   gem 'rspec-rails', '2.6.1'
   gem 'annotate', '2.4.0'
   gem 'faker', '0.3.1'
+end
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails',   "~> 3.1.0"
+  gem 'coffee-rails', "~> 3.1.0"
+  gem 'uglifier'
 end
 
 group :test do
