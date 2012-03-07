@@ -2,7 +2,7 @@ class AutocompleteController < ApplicationController
   def cities
     if params[:term]
       like= "%".concat(params[:term].concat("%"))
-      cities = City.where("name like ?", like)
+      cities = City.where("name ILIKE ?", like)
     else
       #cities = City.all
     end
@@ -13,7 +13,7 @@ class AutocompleteController < ApplicationController
   def stores
     if params[:term]
       like= "%".concat(params[:term].concat("%"))
-      stores = Store.where("name like ? and city_id = ?", like, params[:city_id])
+      stores = Store.where("name ILIKE ? and city_id = ?", like, params[:city_id])
     else
       #stores = Store.all
     end
