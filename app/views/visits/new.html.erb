@@ -7,18 +7,16 @@
 <%= form_for(@visit) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <%= render 'fields', :f => f %>
+
+  <%= f.fields_for :pictures do |builder| %>
+  <p>
+    <%= builder.label :genre, "Picture" %><br />
+    <%= builder.text_field :genre %>
+    <%= builder.file_field :image %> 
+  </p>
+  <% end %>
+
   <div class="actions">
     <%= f.submit I18n.t(@button) %>
   </div>  
 <% end %>
-
-<%= button_to_function "Greeting", "alert('Hello world!')", :class => "ok" %>
-
-  <div id="pics_form">
-    <% if @visit.pictures? %>
-      <% @visit.pictures.each do |pic| %>
-        <%= render 'pic_form' %>
-      <% end %>
-    <% end %>
-  </div>
-

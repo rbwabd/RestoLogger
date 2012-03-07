@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
 	has_many :authentications
   has_many :visits,    :dependent => :destroy
+  has_many :pictures,   :dependent => :destroy
   has_many :relationships, :dependent => :destroy,
                            :foreign_key => "follower_id"
   has_many :reverse_relationships, :dependent => :destroy,

@@ -1,11 +1,12 @@
 class Visit < ActiveRecord::Base
   attr_accessor :city_name, :store_name
-  attr_accessible :content, :city_id, :review, :tagline, :store_id, :visit_date
+  attr_accessible :content, :city_id, :review, :tagline, :store_id, :visit_date, :city_name, :store_name, :pictures_attributes
   
   belongs_to :user
   has_one :store
   has_one :city
   has_many :pictures
+  accepts_nested_attributes_for :pictures, :reject_if => lambda { |a| a[:genre].blank? }
   
   #validates :content, :presence => true, :length => { :maximum => 140 }
   #validates :user_id, :presence => true
