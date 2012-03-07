@@ -1,0 +1,101 @@
+2012-03-07T10:50:11+00:00 app[rake.1]: Awaiting client
+2012-03-07T10:50:11+00:00 app[rake.1]: Starting process with command `bundle exec rake db:migrate`
+2012-03-07T10:50:11+00:00 heroku[rake.1]: State changed from starting to up
+2012-03-07T10:50:22+00:00 heroku[rake.1]: Process exited with status 0
+2012-03-07T10:50:22+00:00 heroku[rake.1]: State changed from up to complete
+2012-03-07T10:52:46+00:00 heroku[rake.1]: State changed from created to starting
+2012-03-07T10:52:47+00:00 heroku[web.1]: Unidling
+2012-03-07T10:52:47+00:00 heroku[web.1]: State changed from down to created
+2012-03-07T10:52:47+00:00 heroku[web.1]: State changed from created to starting
+2012-03-07T10:52:52+00:00 app[rake.1]: Awaiting client
+2012-03-07T10:52:52+00:00 app[rake.1]: Starting process with command `bundle exec rake db:seed`
+2012-03-07T10:52:52+00:00 heroku[web.1]: Starting process with command `thin -p 22974 -e production -R /home/heroku_rack/heroku.ru start`
+2012-03-07T10:52:52+00:00 heroku[rake.1]: State changed from starting to up
+2012-03-07T10:52:53+00:00 app[web.1]: >> Maximum connections set to 1024
+2012-03-07T10:52:53+00:00 app[web.1]: >> Thin web server (v1.2.6 codename Crazy Delicious)
+2012-03-07T10:52:53+00:00 app[web.1]: >> Listening on 0.0.0.0:22974, CTRL+C to stop
+2012-03-07T10:52:54+00:00 heroku[web.1]: State changed from starting to up
+2012-03-07T10:53:00+00:00 app[web.1]: DEPRECATION WARNING: You have Rails 2.3-style plugins in vendor/plugins! Support for these plugins will be removed in Rails 4.0. Move them out and bundle them in your Gemfile, or fold them in to your app as lib/myplugin/* and config/initializers/myplugin.rb. See the release notes for more on this: http://weblog.rubyonrails.org/2012/01/04/rails-3-2-0-rc2-has-been-released. (called from <top (required)> at /app/config/environment.rb:5)
+2012-03-07T10:53:00+00:00 app[web.1]: DEPRECATION WARNING: You have Rails 2.3-style plugins in vendor/plugins! Support for these plugins will be removed in Rails 4.0. Move them out and bundle them in your Gemfile, or fold them in to your app as lib/myplugin/* and config/initializers/myplugin.rb. See the release notes for more on this: http://weblog.rubyonrails.org/2012/01/04/rails-3-2-0-rc2-has-been-released. (called from <top (required)> at /app/config/environment.rb:5)
+2012-03-07T10:53:00+00:00 app[web.1]: DEPRECATION WARNING: You have Rails 2.3-style plugins in vendor/plugins! Support for these plugins will be removed in Rails 4.0. Move them out and bundle them in your Gemfile, or fold them in to your app as lib/myplugin/* and config/initializers/myplugin.rb. See the release notes for more on this: http://weblog.rubyonrails.org/2012/01/04/rails-3-2-0-rc2-has-been-released. (called from <top (required)> at /app/config/environment.rb:5)
+2012-03-07T10:53:02+00:00 heroku[rake.1]: Process exited with status 0
+2012-03-07T10:53:02+00:00 heroku[rake.1]: State changed from up to complete
+2012-03-07T10:53:06+00:00 app[web.1]: 
+2012-03-07T10:53:06+00:00 app[web.1]: 
+2012-03-07T10:53:06+00:00 app[web.1]: Started
+ GET "/" for 195.171.182.210 at 2012-03-07 02:53:06 -0800
+2012-03-07T10:53:06+00:00 app[web.1]: Processing by AuthenticationsController#index as HTML
+2012-03-07T10:53:06+00:00 app[web.1]:   Rendered shared/_main_sidebar.html.erb (1.4ms)
+2012-03-07T10:53:06+00:00 app[web.1]:   Rendered authentications/index.html.erb within layouts/application (111.6ms)
+2012-03-07T10:53:06+00:00 app[web.1]: Completed 500 Internal Server Error in 195ms
+2012-03-07T10:53:06+00:00 app[web.1]: 
+2012-03-07T10:53:06+00:00 app[web.1]: ActionView::Template::Error (facebook_64.png isn't precompiled):
+2012-03-07T10:53:06+00:00 app[web.1]:     23: <% end %>
+2012-03-07T10:53:06+00:00 app[web.1]:     25: <a href="/auth/facebook" class="auth_provider">
+2012-03-07T10:53:06+00:00 app[web.1]:     24: 
+2012-03-07T10:53:06+00:00 app[web.1]:     26:   <%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
+2012-03-07T10:53:06+00:00 app[web.1]:     27:   Facebook
+2012-03-07T10:53:06+00:00 app[web.1]:     28: </a>
+2012-03-07T10:53:06+00:00 app[web.1]:     29: <!-- 
+2012-03-07T10:53:06+00:00 app[web.1]:   app/views/authentications/index.html.erb:26:in `_app_views_authentications_index_html_erb__1858414437487545255_40490760'
+2012-03-07T10:53:06+00:00 app[web.1]: 
+2012-03-07T10:53:06+00:00 app[web.1]: 
+2012-03-07T10:53:06+00:00 app[web.1]: cache: [GET /] miss
+2012-03-07T10:53:06+00:00 heroku[router]: GET restologger.heroku.com/ dyno=web.1 queue=0 wait=0ms service=11139ms status=500 bytes=728
+2012-03-07T10:53:06+00:00 heroku[nginx]: 195.171.182.210 - - [07/Mar/2012:10:53:06 +0000] "GET / HTTP/1.1" 500 728 "-" "Mozilla/5.0 (Windows NT 6.1; rv:10.0.2) Gecko/20100101 Firefox/10.0.2" restologger.heroku.com
+2012-03-07T10:54:57+00:00 heroku[rake.1]: State changed from created to starting
+2012-03-07T10:55:02+00:00 heroku[rake.1]: State changed from starting to up
+2012-03-07T10:55:03+00:00 app[rake.1]: Awaiting client
+2012-03-07T10:55:03+00:00 app[rake.1]: Starting process with command `bundle exec rake db:migrate`
+2012-03-07T10:55:18+00:00 heroku[rake.1]: Process exited with status 0
+2012-03-07T10:55:18+00:00 heroku[rake.1]: State changed from up to complete
+2012-03-07T10:56:40+00:00 heroku[rake.1]: State changed from created to starting
+2012-03-07T10:56:45+00:00 app[rake.1]: Awaiting client
+2012-03-07T10:56:45+00:00 app[rake.1]: Starting process with command `bundle exec rake db:seed`
+2012-03-07T10:56:45+00:00 heroku[rake.1]: State changed from starting to up
+2012-03-07T10:56:56+00:00 heroku[rake.1]: Process exited with status 0
+2012-03-07T10:56:56+00:00 heroku[rake.1]: State changed from up to complete
+2012-03-07T10:57:15+00:00 app[web.1]: 
+2012-03-07T10:57:15+00:00 app[web.1]: 
+2012-03-07T10:57:15+00:00 app[web.1]: Started GET "/" for 195.171.182.210 at 2012-03-07 02:57:15 -0800
+2012-03-07T10:57:15+00:00 app[web.1]: Processing by AuthenticationsController#index as HTML
+2012-03-07T10:57:15+00:00 app[web.1]:   Rendered shared/_main_sidebar.html.erb (0.1ms)
+2012-03-07T10:57:15+00:00 app[web.1]:   Rendered authentications/index.html.erb within layouts/application (1.0ms)
+2012-03-07T10:57:15+00:00 app[web.1]: Completed 500 Internal Server Error in 2ms
+2012-03-07T10:57:15+00:00 app[web.1]: 
+2012-03-07T10:57:15+00:00 app[web.1]: ActionView::Template::Error (facebook_64.png isn't precompiled):
+2012-03-07T10:57:15+00:00 app[web.1]:     23: <% end %>
+2012-03-07T10:57:15+00:00 app[web.1]:     24: 
+2012-03-07T10:57:15+00:00 app[web.1]:     26:   <%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
+2012-03-07T10:57:15+00:00 app[web.1]:     25: <a href="/auth/facebook" class="auth_provider">
+2012-03-07T10:57:15+00:00 app[web.1]:     27:   Facebook
+2012-03-07T10:57:15+00:00 app[web.1]:     28: </a>
+2012-03-07T10:57:15+00:00 app[web.1]:     29: <!-- 
+2012-03-07T10:57:15+00:00 app[web.1]:   app/views/authentications/index.html.erb:26:in `_app_views_authentications_index_html_erb__1858414437487545255_40490760'
+2012-03-07T10:57:15+00:00 app[web.1]: 
+2012-03-07T10:57:15+00:00 app[web.1]: cache: [GET /] miss
+2012-03-07T10:57:15+00:00 app[web.1]: 
+2012-03-07T10:57:15+00:00 heroku[router]: GET restologger.heroku.com/ dyno=web.1 queue=0 wait=0ms service=14ms status=500 bytes=728
+2012-03-07T10:57:15+00:00 heroku[nginx]: 195.171.182.210 - - [07/Mar/2012:10:57:15 +0000] "GET / HTTP/1.1" 500 728 "-" "Mozilla/5.0 (Windows NT 6.1; rv:10.0.2) Gecko/20100101 Firefox/10.0.2" restologger.heroku.com
+2012-03-07T10:57:32+00:00 app[web.1]: 
+2012-03-07T10:57:32+00:00 app[web.1]: 
+2012-03-07T10:57:32+00:00 app[web.1]: Started GET "/" for 195.171.182.210 at 2012-03-07 02:57:32 -0800
+2012-03-07T10:57:32+00:00 app[web.1]: Processing by AuthenticationsController#index as HTML
+2012-03-07T10:57:32+00:00 app[web.1]:   Rendered shared/_main_sidebar.html.erb (0.1ms)
+2012-03-07T10:57:32+00:00 app[web.1]: Completed 500 Internal Server Error in 2ms
+2012-03-07T10:57:32+00:00 app[web.1]:   Rendered authentications/index.html.erb within layouts/application (1.0ms)
+2012-03-07T10:57:32+00:00 app[web.1]: 
+2012-03-07T10:57:32+00:00 app[web.1]: ActionView::Template::Error (facebook_64.png isn't precompiled):
+2012-03-07T10:57:32+00:00 app[web.1]:     23: <% end %>
+2012-03-07T10:57:32+00:00 app[web.1]:     24: 
+2012-03-07T10:57:32+00:00 app[web.1]:     25: <a href="/auth/facebook" class="auth_provider">
+2012-03-07T10:57:32+00:00 app[web.1]:     26:   <%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
+2012-03-07T10:57:32+00:00 app[web.1]:     27:   Facebook
+2012-03-07T10:57:32+00:00 app[web.1]:     28: </a>
+2012-03-07T10:57:32+00:00 app[web.1]:     29: <!-- 
+2012-03-07T10:57:32+00:00 app[web.1]:   app/views/authentications/index.html.erb:26:in `_app_views_authentications_index_html_erb__1858414437487545255_40490760'
+2012-03-07T10:57:32+00:00 app[web.1]: 
+2012-03-07T10:57:32+00:00 app[web.1]: 
+2012-03-07T10:57:32+00:00 app[web.1]: cache: [GET /] miss
+2012-03-07T10:57:32+00:00 heroku[router]: GET restologger.heroku.com/ dyno=web.1 queue=0 wait=0ms service=47ms status=500 bytes=728
+2012-03-07T10:57:32+00:00 heroku[nginx]: 195.171.182.210 - - [07/Mar/2012:10:57:32 +0000] "GET / HTTP/1.1" 500 728 "-" "Mozilla/5.0 (Windows NT 6.1; rv:10.0.2) Gecko/20100101 Firefox/10.0.2" restologger.heroku.com
