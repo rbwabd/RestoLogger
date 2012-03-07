@@ -3,8 +3,8 @@ class CreateCities < ActiveRecord::Migration
     create_table :cities do |t|
       t.string :name
       t.string :location
-      t.string :country_id
-      t.string :state_id
+      t.integer :country_id
+      t.integer :state_id
 
       t.timestamps
     end

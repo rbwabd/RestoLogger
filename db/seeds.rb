@@ -2862,7 +2862,7 @@ City.create_city("Selby", "North Yorkshire", "United Kingdom")
 City.create_city("Sound", "Shetland Islands", "United Kingdom")
 City.create_city("Shetland Islands", "Shetland Islands", "United Kingdom")
 City.create_city("Toab", "Shetland Islands", "United Kingdom")
-=begin
+
 Store.create_store(:name => "Akash Tandoori ", :address => "220 Broadway Bexleyheath", :postcode => "DA6 7AU", :phone => "020 8304 5314", :city => "London", :state =>"London", :country => "United Kingdom")
 Store.create_store(:name => "Alaf A Shah ", :address => "109 Bellegrove Road Welling ", :postcode => "A16 3PG", :phone => "020 8303 9393", :city => "London", :state =>"London", :country => "United Kingdom")
 Store.create_store(:name => "Aligor ", :address => "270 Broadway Bexleyheath", :postcode => "DA6 8BE", :phone => "020 8304 3323", :city => "London", :state =>"London", :country => "United Kingdom")
@@ -2903,4 +2903,3 @@ Store.create_store(:name => "Sam's Fast Food ", :address => "9 Atcost Road Barki
 Store.create_store(:name => "Sun Chop Suey Bar ", :address => "257 Bexley Road Erith", :postcode => "DA8 3EX", :phone => "01322 330384", :city => "London", :state =>"London", :country => "United Kingdom")
 Store.create_store(:name => "The Falcon ", :address => "Lingfield Cresent London", :postcode => "SE9 2RN", :phone => "020 8850 3663", :city => "London", :state =>"London", :country => "United Kingdom")
 Store.create_store(:name => "Top Quality Fish Bar ", :address => "31 Pickford Lane Bexleyheath", :postcode => "DA7 4QU", :phone => "020 8301 1982", :city => "London", :state =>"London", :country => "United Kingdom")
-=end

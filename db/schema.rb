@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(:version => 20120303113309) do
   create_table "cities", :force => true do |t|
     t.string   "name"
     t.string   "location"
-    t.string   "country_id"
-    t.string   "state_id"
+    t.integer  "country_id"
+    t.integer  "state_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(:version => 20120303113309) do
 
   create_table "states", :force => true do |t|
     t.string   "name"
-    t.string   "country_id"
+    t.integer  "country_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
