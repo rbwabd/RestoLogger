@@ -31,7 +31,7 @@ class City < ActiveRecord::Base
   def self.find_city(city_name, state_name, country_name)
     #the below also works although a bit dirty as returns just object with the id rather than full object
     #city=Country.select("cities.id").joins(:states => :cities).where('cities.name' => city_name, 'states.name' => state_name, 'countries.name' => country_name)
-    City.find(:all, :joins => "JOIN 'states' ON states.id = cities.state_id, 'countries' on countries.id=cities.country_id", :conditions => [ "cities.name = ? and states.name = ? and countries.name = ?", city_name, state_name, country_name]) 
+    City.find(:all, :joins => "INNER JOIN states ON (states.id = cities.state_id) INNER JOIN countries on (countries.id=cities.country_id)", :conditions => [ "cities.name = ? and states.name = ? and countries.name = ?", city_name, state_name, country_name]) 
   end
 end
 
