@@ -4,6 +4,8 @@ class Picture < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :visit
+  belongs_to :dish_review
+  belongs_to :store
   
   mount_uploader :image, ImageUploader
 end

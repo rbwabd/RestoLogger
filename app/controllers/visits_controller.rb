@@ -18,7 +18,8 @@ class VisitsController < ApplicationController
     @city = City.find_city("London", "London", "United Kingdom")
     @country = Country.find_by_name("United Kingdom")
     @state = State.find_by_name("London")
-    3.times{ @visit.pictures.build }
+    3.times{ @visit.dish_reviews.build }
+    3.times{ @visit.dish_reviews.build }
   end
   
   def create

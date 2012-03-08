@@ -8,11 +8,14 @@
   <%= render 'shared/error_messages', :object => f.object %>
   <%= render 'fields', :f => f %>
 
-  <%= f.fields_for :pictures do |builder| %>
+  <%= f.fields_for :dish_reviews do |builder| %>
   <p>
-    <%= builder.label :genre, "Picture" %><br />
-    <%= builder.text_field :genre %>
-    <%= builder.file_field :image %> 
+    <%= builder.label :tagline, "Rating" %><br />
+    <%= builder.text_field :rating %>
+    <%= builder.label :tagline, "Tagline" %><br />
+    <%= builder.text_field :tagline %>
+    <%= builder.label :tagline, "Review" %><br />
+    <%= builder.text_field :review %>
   </p>
   <% end %>
 

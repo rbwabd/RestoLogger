@@ -14,7 +14,7 @@
 #                            { :name => 'United States' }, 
 #                            { :name => 'Belgium' }]
 #                          )
-=begin
+
 City.create_city("Aberdeen", "Aberdeen City", "United Kingdom")
 City.create_city("Aberdeen", "Aberdeen City", "United Kingdom")
 City.create_city("Aberdeen", "Aberdeen City", "United Kingdom")
@@ -2863,7 +2863,6 @@ City.create_city("Selby", "North Yorkshire", "United Kingdom")
 City.create_city("Sound", "Shetland Islands", "United Kingdom")
 City.create_city("Shetland Islands", "Shetland Islands", "United Kingdom")
 City.create_city("Toab", "Shetland Islands", "United Kingdom")
-=end
 Store.create_store(:name => "Akash Tandoori ", :address => "220 Broadway Bexleyheath", :postcode => "DA6 7AU", :phone => "020 8304 5314", :city => "London", :state =>"London", :country => "United Kingdom")
 Store.create_store(:name => "Alaf A Shah ", :address => "109 Bellegrove Road Welling ", :postcode => "A16 3PG", :phone => "020 8303 9393", :city => "London", :state =>"London", :country => "United Kingdom")
 Store.create_store(:name => "Aligor ", :address => "270 Broadway Bexleyheath", :postcode => "DA6 8BE", :phone => "020 8304 3323", :city => "London", :state =>"London", :country => "United Kingdom")
