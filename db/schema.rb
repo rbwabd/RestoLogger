@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120308065850) do
+ActiveRecord::Schema.define(:version => 20120308071354) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20120308065850) do
     t.integer  "user_id"
     t.integer  "visit_id"
     t.integer  "dish_review_id"
+    t.integer  "store_id"
   end
 
   create_table "relationships", :force => true do |t|
