@@ -15,7 +15,7 @@
 <br/>
 <div class="field">
   <%= f.label :store_name, "Restaurant Name:" %>&nbsp;
-  <%= f.text_field :store_name %>
+  <%= f.text_field :store_name, :size =>50 %>
   <%= f.hidden_field :store_id %>
 </div>
 <div class="field">
@@ -29,5 +29,11 @@
 <div class="visitreview"> 
   <%= f.label :review, "Full Review:" %>&nbsp;
   <%= f.text_area :review, :size => "60x8" %>
+</div>
+<div class="">
+  <p><%= link_to_add_fields "Add Question", f, :dish_reviews %></p>
+  <%= f.fields_for :dish_reviews do |builder| %>
+    <%= render 'dish_review_fields', :f => builder %>
+  <% end %>
 </div>
 

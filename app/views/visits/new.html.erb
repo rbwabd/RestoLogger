@@ -7,18 +7,6 @@
 <%= form_for(@visit) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <%= render 'fields', :f => f %>
-
-  <%= f.fields_for :dish_reviews do |builder| %>
-  <p>
-    <%= builder.label :tagline, "Rating" %><br />
-    <%= builder.text_field :rating %>
-    <%= builder.label :tagline, "Tagline" %><br />
-    <%= builder.text_field :tagline %>
-    <%= builder.label :tagline, "Review" %><br />
-    <%= builder.text_field :review %>
-  </p>
-  <% end %>
-
   <div class="actions">
     <%= f.submit I18n.t(@button) %>
   </div>  

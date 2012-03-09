@@ -18,8 +18,10 @@ class VisitsController < ApplicationController
     @city = City.find_city("London", "London", "United Kingdom")
     @country = Country.find_by_name("United Kingdom")
     @state = State.find_by_name("London")
-    3.times{ @visit.dish_reviews.build }
-    3.times{ @visit.dish_reviews.build }
+    @dish1 =DishReview.new(:dish_id => 3)
+    @dish2 =DishReview.new(:dish_id => 4)
+    @visit.dish_reviews << @dish1
+    @visit.dish_reviews << @dish2
   end
   
   def create
