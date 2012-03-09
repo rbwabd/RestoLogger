@@ -10,6 +10,8 @@ jQuery(function() {
   jQuery("input").not( jQuery(":button") ).keypress(function (evt) {
     if (evt.keyCode == 13) {
       iname = jQuery(this).val();
+      nestedFormEvents.addFields("add_nested_fields");
+      
       // if Value of field is submit, submit the form. need to change this
       if (iname !== 'Submit'){  
         var fields = jQuery(this).parents('form:eq(0),body').find('button,input,textarea,select');
@@ -81,7 +83,6 @@ jQuery(function() {
     },
     focus: function(event, ui) {
       jQuery('#visit_dish_name').val(ui.item.name);
-      nestedFormEvents.addFields("add_nested_fields");
       return false;
     },
     select: function(event, ui) {
