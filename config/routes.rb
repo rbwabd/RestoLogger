@@ -2,7 +2,8 @@ RestoLogger::Application.routes.draw do
   
   get "autocomplete/cities"
   get "autocomplete/stores"
-
+  get "autocomplete/dishes"
+  
   get "states/create"
   get "states/destroy"
   get "countries/create"

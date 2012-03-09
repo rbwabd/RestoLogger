@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120308071354) do
+ActiveRecord::Schema.define(:version => 20120309175019) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20120308071354) do
     t.string   "keyword"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "store_id"
   end
 
   add_index "dishes", ["dish_type_id"], :name => "index_dishes_on_dish_type_id"

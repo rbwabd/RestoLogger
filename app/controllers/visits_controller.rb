@@ -18,22 +18,29 @@ class VisitsController < ApplicationController
     @city = City.find_city("London", "London", "United Kingdom")
     @country = Country.find_by_name("United Kingdom")
     @state = State.find_by_name("London")
-    #@dish1 =DishReview.new(:dish_id => 3)
-    #@dish2 =DishReview.new(:dish_id => 4)
+    #@dish1 = DishReview.new(:dish_id => 3)
+    #@dish2 = DishReview.new(:dish_id => 4)
     #@visit.dish_reviews << @dish1
     #@visit.dish_reviews << @dish2
   end
   
   def create
-    @visit  = Visit.new(params[:visit])
-    @visit.user_id=current_user.id
-     
-    if @visit.save
-      redirect_to root_path, :flash => { :success => "Visit created!" }
-    else
-      @feed_items = []
-      render 'pages/home'
+    #@visit  = Visit.new(params[:visit])
+    #@visit.user_id=current_user.id
+    
+    p params[:visit][:city_name]
+    for dr in params[:visit][:dish_reviews_attributes].values
+      p "rating "+dr[:rating]
+      p "dish_id "+dr[:dish_id]
+      p "dishname "+dr[:dish][:name]
     end
+    
+    #if @visit.save
+      redirect_to root_path, :flash => { :success => "Visit created!" }
+    #else
+    #  @feed_items = []
+    #  render 'pages/home'
+    #end
   end
 
   def destroy

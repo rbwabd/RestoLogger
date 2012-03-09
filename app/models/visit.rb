@@ -1,7 +1,7 @@
 class Visit < ActiveRecord::Base
   attr_accessor :city_name, :store_name
   attr_accessible :content, :city_id, :review, :tagline, :store_id, :visit_date, :city_name, :store_name, :dish_reviews_attributes
-  
+    
   belongs_to :user
   has_one :store
   has_one :city
@@ -24,6 +24,12 @@ class Visit < ActiveRecord::Base
     store.name if store_id
   end
   
+  def dish_name
+  end
+
+  def dish_id
+  end
+
   def pictures?
     return pictures
   end

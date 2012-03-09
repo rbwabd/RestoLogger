@@ -46,4 +46,28 @@ jQuery(function() {
       return false;
     }
   });
+  jQuery('#visit_dish_name').autocomplete({
+    minLength: 3,
+    source: function(request, response) {
+      jQuery.ajax({
+        url: "/autocomplete/dishes",
+        dataType: "json",
+        data: {
+          term : request.term,
+          store_id : jQuery('#visit_store_id').val()
+        },
+        success: function(data) {
+          response(data);
+        }
+      });
+    },
+    focus: function(event, ui) {
+      jQuery('#visit_dish_name').val(ui.item.name);
+      return false;
+    },
+    select: function(event, ui) {
+      jQuery('#visit_dish_id').val(ui.item.id);
+      return false;
+    }
+  });
 });
