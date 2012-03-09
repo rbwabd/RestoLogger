@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/ryanb/nested_form.git
+  revision: 486e0f0e93f3ca455d5d0fc7869053257b6afce2
+  specs:
+    nested_form (0.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -225,6 +231,7 @@ DEPENDENCIES
   gravatar_image_tag (= 1.0.0.pre2)
   jquery-rails
   mini_magick
+  nested_form!
   omniauth
   omniauth-facebook
   pg

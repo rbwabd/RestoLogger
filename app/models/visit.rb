@@ -1,6 +1,6 @@
 class Visit < ActiveRecord::Base
   attr_accessor :city_name, :store_name
-  attr_accessible :content, :city_id, :review, :tagline, :store_id, :visit_date, :city_name, :store_name
+  attr_accessible :content, :city_id, :review, :tagline, :store_id, :visit_date, :city_name, :store_name, :dish_reviews_attributes
   
   belongs_to :user
   has_one :store

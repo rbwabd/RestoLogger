@@ -30,8 +30,10 @@
   <%= f.label :review, "Full Review:" %>&nbsp;
   <%= f.text_area :review, :size => "60x8" %>
 </div>
+<div class="field">
+  <p><%= f.link_to_add "Add a dish", :dish_reviews %></p>
+</div>
 <div class="">
-  <p><%= link_to_add_fields "Add Question", f, :dish_reviews %></p>
   <%= f.fields_for :dish_reviews do |builder| %>
     <%= render 'dish_review_fields', :f => builder %>
   <% end %>
