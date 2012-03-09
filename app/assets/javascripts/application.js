@@ -5,6 +5,24 @@
 //= require_tree .
 jQuery.noConflict();
 
+//function to prevent submission of form on enter
+jQuery(function() {
+  jQuery("input").not( jQuery(":button") ).keypress(function (evt) {
+    if (evt.keyCode == 13) {
+      iname = jQuery(this).val();
+      // if Value of field is submit, submit the form. need to change this
+      if (iname !== 'Submit'){  
+        var fields = jQuery(this).parents('form:eq(0),body').find('button,input,textarea,select');
+        var index = fields.index( this );
+        if ( index > -1 && ( index + 1 ) < fields.length ) {
+          fields.eq( index + 1 ).focus();
+        }
+        return false;
+      }
+    }
+  });
+});
+
 jQuery(function() {
   jQuery("#tabs").tabs();
 });
@@ -63,6 +81,7 @@ jQuery(function() {
     },
     focus: function(event, ui) {
       jQuery('#visit_dish_name').val(ui.item.name);
+      nestedFormEvents.addFields("add_nested_fields");
       return false;
     },
     select: function(event, ui) {

@@ -43,6 +43,8 @@ jQuery(function($) {
 
       content     = content.replace("_dummy1_", jQuery('#visit_dish_id').val());
       content     = content.replace("_dummy2_", jQuery('#visit_dish_name').val());
+      jQuery('#visit_dish_id').val('')
+      jQuery('#visit_dish_name').val('')
       
       var field = this.insertFields(content, assoc, link);
       $(link).closest("form")
