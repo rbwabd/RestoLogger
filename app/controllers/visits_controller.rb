@@ -25,22 +25,46 @@ class VisitsController < ApplicationController
   end
   
   def create
-    #@visit  = Visit.new(params[:visit])
-    #@visit.user_id=current_user.id
+    @visit=Visit.new
+    @visit.user_id=current_user.id
+    #@visit.overall_rating=
+    #@visit.service_rating=
+    #@visit.speed_rating=
+    #@visit.mood_rating=
+    @visit.tagline=params[:visit][:tagline]
+    @visit.review=params[:visit][:review]
+    #@visit.guest_number=
+    @visit.city_id=params[:visit][:city_id]
+    @visit.store_id=params[:visit][:store_id]
+    @visit.visit_date=params[:visit][:visit_date]
     
-    p params[:visit][:city_name]
-    for dr in params[:visit][:dish_reviews_attributes].values
-      p "rating "+dr[:rating]
-      p "dish_id "+dr[:dish_id]
-      p "dishname "+dr[:dish][:name]
+    if !params[:visit][:dish_reviews_attributes].nil?
+      for dr in params[:visit][:dish_reviews_attributes].values
+        @dreview=DishReview.new
+        @dreview.rating=dr[:rating]
+        @dreview.tagline=dr[:tagline]
+        @dreview.review=dr[:review]
+        @dreview.dish_id=dr[:dish_id]
+        @dreview.user_id=current_user.id
+        if !dr[:pictures_attributes].nil?
+          for tmppic in dr[:pictures_attributes].values
+            @pic=Picture.new
+            @pic.url=tmppic[:image]
+            @pic.image=tmppic[:image]
+            #@pic=Picture.new(tmppic)
+            @pic.save
+            @dreview.pictures << @pic
+          end
+        end
+        @visit.dish_reviews << @dreview      
+      end
     end
-    
-    #if @visit.save
+    if @visit.save
       redirect_to root_path, :flash => { :success => "Visit created!" }
-    #else
-    #  @feed_items = []
-    #  render 'pages/home'
-    #end
+    else
+      @feed_items = []
+      render 'pages/home'
+    end
   end
 
   def destroy

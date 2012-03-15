@@ -4,7 +4,7 @@
 
 <h1><%= I18n.t(@title) %></h1>
 
-<%= nested_form_for(@visit) do |f| %>
+<%= nested_form_for @visit, :html => {:multipart => true} do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <%= render 'fields', :f => f %>
   <div class="actions">
