@@ -46,15 +46,15 @@ class VisitsController < ApplicationController
         @dreview.review=dr[:review]
         @dreview.dish_id=dr[:dish_id]
         @dreview.user_id=current_user.id
+        if !dr[:pictures_attributes].nil?
+          for tmppic in dr[:pictures_attributes].values
+            @pic=Picture.new
+            @pic.genre=tmppic[:genre]
+            @pic.image=tmppic[:image]
+            @dreview.pictures << @pic
+          end
+        end
         @visit.dish_reviews << @dreview      
-      end
-    end
-    if !params[:visit][:pictures_attributes].nil?
-      for tmppic in params[:visit][:pictures_attributes].values
-        @pic=Picture.new
-        @pic.genre=tmppic[:genre]
-        @pic.image=tmppic[:image]
-        @visit.pictures << @pic
       end
     end
     if @visit.save
