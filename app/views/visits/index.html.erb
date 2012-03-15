@@ -1,0 +1,14 @@
+<% content_for :sidebar do %>
+  <%= render 'shared/main_sidebar' %>
+<% end %>
+
+<h1><%= I18n.t(@title) %></h1>
+<%= will_paginate %>
+<% for visit in @visits %>
+  <div class="visit">
+    <h1><%= link_to visit.id, visit %></h1>
+    Dishes: <%= visit.dish_reviews.size %>
+  </div>
+<% end %>
+<%= will_paginate %>
+<p><%= link_to "Add a Visit", new_visit_path %></p>

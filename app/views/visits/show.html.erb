@@ -1,0 +1,31 @@
+<% content_for :sidebar do %>
+  <%= render 'shared/main_sidebar' %>
+<% end %>
+
+<h1><%= I18n.t(@title) %></h1>
+
+<div class="visit">
+  </br>
+  <strong>City:</strong> <%= @city.name %>
+  </br>
+  <strong>Store:</strong> <%= @store.name %>
+  </br>
+  <strong>Visit Date:</strong> <%= @visit.visit_date %>
+  </br>
+  <strong>Tagline:</strong> <%= @visit.tagline %>
+  </br>
+  <strong>Review:</strong> <%= @visit.review %>
+  </br>
+  <strong>Guest number:</strong> <%= @visit.guest_number %>
+  <% for dish_review in @visit.dish_reviews %>
+    </br>
+    <strong>Dish Name: </strong>
+    </br>
+    <% for pic in dish_review.pictures %>
+      <%= image_tag pic.image_url(:thumb) if pic.image? %>
+    <% end %>
+  <% end %>
+</div>
+
+
+

@@ -4,11 +4,14 @@ class VisitsController < ApplicationController
 
   def index
     @title = "index_title"
-    @visits = @current_user.visits.paginate(:page => params[:page])
+    @visits = @current_user.visits.paginate(:page => params[:page], :per_page => 10)
   end
   
   def show
-    @visit = Visit.new
+    @visit = Visit.find(params[:id])
+    @store = Store.find(@visit.store_id)
+    @city = City.find(@visit.city_id)
+    @title = "dummy to change"
   end
 
   def new
