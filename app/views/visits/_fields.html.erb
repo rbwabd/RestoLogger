@@ -1,49 +1,8 @@
-<span class="field">
-  <%= f.label :name, "City:" %>&nbsp;
-  <%= f.text_field :city_name %>
-  <%= f.hidden_field :city_id %>
-</span>
-<span>
-  <%= label :state, :name, "State:" %>&nbsp;
-  <%= select :state, :id, State.find_all_by_country_id(@country.id).collect {|p| [ p.name, p.id ] } %>
-</span>
-<span>
-  <%= label :country, :name, "Country:" %>&nbsp;
-  <%= select :country, :id, Country.all.collect {|p| [ p.name, p.id ] } %>
-</span>
-<br/>
-<br/>
-<div class="field">
-  <%= f.label :store_name, "Restaurant Name:" %>&nbsp;
-  <%= f.text_field :store_name, :size =>50 %>
-  <%= f.hidden_field :store_id %>
-</div>
-<div class="field">
-  <%= f.label :visit_date, "Visit Date:" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= f.text_field :visit_date, :size => 10 %>
-</div>
-<div class="field">
-  <%= f.label :tagline, "Tagline:" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <%= f.text_field :tagline, :size => 81 %>
-</div>
-<div class="visitreview"> 
-  <%= f.label :review, "Full Review:" %>&nbsp;
-  <%= f.text_area :review, :size => "60x8" %>
-</div>
-<div class="field">
-  <%= f.label :dish_name, "Dish Name:" %>&nbsp;
-  <%= f.text_field :dish_name, :size =>50 %>
-  <%= f.hidden_field :dish_id %>
-</div>
-<div class="field">
-  <%= f.link_to_add "Add Dish", :dish_reviews %>
-</div>
-<%= f.fields_for :dish_reviews do |builder| %>
-  <%= render 'dish_review_fields', :f => builder %>
-<% end %>
 <div class="field">
   <%= f.link_to_add "Add Picture", :pictures %>
 </div>
 <%= f.fields_for :pictures do |builder2| %>
   <%= render 'picture_fields', :ff => builder2 %>
 <% end %>
+
+

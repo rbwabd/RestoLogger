@@ -25,35 +25,42 @@ class VisitsController < ApplicationController
   end
   
   def create
+    #@visit=Visit.new(params[:visit])
     @visit=Visit.new
     @visit.user_id=current_user.id
     #@visit.overall_rating=
     #@visit.service_rating=
     #@visit.speed_rating=
     #@visit.mood_rating=
-    @visit.tagline=params[:visit][:tagline]
-    @visit.review=params[:visit][:review]
+    #@visit.tagline=params[:visit][:tagline]
+    #@visit.review=params[:visit][:review]
     #@visit.guest_number=
-    @visit.city_id=params[:visit][:city_id]
-    @visit.store_id=params[:visit][:store_id]
-    @visit.visit_date=params[:visit][:visit_date]
+    #@visit.city_id=params[:visit][:city_id]
+    #@visit.store_id=params[:visit][:store_id]
+    #@visit.visit_date=params[:visit][:visit_date]
     
-    if !params[:visit][:dish_reviews_attributes].nil?
-      for dr in params[:visit][:dish_reviews_attributes].values
-        @dreview=DishReview.new
-        @dreview.rating=dr[:rating]
-        @dreview.tagline=dr[:tagline]
-        @dreview.review=dr[:review]
-        @dreview.dish_id=dr[:dish_id]
-        @dreview.user_id=current_user.id
-        @visit.dish_reviews << @dreview      
-      end
-    end
+    #if !params[:visit][:dish_reviews_attributes].nil?
+    #  for dr in params[:visit][:dish_reviews_attributes].values
+    #    @dreview=DishReview.new
+    #    @dreview.rating=dr[:rating]
+    #    @dreview.tagline=dr[:tagline]
+    #    @dreview.review=dr[:review]
+    #    @dreview.dish_id=dr[:dish_id]
+    #    @dreview.user_id=current_user.id
+    #    @visit.dish_reviews << @dreview      
+    #  end
+    #end
     if !params[:visit][:pictures_attributes].nil?
       for tmppic in params[:visit][:pictures_attributes].values
         @pic=Picture.new
-        @pic.url=tmppic[:image]
+        p "hello"
+        p "hello"
+        p "hello"
+        p tmppic[:genre]
+        p tmppic[:image]
+        @pic.genre=tmppic[:genre]
         @pic.image=tmppic[:image]
+        #@pic.save
         @visit.pictures << @pic
       end
     end

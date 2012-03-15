@@ -6,6 +6,16 @@ class PicturesController < ApplicationController
 
   def create
     @picture = Picture.new(params[:picture])
+    p params[:picture][:image]
+    p "tester"
+    p "tester"
+    p "tester"
+    p "tester"
+    p "tester"
+    p "tester"
+    p "tester"
+    p "tester"
+    p "tester"
     if @picture.save
       flash[:notice] = "Successfully created picture."
       redirect_to @picture
