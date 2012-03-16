@@ -63,7 +63,6 @@ jQuery(function() {
     },
     select: function(event, ui) {
       jQuery('#store_id').val(ui.item.id);
-      //window.location.href = jQuery('#store_id').val();
       jQuery("#display").load(jQuery('#store_id').val()+" #store");
       return false;
     }

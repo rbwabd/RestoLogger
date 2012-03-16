@@ -7,7 +7,4 @@
 <%= form_for(@store) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <%= render 'fields', :f => f %>
-  <div class="actions">
-    <%= f.submit I18n.t(@button) %>
-  </div>  
 <% end %>

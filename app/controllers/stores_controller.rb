@@ -15,7 +15,7 @@ class StoresController < ApplicationController
   def new
     @title = "new_title"
     @store  = Store.new
-    @button = "new_button"
+    @button = "new_visit_button"
     @country = Country.find_by_name("United Kingdom")
     @state = State.find_by_name("London")
     city = City.find_city("London", "London", "United Kingdom")

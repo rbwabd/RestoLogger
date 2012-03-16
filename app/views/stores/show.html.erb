@@ -9,4 +9,7 @@
   <strong>City:</strong> <%= @store.city.name %>
   </br>
   <strong>Store:</strong> <%= @store.name %>
+  <div class="actions">
+    <%= button_to I18n.t(@button), new_visit_path %>
+  </div>  
 </div>
