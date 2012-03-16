@@ -1,5 +1,6 @@
 class Store < ActiveRecord::Base
-
+  belongs_to :city
+  
   def self.create_store(params)
     #puts params[:city]
     city=City.find_city(params[:city], params[:state], params[:country])
