@@ -1,22 +1,6 @@
-<span class="field">
-  <%= f.label :name, "City:" %>&nbsp;
-  <%= f.text_field :city_name %>
-  <%= f.hidden_field :city_id %>
-</span>
-<span>
-  <%= label :state, :name, "State:" %>&nbsp;
-  <%= select :state, :id, State.find_all_by_country_id(@country.id).collect {|p| [ p.name, p.id ] } %>
-</span>
-<span>
-  <%= label :country, :name, "Country:" %>&nbsp;
-  <%= select :country, :id, Country.all.collect {|p| [ p.name, p.id ] } %>
-</span>
-<br/>
-<br/>
+<br>
 <div class="field">
-  <%= f.label :store_name, "Restaurant Name:" %>&nbsp;
-  <%= f.text_field :store_name, :size =>50 %>
-  <%= f.hidden_field :store_id %>
+  <strong>Restaurant Name: </strong><%= @store.name %>&nbsp;
 </div>
 <div class="field">
   <%= f.label :visit_date, "Visit Date:" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

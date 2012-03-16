@@ -18,9 +18,7 @@ class VisitsController < ApplicationController
     @visit  = Visit.new
     @title = "new_title"
     @button = "new_button"
-    @city = City.find_city("London", "London", "United Kingdom")
-    @country = Country.find_by_name("United Kingdom")
-    @state = State.find_by_name("London")
+    @store = Store.find(params[:id])
   end
   
   def create
