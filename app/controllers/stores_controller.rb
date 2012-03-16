@@ -18,7 +18,7 @@ class StoresController < ApplicationController
     @store  = Store.new
     @country = Country.find_by_name("United Kingdom")
     @state = State.find_by_name("London")
-    city = City.find_city("London", "London", "United Kingdom")
+    @city = City.find_city("London", "London", "United Kingdom").first
   end
   
   def create
