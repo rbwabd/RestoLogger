@@ -30,19 +30,19 @@ jQuery(function() {
 });
 
 jQuery(function() {
-  jQuery('#visit_city_name').autocomplete({
+  jQuery('#city_name').autocomplete({
     minLength: 3,
     source: '/autocomplete/cities',
     focus: function(event, ui) {
-      jQuery('#visit_city_name').val(ui.item.name);
+      jQuery('#city_name').val(ui.item.name);
       return false;
     },
     select: function(event, ui) {
-      jQuery('#visit_city_id').val(ui.item.id);
+      jQuery('#city_id').val(ui.item.id);
       return false;
     }
   });
-  jQuery('#visit_store_name').autocomplete({
+  jQuery('#store_name').autocomplete({
     minLength: 3,
     source: function(request, response) {
       jQuery.ajax({
@@ -50,7 +50,7 @@ jQuery(function() {
         dataType: "json",
         data: {
           term : request.term,
-          city_id : jQuery('#visit_city_id').val()
+          city_id : jQuery('#city_id').val()
         },
         success: function(data) {
           response(data);
@@ -58,11 +58,11 @@ jQuery(function() {
       });
     },
     focus: function(event, ui) {
-      jQuery('#visit_store_name').val(ui.item.name);
+      jQuery('#store_name').val(ui.item.name);
       return false;
     },
     select: function(event, ui) {
-      jQuery('#visit_store_id').val(ui.item.id);
+      jQuery('#store_id').val(ui.item.id);
       return false;
     }
   });

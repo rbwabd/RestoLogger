@@ -12,14 +12,14 @@
             &nbsp;<%= current_user.name %>
           </h3>
           <ul>
-            <li><%= link_to "My Visits", "#" %></li>
+            <li><%= link_to "My Visits", visits_path %></li>
             <li><%= link_to "My Favourite Places", "#" %></li>
             <li><%= link_to "My Favourite Dishes", "#" %></li>
             <li><%= link_to "My Dish Reviews", "#" %></li>
             <li><%= link_to "My Network", "#" %></li>
             <li><%= link_to "My Statistics", "#" %></li>
             <br/>
-            <li><%= link_to "Add a Visit", new_visit_path %></li>
+            <li><%= link_to "Add a Visit", new_store_path %></li>
           </ul>
         <% end %>
       </li>

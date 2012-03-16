@@ -8,10 +8,10 @@ class VisitsController < ApplicationController
   end
   
   def show
+    @title = "show_title"
     @visit = Visit.find(params[:id])
     @store = Store.find(@visit.store_id)
     @city = City.find(@visit.city_id)
-    @title = "dummy to change"
   end
 
   def new
@@ -21,10 +21,6 @@ class VisitsController < ApplicationController
     @city = City.find_city("London", "London", "United Kingdom")
     @country = Country.find_by_name("United Kingdom")
     @state = State.find_by_name("London")
-    #@dish1 = DishReview.new(:dish_id => 3)
-    #@dish2 = DishReview.new(:dish_id => 4)
-    #@visit.dish_reviews << @dish1
-    #@visit.dish_reviews << @dish2
   end
   
   def create

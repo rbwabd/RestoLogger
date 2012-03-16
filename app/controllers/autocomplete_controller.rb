@@ -11,6 +11,7 @@ class AutocompleteController < ApplicationController
   end
 
   def stores
+    #p params.to_s
     if params[:term]
       like= "%".concat(params[:term].concat("%"))
       stores = Store.where("name ILIKE ? and city_id = ?", like, params[:city_id])

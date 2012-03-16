@@ -33,6 +33,7 @@ RestoLogger::Application.routes.draw do
   resources :relationships,   :only => [:create, :destroy]
 	resources :authentications
   resources :pictures
+  resources :stores
   
 	root :to => "authentications#index"
 	#root :to => "pages#home"
