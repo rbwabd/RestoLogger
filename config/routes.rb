@@ -9,7 +9,9 @@ RestoLogger::Application.routes.draw do
   get "countries/create"
   get "countries/destroy"
   
-	devise_for :users  #, :skip => [:sessions]
+  match 'onlinesearch' => 'stores#onlinesearch'
+
+  devise_for :users  #, :skip => [:sessions]
   #as :user do is the same as devise_scope :user do
 	as :user do
 		get 'signin' => 'authentications#index', :as => :new_user_session

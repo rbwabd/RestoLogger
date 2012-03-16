@@ -16,7 +16,10 @@
 <div class="field">
   <%= f.label :name, "Restaurant Name:" %>&nbsp;
   <%= f.text_field :name, :size =>50 %>
-  <%= f.hidden_field :id %>
+  <%= f.hidden_field :id %>&nbsp;
+    <%= link_to I18n.t(@button), :action => :onlinesearch, :id => '3', :remote => true %>
+  <span class="actions">  
+  </span>  
 </div>
 <div id="display">
 </div>
