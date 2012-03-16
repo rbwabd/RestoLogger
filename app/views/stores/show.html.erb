@@ -1,0 +1,12 @@
+<% content_for :sidebar do %>
+  <%= render 'shared/main_sidebar' %>
+<% end %>
+
+<h1><%= I18n.t(@title) %></h1>
+
+<div id="store">
+  </br>
+  <strong>City:</strong> <%= @store.city %>
+  </br>
+  <strong>Store:</strong> <%= @store.name %>
+</div>

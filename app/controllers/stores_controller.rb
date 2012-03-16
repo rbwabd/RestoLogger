@@ -9,6 +9,7 @@ class StoresController < ApplicationController
   
   def show
     @title = "show_title"
+    @store = Store.find(params[:id])
   end
 
   def new
