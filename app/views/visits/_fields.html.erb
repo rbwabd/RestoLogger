@@ -1,6 +1,8 @@
 <br>
 <div class="field">
   <strong>Restaurant Name: </strong><%= @store.name %>&nbsp;
+  <%= hidden_field :store, :id %>
+  <%= hidden_field :store, :city_id %>
 </div>
 <div class="field">
   <%= f.label :visit_date, "Visit Date:" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

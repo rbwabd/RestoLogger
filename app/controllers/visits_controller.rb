@@ -31,8 +31,8 @@ class VisitsController < ApplicationController
     @visit.tagline=params[:visit][:tagline]
     @visit.review=params[:visit][:review]
     #@visit.guest_number=
-    @visit.city_id=params[:visit][:city_id]
-    @visit.store_id=params[:visit][:store_id]
+    @visit.city_id=params[:store][:city_id]
+    @visit.store_id=params[:store][:id]
     @visit.visit_date=params[:visit][:visit_date]
     
     if !params[:visit][:dish_reviews_attributes].nil?
