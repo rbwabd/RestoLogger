@@ -10,7 +10,6 @@ class CreateStores < ActiveRecord::Migration
       t.string :postcode
       t.integer :city_id
       t.integer :chain_id
-      t.integer :store_type_id
       t.string :keyword
       
       t.timestamps

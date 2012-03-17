@@ -1,5 +1,8 @@
 class Store < ActiveRecord::Base
   belongs_to :city
+  attr_accessible :name, :address
+  
+  has_many :store_type_relationships
   
   def self.create_store(params)
     #puts params[:city]
@@ -12,6 +15,7 @@ class Store < ActiveRecord::Base
   end
   
   def self.store_search(name, city, state, country)    
+    #http://code.google.com/apis/ajax/playground/#center_localsearch
     @store_name = nil
     @store_address = nil
     @store_url = nil

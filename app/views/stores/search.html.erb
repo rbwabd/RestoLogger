@@ -4,7 +4,7 @@
 
 <h1><%= I18n.t(@title) %></h1>
 
-<%= form_for(@store) do |f| %>
+<%= form_for(@store, :url => search_store_results_path) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <span>
     <%= label :city, :name, "City:" %>&nbsp;
@@ -24,24 +24,16 @@
   <div class="field">
     <%= f.label :name, "Restaurant Name:" %>&nbsp;
     <%= f.text_field :name, :size =>50 %>
-  </div>
-  <div class="field">
-    <%= f.label :address, "Address:" %>&nbsp;
-    <%= f.text_field :address, :size =>100 %>
-  </div>
-  <div class="field">
-    <%= label :store_type, :name, "Category 1:" %>&nbsp;
-    <%= select :store_type, "Category1", StoreType.all.collect {|p| [ p.name, p.id ] }, { :include_blank => true } %>
-  </div>
-  <div class="field">
-    <%= label :store_type, :name, "Category 2:" %>&nbsp;
-    <%= select :store_type, "Category2", StoreType.all.collect {|p| [ p.name, p.id ] }, { :include_blank => true } %>
-  </div>
-  <div class="field">
-    <%= label :store_type, :name, "Category 3:" %>&nbsp;
-    <%= select :store_type, "Category3", StoreType.all.collect {|p| [ p.name, p.id ] }, { :include_blank => true } %>
-  </div>
-  <div class="action">
+    <%= f.hidden_field :id %>&nbsp;
     <%= f.submit I18n.t(@button) %>
+    <span class="actions">  
+    </span>  
   </div>
+  <div id="display">
+  </div>
+  <% if !@res.nil? %>
+    <%= @res[:name] %><br>
+    <%= @res[:address] %>
+    <%= link_to I18n.t(@button2), new_store_path(:name => @res[:name], :address => @res[:address], :param => params)%>
+  <% end %>
 <% end %>
