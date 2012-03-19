@@ -1,23 +1,8 @@
 <% content_for :sidebar do %>
-  <%= render 'shared/main_sidebar' %>
+  <%= render 'layouts/main_sidebar' %>
 <% end %>
 
 <h1><%= t :help_title %></h1>
 <p>
   <%= t :help_message %> 
-<br>
 </p>
-<div>
-  URL:      <%= @store_url %> <br>
-  Name:      <%= @store_name %> <br>
-  Address:   <%= @store_address %> <br>
-</div>
-
-<div id="tabs">
-  <ul>
-    <li><a href="#tabs-1"> Overview </a></li> 
-    <li><a href="#tabs-2"> Overview </a></li> 
-  </ul>
-  <div id="tabs-1"> Overview 1 </div>
-  <div id="tabs-2"> Overview 2 </div>
-</div>  
