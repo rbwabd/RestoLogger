@@ -3,9 +3,9 @@ class CreateDishes < ActiveRecord::Migration
     create_table :dishes do |t|
       t.string :name
       t.string :alt_name
-      t.integer :category
       t.integer :dish_type_id
-      t.string :keyword
+      t.string :code
+      t.string :description
       
       t.timestamps
     end

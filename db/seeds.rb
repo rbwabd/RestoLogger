@@ -14,6 +14,7 @@
 #                            { :name => 'United States' }, 
 #                            { :name => 'Belgium' }]
 #                          )
+=begin
 StoreType.create({:name=>'Afghan'})
 StoreType.create({:name=>'African'})
 StoreType.create({:name=>'American'})
@@ -102,7 +103,6 @@ StoreType.create({:name=>'Ukrainian'})
 StoreType.create({:name=>'Vegan'})
 StoreType.create({:name=>'Vegetarian'})
 StoreType.create({:name=>'Vietnamese'})
-=begin
 City.create_city("Aberdeen", "Aberdeen City", "United Kingdom")
 City.create_city("Aberdeen", "Aberdeen City", "United Kingdom")
 City.create_city("Aberdeen", "Aberdeen City", "United Kingdom")
