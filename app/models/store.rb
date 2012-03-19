@@ -16,89 +16,64 @@ class Store < ActiveRecord::Base
   
   def self.store_search(name, city, state, country)    
     #http://code.google.com/apis/ajax/playground/#center_localsearch
-    @store_name = nil
-    @store_address = nil
-    @store_url = nil
+    result_hash=nil
+    store_id =nil
     search_url = nil
-    store_street = nil
-    store_locality = nil
-    store_zipcode = nil
+    results = Array.new
     
-    google_url= 'https://www.google.com/search?as_q=yelp+restaurant+'+city+'+'+name
-
+    google_url= 'https://www.google.com/search?as_q='+city+'+'+name
+    p "hello"
+    p "hello"
+    p "hello"
+    p "hello"
+    p google_url
     #file for debugging purposes
     #File.open("tmpzfile.txt",'w') do |filea|
       open("#{google_url}") {|f|
         #raise 'web service error' if (f.status.first != '200')
         f.each_line {|line|
           #filea.puts line
-          offset=0
+          if result_hash=Store.find_str(line, 0, ';cid=', '"') and result_hash[:result_string].size <= 20 then
+            store_id=result_hash[:result_string]
+            search_url='http://maps.google.com/maps/place?cid='+store_id
 
-          while offset != -1
-            if !search_url && results=Store.find_str(line, offset, '<h3 class="r"><a href="/url?q=', '"') then
-              offset=results[:offset]
-              tmp_url=CGI::unescape(results[:result_string])
-              if tmp_url.index('yelp') then 
-                idx1=tmp_url.index('&')
-                search_url=tmp_url.slice(0,idx1)
-                #@store_name=tmp_url.slice(0,idx1)
-              end
-            else
-              # go to process next line
-              offset = -1
-            end  
-          end
+            found=Hash.new
+            found[:store_id] = store_id
+            #File.open("tmpzfile.txt",'w') do |filea|
+              open("#{search_url}") {|f2|
+                #raise 'web service error' if (f.status.first != '200')
+                f2.each_line {|line|
+                  #filea.puts line
+                  if result_hash=Store.find_str(line, 0, 'gw:businessname="', '"') then
+                    found[:name]=result_hash[:result_string]
+                  end  
+                  if result_hash=Store.find_str(line, 0, 'gw:address="', '"') then
+                    found[:address]=result_hash[:result_string]
+                  end  
+                  if result_hash=Store.find_str(line, 0, 'gw:country="', '"') then
+                    found[:country]=result_hash[:result_string]
+                  end  
+                  if result_hash=Store.find_str(line, 0, 'gw:phone="', '"') then
+                    found[:phone]=result_hash[:result_string]
+                  end  
+                }
+              }
+            #end
+            results << found
+          end  
         }
       }
     #end
-
-    open("#{search_url}") {|f|
-      #raise 'web service error' if (f.status.first != '200')
-      f.each_line {|line|
-        offset=0
-        if !@store_url && results=Store.find_str(line, offset, 'meta property="og:url" content="', '">') then
-          @store_url=results[:result_string]
-          offset=results[:offset]
-        end
-        if !@store_name && results=Store.find_str(line, offset, '<meta property="og:title" content="', '">') then
-          @store_name=results[:result_string]
-          offset=results[:offset]
-        end
-        if !store_street && results=Store.find_str(line, offset, '<span class="street-address">', '</span>') then
-          store_street=results[:result_string]
-          if store_street.index("<br>") then
-            store_street=store_street.split('<br>').join(', ')
-          end
-          offset=results[:offset]
-        end 
-        if !store_locality && results=Store.find_str(line, offset, '<span class="locality">', '</span>') then
-          store_locality=results[:result_string]
-          offset=results[:offset]
-        end
-        if !store_zipcode && results=Store.find_str(line, offset, '</span> <span class="postal-code">', '</span>') then
-          store_zipcode=results[:result_string]
-        end
-      }  
-      @store_address=store_street.to_s+", "+store_locality.to_s+" "+store_zipcode.to_s
-    }  
-    found=Hash.new
-    found[:address]=@store_address
-    found[:name]=@store_name
-    found[:url]=@store_url
-    return found
+   
+    return results
   end
     
   private
     def self.find_str(line, offset, sstr1, sstr2)
       idx1=line.index(sstr1, offset)
       if idx1
-        #puts "idx1o "+idx1.to_s
-        #puts sstr1+" "+sstr2
-        #puts line.slice(idx1, 60)
         idx1+=sstr1.size
         idx2=line.index(sstr2, idx1)
-        #puts "idx1 "+idx1.to_s
-        #puts "idx2 "+idx2.to_s
         return {:offset => idx2, :result_string => CGI::unescapeHTML(line.slice(idx1, idx2-idx1))}
       end
       return nil

@@ -31,9 +31,13 @@
   </div>
   <div id="display">
   </div>
-  <% if !@res.nil? %>
-    <%= @res[:name] %><br>
-    <%= @res[:address] %>
-    <%= link_to I18n.t(@button2), new_store_path(:name => @res[:name], :address => @res[:address], :param => params)%>
-  <% end %>
+  <% for result in @res %>
+    <%= result[:name] %><br>
+    <%= result[:address] %><br>
+    <%= result[:country] %><br>
+    <%= result[:phone] %><br>
+    <%= result[:store_id] %>
+    <%= link_to I18n.t(@button2), new_store_path(:name => result[:name], :address => result[:address], :param => params)%>
+    <br><br>
+    <% end %>
 <% end %>

@@ -57,6 +57,7 @@ class StoresController < ApplicationController
     @country = Country.find_by_name("United Kingdom")
     @state = State.find_by_name("London")
     @city = City.find_city("London", "London", "United Kingdom").first
+    @res=Array.new
   end
   
   def search_results
@@ -69,14 +70,9 @@ class StoresController < ApplicationController
     @button2 = "new_button"
     new_name=params[:store][:name]
     @res=Store.store_search(new_name.gsub(' ','+'), @city.name.gsub(' ','+'), @state.name.gsub(' ','+'), @country.name.gsub(' ','+'))
-    #p @res[:address]
-    #p @res[:url]
-    #p @res[:name]
-    #p params
+    # need to test for when nothing is returned!!!
     @store  = Store.new(:name => new_name)
     render 'search'
-    #else
-    #end
     #http://stackoverflow.com/questions/4766383/rails-3-link-to-to-call-partial-using-jquery-ajax
   end
 
