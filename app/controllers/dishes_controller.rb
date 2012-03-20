@@ -46,8 +46,36 @@ class DishesController < ApplicationController
         end 
         item = l[start..l.size].strip
         entry << item
+        
+        #add dummies
+        while entry.size < 5
+          entry << ""
+        end
+        
+        #the name and price could include [] signs, between which are some optional comments
+        tmpentry=entry[1]
+        start=tmpentry.index('[')
+        finish=tmpentry.index(']')
+        if start and finish
+          item= tmpentry[start+1..finish-1]
+          entry[1]=tmpentry.gsub(/\[.*\]/,'')
+          entry << item
+        else
+          entry << ""
+        end
+
+        tmpentry=entry[2]
+        start=tmpentry.index('[')
+        finish=tmpentry.index(']')
+        if start and finish
+          item= tmpentry[start+1..finish-1]
+          entry[2]=tmpentry.gsub(/\[.*\]/,'')
+          entry << item
+        else
+          entry << ""
+        end
         @entries << entry
-      end
+      end      
     }
 =begin    
 #need to add error checking on the fields
@@ -81,11 +109,13 @@ class DishesController < ApplicationController
     while count < maxcount
       category = params["category"+count.to_s]
       name = params["name"+count.to_s]
+      option_description = params["optiondesc"+count.to_s]
+      price_comment =params["pricecomment"+count.to_s]
       price = params["price"+count.to_s]
       description = params["description"+count.to_s]
       code = params["code"+count.to_s]
       
-      dish = Dish.new({ :store_id => store.id, :name => name, :price => price, :description => description, :code => code, :rank => rank })
+      dish = Dish.new({ :store_id => store.id, :name => name, :option_description => option_description, :price_comment => price_comment, :price => price, :description => description, :code => code, :rank => rank })
       dt = DishType.find_or_create_by_name_and_store_id(category, store.id);      
       dish.dish_type_id = dt.id
       

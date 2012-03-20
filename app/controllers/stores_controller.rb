@@ -87,6 +87,7 @@ class StoresController < ApplicationController
     @title = "stores.show_menu_title"
     @store=Store.find(params[:id])
     @dishes=@store.dishes#.paginate(:page => params[:page], :per_page => 10)
+    #http://jqueryui.com/demos/draggable/#sortable
   end
 
   def destroy

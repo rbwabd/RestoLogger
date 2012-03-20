@@ -12,18 +12,22 @@
     <tr>
       <th>Category</th>
       <th>Dish Name</th>
+      <th>Dish Option</th>
+      <th>Price Comment</th>
       <th>Price</th>
-      <th>Description</th>
       <th>Order Code</th>
+      <th>Description</th>
     </tr>
     <% count = 0 %>
     <% for entry in @entries %>
       <tr>
         <td style="vertical-align:top"><%= text_field_tag "category"+count.to_s, entry[0], :size => 20 %></td>
-        <td style="vertical-align:top"><%= text_field_tag "name"+count.to_s, entry[1]%></td>
+        <td style="vertical-align:top"><%= text_field_tag "name"+count.to_s, entry[1], :size => 40 %></td>
+        <td style="vertical-align:top"><%= text_field_tag "optiondesc"+count.to_s, entry[5], :size => 10 %></td>
+        <td style="vertical-align:top"><%= text_field_tag "pricecomment"+count.to_s, entry[6], :size => 10 %></td>
         <td style="vertical-align:top; text-align:right"><%= text_field_tag "price"+count.to_s, entry[2], :size => 5 %></td>
-        <td style="vertical-align:top"><%= text_field_tag "description"+count.to_s, entry[3], :size => 50 %></td>
         <td style="vertical-align:top"><%= text_field_tag "code"+count.to_s, entry[4], :size => 5 %></td>        
+        <td style="vertical-align:top"><%= text_field_tag "description"+count.to_s, entry[3], :size => 50 %></td>
       </tr>
       <% count += 1 %>
     <% end %>
