@@ -9,6 +9,7 @@ class StoresController < ApplicationController
     @title = "stores.index_title"
     @button = "stores.new_visit_button"
     @button2 = "stores.new_dish_button"
+    @button3 = "stores.show_menu_button"
     @stores = Store.all.paginate(:page => params[:page], :per_page => 10)
   end
   
@@ -16,6 +17,7 @@ class StoresController < ApplicationController
     @title = "stores.show_title"
     @button = "stores.new_visit_button"
     @button2 = "stores.new_dish_button"
+    @button3 = "stores.show_menu_button"
     @store = Store.find(params[:id])
   end
 
@@ -79,6 +81,12 @@ class StoresController < ApplicationController
     @store  = Store.new(:name => new_name)
     render 'search'
     #http://stackoverflow.com/questions/4766383/rails-3-link-to-to-call-partial-using-jquery-ajax
+  end
+  
+  def show_menu
+    @title = "stores.show_menu_title"
+    @store=Store.find(params[:id])
+    @dishes=@store.dishes#.paginate(:page => params[:page], :per_page => 10)
   end
 
   def destroy

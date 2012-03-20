@@ -1,0 +1,24 @@
+<% content_for :sidebar do %>
+  <%= render 'layouts/main_sidebar' %>
+<% end %>
+
+<h1><%= I18n.t(@title, :store_name => @store.name) %></h1><br>
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Dish Name</th>
+    <th>Price</th>
+    <th>Description</th>
+    <th>Order Code</th>
+  </tr>
+  <% for dish in @dishes %>
+    <tr>
+      <td style="vertical-align:top"><%= dish.dish_type.name %></td>
+      <td style="vertical-align:top"><%= link_to dish.name, dish_path(dish)%></td>
+      <td style="vertical-align:top; text-align:right"><%= dish.price %></td>
+      <td style="vertical-align:top"><%= dish.description %></td>
+      <td style="vertical-align:top"><%= dish.code %></td>
+    </tr>
+  <% end %>
+</table>
+

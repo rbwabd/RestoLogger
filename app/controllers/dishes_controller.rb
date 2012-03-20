@@ -96,7 +96,7 @@ class DishesController < ApplicationController
       end
       count += 1
     end
-    redirect_to store, :flash => { :success => count.to_s+" New Dishes Saved" }
+    redirect_to show_menu_path({ :id => store.id }), :flash => { :success => count.to_s+" New Dishes Saved" }
   end
   
   def destroy
