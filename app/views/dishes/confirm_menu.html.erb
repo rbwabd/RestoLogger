@@ -2,22 +2,32 @@
   <%= render 'layouts/main_sidebar' %>
 <% end %>
 
-<h1><%= I18n.t(@title) %></h1>
-<table>
-  <tr>
-    <th>Category</th>
-    <th>Dish Name</th>
-    <th>Price</th>
-    <th>Description</th>
-    <th>Order Code</th>
-  </tr>
-  <% for entry in @entries %>
+<h1><%= I18n.t(@title) %></h1><br>
+
+<%= form_for(@dish, :url => save_menu_path) do |f| %>
+  <div class="action">
+    <%= f.submit I18n.t(@button) %>
+  </div>
+  <table>
     <tr>
-      <td style="vertical-align:top"><%=entry[0]%></td>
-      <td style="vertical-align:top"><%=entry[1]%></td>
-      <td style="vertical-align:top"><%=entry[2]%></td>
-      <td style="vertical-align:top"><%=entry[3]%></td>
-      <td style="vertical-align:top"><%=entry[4]%></td>
+      <th>Category</th>
+      <th>Dish Name</th>
+      <th>Price</th>
+      <th>Description</th>
+      <th>Order Code</th>
     </tr>
-  <% end %>
-</table>
+    <% for entry in @entries %>
+      <tr>
+        <td style="vertical-align:top"><%=entry[0]%></td>
+        <td style="vertical-align:top"><%=entry[1]%></td>
+        <td style="vertical-align:top"><%=entry[2]%></td>
+        <td style="vertical-align:top"><%=entry[3]%></td>
+        <td style="vertical-align:top"><%=entry[4]%></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= hidden_field :store, :id, :value => @storeid %>
+  <div class="action">
+    <%= f.submit I18n.t(@button) %>
+  </div>
+<% end %>

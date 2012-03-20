@@ -3,6 +3,7 @@ class Store < ActiveRecord::Base
   attr_accessible :name, :address
   
   has_many :store_type_relationships
+  has_many :dishes
   
   def self.create_store(params)
     #puts params[:city]
