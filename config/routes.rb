@@ -11,6 +11,9 @@ RestoLogger::Application.routes.draw do
   
   match '/search_store',    :to => 'stores#search'
   match '/search_store_results',    :to => 'stores#search_results'
+  match '/add_menu',    :to => 'dishes#add_menu'
+  match '/submit_menu',    :to => 'dishes#submit_menu'
+  match '/confirm_menu',    :to => 'dishes#confirm_menu'
 
   devise_for :users  #, :skip => [:sessions]
   #as :user do is the same as devise_scope :user do

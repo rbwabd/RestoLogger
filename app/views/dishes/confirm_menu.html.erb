@@ -1,0 +1,23 @@
+<% content_for :sidebar do %>
+  <%= render 'layouts/main_sidebar' %>
+<% end %>
+
+<h1><%= I18n.t(@title) %></h1>
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Dish Name</th>
+    <th>Price</th>
+    <th>Description</th>
+    <th>Order Code</th>
+  </tr>
+  <% for entry in @entries %>
+    <tr>
+      <td style="vertical-align:top"><%=entry[0]%></td>
+      <td style="vertical-align:top"><%=entry[1]%></td>
+      <td style="vertical-align:top"><%=entry[2]%></td>
+      <td style="vertical-align:top"><%=entry[3]%></td>
+      <td style="vertical-align:top"><%=entry[4]%></td>
+    </tr>
+  <% end %>
+</table>

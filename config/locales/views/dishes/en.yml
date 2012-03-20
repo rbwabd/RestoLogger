@@ -1,14 +1,14 @@
 en:
-  stores:
-    index_title: All Stores
-    show_title: Entry for "%{store_name}"
-    new_title: Create a New Store
+  dishes:
+    index_title: All Dishes
+    show_title: Entrry
+    new_title: Add New Dishes
     new_button: Add
-    new_visit_button: Add Visit
-    search_title: Search for a Store
-    search_button: Search
-    add_as_new_link: Add as New Store
-    edit_title: Edit Store
+    add_menu_title: Add New Dishes
+    add_menu_button: Add
+    confirm_menu_title: Please confirm your entries are correct
+    confirm_menu_title: Confirm
+    edit_title: Edit Dish
     edit_button: Update
 
  

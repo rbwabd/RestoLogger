@@ -22,11 +22,6 @@ class Store < ActiveRecord::Base
     results = Array.new
     
     google_url= 'https://www.google.com/search?as_q='+city+'+'+name
-    p "hello"
-    p "hello"
-    p "hello"
-    p "hello"
-    p google_url
     #file for debugging purposes
     #File.open("tmpzfile.txt",'w') do |filea|
       open("#{google_url}") {|f|
