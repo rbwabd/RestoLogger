@@ -7,12 +7,15 @@ class StoresController < ApplicationController
   
   def index
     @title = "stores.index_title"
+    @button = "stores.new_visit_button"
+    @button2 = "stores.new_dish_button"
     @stores = Store.all.paginate(:page => params[:page], :per_page => 10)
   end
   
   def show
     @title = "stores.show_title"
     @button = "stores.new_visit_button"
+    @button2 = "stores.new_dish_button"
     @store = Store.find(params[:id])
   end
 

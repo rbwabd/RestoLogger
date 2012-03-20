@@ -37,6 +37,7 @@ RestoLogger::Application.routes.draw do
 	resources :authentications
   resources :pictures
   resources :stores
+  resources :dishes
   
 	root :to => "authentications#index"
 	#root :to => "pages#home"

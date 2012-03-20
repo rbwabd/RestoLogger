@@ -2,13 +2,26 @@
   <%= render 'layouts/main_sidebar' %>
 <% end %>
 
-<h1><%= I18n.t(@title) %></h1>
+<h1><%= I18n.t(@title) %></h1><br>
 <%= will_paginate %>
 <% for store in @stores %>
   <div class="store">
-    <%= store.name %>
-    <h1><%= link_to store.id, store %></h1>
+    <strong>Name:</strong> <%= link_to store.name, store_path(store)%>
+    </br>
+    <strong>City:</strong> <%= store.city.name %>
+    </br>
+    <strong>Address:</strong> <%= store.address %>
+    <div class="">
+      <strong>Categories:</strong>
+      <% for rel in store.store_type_relationships %>
+        &nbsp;<%= rel.store_type.name %>
+      <% end %>
+    </div>
+    <div class="actions">
+      <%= link_to I18n.t(@button), new_visit_path(:id => store.id)%>&nbsp;&nbsp;&nbsp;&nbsp;
+      <%= link_to I18n.t(@button2), new_dish_path(:id => store.id)%>
+    </div>    
   </div>
 <% end %>
 <%= will_paginate %>
-<p><%= link_to "Add a Visit", new_visit_path %></p>
+

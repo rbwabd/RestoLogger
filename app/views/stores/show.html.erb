@@ -2,21 +2,21 @@
   <%= render 'layouts/main_sidebar' %>
 <% end %>
 
-<h1><%= I18n.t(@title, :store_name => @store.name) %></h1>
+<h1><%= I18n.t(@title, :store_name => @store.name) %></h1><br>
 
 <div id="store">
-  </br>
-  <strong>Store Name:</strong> <%= @store.name %>
-  </br>
   <strong>City:</strong> <%= @store.city.name %>
+  </br>
+  <strong>Address:</strong> <%= @store.address %>
   <div class="">
-    Categories: 
+    <strong>Categories:</strong>
     <% for rel in @store.store_type_relationships %>
       &nbsp;<%= rel.store_type.name %>
     <% end %>
   </div>
   <br>
   <div class="actions">
-    <%= link_to I18n.t(@button), new_visit_path(:id => @store.id)%>
+    <%= link_to I18n.t(@button), new_visit_path(:id => @store.id)%>&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= link_to I18n.t(@button2), new_dish_path(:id => @store.id)%>
   </div>    
 </div>

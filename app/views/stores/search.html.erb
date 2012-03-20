@@ -36,7 +36,7 @@
     <%= result[:address] %><br>
     <%= result[:country] %><br>
     <%= result[:phone] %><br>
-    <%= result[:store_id] %>
+    <%= result[:store_id] %><br>
     <%= link_to I18n.t(@button2), new_store_path(:name => result[:name], :address => result[:address], :param => params)%>
     <br><br>
     <% end %>

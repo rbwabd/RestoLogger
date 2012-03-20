@@ -1,11 +1,10 @@
 en:
   stores:
     index_title: All Stores
-    show_title: "%{store_name}"
+    show_title: Entry for "%{store_name}"
     new_title: Create a New Store
     new_button: Add
     new_visit_button: Add Visit
-    new_dish_button: Add Dishes
     search_title: Search for a Store
     search_button: Search
     add_as_new_link: Add as New Store
