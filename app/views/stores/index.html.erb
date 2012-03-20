@@ -1,0 +1,14 @@
+<% content_for :sidebar do %>
+  <%= render 'layouts/main_sidebar' %>
+<% end %>
+
+<h1><%= I18n.t(@title) %></h1>
+<%= will_paginate %>
+<% for store in @stores %>
+  <div class="store">
+    <%= store.name %>
+    <h1><%= link_to store.id, store %></h1>
+  </div>
+<% end %>
+<%= will_paginate %>
+<p><%= link_to "Add a Visit", new_visit_path %></p>

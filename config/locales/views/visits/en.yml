@@ -1,8 +1,10 @@
 en:
-  index_title: All Visits
-  new_title: Add a Visit
-  new_button: Add Visit
-  edit_title: Edit Visit
-  edit_button: Update
+  visits:
+    index_title: All Visits
+    show_title: Visit
+    new_title: Add a Visit
+    new_button: Add
+    edit_title: Edit Visit
+    edit_button: Update
   
   

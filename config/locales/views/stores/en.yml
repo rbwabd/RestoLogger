@@ -1,10 +1,14 @@
 en:
-  index_title: All Stores
-  new_title: Find or Add a Store
-  new_button: Add as New Store
-  new_visit_button: Add Visit
-  search_button: Search
-  edit_title: Edit Store
-  edit_button: Update
+  stores:
+    index_title: All Stores
+    show_title: Entry for "%{store_name}"
+    new_title: Create a New Store
+    new_button: Add
+    new_visit_button: Add Visit
+    search_title: Search for a Store
+    search_button: Search
+    add_as_new_link: Add as New Store
+    edit_title: Edit Store
+    edit_button: Update
 
-  
+ 

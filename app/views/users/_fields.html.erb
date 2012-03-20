@@ -1,15 +1,15 @@
 <!--
   <div class="field">
-    <%= f.label :name, t(:user_name) %><br />
+    <%= f.label :name, t("users.user_name") %><br />
     <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= f.label :email, t(:user_email) %><br />
+    <%= f.label :email, t("users.user_email") %><br />
     <%= f.text_field :email %>
   </div>
 -->
 <div class="field">
-  <%= label :user_setting, :locale, t(:user_locale) %><br />
+  <%= label :user_setting, :locale, t("users.user_locale") %><br />
   <%= select :user_setting, :locale, User.localelist %>
 </div>

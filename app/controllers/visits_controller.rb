@@ -3,21 +3,21 @@ class VisitsController < ApplicationController
   before_filter :authorized_user, :only => :destroy
 
   def index
-    @title = "index_title"
+    @title = "visits.index_title"
     @visits = @current_user.visits.paginate(:page => params[:page], :per_page => 10)
   end
   
   def show
-    @title = "show_title"
+    @title = "visits.show_title"
     @visit = Visit.find(params[:id])
     @store = Store.find(@visit.store_id)
     @city = City.find(@visit.city_id)
   end
 
   def new
+    @title = "visits.new_title"
+    @button = "visits.new_button"
     @visit  = Visit.new
-    @title = "new_title"
-    @button = "new_button"
     @store = Store.find(params[:id])
   end
   

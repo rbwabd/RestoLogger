@@ -1,22 +1,25 @@
 class StoresController < ApplicationController
   before_filter :authenticate_user!
   #before_filter :authorized_user, :only => :destroy
-
+  
+  #this is needed due to Store.all.paginate call (static array - can remove after i take that code out)
+  require 'will_paginate/array'
+  
   def index
-    @title = "index_title"
-    @stores = Stores.all.paginate(:page => params[:page], :per_page => 10)
+    @title = "stores.index_title"
+    @stores = Store.all.paginate(:page => params[:page], :per_page => 10)
   end
   
   def show
-    @title = "show_title"
-    @button = "new_visit_button"
+    @title = "stores.show_title"
+    @button = "stores.new_visit_button"
     @store = Store.find(params[:id])
   end
 
   def new
-    @title = "new_title"
+    @title = "stores.new_title"
+    @button = "stores.new_button"
     @store  = Store.new( {:name => params[:name], :address => params[:address]})
-    @button = "new_button"
     @country=Country.find(params[:param][:country][:id])
     @state=State.find(params[:param][:state][:id])
     @city=City.find(params[:param][:city][:id])
@@ -37,12 +40,11 @@ class StoresController < ApplicationController
       @store.store_type_relationships.build({:store_type_id =>params[:store_type]["Category3"]})
     end
     if @store.save
-      @title = "new_title"
       redirect_to @store, :flash => { :success => "New Store Saved" }
     else
-      @title = "new_title"
+      @title = "stores.new_title"
+      @button = "stores.new_button"
       @store  = Store.new( {:name => params[:store][:name], :address => params[:store][:address]})
-      @button = "new_button"
       @country=Country.find(params[:country][:id])
       @state=State.find(params[:state][:id])
       @city=City.find(params[:city][:id])
@@ -51,9 +53,9 @@ class StoresController < ApplicationController
   end
   
   def search
-    @title = "new_title"
+    @title = "stores.search_title"
+    @button = "stores.search_button"
     @store  = Store.new
-    @button = "search_button"
     @country = Country.find_by_name("United Kingdom")
     @state = State.find_by_name("London")
     @city = City.find_city("London", "London", "United Kingdom").first
@@ -61,13 +63,13 @@ class StoresController < ApplicationController
   end
   
   def search_results
-    #if params[:commit]==I18n.t("search_button") then
+    #if params[:commit]==I18n.t("stores.search_button") then
     @country=Country.find(params[:country][:id])
     @state=State.find(params[:state][:id])
     @city=City.find(params[:city][:id])
-    @title = "new_title"
-    @button = "search_button"
-    @button2 = "new_button"
+    @title = "stores.new_title"
+    @button = "stores.search_button"
+    @button2 = "stores.add_as_new_link"
     new_name=params[:store][:name]
     @res=Store.store_search(new_name.gsub(' ','+'), @city.name.gsub(' ','+'), @state.name.gsub(' ','+'), @country.name.gsub(' ','+'))
     # need to test for when nothing is returned!!!

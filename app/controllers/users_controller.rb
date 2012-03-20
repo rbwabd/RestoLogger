@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_filter :admin_user,   :only => :destroy
   
   def index
-    @title = "index_title"
+    @title = "users.index_title"
     @users = User.paginate(:page => params[:page])
   end
   
@@ -16,23 +16,23 @@ class UsersController < ApplicationController
   end
 
   def following
-    @title = "following"
+    @title = "users.following"
     @user = User.find(params[:id])
     @users = @user.following.paginate(:page => params[:page])
     render 'show_follow'
   end
   
   def followers
-    @title = "followers"
+    @title = "users.followers"
     @user = User.find(params[:id])
     @users = @user.followers.paginate(:page => params[:page])
     render 'show_follow'
   end
 
   def new
+    @title = "users.new_title"
+    @button = "users.new_button"
     @user  = User.new
-    @title = "new_title"
-    @button = "new_button"
   end
   
   def create
@@ -41,15 +41,15 @@ class UsersController < ApplicationController
       sign_in @user
       redirect_to @user, :flash => { :success => "Welcome to RestoLogger!" }
     else
-      @title = "new_title"
-      @button = "new_button"
+      @title = "users.new_title"
+      @button = "users.new_button"
       render 'new'
     end
   end
   
   def edit
-    @title = "edit_title"
-    @button = "edit_button"
+    @title = "users.edit_title"
+    @button = "users.edit_button"
     #need to set user_setting so the form knows how to initialize the field
     @user_setting = @user.user_setting
   end
@@ -58,8 +58,8 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user]) && @user.user_setting.update_attributes(params[:user_setting])
       redirect_to @user, :flash => { :success => "Profile updated." }
     else
-      @title = "edit_title"
-      @button = "edit_button"
+      @title = "users.edit_title"
+      @button = "users.edit_button"
       render 'edit'
     end
   end

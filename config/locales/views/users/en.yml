@@ -1,0 +1,13 @@
+en:
+  users:
+    index_title: All Users
+    new_title: Sign Up
+    new_button: Sign Up
+    edit_title: Edit User Settings
+    edit_button: Update
+    user_name:  Name
+    user_email:  Email
+    user_locale: Language
+    following:  Following
+    followers:  Followers
+  

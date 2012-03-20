@@ -2,6 +2,8 @@
   <%= render 'layouts/main_sidebar' %>
 <% end %>
 
+<h1><%= I18n.t(@title, :store_name => @store.name) %></h1>
+
 <div id="store">
   </br>
   <strong>Store Name:</strong> <%= @store.name %>
