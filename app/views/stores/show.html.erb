@@ -5,6 +5,8 @@
 <h1><%= I18n.t(@title, :store_name => @store.name) %></h1><br>
 
 <div id="store">
+  <strong>Name:</strong> <%= @store.name %>
+  </br>
   <strong>City:</strong> <%= @store.city.name %>
   </br>
   <strong>Address:</strong> <%= @store.address %>

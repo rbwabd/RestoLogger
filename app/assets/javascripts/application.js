@@ -63,7 +63,7 @@ jQuery(function() {
     },
     select: function(event, ui) {
       jQuery('#store_id').val(ui.item.id);
-      jQuery("#display").load(jQuery('#store_id').val()+" #store");
+      jQuery("#display").load('stores/'+jQuery('#store_id').val()+" #store");
       return false;
     }
   });
@@ -75,7 +75,7 @@ jQuery(function() {
         dataType: "json",
         data: {
           term : request.term,
-          store_id : jQuery('#visit_store_id').val()
+          store_id : jQuery('#store_id').val()
         },
         success: function(data) {
           response(data);
