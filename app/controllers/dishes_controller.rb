@@ -24,7 +24,7 @@ class DishesController < ApplicationController
     @title = "dishes.confirm_menu_title"
     @button = "dishes.confirm_menu_button"
     @dish  = Dish.new
-    @storeid = params[:store][:id]
+    @storeid = params[:storeid]
     entries_text = params[:entries]
     category = ""
     @entries = Array.new
@@ -69,29 +69,34 @@ class DishesController < ApplicationController
   end
   
   def save_menu
-    count=0
-    store = Store.find(params[:store][:id])
+    store = Store.find(params[:storeid])
     if store.dishes.size > 0
-      rank=store.dishes.maximum("rank")+1
+      rank = store.dishes.maximum("rank")+1
     else
-      rank=1
+      rank = 0
     end
-    @entries.each { |entry|
-      category=entry[0]
-      name=entry[1]
-      price=entry[2]
-      description=entry[3]
-      code=entry[4]
+    
+    count = 0
+    maxcount = params[:count].to_i
+    while count < maxcount
+      category = params["category"+count.to_s]
+      name = params["name"+count.to_s]
+      price = params["price"+count.to_s]
+      description = params["description"+count.to_s]
+      code = params["code"+count.to_s]
       
-      dt=DishType.find_or_create_by_name_and_store_id(category, store.id);
+      dish = Dish.new({ :store_id => store.id, :name => name, :price => price, :description => description, :code => code, :rank => rank })
+      dt = DishType.find_or_create_by_name_and_store_id(category, store.id);      
+      dish.dish_type_id = dt.id
       
-      dish=Dish.new({:name => name, :price => price, :description => description, :code => code})
-      dish.dish_type=dt
-      if !dish.save
+      if dish.save
+        rank += 1;
+      else  
         # need to write exception case - just keep the items that are not saved and redisplay them to user
       end
-    }
-    redirect_to store, :flash => { :success => count+" New Dishes Saved" }
+      count += 1
+    end
+    redirect_to store, :flash => { :success => count.to_s+" New Dishes Saved" }
   end
   
   def destroy

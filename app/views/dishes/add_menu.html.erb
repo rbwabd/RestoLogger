@@ -8,9 +8,9 @@
   <%= render 'shared/error_messages', :object => f.object %>
   <div class=""> 
     <%= label_tag "Dish Entries:" %><br>
-    <%= text_area_tag "entries", nil, :size => "120x20", :wrap => "off"   %>
+    <%= text_area_tag "entries", nil, :size => "120x20" %>
   </div>
-  <%= hidden_field :store, :id, :value => @storeid %>
+  <%= hidden_field_tag 'storeid', @storeid %>
   <div class="action">
     <%= f.submit I18n.t(@button) %>
   </div>

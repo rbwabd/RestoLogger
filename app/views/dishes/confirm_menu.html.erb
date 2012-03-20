@@ -16,17 +16,20 @@
       <th>Description</th>
       <th>Order Code</th>
     </tr>
+    <% count = 0 %>
     <% for entry in @entries %>
       <tr>
-        <td style="vertical-align:top"><%=entry[0]%></td>
-        <td style="vertical-align:top"><%=entry[1]%></td>
-        <td style="vertical-align:top"><%=entry[2]%></td>
-        <td style="vertical-align:top"><%=entry[3]%></td>
-        <td style="vertical-align:top"><%=entry[4]%></td>
+        <td style="vertical-align:top"><%= text_field_tag "category"+count.to_s, entry[0], :size => 20 %></td>
+        <td style="vertical-align:top"><%= text_field_tag "name"+count.to_s, entry[1]%></td>
+        <td style="vertical-align:top"><%= text_field_tag "price"+count.to_s, entry[2], :size => 5 %></td>
+        <td style="vertical-align:top"><%= text_field_tag "description"+count.to_s, entry[3], :size => 50 %></td>
+        <td style="vertical-align:top"><%= text_field_tag "code"+count.to_s, entry[4], :size => 5 %></td>        
       </tr>
+      <% count += 1 %>
     <% end %>
   </table>
-  <%= hidden_field :store, :id, :value => @storeid %>
+  <%= hidden_field_tag 'storeid', @storeid %>
+  <%= hidden_field_tag 'count', @entries.size %>
   <div class="action">
     <%= f.submit I18n.t(@button) %>
   </div>
