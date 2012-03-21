@@ -34,6 +34,13 @@ jQuery(function() {
 });
 
 jQuery(function() {
+  jQuery( "#sortable" ).sortable({
+    placeholder: "ui-state-highlight"
+  });
+  jQuery( "#sortable" ).disableSelection();
+});
+
+jQuery(function() {
   jQuery('#city_name').autocomplete({
     minLength: 3,
     source: '/autocomplete/cities',

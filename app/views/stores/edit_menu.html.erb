@@ -3,7 +3,12 @@
 <% end %>
 
 <h1><%= I18n.t(@title, :store_name => @store.name) %></h1><br>
-
+	<style>
+	#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+	#sortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 1.5em; }
+	html>body #sortable li { height: 1.5em; line-height: 1.2em; }
+	.ui-state-highlight { height: 1.5em; line-height: 1.2em; }
+	</style>
 <%= form_for(@store) do |f| %>
   <div class="action">
     <%= f.submit I18n.t(@button) %>
@@ -18,24 +23,11 @@
     <% c=0 %>
     <% for k in @dishes.keys %>
       <div id="tabs<%=c+=1%>">
-        <table>
-          <tr>
-            <th>Category</th>
-            <th>Dish Name</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>Order Code</th>
-          </tr>
+        <ul id="sortable">
           <% for dish in @dishes[k] %>
-            <tr>
-              <td style="vertical-align:top"><%= dish.dish_type.name %></td>
-              <td style="vertical-align:top"><%= link_to dish.name, dish_path(dish)%>&nbsp;<%= dish.option_description %></td>
-              <td style="vertical-align:top; text-align:right"><%= dish.price_comment %>&nbsp;<%= dish.price %></td>
-              <td style="vertical-align:top"><%= dish.description %></td>
-              <td style="vertical-align:top"><%= dish.code %></td>
-            </tr>
+            <li class="ui-state-default"><%= dish.name %></li>
           <% end %>
-        </table>
+        </ul>
       </div>
     <% end %>
   </div>
