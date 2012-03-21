@@ -30,22 +30,20 @@ jQuery(function() {
 });
 
 jQuery(function() {
-  // 2do: change this hard coded thing to dynamic
-  //var num_lists = $('[id^=tabs-]').length;
-  //for(i=1;i<=num_lists;i++){
-  //  $("#sortable"+i).sortable().disableSelection();
-  //}
-  jQuery( "#sortable0, #sortable1, #sortable2, #sortable3, #sortable4, #sortable5, #sortable6, #sortable7, #sortable8, #sortable9, #sortable10, #sortable11, #sortable12, #sortable13" ).sortable({
-    update: function(event,ui) {
-      jQuery(this).find(".ui-state-default").each(function(i){
-        var val = jQuery(this).attr("id");
-        var part = val.split("_");
-        //alert(part[0]+":"+part[1]+":"+part[2]);
-        document.getElementById("dishorder_"+part[1]+"_"+part[2]).value = i;
-      });
-    }
-  }).disableSelection();
-  
+  var num_lists = jQuery('[id^=taborder]').length;
+  for(cnt=1;cnt<=num_lists;cnt++){
+    jQuery( "#sortable"+cnt ).sortable({
+      update: function(event,ui) {
+        jQuery(this).find(".ui-state-default").each(function(i){
+          var val = jQuery(this).attr("id");
+          var part = val.split("_");
+          //alert(part[0]+":"+part[1]+":"+part[2]);
+          document.getElementById("dishorder_"+part[1]+"_"+part[2]).value = i;
+        });
+      }
+    }).disableSelection();
+  }
+    
   var jQuerytabs = jQuery( "#tabssortable" ).tabs().find( ".ui-tabs-nav" ).sortable({ 
                             axis: "x",
                             update: function(event, ui){
