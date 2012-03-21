@@ -115,12 +115,17 @@ class StoresController < ApplicationController
   end
 
   def update_menu
-    #2do: may need to implement some kind of timestamp mechanism so if the order was changed in between by another user no update is done
     @store=Store.find(params[:storeid])
     store_dishes=@store.dishes
     store_dishes.each { |dish|
-      sv=0
-      #if params["taborder_"+dish.dish_type.id.to_s
+      if params["taborder_"+dish.dish_type.id.to_s] != ""
+        dish.dish_type.rank=params["taborder_"+dish.dish_type.id.to_s]
+        dish.dish_type.save
+      end
+      if params["dd_"+dish.id.to_s] != ""
+        dish.rank=params["dd_"+dish.id.to_s]
+        dish.save
+      end
     }
     redirect_to root_path
   end
