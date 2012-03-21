@@ -95,31 +95,10 @@ class DishesController < ApplicationController
       rank = 0
     end
     
-    # need to add logic to store store_type rank (maybe not just leave uninitialized on first run...)
+    # 2do: need to add logic to store store_type rank (maybe not just leave uninitialized on first run...)
     
-    
-    
-    # need to check for cases where entry already exists, using name.downcase to compare downcase
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    # 2do: need to check for cases where entry already exists, using name.downcase to compare downcase
+
     count = 0
     maxcount = params[:count].to_i
     while count < maxcount
@@ -138,7 +117,7 @@ class DishesController < ApplicationController
       if dish.save
         rank += 1;
       else  
-        # need to write exception case - just keep the items that are not saved and redisplay them to user
+        # 2do: need to write exception case - just keep the items that are not saved and redisplay them to user
       end
       count += 1
     end

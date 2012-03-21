@@ -4,7 +4,7 @@
 
 <h1><%= I18n.t(@title, :store_name => @store.name) %></h1><br>
 
-<!-- hack because can't get css class to work -->
+<!-- 2do: hack because I can't get css class to work -->
 <style>
   <% @dishes.keys.each_with_index do |k, c| %>#sortable<%=c%> li <%= if c < @dishes.keys.size-1 then "," end%> <% end %>{ margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em;}
 </style>
@@ -22,8 +22,8 @@
     <% @dishes.keys.each_with_index do |k, c| %>
       <div id="tabs_<%= c %>">
         <ul id="sortable<%= c %>" class="connectedSortable ui-helper-reset">
-          <% for dish in @dishes[k] %>
-            <li class="ui-state-default"><%= dish.name %></li>
+          <% @dishes[k].each_with_index do |dish, c2| %>
+            <li id="catf_<%=c.to_s%>_<%=c2.to_s%>" class="ui-state-default"><%= dish.name %></li>
           <% end %>
         </ul>
       </div>
@@ -32,6 +32,9 @@
 
   <% @dishes.keys.each_with_index do |k, c| %>
     <%= hidden_field_tag "taborder"+c.to_s %>
+    <% @dishes[k].each_with_index do |dish, c2| %>
+      <%= hidden_field_tag "dishorder_"+c.to_s+"_"+c2.to_s %>
+    <% end %>
   <% end %>
 
   <br><div class="action">

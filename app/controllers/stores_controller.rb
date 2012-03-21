@@ -2,7 +2,7 @@ class StoresController < ApplicationController
   before_filter :authenticate_user!
   #before_filter :authorized_user, :only => :destroy
   
-  #this is needed due to Store.all.paginate call (static array - can remove after i take that code out)
+  # 2do: this is needed due to Store.all.paginate call (static array - can remove after i take that code out)
   require 'will_paginate/array'
   
   def index
@@ -78,12 +78,9 @@ class StoresController < ApplicationController
     @button2 = "stores.add_as_new_link"
     new_name=params[:store][:name]
     @res=Store.store_search(new_name.gsub(' ','+'), @city.name.gsub(' ','+'), @state.name.gsub(' ','+'), @country.name.gsub(' ','+'))
-    # need to test for when nothing is returned!!!
-    # need to test @res for entries already in DB!!! (i.e. google id = same
+    # 2do: need to test for when nothing is returned!!!
+    # 2do: need to test @res for entries already in DB!!! (i.e. google id = same
     
-    
-    
-   
     @store  = Store.new(:name => new_name)
     render 'search'
     #http://stackoverflow.com/questions/4766383/rails-3-link-to-to-call-partial-using-jquery-ajax
