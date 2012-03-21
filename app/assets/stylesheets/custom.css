@@ -592,3 +592,9 @@ div.field, div.actions {
   margin-bottom: 5px;
 }
 
+/* for tabbed list sortable menu somehow can't get this to work so using hardcoded class in the html file*/
+#sortable_menu_entry {
+  margin: 0 5px 5px 5px; 
+  padding: 5px; 
+  font-size: 1.2em;
+}
