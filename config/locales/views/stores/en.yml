@@ -7,11 +7,14 @@ en:
     new_visit_button: Add Visit
     new_dish_button: Add Dishes
     show_menu_button: Show Menu
+    edit_menu_button: Edit Menu
     search_title: Search for a Store
     search_button: Search
     show_menu_title: "Menu for %{store_name}"
+    edit_menu_title: "Menu for %{store_name}"
     add_as_new_link: Add as New Store
     edit_title: Edit Store
     edit_button: Update
+    save_button: Save Changes
 
  

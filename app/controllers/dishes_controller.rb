@@ -95,6 +95,31 @@ class DishesController < ApplicationController
       rank = 0
     end
     
+    # need to add logic to store store_type rank (maybe not just leave uninitialized on first run...)
+    
+    
+    
+    # need to check for cases where entry already exists, using name.downcase to compare downcase
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     count = 0
     maxcount = params[:count].to_i
     while count < maxcount

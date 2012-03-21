@@ -18,6 +18,7 @@ class StoresController < ApplicationController
     @button = "stores.new_visit_button"
     @button2 = "stores.new_dish_button"
     @button3 = "stores.show_menu_button"
+    @button4 = "stores.edit_menu_button"
     @store = Store.find(params[:id])
   end
 
@@ -78,6 +79,11 @@ class StoresController < ApplicationController
     new_name=params[:store][:name]
     @res=Store.store_search(new_name.gsub(' ','+'), @city.name.gsub(' ','+'), @state.name.gsub(' ','+'), @country.name.gsub(' ','+'))
     # need to test for when nothing is returned!!!
+    # need to test @res for entries already in DB!!! (i.e. google id = same
+    
+    
+    
+   
     @store  = Store.new(:name => new_name)
     render 'search'
     #http://stackoverflow.com/questions/4766383/rails-3-link-to-to-call-partial-using-jquery-ajax
@@ -85,6 +91,20 @@ class StoresController < ApplicationController
   
   def show_menu
     @title = "stores.show_menu_title"
+    @store=Store.find(params[:id])
+    store_dishes=@store.dishes.sort! { |a,b| a.dish_type.rank <=> b.dish_type.rank }
+    @dishes = Hash.new
+    store_dishes.each { |dish|
+      if !@dishes.has_key?(dish.dish_type.name)
+        @dishes[dish.dish_type.name] = Array.new
+      end
+      @dishes[dish.dish_type.name] << dish
+    }    
+  end
+
+  def edit_menu
+    @title = "stores.edit_menu_title"
+    @button = "stores.save_button"
     @store=Store.find(params[:id])
     store_dishes=@store.dishes
     @dishes = Hash.new
