@@ -86,7 +86,14 @@ class StoresController < ApplicationController
   def show_menu
     @title = "stores.show_menu_title"
     @store=Store.find(params[:id])
-    @dishes=@store.dishes#.paginate(:page => params[:page], :per_page => 10)
+    store_dishes=@store.dishes
+    @dishes = Hash.new
+    store_dishes.each { |dish|
+      if !@dishes.has_key?(dish.dish_type.name)
+        @dishes[dish.dish_type.name] = Array.new
+      end
+      @dishes[dish.dish_type.name] << dish
+    }    
     #http://jqueryui.com/demos/draggable/#sortable
   end
 

@@ -26,7 +26,7 @@ class DishesController < ApplicationController
     @dish  = Dish.new
     @storeid = params[:storeid]
     entries_text = params[:entries]
-    category = ""
+    category = I18n.t('dishes.default_category')
     @entries = Array.new
     entries_text.each_line {|s| 
       # remove newline
@@ -74,25 +74,16 @@ class DishesController < ApplicationController
         else
           entry << ""
         end
-        @entries << entry
+        #put price at 0
+        if !(entry[2].nil? or entry[2].size=0)
+          @entry[2] = '0' 
+        end          
+        #only add entries with a name
+        if !(entry[1].nil? or entry[1].size=0)
+          @entries << entry
+        end  
       end      
     }
-=begin    
-#need to add error checking on the fields
-    @entries.each { |entry|    
-      if name.nil? or name.size=0 
-        #need to raise some kind of error message
-      else
-        if category.nil? or category.size=0 
-          category=I18n.t('dishes.default_category')
-        end     
-        if price.nil? or price.size=0 
-          price='0'
-        end     
-      end
-    }
-=end    
-    
     render 'confirm_menu'
   end
   

@@ -26,7 +26,7 @@ jQuery(function() {
 });
 
 jQuery(function() {
-  jQuery("#tabs").tabs();
+  jQuery("#tabs").tabs().find( ".ui-tabs-nav" ).sortable({ axis: "x" });
 });
 
 jQuery(function() {
