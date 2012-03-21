@@ -120,7 +120,7 @@ class StoresController < ApplicationController
     store_dishes=@store.dishes
     store_dishes.each { |dish|
       sv=0
-      #if params[
+      #if params["taborder_"+dish.dish_type.id.to_s
     }
     redirect_to root_path
   end
