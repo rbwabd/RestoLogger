@@ -29,15 +29,30 @@ jQuery(function() {
   jQuery("#tabs").tabs()
 });
 
-jQuery(function() {
-  jQuery("#tabssortable").tabs().find( ".ui-tabs-nav" ).sortable({ axis: "x" });
-});
+//jQuery(function() {
+  //jQuery("#tabssortable").tabs().find( ".ui-tabs-nav" ).sortable({ axis: "x" });
+  //jQuery("#tabssortable").tabs()
+//});
 
 jQuery(function() {
-  jQuery( "#sortable" ).sortable({
-    placeholder: "ui-state-highlight"
+  jQuery( "#sortable1, #sortable2, #sortable3, #sortable4, #sortable5, #sortable6" ).sortable().disableSelection();
+
+  var jQuerytabs = jQuery( "#tabssortable" ).tabs().find( ".ui-tabs-nav" ).sortable({ axis: "x" });
+
+  var jQuerytab_items = jQuery( "ul:first li", jQuerytabs ).droppable({
+    accept: ".connectedSortable li",
+    hoverClass: "ui-state-hover",
+    drop: function( event, ui ) {
+      var jQueryitem = jQuery( this );
+      var jQuerylist = jQuery( jQueryitem.find( "a" ).attr( "href" ) )
+        .find( ".connectedSortable" );
+
+      ui.draggable.hide( "slow", function() {
+        jQuerytabs.tabs( "select", jQuerytab_items.index( jQueryitem ) );
+        jQuery( this ).appendTo( jQuerylist ).show( "slow" );
+      });
+    }
   });
-  jQuery( "#sortable" ).disableSelection();
 });
 
 jQuery(function() {

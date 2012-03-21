@@ -3,12 +3,11 @@
 <% end %>
 
 <h1><%= I18n.t(@title, :store_name => @store.name) %></h1><br>
-	<style>
-	#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-	#sortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 1.5em; }
-	html>body #sortable li { height: 1.5em; line-height: 1.2em; }
-	.ui-state-highlight { height: 1.5em; line-height: 1.2em; }
-	</style>
+
+<style>
+	#sortable1 li, #sortable2 li, #sortable3 li, #sortable4 li, #sortable5 li, #sortable6 li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; }
+</style>
+
 <%= form_for(@store) do |f| %>
   <div class="action">
     <%= f.submit I18n.t(@button) %>
@@ -22,8 +21,8 @@
     </ul>
     <% c=0 %>
     <% for k in @dishes.keys %>
-      <div id="tabs<%=c+=1%>">
-        <ul id="sortable">
+      <div id="tabs<%=c+1%>">
+        <ul id="sortable<%=c+=1%>" class="connectedSortable ui-helper-reset">
           <% for dish in @dishes[k] %>
             <li class="ui-state-default"><%= dish.name %></li>
           <% end %>
