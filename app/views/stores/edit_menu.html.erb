@@ -5,31 +5,40 @@
 <h1><%= I18n.t(@title, :store_name => @store.name) %></h1><br>
 
 <style>
-	#sortable1 li, #sortable2 li, #sortable3 li, #sortable4 li, #sortable5 li, #sortable6 li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; }
+	#sortable0 li, #sortable1 li, #sortable2 li, #sortable3 li, #sortable4 li, #sortable5 li, #sortable6 li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em;}
 </style>
 
-<%= form_for(@store) do |f| %>
+<%= form_for(@store, :url => update_menu_path) do |f| %>
   <div class="action">
     <%= f.submit I18n.t(@button) %>
   </div><br>
-  <% c=0 %>
+  <% c = 0 %>
   <div id="tabssortable">
     <ul>
       <% for k in @dishes.keys %>
-        <li><a href="#tabs<%= c+=1%>"><%= k %></a></li>
+        <li id="MyTabs_<%= c %>"><a href="#tabs_<%= c %>"><%= k %></a></li>
+        <% c+=1 %>
       <% end %>
     </ul>
-    <% c=0 %>
+    <% c = 0 %>
     <% for k in @dishes.keys %>
-      <div id="tabs<%=c+1%>">
-        <ul id="sortable<%=c+=1%>" class="connectedSortable ui-helper-reset">
+      <div id="tabs_<%= c %>">
+        <ul id="sortable<%= c %>" class="connectedSortable ui-helper-reset">
           <% for dish in @dishes[k] %>
             <li class="ui-state-default"><%= dish.name %></li>
           <% end %>
         </ul>
       </div>
+      <% c+=1 %>
     <% end %>
   </div>
+
+  <% c = 0 %>
+  <% for k in @dishes.keys %>
+    <%= hidden_field_tag "taborder"+c.to_s %>
+    <% c+=1 %>
+  <% end %>
+
   <br><div class="action">
     <%= f.submit I18n.t(@button) %>
   </div>

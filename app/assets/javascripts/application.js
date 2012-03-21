@@ -29,15 +29,21 @@ jQuery(function() {
   jQuery("#tabs").tabs()
 });
 
-//jQuery(function() {
-  //jQuery("#tabssortable").tabs().find( ".ui-tabs-nav" ).sortable({ axis: "x" });
-  //jQuery("#tabssortable").tabs()
-//});
-
 jQuery(function() {
-  jQuery( "#sortable1, #sortable2, #sortable3, #sortable4, #sortable5, #sortable6" ).sortable().disableSelection();
+  jQuery( "#sortable0, #sortable1, #sortable2, #sortable3, #sortable4, #sortable5, #sortable6" ).sortable().disableSelection();
 
-  var jQuerytabs = jQuery( "#tabssortable" ).tabs().find( ".ui-tabs-nav" ).sortable({ axis: "x" });
+  var jQuerytabs = jQuery( "#tabssortable" ).tabs().find( ".ui-tabs-nav" ).sortable({ 
+                            axis: "x",
+                            update: function(event, ui){
+                              var data = jQuery('#tabssortable .ui-tabs-nav').sortable('toArray');
+                              for(var key in data) {
+                                var val = data[key];
+                                var part = val.split("_");
+                                //update each hidden field used to store the list item position
+                                document.getElementById("taborder"+part[1]).value = key;
+                              }
+                            } 
+                        })
 
   var jQuerytab_items = jQuery( "ul:first li", jQuerytabs ).droppable({
     accept: ".connectedSortable li",
@@ -52,6 +58,16 @@ jQuery(function() {
         jQuery( this ).appendTo( jQuerylist ).show( "slow" );
       });
     }
+    //update: function(event,ui) {
+    //  //create an array with the new order
+    //  var order = jQuery( "#sortable" ).sortable('toArray');
+    //  for(var key in order) {
+    //    var val = order[key];
+    //    var part = val.split("_");
+    //    //update each hidden field used to store the list item position
+    //    document.getElementById("order"+part[1]).value = key;
+    //  }
+    //}
   });
 });
 

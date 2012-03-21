@@ -117,6 +117,19 @@ class StoresController < ApplicationController
     #http://jqueryui.com/demos/draggable/#sortable
   end
 
+  def update_menu
+    p "hello"
+    p "hello"
+    p "hello"
+    p "hello"
+    p params
+    p "hello"
+    p "hello"
+    p "hello"
+  
+    redirect_to root_path
+  end
+
   def destroy
     @store.destroy
     redirect_to root_path, :flash => { :success => "Store deleted!" }
