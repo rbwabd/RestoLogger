@@ -89,7 +89,8 @@ class StoresController < ApplicationController
   def show_menu
     @title = "stores.show_menu_title"
     @store=Store.find(params[:id])
-    store_dishes=@store.dishes.sort! { |a,b| a.dish_type.rank <=> b.dish_type.rank }
+    #store_dishes=@store.dishes.sort! { |a,b| a.dish_type.rank <=> b.dish_type.rank }
+    store_dishes=@store.dishes.sort_by { |a| [a.dish_type.rank, a.rank] }
     @dishes = Hash.new
     store_dishes.each { |dish|
       if !@dishes.has_key?(dish.dish_type.name)
@@ -111,19 +112,16 @@ class StoresController < ApplicationController
       end
       @dishes[dish.dish_type.name] << dish
     }    
-    #http://jqueryui.com/demos/draggable/#sortable
   end
 
   def update_menu
-    p "hello"
-    p "hello"
-    p "hello"
-    p "hello"
-    p params
-    p "hello"
-    p "hello"
-    p "hello"
-  
+    #2do: may need to implement some kind of timestamp mechanism so if the order was changed in between by another user no update is done
+    @store=Store.find(params[:storeid])
+    store_dishes=@store.dishes
+    store_dishes.each { |dish|
+      sv=0
+      #if params[
+    }
     redirect_to root_path
   end
 

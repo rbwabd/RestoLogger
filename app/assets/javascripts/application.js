@@ -31,14 +31,14 @@ jQuery(function() {
 
 jQuery(function() {
   var num_lists = jQuery('[id^=taborder]').length;
-  for(cnt=1;cnt<=num_lists;cnt++){
+  for(cnt=0;cnt<num_lists;cnt++){
     jQuery( "#sortable"+cnt ).sortable({
       update: function(event,ui) {
         jQuery(this).find(".ui-state-default").each(function(i){
           var val = jQuery(this).attr("id");
           var part = val.split("_");
           //alert(part[0]+":"+part[1]+":"+part[2]);
-          document.getElementById("dishorder_"+part[1]+"_"+part[2]).value = i;
+          document.getElementById("dd_"+part[1]+"_"+part[2]+"_"+part[3]).value = i;
         });
       }
     }).disableSelection();
@@ -52,7 +52,7 @@ jQuery(function() {
                                 var val = data[key];
                                 var part = val.split("_");
                                 //update each hidden field used to store the list item position
-                                document.getElementById("taborder"+part[1]).value = key;
+                                document.getElementById("taborder_"+part[1]+"_"+part[2]).value = key;
                               }
                             } 
                         })
