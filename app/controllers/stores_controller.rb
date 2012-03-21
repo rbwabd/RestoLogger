@@ -88,30 +88,13 @@ class StoresController < ApplicationController
   
   def show_menu
     @title = "stores.show_menu_title"
-    @store=Store.find(params[:id])
-    #store_dishes=@store.dishes.sort! { |a,b| a.dish_type.rank <=> b.dish_type.rank }
-    store_dishes=@store.dishes.sort_by { |a| [a.dish_type.rank, a.rank] }
-    @dishes = Hash.new
-    store_dishes.each { |dish|
-      if !@dishes.has_key?(dish.dish_type.name)
-        @dishes[dish.dish_type.name] = Array.new
-      end
-      @dishes[dish.dish_type.name] << dish
-    }    
+    prepare_menu  
   end
 
   def edit_menu
     @title = "stores.edit_menu_title"
     @button = "stores.save_button"
-    @store=Store.find(params[:id])
-    store_dishes=@store.dishes
-    @dishes = Hash.new
-    store_dishes.each { |dish|
-      if !@dishes.has_key?(dish.dish_type.name)
-        @dishes[dish.dish_type.name] = Array.new
-      end
-      @dishes[dish.dish_type.name] << dish
-    }    
+    prepare_menu   
   end
 
   def update_menu
@@ -127,11 +110,24 @@ class StoresController < ApplicationController
         dish.save
       end
     }
-    redirect_to root_path
+    redirect_to show_menu_path(:id => @store.id)
   end
 
   def destroy
     @store.destroy
     redirect_to root_path, :flash => { :success => "Store deleted!" }
   end
+  
+  private
+    def prepare_menu
+      @store=Store.find(params[:id])
+      store_dishes=@store.dishes.sort_by { |a| [a.dish_type.rank, a.rank] }
+      @dishes = Hash.new
+      store_dishes.each { |dish|
+        if !@dishes.has_key?(dish.dish_type.name)
+          @dishes[dish.dish_type.name] = Array.new
+        end
+        @dishes[dish.dish_type.name] << dish
+      }  
+    end
 end
