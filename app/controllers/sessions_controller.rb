@@ -31,7 +31,7 @@ class SessionsController < Devise::SessionsController
         flash[:notice] = "Signed in new user successfully."
 				sign_in_and_redirect(:user, user)
 			else
-			  #this part needs to be rewritten...
+			  #2do: this part needs to be rewritten...
 
         #next statementcould result in cookie-overflow due to exceeding 4k size in session - better use session[:omniauth] = omniauth.except('extra')
 				#session[:omniauth] = omniauth
@@ -65,7 +65,7 @@ class SessionsController < Devise::SessionsController
       case omniauth['provider']
       when 'facebook'
         fb_user = FbGraph::User.me(omniauth["credentials"]["token"]).fetch
-        picture = Picture.new()
+        picture = ProfilePicture.new()
         picture.remote_image_url=fb_user.picture
         picture.save
         return picture.image_url
