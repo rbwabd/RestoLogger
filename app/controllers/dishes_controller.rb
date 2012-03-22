@@ -21,7 +21,7 @@ class DishesController < ApplicationController
     ectmp = DishType.find_all_by_store_id(@store.id)
     arraytmp = Array.new
     ectmp.each {|x| arraytmp << x.name}
-    @existing_categories=arraytmp.join("\r\n")
+    @existing_categories=arraytmp.join("\r\n\r\n")
   end
 
   def submit_menu
