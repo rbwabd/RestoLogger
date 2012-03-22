@@ -2,6 +2,8 @@ class AutocompleteController < ApplicationController
   def cities
     if params[:term]
       like= "%".concat(params[:term].concat("%"))
+      #2do: ILIKE is slower than LIKE, so convert using a _lower_ index fieled
+      #CREATE INDEX id_lower_content ON mytable(lower(column_name))
       cities = City.where("name ILIKE ?", like)
     else
       #cities = City.all

@@ -34,7 +34,9 @@ class DishesController < ApplicationController
       start = 0
       offset = l.index(';', start)
       if offset.nil?
-        category=l
+        if l.strip.size > 0
+          category=l
+        end
       else
         entry = Array.new
         entry << category
@@ -44,7 +46,7 @@ class DishesController < ApplicationController
           start = offset+1
           offset = l.index(';', start)
         end 
-        item = l[start..l.size].strip
+        item = l[start..l.size-1].strip
         entry << item
         
         #add dummies
@@ -74,12 +76,13 @@ class DishesController < ApplicationController
         else
           entry << ""
         end
-        #put price at 0
-        if !(entry[2].nil? or entry[2].size=0)
-          @entry[2] = '0' 
+        #put price at 0 if empty
+        if entry[2].nil? or entry[2].size==0
+          entry[2] = '0' 
         end          
         #only add entries with a name
-        if !(entry[1].nil? or entry[1].size=0)
+        if !(entry[1].nil? or entry[1].size==0)
+          # 2do: need to add error message if name empty
           @entries << entry
         end  
       end      
@@ -89,39 +92,55 @@ class DishesController < ApplicationController
   
   def save_menu
     store = Store.find(params[:storeid])
-    if store.dishes.size > 0
-      rank = store.dishes.maximum("rank")+1
-    else
-      rank = 0
-    end
-    
-    # 2do: need to add logic to store store_type rank (maybe not just leave uninitialized on first run...)
+    tmphash = Hash.new
     
     # 2do: need to check for cases where entry already exists, using name.downcase to compare downcase
+    #validates_uniqueness_of :name, :case_sensitive => false
+    #Please note that by default the setting is :case_sensitive => false, so you don't even need to write this option if you haven't changed other ways.
 
-    count = 0
-    maxcount = params[:count].to_i
-    while count < maxcount
+    for count in 0..params[:count].to_i-1
       category = params["category"+count.to_s]
       name = params["name"+count.to_s]
       option_description = params["optiondesc"+count.to_s]
-      price_comment =params["pricecomment"+count.to_s]
+      price_comment = params["pricecomment"+count.to_s]
       price = params["price"+count.to_s]
       description = params["description"+count.to_s]
       code = params["code"+count.to_s]
       
-      dish = Dish.new({ :store_id => store.id, :name => name, :option_description => option_description, :price_comment => price_comment, :price => price, :description => description, :code => code, :rank => rank })
-      dt = DishType.find_or_create_by_name_and_store_id(category, store.id);      
-      dish.dish_type_id = dt.id
-      
-      if dish.save
-        rank += 1;
-      else  
-        # 2do: need to write exception case - just keep the items that are not saved and redisplay them to user
+      dish = Dish.new({ :store_id => store.id, :name => name, :option_description => option_description, :price_comment => price_comment, :price => price, :description => description, :code => code})
+      if !tmphash.has_key?(category)
+        tmphash[category] = Array.new
       end
-      count += 1
-    end
-    redirect_to show_menu_path({ :id => store.id }), :flash => { :success => count.to_s+" New Dishes Saved" }
+      tmphash[category] << dish
+    end  
+      
+    typeCnt = DishType.count( :conditions => ["store_id = ?", store.id])
+
+    tmphash.each { |cat, dish_array|
+      if !dt=DishType.find_by_name_and_store_id(cat, store.id) 
+        dt=DishType.new({ :name => cat, :store_id => store.id, :rank => typeCnt })
+        if dt.save
+          typeCnt+=1
+        else
+          #2do: add error if save fails
+        end
+      end          
+
+      if !dt.id.nil?
+        dishCnt = Dish.count( :conditions => ["dish_type_id = ?", dt.id])
+        dish_array.each { |dish|
+          # need to check dish doesn't already exist. check across categories as users may put in wrong category
+          if !Dish.where(:name => dish.name, :store_id => store.id).exists?
+            dish.dish_type_id = dt.id
+            dish.rank = dishCnt
+            #2do: need to add error message if save fails
+            dish.save
+            dishCnt+=1
+          end
+        }          
+      end
+    }
+    redirect_to show_menu_path({ :id => store.id }), :flash => { :success => (count+1).to_s+" New Dishes Saved" }
   end
   
   def destroy

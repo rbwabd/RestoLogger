@@ -94,7 +94,7 @@ class StoresController < ApplicationController
   def edit_menu
     @title = "stores.edit_menu_title"
     @button = "stores.save_button"
-    prepare_menu   
+    prepare_menu  
   end
 
   def update_menu
@@ -124,10 +124,11 @@ class StoresController < ApplicationController
       store_dishes=@store.dishes.sort_by { |a| [a.dish_type.rank, a.rank] }
       @dishes = Hash.new
       store_dishes.each { |dish|
-        if !@dishes.has_key?(dish.dish_type.name)
-          @dishes[dish.dish_type.name] = Array.new
+        dtn=dish.dish_type.name
+        if !@dishes.has_key?(dtn)
+          @dishes[dtn] = Array.new
         end
-        @dishes[dish.dish_type.name] << dish
+        @dishes[dtn] << dish
       }  
     end
 end
