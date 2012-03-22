@@ -2,7 +2,7 @@ en:
   visits:
     index_title: All Visits
     show_title: Visit
-    new_title: Add a Visit
+    new_title: "Add a Visit to "
     new_button: Add
     edit_title: Edit Visit
     edit_button: Update

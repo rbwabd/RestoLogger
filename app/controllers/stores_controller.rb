@@ -122,6 +122,7 @@ class StoresController < ApplicationController
     def prepare_menu
       @store=Store.find(params[:id])
       store_dishes=@store.dishes.sort_by { |a| [a.dish_type.rank, a.rank] }
+      #use number_to_currency to fix price display <%= number_to_currency(product.price) %>
       @dishes = Hash.new
       store_dishes.each { |dish|
         dtn=dish.dish_type.name

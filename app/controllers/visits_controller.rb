@@ -19,6 +19,10 @@ class VisitsController < ApplicationController
     @button = "visits.new_button"
     @visit  = Visit.new
     @store = Store.find(params[:id])
+    @cart_items = Array.new
+    @cart_items << Dish.find(104)
+    @cart_items << Dish.find(105)
+    @cart_items << Dish.find(106)
   end
   
   def create
