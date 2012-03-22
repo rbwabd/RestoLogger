@@ -2,13 +2,13 @@
   <%= render 'layouts/main_sidebar' %>
 <% end %>
 
-<h1><%= I18n.t(@title) %></h1><br>
+<h1><%= I18n.t(@title) %><%= link_to @store.name, store_path(:id => @store.id)%></h1><br>
 
 <%= form_for(@dish, :url => submit_menu_path) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <div class=""> 
     <%= label_tag "Dish Entries:" %><br>
-    <%= text_area_tag "entries", nil, :size => "120x20" %>
+    <%= text_area_tag "entries", @existing_categories, :size => "120x20" %>
   </div>
   <%= hidden_field_tag 'storeid', @storeid %>
   <div class="action">

@@ -1,19 +1,19 @@
 en:
   stores:
     index_title: All Stores
-    show_title: "%{store_name}"
+    show_title: ""
     new_title: Create a New Store
     new_button: Add
-    new_visit_button: Add Visit
-    new_dish_button: Add Dishes
+    new_visit_button: "Add Visit to "
+    new_dish_button: "Add Dishes for "
     show_menu_button: Show Menu
     edit_menu_button: Edit Menu
     search_title: Search for a Store
     search_button: Search
-    show_menu_title: "Menu for %{store_name}"
-    edit_menu_title: "Menu for %{store_name}"
+    show_menu_title: "Menu for "
+    edit_menu_title: "Menu for "
     add_as_new_link: Add as New Store
-    edit_title: Edit Store
+    edit_title: "Edit "
     edit_button: Update
     save_button: Save Changes
 

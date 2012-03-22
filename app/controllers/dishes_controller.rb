@@ -17,7 +17,11 @@ class DishesController < ApplicationController
     @title = "dishes.add_menu_title"
     @button = "dishes.add_menu_button"
     @dish = Dish.new
-    @storeid = params[:id]
+    @store = Store.find(params[:id])
+    ectmp = DishType.find_all_by_store_id(@store.id)
+    arraytmp = Array.new
+    ectmp.each {|x| arraytmp << x.name}
+    @existing_categories=arraytmp.join("\r\n")
   end
 
   def submit_menu

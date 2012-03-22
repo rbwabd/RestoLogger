@@ -2,7 +2,7 @@
   <%= render 'layouts/main_sidebar' %>
 <% end %>
 
-<h1><%= I18n.t(@title, :store_name => @store.name) %></h1><br>
+<h1><%= I18n.t(@title) %><%= @store.name %></h1><br>
 
 <!-- 2do: hack because I can't get css class to work -->
 <style>
