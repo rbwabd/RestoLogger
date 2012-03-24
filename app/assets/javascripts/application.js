@@ -117,12 +117,9 @@ jQuery(function() {
         }
       });
     },
-    focus: function(event, ui) {
-      jQuery('#visit_dish_name').val(ui.item.name);
-      return false;
-    },
     select: function(event, ui) {
       jQuery('#visit_dish_id').val(ui.item.id);
+      jQuery('#visit_dish_name').val('');
       jQuery("#cart").load('/change_cart', { 'dish_id': ui.item.id, 'dish_name': ui.item.name } );
       return false;
     }
