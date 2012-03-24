@@ -123,7 +123,7 @@ jQuery(function() {
     },
     select: function(event, ui) {
       jQuery('#visit_dish_id').val(ui.item.id);
-      jQuery("#cart").load('/change_cart #cart', { 'dish_id': ui.item.id, 'dish_name': ui.item.name } );
+      jQuery("#cart").load('/change_cart', { 'dish_id': ui.item.id, 'dish_name': ui.item.name } );
       return false;
     }
   });

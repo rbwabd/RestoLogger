@@ -82,7 +82,6 @@ class VisitsController < ApplicationController
     @visit  = Visit.new
     @store = Store.find(session[:store_id])
     # 2do: this really shouldn't be necessary - change the scope of what we redraw so we don't rerender everything
-    @dishes = @store.get_menu
     
     if params[:delall]
       session[:cart] = Cart.new
@@ -96,7 +95,7 @@ class VisitsController < ApplicationController
       end
     end
     respond_to do |format|
-      format.html { render "visits/new" }
+      format.html { render :partial => "cart", :object => session[:cart] }
       format.js 
     end
     # 2do: use number_to_currency(cart_item.price) in views
