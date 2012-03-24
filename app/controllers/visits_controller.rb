@@ -19,10 +19,13 @@ class VisitsController < ApplicationController
     @button = "visits.new_button"
     @visit  = Visit.new
     @store = Store.find(params[:id])
-    @cart_items = Array.new
-    @cart_items << CartItem.new({ :name => "test1", :price => "3", :count => "1", :dish_id => "342" })
-    @cart_items << CartItem.new({ :name => "test2", :price => "5.6", :count => "1", :dish_id => "341" })
-    @cart_items << CartItem.new({ :name => "test3", :price => "4", :count => "1", :dish_id => "344" })
+    session[:store_id] = params[:id]
+    cart = Cart.new
+    cart.add_dish("Straw Mushroom Chicken Soup", 3, 342)
+    cart.add_dish("Squid with soy sauce", 4, 341)
+    cart.add_dish("Thinly sliced cucumber mixed with sesame seed, garlic, spring onion, vinegar-appetizing side", 5.8, 344)
+    cart.add_dish("Thinly sliced cucumber mixed with sesame seed, garlic, spring onion, vinegar-appetizing side", 4.7, 344)
+    session[:cart] = cart
   end
   
   def create
@@ -64,6 +67,16 @@ class VisitsController < ApplicationController
       @feed_items = []
       render 'pages/home'
     end
+  end
+  
+  def add_to_cart
+    @visit  = Visit.new
+    @store = Store.find(session[:store_id])
+    if !dish=Dish.find(params[:dish_id]) and params[:dish_name] and params[:dish_name].size > 0 
+      dish=Dish.new({ :name => params[:dish_name], :price => 3.4 })
+    end
+    session[:cart].add_dish(dish.name, dish.price, dish.id)
+    render "visits/new"
   end
 
   def destroy

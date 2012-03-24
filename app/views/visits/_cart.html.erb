@@ -1,0 +1,13 @@
+        <table>
+          <tr>
+            <th>Dish</th>
+            <th>Quantity</th>
+            <th>Price</th>
+          </tr>          
+          <%= render({ :partial => "cart_item", :collection => session[:cart].cart_items }) %>
+          <tr>
+            <td><b>Total: </b></td>
+            <td><b><%= session[:cart].total_quantity %></b></td>
+            <td><b><%= number_to_currency(session[:cart].total_price) %></b></td>
+          </tr>
+        </table>

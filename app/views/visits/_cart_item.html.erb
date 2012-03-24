@@ -1,1 +1,5 @@
-<%= cart_item.name %>(<%= cart_item.count %>&times;)&nbsp;&nbsp;&nbsp;&nbsp;<%= number_to_currency(cart_item.price) %><br>
+<tr>
+  <td><%= cart_item.name %></td>
+  <td><%= cart_item.quantity %>&times;</td>
+  <td><%= number_to_currency(cart_item.price) %></td>
+</tr>

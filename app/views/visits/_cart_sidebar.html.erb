@@ -2,10 +2,10 @@
     <ul>
       <li>
         <h2>Your Cart</h2>
-        <ul>
-          <li><%= render({ :partial => "cart_item", :collection => @cart_items }) %></li>
-          <li>Total: <%= number_to_currency(30) %></li>
-        </ul>
+        <div id="cart">
+          <%= render "cart" %>
+        </div>
+        <%= button_to "Empty cart", :action => "new", :confirm => "Are you sure?" %>
     </ul>
   </div>
 
