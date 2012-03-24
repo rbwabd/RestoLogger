@@ -18,6 +18,19 @@ class Cart
     @total_price += price
   end
   
+  def remove_dish(name)
+    current_item = find_by_name(name)
+    if current_item
+      @total_quantity -= 1
+      @total_price -= current_item.price
+      if current_item.quantity > 1
+        current_item.quantity -= 1
+      else
+        @cart_items.delete_at(@cart_items.index{|x|x.name == name})
+      end
+    end
+  end
+  
   private 
     def find_by_name(name)
       a=@cart_items.index{|x|x.name == name}

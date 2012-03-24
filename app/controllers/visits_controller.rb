@@ -20,12 +20,7 @@ class VisitsController < ApplicationController
     @visit  = Visit.new
     @store = Store.find(params[:id])
     session[:store_id] = params[:id]
-    cart = Cart.new
-    cart.add_dish("Straw Mushroom Chicken Soup", 3, 342)
-    cart.add_dish("Squid with soy sauce", 4, 341)
-    cart.add_dish("Thinly sliced cucumber mixed with sesame seed, garlic, spring onion, vinegar-appetizing side", 5.8, 344)
-    cart.add_dish("Thinly sliced cucumber mixed with sesame seed, garlic, spring onion, vinegar-appetizing side", 4.7, 344)
-    session[:cart] = cart
+    session[:cart] = Cart.new
   end
   
   def create
@@ -69,14 +64,24 @@ class VisitsController < ApplicationController
     end
   end
   
-  def add_to_cart
+  def change_cart
     @visit  = Visit.new
     @store = Store.find(session[:store_id])
-    if !dish=Dish.find(params[:dish_id]) and params[:dish_name] and params[:dish_name].size > 0 
-      dish=Dish.new({ :name => params[:dish_name], :price => 3.4 })
+ 
+    if params[:del]
+      session[:cart].remove_dish(params[:dish_name])
+    else
+      if !dish=Dish.find(params[:dish_id]) and params[:dish_name] and params[:dish_name].size > 0 
+        session[:cart].add_dish(params[:dish_name], 0, -1)
+      else
+        session[:cart].add_dish(dish.name, dish.price, dish.id)
+      end
     end
-    session[:cart].add_dish(dish.name, dish.price, dish.id)
-    render "visits/new"
+    respond_to do |format|
+      format.html { render "visits/new" }
+      format.js 
+    end
+    # 2do: use number_to_currency(cart_item.price) in views
   end
 
   def destroy

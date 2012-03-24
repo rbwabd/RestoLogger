@@ -1,5 +1,8 @@
 <tr>
   <td><%= cart_item.name %></td>
-  <td><%= cart_item.quantity %>&times;</td>
-  <td><%= number_to_currency(cart_item.price) %></td>
+  <td>
+    <b><%= link_to '-', change_cart_path(:dish_name => cart_item.name, :del => "y"), :remote => true %></b>
+    &nbsp;<%= cart_item.quantity %>&nbsp;
+    <b><%= link_to '+', change_cart_path(:dish_id => cart_item.dish_id, :dish_name => cart_item.name), :remote => true %></b>
+  </td>
 </tr>
