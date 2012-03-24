@@ -25,10 +25,12 @@ jQuery(function() {
   });
 });
 
+// default tab option e.g. to show menu
 jQuery(function() {
   jQuery("#tabs").tabs()
 });
 
+// tab for sorting menu tab and item orders
 jQuery(function() {
   var num_lists = jQuery('[id^=taborder]').length;
   for(cnt=0;cnt<num_lists;cnt++){
@@ -56,6 +58,12 @@ jQuery(function() {
                         })
 });
 
+// datepicker in add visit form
+jQuery(function() {
+  jQuery( "#visit_visit_date" ).datepicker({ dateFormat: 'yy-mm-dd' });
+});
+
+// autocomplete used in search store and add dishes to visit
 jQuery(function() {
   jQuery('#city_name').autocomplete({
     minLength: 3,
