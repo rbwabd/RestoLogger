@@ -20,8 +20,21 @@ class VisitsController < ApplicationController
     @visit  = Visit.new
     @store = Store.find(params[:id])
     @dishes = @store.get_menu
-    session[:store_id] = params[:id]
-    session[:cart] = Cart.new
+    # if a session cart already existed for same store we keep it otherwise put in new one
+    p "hello"
+    p "hello"
+    p "hello"
+    p "hello"
+    p "hello"
+    p "hello"
+    p "hello"
+    p session[:store_id]
+    p session[:store_id]==@store.id
+    p session[:cart]
+    if !(session[:store_id] and session[:store_id].to_i==@store.id and session[:cart])
+      session[:store_id] = params[:id]
+      session[:cart] = Cart.new
+    end
   end
   
   def create
