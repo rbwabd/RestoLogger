@@ -20,9 +20,9 @@ class VisitsController < ApplicationController
     @visit  = Visit.new
     @store = Store.find(params[:id])
     @cart_items = Array.new
-    @cart_items << Dish.find(104)
-    @cart_items << Dish.find(105)
-    @cart_items << Dish.find(106)
+    @cart_items << CartItem.new({ :name => "test1", :price => "3", :count => "1", :dish_id => "342" })
+    @cart_items << CartItem.new({ :name => "test2", :price => "5.6", :count => "1", :dish_id => "341" })
+    @cart_items << CartItem.new({ :name => "test3", :price => "4", :count => "1", :dish_id => "344" })
   end
   
   def create

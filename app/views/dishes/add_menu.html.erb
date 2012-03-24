@@ -10,7 +10,7 @@
     <%= label_tag "Dish Entries:" %><br>
     <%= text_area_tag "entries", @existing_categories, :size => "120x20" %>
   </div>
-  <%= hidden_field_tag 'storeid', @storeid %>
+  <%= hidden_field_tag 'storeid', @store.id %>
   <div class="action">
     <%= f.submit I18n.t(@button) %>
   </div>

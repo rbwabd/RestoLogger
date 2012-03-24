@@ -1,0 +1,19 @@
+  <div id="sidebar">
+    <ul>
+      <li>
+        <h2>Your Cart</h2>
+        <ul>
+          <li><%= render({ :partial => "cart_item", :collection => @cart_items }) %></li>
+          <li>Total: <%= number_to_currency(30) %></li>
+        </ul>
+    </ul>
+  </div>
+
+
+
+
+
+
+
+
+

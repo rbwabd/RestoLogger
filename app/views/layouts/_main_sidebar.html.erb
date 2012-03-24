@@ -1,13 +1,6 @@
   <div id="sidebar">
     <ul>
       <li>
-        <% if @cart_items %>
-          <h2>Your Cart</h2>
-          <ul>
-            <li><%= render({ :partial => "cart_item", :collection => @cart_items }) %></li>
-            <li>Total: <%= number_to_currency(30) %></li>
-          </ul>
-        <% end %>
         <% if user_signed_in? %>
           <ul>
             <li><%= link_to "My Visits", visits_path %></li>
