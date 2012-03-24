@@ -17,6 +17,7 @@ RestoLogger::Application.routes.draw do
   match '/save_menu',    :to => 'dishes#save_menu'
   match '/show_menu',    :to => 'stores#show_menu'
   match '/edit_menu',    :to => 'stores#edit_menu'
+  match '/update_menu',    :to => 'stores#update_menu'
   match '/change_cart',    :to => 'visits#change_cart'
 
   devise_for :users  #, :skip => [:sessions]

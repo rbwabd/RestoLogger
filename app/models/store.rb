@@ -64,6 +64,20 @@ class Store < ActiveRecord::Base
     return results
   end
     
+  def get_menu
+    store_dishes=dishes.sort_by { |a| [a.dish_type.rank, a.rank] }
+    #use number_to_currency to fix price display <%= number_to_currency(product.price) %>
+    dish_hash = Hash.new
+    store_dishes.each { |dish|
+      dtn=dish.dish_type.name
+      if !dish_hash.has_key?(dtn)
+        dish_hash[dtn] = Array.new
+      end
+      dish_hash[dtn] << dish
+    }
+    return dish_hash
+  end
+  
   private
     def self.find_str(line, offset, sstr1, sstr2)
       idx1=line.index(sstr1, offset)

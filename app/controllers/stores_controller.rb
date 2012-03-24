@@ -88,13 +88,15 @@ class StoresController < ApplicationController
   
   def show_menu
     @title = "stores.show_menu_title"
-    prepare_menu  
+    @store=Store.find(params[:id])
+    @dishes=@store.get_menu
   end
 
   def edit_menu
     @title = "stores.edit_menu_title"
     @button = "stores.save_button"
-    prepare_menu  
+    @store=Store.find(params[:id])
+    @dishes=@store.get_menu
   end
 
   def update_menu
@@ -117,19 +119,4 @@ class StoresController < ApplicationController
     @store.destroy
     redirect_to root_path, :flash => { :success => "Store deleted!" }
   end
-  
-  private
-    def prepare_menu
-      @store=Store.find(params[:id])
-      store_dishes=@store.dishes.sort_by { |a| [a.dish_type.rank, a.rank] }
-      #use number_to_currency to fix price display <%= number_to_currency(product.price) %>
-      @dishes = Hash.new
-      store_dishes.each { |dish|
-        dtn=dish.dish_type.name
-        if !@dishes.has_key?(dtn)
-          @dishes[dtn] = Array.new
-        end
-        @dishes[dtn] << dish
-      }  
-    end
 end

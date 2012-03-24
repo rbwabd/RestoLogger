@@ -19,6 +19,7 @@ class VisitsController < ApplicationController
     @button = "visits.new_button"
     @visit  = Visit.new
     @store = Store.find(params[:id])
+    @dishes = @store.get_menu
     session[:store_id] = params[:id]
     session[:cart] = Cart.new
   end
@@ -67,7 +68,9 @@ class VisitsController < ApplicationController
   def change_cart
     @visit  = Visit.new
     @store = Store.find(session[:store_id])
- 
+    # 2do: this really shouldn't be necessary - change the scope of what we redraw so we don't rerender everything
+    @dishes = @store.get_menu
+    
     if params[:del]
       session[:cart].remove_dish(params[:dish_name])
     else

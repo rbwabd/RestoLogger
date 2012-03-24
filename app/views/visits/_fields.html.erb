@@ -6,9 +6,37 @@
   <%= f.label :dish_name, "Dish Name:" %>&nbsp;
   <%= f.text_field :dish_name, :size =>50 %>
   <%= f.hidden_field :dish_id %>
-</div>
-<%= hidden_field :store, :id %>
-<%= hidden_field :store, :city_id %>
-<div class="field">
   <%= f.link_to_add "Add Dish", :dish_reviews %>
+</div>
+
+<% c=0 %>
+<div id="tabs">
+  <ul>
+    <% for k in @dishes.keys %>
+      <li><a href="#tabs<%= c+=1%>"><%= k %></a></li>
+    <% end %>
+  </ul>
+  <% c=0 %>
+  <% for k in @dishes.keys %>
+    <div id="tabs<%=c+=1%>">
+      <table>
+        <tr>
+          <th></th>
+          <th>Dish Name</th>
+          <th>Price</th>
+          <th>Description</th>
+          <th>Order Code</th>
+        </tr>
+        <% for dish in @dishes[k] %>
+          <tr>
+            <td style="vertical-align:top"><%= link_to 'Add', change_cart_path(:dish_id => dish.id, :dish_name => dish.name), :remote => true %> </td>
+            <td style="vertical-align:top"><%= link_to dish.name, dish_path(dish)%>&nbsp;<%= dish.option_description %></td>
+            <td style="vertical-align:top; text-align:right"><%= dish.price_comment %>&nbsp;<%= dish.price %></td>
+            <td style="vertical-align:top"><%= dish.description %></td>
+            <td style="vertical-align:top"><%= dish.code %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
 </div>

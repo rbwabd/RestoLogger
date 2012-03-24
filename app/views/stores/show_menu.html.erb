@@ -16,7 +16,6 @@
     <div id="tabs<%=c+=1%>">
       <table>
         <tr>
-          <th>Category</th>
           <th>Dish Name</th>
           <th>Price</th>
           <th>Description</th>
@@ -24,7 +23,6 @@
         </tr>
         <% for dish in @dishes[k] %>
           <tr>
-            <td style="vertical-align:top"><%= dish.dish_type.name %></td>
             <td style="vertical-align:top"><%= link_to dish.name, dish_path(dish)%>&nbsp;<%= dish.option_description %></td>
             <td style="vertical-align:top; text-align:right"><%= dish.price_comment %>&nbsp;<%= dish.price %></td>
             <td style="vertical-align:top"><%= dish.description %></td>
