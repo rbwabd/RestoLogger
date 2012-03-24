@@ -71,7 +71,9 @@ class VisitsController < ApplicationController
     # 2do: this really shouldn't be necessary - change the scope of what we redraw so we don't rerender everything
     @dishes = @store.get_menu
     
-    if params[:del]
+    if params[:delall]
+      session[:cart] = Cart.new
+    elsif params[:del]
       session[:cart].remove_dish(params[:dish_name])
     else
       if !dish=Dish.find(params[:dish_id]) and params[:dish_name] and params[:dish_name].size > 0 
