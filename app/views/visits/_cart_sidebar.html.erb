@@ -2,9 +2,7 @@
     <ul>
       <li>
         <h2>Your Cart</h2>
-        <div id="cart">
-          <%= render "cart" %>
-        </div>
+        <%= render "cart" %>
         <b><%= link_to "Empty cart", change_cart_path(:delall => "y"), :confirm => "Are you sure?", :remote => true %></b>
     </ul>
   </div>

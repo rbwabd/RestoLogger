@@ -1,3 +1,4 @@
+      <div id="cart">
         <table>
           <tr>
             <th>Dish</th>
@@ -5,3 +6,4 @@
           </tr>          
           <%= render({ :partial => "cart_item", :collection => session[:cart].cart_items }) %>
         </table>
+      </div>

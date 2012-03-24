@@ -79,9 +79,8 @@ class VisitsController < ApplicationController
   end
   
   def change_cart
-    @visit  = Visit.new
-    @store = Store.find(session[:store_id])
-    # 2do: this really shouldn't be necessary - change the scope of what we redraw so we don't rerender everything
+    #@visit  = Visit.new
+    #@store = Store.find(session[:store_id])
     
     if params[:delall]
       session[:cart] = Cart.new

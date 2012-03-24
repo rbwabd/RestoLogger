@@ -1,1 +1,1 @@
-jQuery('#cart').replaceWith("<div id='cart'> <%= escape_javascript(render('visits/cart')) %> </div>")
+jQuery('#cart').replaceWith("<%= escape_javascript(render('visits/cart')) %>")
