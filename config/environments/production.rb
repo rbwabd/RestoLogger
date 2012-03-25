@@ -47,7 +47,7 @@ RestoLogger::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
-  config.assets.precompile += %w( jquery-ui-1.8.18.custom.min.js blueprint/screen.css blueprint/print.css blueprint/ie.css jquery-ui-1.8.18.custom.css)
+  #config.assets.precompile += %w( blueprint/screen.css blueprint/print.css blueprint/ie.css jquery-ui-1.8.18.custom.css)
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

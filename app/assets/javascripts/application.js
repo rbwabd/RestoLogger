@@ -3,6 +3,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require_tree .
+
 jQuery.noConflict();
 
 //function to prevent submission of form on enter
