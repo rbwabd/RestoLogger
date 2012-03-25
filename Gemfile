@@ -40,7 +40,7 @@ gem 'devise'
 
 gem 'gravatar_image_tag', '1.0.0.pre2'
 gem 'will_paginate'
-gem 'sqlite3'
+#gem 'sqlite3'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'fb_graph'
