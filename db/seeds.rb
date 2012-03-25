@@ -14,7 +14,7 @@
 #                            { :name => 'United States' }, 
 #                            { :name => 'Belgium' }]
 #                          )
-=begin
+
 StoreType.create({:name=>'Afghan'})
 StoreType.create({:name=>'African'})
 StoreType.create({:name=>'American'})
@@ -2951,4 +2951,4 @@ City.create_city("Selby", "North Yorkshire", "United Kingdom")
 City.create_city("Sound", "Shetland Islands", "United Kingdom")
 City.create_city("Shetland Islands", "Shetland Islands", "United Kingdom")
 City.create_city("Toab", "Shetland Islands", "United Kingdom")
-=end
+

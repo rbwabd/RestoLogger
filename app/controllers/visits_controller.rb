@@ -21,16 +21,6 @@ class VisitsController < ApplicationController
     @store = Store.find(params[:id])
     @dishes = @store.get_menu
     # if a session cart already existed for same store we keep it otherwise put in new one
-    p "hello"
-    p "hello"
-    p "hello"
-    p "hello"
-    p "hello"
-    p "hello"
-    p "hello"
-    p session[:store_id]
-    p session[:store_id]==@store.id
-    p session[:cart]
     if !(session[:store_id] and session[:store_id].to_i==@store.id and session[:cart])
       session[:store_id] = params[:id]
       session[:cart] = Cart.new
@@ -38,50 +28,29 @@ class VisitsController < ApplicationController
   end
   
   def create
-    @visit=Visit.new
-    @visit.user_id=current_user.id
-    #@visit.overall_rating=
-    #@visit.service_rating=
-    #@visit.speed_rating=
-    #@visit.mood_rating=
-    @visit.tagline=params[:visit][:tagline]
-    @visit.review=params[:visit][:review]
-    #@visit.guest_number=
-    @visit.city_id=params[:store][:city_id]
-    @visit.store_id=params[:store][:id]
-    @visit.visit_date=params[:visit][:visit_date]
+    store = Store.find(session[:store_id])
+    visit = Visit.new
+    visit.user_id = current_user.id
+    visit.store_id = store.id
+    visit.city_id = store.city_id
+    visit.visit_date = params[:visit][:visit_date]
     
-    if !params[:visit][:dish_reviews_attributes].nil?
-      for dr in params[:visit][:dish_reviews_attributes].values
-        @dreview=DishReview.new
-        @dreview.rating=dr[:rating]
-        @dreview.tagline=dr[:tagline]
-        @dreview.review=dr[:review]
-        @dreview.dish_id=dr[:dish_id]
-        @dreview.user_id=current_user.id
-        if !dr[:pictures_attributes].nil?
-          for tmppic in dr[:pictures_attributes].values
-            @pic=Picture.new
-            @pic.genre=tmppic[:genre]
-            @pic.image=tmppic[:image]
-            @dreview.pictures << @pic
-          end
-        end
-        @visit.dish_reviews << @dreview      
-      end
+    for ci in session[:cart].cart_items
+      dreview = DishReview.new
+      dreview.user_id = current_user.id
+      dreview.dish_id = dr.dish_id
+
+      visit.dish_reviews << dreview      
     end
-    if @visit.save
+    if visit.save
+      session[:cart] = nil
       redirect_to root_path, :flash => { :success => "Visit created!" }
     else
-      @feed_items = []
-      render 'pages/home'
+      #2do: error messages
     end
   end
   
   def change_cart
-    #@visit  = Visit.new
-    #@store = Store.find(session[:store_id])
-    
     if params[:delall]
       session[:cart] = Cart.new
     elsif params[:del]
