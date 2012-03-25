@@ -466,7 +466,7 @@ header {
 .visitreview {
   margin-top: 1em;
   height: 180px;
-  #width: 300px
+  #width: 300px;
   #display: block;
   #font-size: 85%;
   #color: #666;
@@ -495,7 +495,7 @@ div.user_info span.visits {
 div.field, div.actions {
   margin-bottom: 10px;
 }
-/* omniauth railcast defs */
+/* omniauth railcast defs*/
 .authentications {
   margin-bottom: 30px;
 }
@@ -519,4 +519,89 @@ div.field, div.actions {
   color: #333;
   padding: 2px 4px;
   font-size: 10px;
+}
+
+.authentication .remove:hover {
+  color: #FFF;
+  background-color: #777;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+}
+
+.authentication img {
+  float: left;
+}
+
+.authentication .provider, .authentication .uid {
+  margin-left: 38px;
+  margin-right: 20px;
+}
+
+.authentication .provider {
+  font-weight: bold;
+}
+
+.authentication .uid {
+  color: #666;
+  font-size: 11px;
+}
+
+.auth_provider img {
+	/*below code shows the logos below each other (as blocks)*/
+  display: block;
+}
+
+.auth_provider {
+  text-decoration: none;
+  margin-right: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* carrierwave railcast 235 defs */
+
+.picture {
+  border: solid 1px #CCC;
+  padding: 10px 10px;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.picture .genre {
+  padding-top: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.picture .image_placeholder {
+  width: 200px;
+  height: 150px;
+  background-color: #B6B6B6;
+}
+
+.picture .actions {
+  font-size: 10px;
+  text-align: center;
+  color: #777;
+}
+
+/* Arby defs */
+.vertical_align {
+  vertical-align: middle;
+  margin-bottom: 5px;
+}
+
+#cart{
+	float: left;
+	width: 288px;
+	margin: 0px;
+	color: #726B63;
+}
+
+/* 2do: for tabbed list sortable menu somehow can't get this to work so using hardcoded class in the html file*/
+.sortable_menu_entry {
+  margin: 0 5px 5px 5px; 
+  padding: 5px; 
+  font-size: 1.2em;
 }
