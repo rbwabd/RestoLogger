@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.2'
-
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -15,7 +14,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer'
+  #gem 'therubyracer'
 
   gem 'uglifier', '>= 1.0.3'
 end
@@ -40,7 +39,6 @@ gem 'devise'
 
 gem 'gravatar_image_tag', '1.0.0.pre2'
 gem 'will_paginate'
-#gem 'sqlite3'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'fb_graph'
@@ -69,4 +67,5 @@ end
 
 group :production do
   # gems specifically for Heroku go here
+  # gem 'thin'
 end
