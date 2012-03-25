@@ -462,3 +462,61 @@ header {
   font-size: 12px;
   list-style: square;
 }
+
+.visitreview {
+  margin-top: 1em;
+  height: 180px;
+  #width: 300px
+  #display: block;
+  #font-size: 85%;
+  #color: #666;
+} 
+
+.visitreview label{
+  vertical-align: top;
+}
+
+div.user_info img {
+  padding-right: 0.1em;
+}
+
+div.user_info a {
+  text-decoration: none;
+}
+
+div.user_info span.user_name {
+  position: absolute;
+}
+
+div.user_info span.visits {
+  font-size: 80%;
+}
+
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+/* omniauth railcast defs */
+.authentications {
+  margin-bottom: 30px;
+}
+
+.authentication {
+  float: left;
+  background-color: #EEE;
+  border: solid 1px #999;
+  padding: 5px 10px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  position: relative;
+  margin-right: 10px;
+}
+
+.authentication .remove {
+  text-decoration: none;
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  color: #333;
+  padding: 2px 4px;
+  font-size: 10px;
+}
