@@ -69,4 +69,5 @@ end
 
 group :production do
   # gems specifically for Heroku go here
+  gem 'thin'
 end
