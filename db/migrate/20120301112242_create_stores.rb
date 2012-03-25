@@ -15,7 +15,7 @@ class CreateStores < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index :stores, [:city_id, :chain_id, :store_type_id]
+    add_index :stores, [:city_id, :chain_id]
   end
 
   def self.down
