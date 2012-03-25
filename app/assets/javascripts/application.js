@@ -6,6 +6,26 @@
 
 var $ = jQuery.noConflict();
 
+//function to prevent submission of form on enter
+$(function() {
+  $("input").not( $(":button") ).keypress(function (evt) {
+    if (evt.keyCode == 13) {
+      //iname = $(this).val();
+      //nestedFormEvents.addFields("add_nested_fields");
+      
+      // if Value of field is submit, submit the form. need to change this
+      //if (iname !== 'Submit'){  
+      //  var fields = $(this).parents('form:eq(0),body').find('button,input,textarea,select');
+      //  var index = fields.index( this );
+      //  if ( index > -1 && ( index + 1 ) < fields.length ) {
+      //    fields.eq( index + 1 ).focus();
+      // }
+      return false;
+      //}
+    }
+  });
+});
+
 // default tab option e.g. to show menu
 $(function() {
   $("#tabs").tabs()
