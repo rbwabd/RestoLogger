@@ -291,3 +291,174 @@ header {
 	float: left;
 	padding: 0px 0px 0px 0px;
 }
+
+/* Sidebar */
+
+#sidebar {
+	float: left;
+	width: 288px;
+	margin: 0px;
+	color: #726B63;
+}
+
+#sidebar ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#sidebar li {
+	margin: 0;
+	padding: 0;
+}
+
+#sidebar li ul {
+	margin: 0px 0px;
+	padding-bottom: 50px;
+}
+
+#sidebar li li {
+	line-height: 35px;
+	border-bottom: 1px dashed #A5A08C;
+	margin: 0px 30px;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+#sidebar li li span {
+}
+
+#sidebar li li a {
+	padding: 0px 0px 0px 0px;
+}
+
+#sidebar h2 {
+	margin: 0px;
+	padding: 0px 0px 10px 0px;
+	padding-left: 30px;
+	text-align: left;
+	text-transform: uppercase;
+	font-size: 20px;
+	font-weight: normal;
+	color: #2E2E2E;
+}
+
+#sidebar p {
+	margin: 0 0px;
+	padding: 0px 30px 20px 30px;
+	text-align: justify;
+	font-size: 14px;
+}
+
+#sidebar a {
+	border: none;
+	color: #857E6E;
+}
+
+#sidebar a:hover {
+	text-decoration: underline;
+}
+
+/* Calendar */
+
+#calendar {
+}
+
+#calendar_wrap {
+	padding: 20px;
+}
+
+#calendar table {
+	width: 100%;
+}
+
+#calendar tbody td {
+	text-align: center;
+}
+
+#calendar #next {
+	text-align: right;
+}
+
+/* Footer */
+
+#footer {
+	width: 100%;
+  margin: 0px auto;
+	padding: 20px 0px;
+	background: #3D3630;
+	color: #949085;
+  text-align: center;
+}
+
+#footer li {
+	margin: 0;
+	line-height: normal;
+	letter-spacing: 2px;
+	text-align: center;
+	text-decoration: none;
+	text-align: center;
+	text-transform: uppercase;
+	font-family: 'Arvo', serif;
+	font-weight: normal;
+	font-size: 10px;
+  list-style-type: none;
+}
+
+#footer a {
+	color: #949085;
+}
+
+#banner {
+	width: 100%;
+	margin: 0px auto;
+	height: 150px;
+}
+
+/* rails tutorial defs */
+.round {
+  -moz-border-radius:    10px;
+  -webkit-border-radius: 10px;
+  border-radius:         10px;
+}
+
+.field_with_errors {
+  margin-top: 10px;
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+.field_with_errors label {
+  color: #fff;
+}
+
+#error_explanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
