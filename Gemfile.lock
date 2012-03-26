@@ -97,6 +97,9 @@ GEM
     jquery-rails (2.0.1)
       railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
+    jquery-ui-rails (0.2.2)
+      jquery-rails
+      railties (>= 3.1.0)
     json (1.6.5)
     mail (2.4.4)
       i18n (>= 0.4.0)
@@ -228,6 +231,7 @@ DEPENDENCIES
   fog
   gravatar_image_tag (= 1.0.0.pre2)
   jquery-rails
+  jquery-ui-rails
   mini_magick
   nested_form!
   omniauth

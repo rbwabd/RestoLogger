@@ -1,7 +1,7 @@
 // Place your application-specific JavaScript functions and classes here
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
+//= require jquery.ui.all
 //= require_tree .
 
 var $ = jQuery.noConflict();
