@@ -1,19 +1,13 @@
 // Place your application-specific JavaScript functions and classes here
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
+//= require jquery.ui.sortable
+//= require jquery.ui.autocomplete
+//= require jquery.ui.tabs
+//= require jquery.ui.datepicker
 //= require_tree .
 
-var $ = jQuery.noConflict();
-
-//function to prevent submission of form on enter
+// default tab option e.g. to show menu
 $(function() {
-  $("input").not( $(":button") ).keypress(function (evt) {
-    if (evt.keyCode == 13) {
-      alert("enter pressed");
-      return false;
-    }
-  });
+  $("#tabs").tabs()
 });
-
-
