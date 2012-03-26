@@ -1,0 +1,102 @@
+2012-03-26T07:44:37+00:00 app[web.1]: [2012-03-26 07:44:37] INFO  WEBrick::HTTPServer#start: pid=1 port=34422
+2012-03-26T07:44:39+00:00 heroku[web.1]: State changed from starting to up
+2012-03-26T07:44:46+00:00 app[web.1]: => Rails 3.2.2 application starting in production on http://0.0.0.0:34422
+2012-03-26T07:44:46+00:00 app[web.1]: => Booting WEBrick
+2012-03-26T07:44:46+00:00 app[web.1]: => Call with -d to detach
+2012-03-26T07:44:46+00:00 app[web.1]: => Ctrl-C to shutdown server
+2012-03-26T07:44:46+00:00 app[web.1]: 
+2012-03-26T07:44:46+00:00 app[web.1]: 
+2012-03-26T07:44:46+00:00 app[web.1]: Started GET "/" for 86.145.200.112 at 2012-03-26 07:44:46 +0000
+2012-03-26T07:44:46+00:00 app[web.1]: Processing by AuthenticationsController#index as HTML
+2012-03-26T07:44:47+00:00 app[web.1]:   Rendered layouts/_main_sidebar.html.erb (3.9ms)
+2012-03-26T07:44:47+00:00 app[web.1]:   Rendered authentications/index.html.erb within layouts/application (249.3ms)
+2012-03-26T07:44:47+00:00 app[web.1]:   Rendered layouts/_css_and_js.html.erb (0.9ms)
+2012-03-26T07:44:47+00:00 app[web.1]:   Rendered layouts/_header.html.erb (12.1ms)
+2012-03-26T07:44:47+00:00 app[web.1]:   Rendered shared/_flash_box.html.erb (5.5ms)
+2012-03-26T07:44:47+00:00 app[web.1]: Completed 200 OK in 866ms (Views: 443.0ms | ActiveRecord: 66.1ms)
+2012-03-26T07:44:47+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (0.9ms)
+2012-03-26T07:44:47+00:00 app[web.1]: cache: [GET /] miss
+2012-03-26T07:44:47+00:00 heroku[router]: GET minu.herokuapp.com/ dyno=web.1 queue=0 wait=0ms service=6822ms status=200 bytes=4194
+2012-03-26T07:44:47+00:00 app[web.1]: cache: [GET /assets/application-5090c5eabae5ecffdf7ce4cba7884c06.css] miss
+2012-03-26T07:44:47+00:00 heroku[router]: GET minu.herokuapp.com/assets/application-5090c5eabae5ecffdf7ce4cba7884c06.css dyno=web.1 queue=0 wait=0ms service=9ms status=200 bytes=29028
+2012-03-26T07:44:48+00:00 app[web.1]: cache: [GET /assets/application-eed65c1aadddd24237c794c315626b08.js] miss
+2012-03-26T07:44:48+00:00 app[web.1]: cache: [GET /assets/facebook_32-45445447cea198ebc8cc24ce1a99cddc.png] miss
+2012-03-26T07:44:48+00:00 heroku[router]: GET minu.herokuapp.com/assets/facebook_32-45445447cea198ebc8cc24ce1a99cddc.png dyno=web.1 queue=0 wait=0ms service=6ms status=200 bytes=1681
+2012-03-26T07:44:48+00:00 app[web.1]: cache: [GET /assets/facebook_64-654f0f2c1ba7e19e730d497947534230.png] miss
+2012-03-26T07:44:48+00:00 heroku[router]: GET minu.herokuapp.com/assets/facebook_64-654f0f2c1ba7e19e730d497947534230.png dyno=web.1 queue=0 wait=0ms service=68ms status=200 bytes=3448
+2012-03-26T07:44:48+00:00 heroku[router]: GET minu.herokuapp.com/assets/application-eed65c1aadddd24237c794c315626b08.js dyno=web.1 queue=0 wait=0ms service=97ms status=200 bytes=455343
+2012-03-26T07:44:50+00:00 app[web.1]: cache: [GET /assets/images/img02.jpg] miss
+2012-03-26T07:44:50+00:00 heroku[router]: GET minu.herokuapp.com/assets/images/img03.jpg dyno=web.1 queue=0 wait=0ms service=42ms status=200 bytes=824
+2012-03-26T07:44:50+00:00 app[web.1]: cache: [GET /assets/images/img03.jpg] miss
+2012-03-26T07:44:50+00:00 heroku[router]: GET minu.herokuapp.com/assets/images/img02.jpg dyno=web.1 queue=0 wait=0ms service=56ms status=200 bytes=17861
+2012-03-26T07:45:30+00:00 app[web.1]: 
+2012-03-26T07:45:30+00:00 app[web.1]: 
+2012-03-26T07:45:30+00:00 app[web.1]: Started GET "/stores" for 86.145.200.112 at 2012-03-26 07:45:30 +0000
+2012-03-26T07:45:30+00:00 app[web.1]: Processing by StoresController#index as HTML
+2012-03-26T07:45:30+00:00 app[web.1]:   Rendered layouts/_main_sidebar.html.erb (1.9ms)
+2012-03-26T07:45:30+00:00 heroku[router]: GET minu.herokuapp.com/stores dyno=web.1 queue=0 wait=0ms service=117ms status=200 bytes=3954
+2012-03-26T07:45:30+00:00 app[web.1]:   Rendered stores/index.html.erb within layouts/application (70.8ms)
+2012-03-26T07:45:30+00:00 app[web.1]:   Rendered layouts/_css_and_js.html.erb (1.6ms)
+2012-03-26T07:45:30+00:00 app[web.1]:   Rendered shared/_flash_box.html.erb (0.1ms)
+2012-03-26T07:45:30+00:00 app[web.1]:   Rendered layouts/_header.html.erb (1.3ms)
+2012-03-26T07:45:30+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (0.3ms)
+2012-03-26T07:45:30+00:00 app[web.1]: Completed 200 OK in 108ms (Views: 64.2ms | ActiveRecord: 22.5ms)
+2012-03-26T07:45:30+00:00 app[web.1]: cache: [GET /stores] miss
+2012-03-26T07:45:30+00:00 app[web.1]: cache: [GET /assets/application-eed65c1aadddd24237c794c315626b08.js] miss
+2012-03-26T07:45:30+00:00 app[web.1]: cache: [GET /assets/application-509
+0c5eabae5ecffdf7ce4cba7884c06.css] miss
+2012-03-26T07:45:30+00:00 heroku[router]: GET minu.herokuapp.com/assets/application-5090c5eabae5ecffdf7ce4cba7884c06.css dyno=web.1 queue=0 wait=0ms service=14ms status=304 bytes=0
+2012-03-26T07:45:30+00:00 heroku[router]: GET minu.herokuapp.com/assets/application-eed65c1aadddd24237c794c315626b08.js dyno=web.1 queue=0 wait=0ms service=17ms status=304 bytes=0
+2012-03-26T07:45:31+00:00 app[web.1]: cache: [GET /assets/images/img03.jpg] miss
+2012-03-26T07:45:31+00:00 heroku[router]: GET minu.herokuapp.com/assets/images/img03.jpg dyno=web.1 queue=0 wait=0ms service=19ms status=304 bytes=0
+2012-03-26T07:45:31+00:00 app[web.1]: cache: [GET /assets/images/img02.jpg] miss
+2012-03-26T07:45:31+00:00 heroku[router]: GET minu.herokuapp.com/assets/images/img02.jpg dyno=web.1 queue=0 wait=0ms service=24ms status=304 bytes=0
+2012-03-26T07:45:32+00:00 app[web.1]: 
+2012-03-26T07:45:32+00:00 app[web.1]: 
+2012-03-26T07:45:32+00:00 app[web.1]:   Parameters: {"id"=>"2"}
+2012-03-26T07:45:32+00:00 app[web.1]: Started GET "/show_menu?id=2" for 86.145.200.112 at 2012-03-26 07:45:32 +0000
+2012-03-26T07:45:32+00:00 app[web.1]: Processing by StoresController#show_menu as HTML
+2012-03-26T07:45:33+00:00 app[web.1]:   Rendered layouts/_main_sidebar.html.erb (0.9ms)
+2012-03-26T07:45:33+00:00 app[web.1]:   Rendered stores/show_menu.html.erb within layouts/application (103.6ms)
+2012-03-26T07:45:33+00:00 app[web.1]:   Re
+ndered layouts/_css_and_js.html.erb (0.7ms)
+2012-03-26T07:45:33+00:00 app[web.1]:   Rendered layouts/_header.html.erb (1.2ms)
+2012-03-26T07:45:33+00:00 app[web.1]:   Rendered shared/_flash_box.html.erb (0.0ms)
+2012-03-26T07:45:33+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (0.3ms)
+2012-03-26T07:45:33+00:00 app[web.1]: Completed 200 OK in 459ms (Views: 108.9ms | ActiveRecord: 177.3ms)
+2012-03-26T07:45:33+00:00 app[web.1]: cache: [GET /show_menu?id=2] miss
+2012-03-26T07:45:33+00:00 heroku[router]: GET minu.herokuapp.com/show_menu dyno=web.1 queue=0 wait=0ms service=474ms status=200 bytes=37071
+2012-03-26T07:45:38+00:00 app[web.1]: 
+2012-03-26T07:45:38+00:00 app[web.1]: 
+2012-03-26T07:45:38+00:00 app[web.1]: Started GET "/stores" for 86.145.200.112 at 2012-03-26 07:45:38 +0000
+2012-03-26T07:45:38+00:00 app[web.1]: Processing by StoresController#index as HTML
+2012-03-26T07:45:38+00:00 app[web.1]:   Rendered layouts/_main_sidebar.html.erb (0.7ms)
+2012-03-26T07:45:38+00:00 app[web.1]:   Rendered shared/_flash_box.html.erb (0.0ms)
+2012-03-26T07:45:38+00:00 app[web.1]:   Rendered layouts/_header.html.erb (1.3ms)
+2012-03-26T07:45:38+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (0.7ms)
+2012-03-26T07:45:38+00:00 app[web.1]: Completed 200 OK in 20ms (Views: 12.0ms | ActiveRecord: 5.3ms)
+2012-03-26T07:45:38+00:00 app[web.1]: cache: [GET /stores] miss
+2012-03-26T07:45:38+00:00 app[web.1]:   Rendered stores/index.html.erb within layouts/application (10.7ms)
+2012-03-26T07:45:38+00:00 app[web.1]:   Rendered layouts/_css_and_js.html.erb (0.7ms)
+2012-03-26T07:45:38+00:00 heroku[router]: GET minu.herokuapp.com/stores dyno=web.1 queue=0 wait=0ms service=31ms status=304 bytes=0
+2012-03-26T07:45:39+00:00 app[web.1]: 
+2012-03-26T07:45:39+00:00 app[web.1]: 
+2012-03-26T07:45:39+00:00 app[web.1]: Started GET "/visits/new?id=2" for 86.145.200.112 at 2012-03-26 07:45:39 +0000
+2012-03-26T07:45:39+00:00 app[web.1]: Processing by VisitsController#new as HTML
+2012-03-26T07:45:39+00:00 app[web.1]:   Parameters: {"id"=>"2"}
+2012-03-26T07:45:39+00:00 app[web.1]:   Rendered visits/_cart_item.html.erb (1.9ms)
+2012-03-26T07:45:39+00:00 app[web.1]:   Rendered visits/_cart.html.erb (2.7ms)
+2012-03-26T07:45:39+00:00 app[web.1]:   Rendered visits/_cart_sidebar.html.erb (3.7ms)
+2012-03-26T07:45:39+00:00 app[web.1]:   Rendered shared/_error_messages.html.erb (0.4ms)
+2012-03-26T07:45:39+00:00 app[web.1]:   Rendered visits/_fields.html.erb (1.2ms)
+2012-03-26T07:45:39+00:00 app[web.1]:   Rendered visits/_menu_tabs.html.erb (133.6ms)
+2012-03-26T07:45:39+00:00 app[web.1]:   Rendered visits/_dish_review_fields.html.erb (6.6ms)
+2012-03-26T07:45:39+00:00 app[web.1]:   Rendered visits/_picture_fields.html.erb (0.8ms)
+2012-03-26T07:45:39+00:00 app[web.1]:   Rendered visits/new.html.erb within layouts/application (179.6ms)
+2012-03-26T07:45:39+00:00 app[web.1]:   Rendered layouts/_css_and_js.html.erb (0.7ms)
+2012-03-26T07:45:39+00:00 app[web.1]:   Rendered layouts/_header.html.erb (1.3ms)
+2012-03-26T07:45:39+00:00 app[web.1]:   Rendered shared/_flash_box.html.erb (0.0ms)
+2012-03-26T07:45:39+00:00 app[web.1]:   Rendered layouts/_footer.html.erb (0.3ms)
+2012-03-26T07:45:39+00:00 app[web.1]: Completed 200 OK in 251ms (Views: 178.5ms | ActiveRecord: 19.6ms)
+2012-03-26T07:45:39+00:00 app[web.1]: cache: [GET /visits/new?id=2] miss
+2012-03-26T07:45:39+00:00 heroku[router]: GET minu.herokuapp.com/visits/new dyno=web.1 queue=0 wait=0ms service=284ms status=200 bytes=54444

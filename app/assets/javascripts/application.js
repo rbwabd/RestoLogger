@@ -1,17 +1,19 @@
 // Place your application-specific JavaScript functions and classes here
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui 
+//= require jquery-ui
 //= require_tree .
 
 var $ = jQuery.noConflict();
 
-// default tab option e.g. to show menu
+//function to prevent submission of form on enter
 $(function() {
-  $("#tabs").tabs()
+  $("input").not( $(":button") ).keypress(function (evt) {
+    if (evt.keyCode == 13) {
+      alert("enter pressed");
+      return false;
+    }
+  });
 });
 
-// datepicker in add visit form
-$(function() {
-  $( "#visit_visit_date" ).datepicker({ dateFormat: 'yy-mm-dd' });
-});
+
