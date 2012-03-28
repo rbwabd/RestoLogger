@@ -42,7 +42,7 @@
     </br>
     <b>Dish Name: </b> <%= dr.dish.name %>
     </br>
-    <%= file_field(dr, :name, :multiple => true) %> 
+    <%= file_field_tag 'dr'+i.to_s+'[]', :accept => 'image/jpeg', :multiple => true %> 
   <% end %>
   <div class="actions">
     <%= f.submit I18n.t(@button) %>
