@@ -33,21 +33,42 @@ class VisitsController < ApplicationController
     visit.user_id = current_user.id
     visit.store_id = store.id
     visit.city_id = store.city_id
+    #2do: not sure storing city_id in both visit and store is optimal...
     visit.visit_date = params[:visit][:visit_date]
+    #2do: check date should not be in future
+    need_confirmation = false
     
     for ci in session[:cart].cart_items
-      dreview = DishReview.new
-      dreview.user_id = current_user.id
-      dreview.dish_id = dr.dish_id
+      if ci.dish_id < 0
+        need_confirmation = true
+        # dish not already in DB
+        # 2do: populate an array to be displayed to user for confirmation
+      else      
+        dreview = DishReview.new
+        dreview.user_id = current_user.id
+        dreview.dish_id = ci.dish_id
+        dreview.quantity = ci.quantity
+        visit.dish_reviews << dreview
+      end
+    end
+    
+    if need_confirmation
+      #2do: display a confirmation screen for new dishes only
+    else  
+      if visit.save
+        session[:cart] = nil
+        redirect_to edit_visit_path(visit), :flash => { :success => "Visit created!" }
+      else
+        #2do: error messages
+      end
+    end
+  end
 
-      visit.dish_reviews << dreview      
-    end
-    if visit.save
-      session[:cart] = nil
-      redirect_to root_path, :flash => { :success => "Visit created!" }
-    else
-      #2do: error messages
-    end
+  def edit
+    @title = "visits.edit_title"
+    @button = "visits.edit_button"
+    @visit  = Visit.find(params[:id])
+    @store = @visit.store
   end
   
   def change_cart
@@ -57,6 +78,7 @@ class VisitsController < ApplicationController
       session[:cart].remove_dish(params[:dish_name])
     else
       if !dish=Dish.find(params[:dish_id]) and params[:dish_name] and params[:dish_name].size > 0 
+        #new dish, to be added to DB
         session[:cart].add_dish(params[:dish_name], 0, -1)
       else
         session[:cart].add_dish(dish.name, dish.price, dish.id)

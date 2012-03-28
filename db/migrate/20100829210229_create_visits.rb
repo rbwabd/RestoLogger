@@ -1,7 +1,6 @@
 class CreateVisits < ActiveRecord::Migration
   def self.up
     create_table :visits do |t|
-      t.string :content
       t.integer :user_id
 
       t.timestamps

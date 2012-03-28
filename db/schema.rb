@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120322111952) do
+ActiveRecord::Schema.define(:version => 20120328130306) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20120322111952) do
     t.integer  "visit_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "quantity"
   end
 
   add_index "dish_reviews", ["dish_id", "user_id", "visit_id"], :name => "index_dish_reviews_on_dish_id_and_user_id_and_visit_id"
@@ -69,12 +70,12 @@ ActiveRecord::Schema.define(:version => 20120322111952) do
   create_table "dishes", :force => true do |t|
     t.string   "name"
     t.string   "alt_name"
-    t.integer  "category"
     t.integer  "dish_type_id"
-    t.string   "keyword"
+    t.string   "code"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.integer  "store_id"
+    t.string   "description"
     t.integer  "rank"
     t.float    "price"
     t.string   "price_comment"
@@ -134,9 +135,9 @@ ActiveRecord::Schema.define(:version => 20120322111952) do
     t.datetime "updated_at",    :null => false
   end
 
-  add_index "store_type_relationships", ["store_id", "store_type_id"], :name => "index_store_type_relationships_on_store_id_and_type_id", :unique => true
+  add_index "store_type_relationships", ["store_id", "store_type_id"], :name => "index_store_type_relationships_on_store_id_and_store_type_id", :unique => true
   add_index "store_type_relationships", ["store_id"], :name => "index_store_type_relationships_on_store_id"
-  add_index "store_type_relationships", ["store_type_id"], :name => "index_store_type_relationships_on_type_id"
+  add_index "store_type_relationships", ["store_type_id"], :name => "index_store_type_relationships_on_store_type_id"
 
   create_table "store_types", :force => true do |t|
     t.string   "name"

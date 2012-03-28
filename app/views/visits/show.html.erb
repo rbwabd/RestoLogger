@@ -2,7 +2,7 @@
   <%= render 'layouts/main_sidebar' %>
 <% end %>
 
-<h1><%= I18n.t(@title) %></h1>
+<h1><%= I18n.t(@title) %><%= link_to @store.name, store_path(:id => @store.id)%></h1><br>
 
 <div class="visit">
   </br>
@@ -19,7 +19,7 @@
   <strong>Guest number:</strong> <%= @visit.guest_number %>
   <% for dish_review in @visit.dish_reviews %>
     </br>
-    <strong>Dish Name: </strong>
+    <strong>Dish Name: </strong> <%= dish_review.dish.name %>
     </br>
     <% for pic in dish_review.pictures %>
       <%= image_tag pic.image_url(:thumb) if pic.image? %>

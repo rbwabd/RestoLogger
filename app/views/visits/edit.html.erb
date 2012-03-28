@@ -1,0 +1,58 @@
+<% content_for :sidebar do %>
+  <%= render 'layouts/main_sidebar' %>
+<% end %>
+
+<h1><%= I18n.t(@title) %><%= link_to @store.name, store_path(:id => @store.id)%></h1><br>
+
+<%= nested_form_for @visit, :html => {:multipart => true} do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  <div class="field">
+    <%= f.label :visit_date, "Visit Date:" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= f.text_field :visit_date, :size => 10 %>
+  </div>
+  <div class="field">
+    <%= f.label :guest_number, "Number of Guests:" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= f.text_field :guest_number, :size => 4 %>
+  </div>
+  <div class="field">
+    <%= f.label :overall_rating, "Overall Rating:" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= f.text_field :overall_rating, :size => 4 %>
+  </div>
+  <div class="field">
+    <%= f.label :service_rating, "Service Quality Rating:" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= f.text_field :service_rating, :size => 4 %>
+  </div>
+  <div class="field">
+    <%= f.label :speed_rating, "Service Speed Rating:" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= f.text_field :speed_rating, :size => 4 %>
+  </div>
+  <div class="field">
+    <%= f.label :mood_rating, "Store Atmosphere Rating:" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= f.text_field :mood_rating, :size => 4 %>
+  </div>
+  <div class="field"> 
+    <%= f.label :tagline, "Tagline" %><br />
+    <%= f.text_field :tagline, :size =>81 %>
+  </div>
+  <div class="field"> 
+    <%= f.label :review, "Review" %><br />
+    <%= f.text_area :review, :size => "60x5" %>
+  </div>  
+  <% for dish_review in @visit.dish_reviews %>
+    </br>
+    <strong>Dish Name: </strong> <%= dish_review.dish.name %>
+    </br>
+    <% for pic in dish_review.pictures %>
+      <%= image_tag pic.image_url(:thumb) if pic.image? %>
+    <% end %>
+  <% end %>
+  <div class="actions">
+    <%= f.submit I18n.t(@button) %>
+  </div>   
+<% end %>
+
+
+
+
+
+

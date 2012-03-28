@@ -3,8 +3,8 @@ class Visit < ActiveRecord::Base
   attr_accessible :city_name, :store_name, :dish_reviews_attributes, :pictures_attributes
     
   belongs_to :user
-  has_one :store
-  has_one :city
+  belongs_to :store
+  belongs_to :city
   has_many :dish_reviews
   has_many :pictures
   
