@@ -38,8 +38,11 @@
     <%= f.label :review, "Review" %><br />
     <%= f.text_area :review, :size => "60x5" %>
   </div>  
-  <% f.fields_for :dish_reviews do |builder| %>
-    <%= render 'dish_review_fields', :drf => builder %>
+  <%= f.fields_for :dish_reviews do |builder| %>
+    <%= builder.fields_for :pictures do |builder2| %>
+      <%= render 'picture_fields', :pf => builder2 %>
+    <% end %>
+    <%= builder.link_to_add "Add Picture", :pictures %>
   <% end %>
   <div class="actions">
     <%= f.submit I18n.t(@button) %>

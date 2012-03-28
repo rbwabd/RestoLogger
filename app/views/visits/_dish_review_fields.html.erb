@@ -4,7 +4,6 @@
     <%= drf.fields_for :pictures do |builder2| %>
       <%= render 'picture_fields', :pf => builder2 %>
     <% end %>
-    <div class="field">
-      <%= drf.link_to_add "Add Picture", :pictures %>
-    </div>
+    <%= f.link_to_add "Add Picture", :pictures %>
+
 
