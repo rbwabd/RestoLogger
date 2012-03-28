@@ -42,7 +42,12 @@
     </br>
     <b>Dish Name: </b> <%= dr.dish.name %>
     </br>
-    <%= file_field_tag 'dr'+i.to_s+'[]', :accept => 'image/jpeg', :multiple => true %> 
+    <% dr.pictures.each do |pic| %>
+      <% if pic.image? %>
+        <%= image_tag(pic.image_url(:thumb), {:size => '150x100', :alt => 'image'}) %>
+      <% end %>
+    <% end %>
+    <%= file_field_tag 'dr'+i.to_s+'[]', :accept => 'image/jpeg', :multiple => true, :value => 'Add Pictures' %> 
   <% end %>
   <div class="actions">
     <%= f.submit I18n.t(@button) %>
