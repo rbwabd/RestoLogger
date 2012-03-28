@@ -8,7 +8,7 @@ jQuery(function($) {
     addFields: function(e) {
       // Setup
       var link    = e.currentTarget;
-      var assoc   = $(link).attr('data-association');            // Name of child which is dish_reviews
+      var assoc   = $(link).attr('data-association');            // Name of child
       var content = $('#' + assoc + '_fields_blueprint').html(); // Fields template
 
       // Make the context correct by replacing new_<parents> with the generated ID
@@ -41,11 +41,6 @@ jQuery(function($) {
       var new_id  = new Date().getTime();
       content     = content.replace(regexp, "new_" + new_id);
 
-      content     = content.replace("_dummy1_", jQuery('#visit_dish_id').val());
-      content     = content.replace("_dummy2_", jQuery('#visit_dish_name').val());
-      jQuery('#visit_dish_id').val('')
-      jQuery('#visit_dish_name').val('')
-      
       var field = this.insertFields(content, assoc, link);
       $(link).closest("form")
         .trigger({ type: 'nested:fieldAdded', field: field })
@@ -53,7 +48,7 @@ jQuery(function($) {
       return false;
     },
     insertFields: function(content, assoc, link) {
-      return $(content).insertAfter(link);
+      return $(content).insertBefore(link);
     },
     removeFields: function(e) {
       var link = e.currentTarget;

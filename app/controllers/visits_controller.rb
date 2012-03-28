@@ -35,7 +35,7 @@ class VisitsController < ApplicationController
     visit.city_id = store.city_id
     #2do: not sure storing city_id in both visit and store is optimal...
     visit.visit_date = params[:visit][:visit_date]
-    #2do: check date should not be in future
+    #2do: need to check again that date not in future or too far past (do it in model.rb)
     need_confirmation = false
     
     for ci in session[:cart].cart_items
@@ -69,6 +69,50 @@ class VisitsController < ApplicationController
     @button = "visits.edit_button"
     @visit  = Visit.find(params[:id])
     @store = @visit.store
+  end
+
+  def update
+    visit  = Visit.find(params[:id])
+    
+    visit.user_id = current_user.id
+    visit.overall_rating = params[:visit][:overall_rating]
+    visit.service_rating = params[:visit][:service_rating]
+    visit.speed_rating = params[:visit][:speed_rating]
+    visit.mood_rating = params[:visit][:modd_rating]
+    visit.tagline = params[:visit][:tagline]
+    visit.review = params[:visit][:review]
+    visit.guest_number = params[:visit][:guest_number]
+    #2do: need to check again that date not in future or too far past (do it in model.rb)
+    visit.visit_date = params[:visit][:visit_date]
+    p params
+    #http://blog.madebydna.com/all/code/2010/12/31/dynamically-nesting-deeply-nested-forms.html
+=begin    
+    if !params[:visit][:dish_reviews_attributes].nil?
+      for dr in params[:visit][:dish_reviews_attributes].values
+        @dreview=DishReview.new
+        @dreview.rating=dr[:rating]
+        @dreview.tagline=dr[:tagline]
+        @dreview.review=dr[:review]
+        @dreview.dish_id=dr[:dish_id]
+        @dreview.user_id=current_user.id
+        if !dr[:pictures_attributes].nil?
+          for tmppic in dr[:pictures_attributes].values
+            @pic=Picture.new
+            @pic.genre=tmppic[:genre]
+            @pic.image=tmppic[:image]
+            @dreview.pictures << @pic
+          end
+        end
+        visit.dish_reviews << @dreview
+      end
+    end
+=end   
+    if visit.save
+      redirect_to visit_path(visit), :flash => { :success => "Visit updated!" }
+    else
+      @feed_items = []
+      render 'pages/home'
+    end    
   end
   
   def change_cart
