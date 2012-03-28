@@ -84,17 +84,19 @@ class VisitsController < ApplicationController
     visit.guest_number = params[:visit][:guest_number]
     #2do: need to check again that date not in future or too far past (do it in model.rb)
     visit.visit_date = params[:visit][:visit_date]
-    p params
-    #http://blog.madebydna.com/all/code/2010/12/31/dynamically-nesting-deeply-nested-forms.html
+
+	visit.dish_reviews.each_with_index do | dr, i |
+	  if params['dr'+i.to_s]
+	    params['dr'+i.to_s].each do | pic |
+        p pic
+      end
+	  end
+	end
+	
+  
 =begin    
     if !params[:visit][:dish_reviews_attributes].nil?
       for dr in params[:visit][:dish_reviews_attributes].values
-        @dreview=DishReview.new
-        @dreview.rating=dr[:rating]
-        @dreview.tagline=dr[:tagline]
-        @dreview.review=dr[:review]
-        @dreview.dish_id=dr[:dish_id]
-        @dreview.user_id=current_user.id
         if !dr[:pictures_attributes].nil?
           for tmppic in dr[:pictures_attributes].values
             @pic=Picture.new

@@ -106,7 +106,7 @@ $(function() {
       return false;
     }
   });
-  $('#visit_dish_name').autocomplete({
+  $('#dish_name').autocomplete({
     minLength: 3,
     source: function(request, response) {
       $.ajax({
@@ -122,8 +122,8 @@ $(function() {
       });
     },
     select: function(event, ui) {
-      $('#visit_dish_id').val(ui.item.id);
-      $('#visit_dish_name').val('');
+      $('#dish_id').val(ui.item.id);
+      $('#dish_name').val('');
       $("#cart").load('/change_cart', { 'dish_id': ui.item.id, 'dish_name': ui.item.name } );
       return false;
     }

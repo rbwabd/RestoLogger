@@ -70,17 +70,19 @@ ActiveRecord::Schema.define(:version => 20120328130306) do
   create_table "dishes", :force => true do |t|
     t.string   "name"
     t.string   "alt_name"
+    t.integer  "category"
     t.integer  "dish_type_id"
-    t.string   "code"
+    t.string   "keyword"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.integer  "store_id"
-    t.string   "description"
     t.integer  "rank"
     t.float    "price"
     t.string   "price_comment"
     t.string   "option_description"
     t.string   "pic_url"
+    t.string   "description"
+    t.string   "code"
   end
 
   add_index "dishes", ["dish_type_id"], :name => "index_dishes_on_dish_type_id"
@@ -135,9 +137,9 @@ ActiveRecord::Schema.define(:version => 20120328130306) do
     t.datetime "updated_at",    :null => false
   end
 
-  add_index "store_type_relationships", ["store_id", "store_type_id"], :name => "index_store_type_relationships_on_store_id_and_store_type_id", :unique => true
+  add_index "store_type_relationships", ["store_id", "store_type_id"], :name => "index_store_type_relationships_on_store_id_and_type_id", :unique => true
   add_index "store_type_relationships", ["store_id"], :name => "index_store_type_relationships_on_store_id"
-  add_index "store_type_relationships", ["store_type_id"], :name => "index_store_type_relationships_on_store_type_id"
+  add_index "store_type_relationships", ["store_type_id"], :name => "index_store_type_relationships_on_type_id"
 
   create_table "store_types", :force => true do |t|
     t.string   "name"

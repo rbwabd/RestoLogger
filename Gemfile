@@ -43,7 +43,6 @@ gem 'carrierwave'
 gem 'fog'
 gem 'mini_magick'
 gem 'aws-s3', :require => 'aws/s3'
-gem "nested_form", :git => 'https://github.com/ryanb/nested_form.git'
 
 group :development do
   gem 'rspec-rails', '2.6.1'
