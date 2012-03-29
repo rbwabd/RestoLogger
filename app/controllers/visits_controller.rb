@@ -14,7 +14,17 @@ class VisitsController < ApplicationController
     #  entry[:dishes] = visit.dish_reviews.size
     #  entry[:overall_rating] = 
     # #date, store_name, #visits, people, nb dishes overall_rating, spending
-	
+	  p "hello"
+	  p "hello"
+	  p "hello"
+	  p "hello"
+	  p "hello"
+	  p "hello"
+	  p "hello"
+    
+    p params[:sort]
+    p sort_column
+    p sort_direction
   end
   
   def show
