@@ -50,7 +50,7 @@
     <%= file_field_tag 'dr'+i.to_s+'[]', :accept => 'image/jpeg', :multiple => true, :value => 'Add Pictures' %> 
   <% end %>
   <div class="actions">
-    <%= f.submit I18n.t(@button) %>
+    <%= f.submit I18n.t(@button), :class => "smallbutton" %>
   </div>   
 <% end %>
 

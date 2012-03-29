@@ -8,6 +8,6 @@
   <%= render 'shared/error_messages', :object => f.object %>
   <%= render 'fields', :f => f %>
   <div class="actions">
-    <%= f.submit I18n.t(@button) %>
+    <%= f.submit I18n.t(@button), :class => "smallbutton" %>
   </div>
 <% end %>

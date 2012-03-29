@@ -37,7 +37,8 @@
     <% end %>
   <% end %>
   <%= hidden_field_tag 'storeid', @store.id %>
-  <br><div class="action">
-    <%= f.submit I18n.t(@button) %>
+  <br>
+  <div class="action">
+    <%= f.submit I18n.t(@button), :class => "smallbutton" %>
   </div>
 <% end %>

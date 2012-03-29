@@ -15,8 +15,8 @@
     <%= text_field_tag 'dish_search_name', '', :size =>60 %>
     <%= hidden_field :dish, :id %>
   </div>
-  <div class="demo">
-    <%= f.submit I18n.t(@button) %> 
+  <div class="action">
+    <%= f.submit I18n.t(@button), :class => "buttonvalign smallbutton" %> 
     <%= link_to_function content_tag(:span, "Back"), "history.back()" %>
   </div>
   <%= render 'menu_tabs', :f => f %>  

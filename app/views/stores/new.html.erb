@@ -42,6 +42,6 @@
     <%= select :store_type, "Category3", StoreType.all.collect {|p| [ p.name, p.id ] }, { :include_blank => true } %>
   </div>
   <div class="action">
-    <%= f.submit I18n.t(@button) %>
+    <%= f.submit I18n.t(@button), :class => "smallbutton" %>
   </div>
 <% end %>

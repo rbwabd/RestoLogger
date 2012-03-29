@@ -615,47 +615,34 @@ table.pretty {
   background-image: url('images/down_arrow.gif');
 }
 
-/*stolen from http://www.oscaralexander.com/tutorials/how-to-make-sexy-buttons-with-css.html */
-.clear { /* generic container (i.e. div) for floating buttons */
-    overflow: hidden;
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-a.button {
-    background: transparent url('images/bg_button_a.png') no-repeat scroll top right;
-    color: #444;
-    display: block;
-    float: left;
-    font: normal 12px arial, sans-serif;
-    height: 24px;
-    margin-right: 6px;
-    padding-right: 18px; /* sliding doors padding */
-    text-decoration: none;
-}
-
-a.button span {
-    background: transparent url('images/bg_button_span.png') no-repeat;
-    display: block;
-    line-height: 14px;
-    padding: 5px 0 5px 18px;
-} 
-
-a.button:active {
-    background-position: bottom right;
-    color: #000;
-    outline: none; /* hide dotted outline in Firefox */
-}
-
-a.button:active span {
-    background-position: bottom left;
-    padding: 6px 0 4px 18px; /* push text down 1px */
-} 
-
 /* Arby defs */
 .vertical_align {
   vertical-align: middle;
   margin-bottom: 5px;
+}
+
+/* for jquery-ui buttons placed next to anchors (did not align vertically properly) */
+.buttonvalign { 
+  vertical-align: top;
+}
+
+/* for jquery-ui link buttons to manage size of button and font */
+.ui-button .ui-button-text{
+   padding: 2px 8px 2px 8px !important;
+   font-size: 0.9em !important;
+   color: #000000 !important;
+}
+
+/* for jquery-ui submit buttons to manage size of button and font */
+.smallbutton{
+   padding: 3px 8px 3px 8px !important;
+   font-size: 1em !important;
+   color: #000000 !important;
+}
+
+/* for jquery-ui buttons to manage margin around buttons */
+.action{
+  margin: 10px 0px 10px 0px;
 }
 
 #cart{

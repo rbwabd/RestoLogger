@@ -17,8 +17,8 @@
         &nbsp;<%= rel.store_type.name %>
       <% end %>
     </div>
-    <div class="actions">
-      <%= link_to I18n.t(@button), new_visit_path(:id => store.id)%>&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="action">
+      <%= link_to I18n.t(@button), new_visit_path(:id => store.id)%>
       <%= link_to I18n.t(@button2), show_menu_path(:id => store.id)%>
     </div>    
   </div>

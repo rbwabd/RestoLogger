@@ -25,8 +25,8 @@
     <%= label 'store_search_label', "Restaurant Name:" %>&nbsp;
     <%= text_field_tag 'store_search_name', '', :size =>50 %>
     <%= f.hidden_field :id %>&nbsp;
-    <%= f.submit I18n.t(@button) %>
-    <span class="actions">  
+    <span class="action">  
+      <%= f.submit I18n.t(@button), :class => "smallbutton" %>
     </span>  
   </div>
   <div id="display">

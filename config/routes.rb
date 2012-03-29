@@ -36,14 +36,12 @@ RestoLogger::Application.routes.draw do
       get :following, :followers
     end
   end
-  #resources :visits do
-  #  get :autocomplete_visit_name, :on => :collection
-  #end
+
   resources :sessions,        :only => [:new, :create, :destroy]
   resources :visits
   resources :relationships,   :only => [:create, :destroy]
 	resources :authentications
-  resources :pictures
+  #resources :pictures
   resources :stores
   resources :dishes
   

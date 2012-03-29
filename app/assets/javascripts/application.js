@@ -12,7 +12,7 @@
 var $ = jQuery.noConflict();
 
 $(function() {
-  $( "input:submit, a, button", ".demo" ).button();
+  $( "input:submit, a, button", ".action" ).button();
 });
 
 //function to prevent submission of form on enter
