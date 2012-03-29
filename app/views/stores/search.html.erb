@@ -8,7 +8,7 @@
   <%= render 'shared/error_messages', :object => f.object %>
   <span>
     <%= label :city, :name, "City:" %>&nbsp;
-    <%= text_field 'city', 'name' %>
+    <%= text_field_tag 'city_search_name', @city.name %>
     <%= hidden_field 'city', 'id' %>
   </span>  
   <span>
@@ -22,8 +22,8 @@
   <br/>
   <br/>
   <div class="field">
-    <%= f.label :name, "Restaurant Name:" %>&nbsp;
-    <%= f.text_field :name, :size =>50 %>
+    <%= label 'store_search_label', "Restaurant Name:" %>&nbsp;
+    <%= text_field_tag 'store_search_name', '', :size =>50 %>
     <%= f.hidden_field :id %>&nbsp;
     <%= f.submit I18n.t(@button) %>
     <span class="actions">  

@@ -11,8 +11,8 @@
     <%= f.text_field :visit_date, :size => 10, :value => Date.today.to_s %>
   </div>
   <div class="field">
-    <%= label :dish, :name, "Dish Name:" %>&nbsp;
-    <%= text_field :dish, :name, :size =>60 %>
+    <%= label_tag 'dish_search_label', "Dish Name:" %>&nbsp;
+    <%= text_field_tag 'dish_search_name', '', :size =>60 %>
     <%= hidden_field :dish, :id %>
   </div>
   <div class="actions">

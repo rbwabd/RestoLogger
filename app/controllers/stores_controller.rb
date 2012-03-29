@@ -76,7 +76,7 @@ class StoresController < ApplicationController
     @title = "stores.new_title"
     @button = "stores.search_button"
     @button2 = "stores.add_as_new_link"
-    new_name=params[:store][:name]
+    new_name=params[:store_search_name]
     @res=Store.store_search(new_name.gsub(' ','+'), @city.name.gsub(' ','+'), @state.name.gsub(' ','+'), @country.name.gsub(' ','+'))
     # 2do: need to test for when nothing is returned!!!
     # 2do: need to test @res for entries already in DB!!! (i.e. google id = same

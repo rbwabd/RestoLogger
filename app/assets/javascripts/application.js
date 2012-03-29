@@ -71,11 +71,11 @@ $(function() {
 
 // autocomplete used in search store and add dishes to visit
 $(function() {
-  $('#city_name').autocomplete({
+  $('#city_search_name').autocomplete({
     minLength: 3,
     source: '/autocomplete/cities',
     focus: function(event, ui) {
-      $('#city_name').val(ui.item.name);
+      $('#city_search_name').val(ui.item.name);
       return false;
     },
     select: function(event, ui) {
@@ -83,7 +83,7 @@ $(function() {
       return false;
     }
   });
-  $('#store_name').autocomplete({
+  $('#store_search_name').autocomplete({
     minLength: 3,
     source: function(request, response) {
       $.ajax({
@@ -99,7 +99,7 @@ $(function() {
       });
     },
     focus: function(event, ui) {
-      $('#store_name').val(ui.item.name);
+      $('#store_search_name').val(ui.item.name);
       return false;
     },
     select: function(event, ui) {
@@ -108,7 +108,7 @@ $(function() {
       return false;
     }
   });
-  $('#dish_name').autocomplete({
+  $('#dish_search_name').autocomplete({
     minLength: 3,
     source: function(request, response) {
       $.ajax({
@@ -125,8 +125,8 @@ $(function() {
     },
     select: function(event, ui) {
       $('#dish_id').val(ui.item.id);
-      $('#dish_name').val('');
-      $("#cart").load('/change_cart', { 'dish_id': ui.item.id, 'dish_name': ui.item.name } );
+      $('#dish_search_name').val('');
+      $("#cart").load('/change_cart', { 'dish_id': ui.item.id, 'dish_search_name': ui.item.name } );
       return false;
     }
   });
