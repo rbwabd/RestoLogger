@@ -64,4 +64,5 @@ end
 group :production do
   # gems specifically for Heroku go here
   # gem 'thin'
+  gem 'admin_data', '>= 1.1.16'
 end

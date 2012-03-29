@@ -53,7 +53,9 @@ module RestoLogger
 
     # Enable the asset pipeline
     config.assets.enabled = true
-
+    
+    # for https://github.com/bigbinary/admin_data
+    config.assets.precompile += ['admin_data.css', 'admin_data.js']
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
