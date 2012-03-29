@@ -1,7 +1,7 @@
 // Place your application-specific JavaScript functions and classes here
-//= require jquery
+// require jquery
 //= require jquery_ujs
-//= require jquery-ui
+// require jquery-ui
 // maybe the below work in production but they crash the interpreter under windows
 // require jquery.ui.sortable
 // require jquery.ui.autocomplete
