@@ -17,11 +17,11 @@
   <strong>Review:</strong> <%= @visit.review %>
   </br>
   <strong>Guest number:</strong> <%= @visit.guest_number %>
-  <% for dish_review in @visit.dish_reviews %>
+  <% @visit.dish_reviews.each do |dr| %>
     </br>
-    <strong>Dish Name: </strong> <%= dish_review.dish.name %>
+    <strong>Dish Name: </strong> <%= dr.dish.name %>&nbsp;<%= dr.quantity %>&times;
     </br>
-    <% for pic in dish_review.pictures %>
+    <% for pic in dr.pictures %>
       <%= image_tag pic.image_url(:thumb) if pic.image? %>
     <% end %>
   <% end %>

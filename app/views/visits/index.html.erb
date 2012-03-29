@@ -4,11 +4,27 @@
 
 <h1><%= I18n.t(@title) %></h1>
 <%= will_paginate %>
-<% for visit in @visits %>
-  <div class="visit">
-    <h1><%= link_to visit.id, visit %></h1>
-    Dishes: <%= visit.dish_reviews.size %>
-  </div>
-<% end %>
+  <table class="pretty">
+    <tr>
+      <th><%= sortable "Date" %></th>
+      <th><%= sortable "name" %></th>
+      <th><%= sortable "Spend" %></th>
+      <th><%= sortable "# Items" %></th>
+      <th><%= sortable "# Guests" %></th>
+      <th><%= sortable "Rating" %></th>
+      <th><%= sortable "Visits to Store" %></th>
+    </tr>
+    <% for visit in @visits %>
+      <tr>
+        <td><%= link_to visit.visit_date ? visit.visit_date.strftime("%B %e, %Y") : "No date set", visit %></td>
+        <td><%= link_to visit.store.name, visit.store %></td>
+        <td><%= number_to_currency(34) %></td>
+        <td><%= visit.dish_reviews.size %></td>
+        <td><%= visit.guest_number %></td>
+        <td><%= visit.overall_rating %></td>
+        <td><%= 1 %></td>
+      </tr>
+    <% end %>
+  </table>
 <%= will_paginate %>
-<p><%= link_to "Add a Visit", new_visit_path %></p>
+

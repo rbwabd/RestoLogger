@@ -40,7 +40,7 @@
   </div>  
   <% @visit.dish_reviews.each_with_index do |dr, i| %>
     </br>
-    <b>Dish Name: </b> <%= dr.dish.name %>
+    <b>Dish Name: </b> <%= dr.dish.name %>&nbsp;<%= dr.quantity %>&times;
     </br>
     <% dr.pictures.each do |pic| %>
       <% if pic.image? %>

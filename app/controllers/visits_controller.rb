@@ -2,9 +2,19 @@ class VisitsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :authorized_user, :only => :destroy
 
+  helper_method :sort_column, :sort_direction
+  
   def index
     @title = "visits.index_title"
-    @visits = @current_user.visits.paginate(:page => params[:page], :per_page => 10)
+    @visits = @current_user.visits.order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 10)
+    #  entry = Hash new
+    #  entry[:date] = visit.visit_date
+    #  entry[:store_name] = visit.store.name
+    #  entry[:guest_number] = visit.guest_number
+    #  entry[:dishes] = visit.dish_reviews.size
+    #  entry[:overall_rating] = 
+    # #date, store_name, #visits, people, nb dishes overall_rating, spending
+	
   end
   
   def show
@@ -132,5 +142,13 @@ class VisitsController < ApplicationController
     def authorized_user
       @visit = current_user.visits.find_by_id(params[:id])
       redirect_to root_path if @visit.nil?
+    end
+	
+    def sort_column
+      Visit.column_names.include?(params[:sort]) ? params[:sort] : "visit_date"
+    end
+    
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end
 end
