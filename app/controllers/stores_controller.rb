@@ -8,17 +8,14 @@ class StoresController < ApplicationController
   def index
     @title = "stores.index_title"
     @button = "stores.new_visit_button"
-    @button2 = "stores.new_dish_button"
-    @button3 = "stores.show_menu_button"
+    @button2 = "stores.show_menu_button"
     @stores = Store.all.paginate(:page => params[:page], :per_page => 10)
   end
   
   def show
     @title = "stores.show_title"
     @button = "stores.new_visit_button"
-    @button2 = "stores.new_dish_button"
-    @button3 = "stores.show_menu_button"
-    @button4 = "stores.edit_menu_button"
+    @button2 = "stores.show_menu_button"
     @store = Store.find(params[:id])
   end
 
@@ -88,6 +85,8 @@ class StoresController < ApplicationController
   
   def show_menu
     @title = "stores.show_menu_title"
+    @button = "stores.new_dish_button"
+    @button2 = "stores.edit_menu_button"
     @store=Store.find(params[:id])
     @dishes=@store.get_menu
   end

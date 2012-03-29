@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120329024546) do
+ActiveRecord::Schema.define(:version => 20120329110920) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20120329024546) do
     t.datetime "updated_at", :null => false
     t.integer  "quantity"
     t.integer  "perimated"
+    t.integer  "rank"
   end
 
   add_index "dish_reviews", ["dish_id", "user_id", "visit_id"], :name => "index_dish_reviews_on_dish_id_and_user_id_and_visit_id"
@@ -101,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20120329024546) do
     t.integer  "store_id"
     t.integer  "vote_count"
     t.integer  "perimated"
+    t.integer  "rank"
   end
 
   create_table "profile_pictures", :force => true do |t|

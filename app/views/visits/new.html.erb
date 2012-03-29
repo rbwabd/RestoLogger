@@ -16,7 +16,8 @@
     <%= hidden_field :dish, :id %>
   </div>
   <div class="actions">
-    <%= f.submit I18n.t(@button) %>
+    <%= f.submit I18n.t(@button) %> &nbsp;&nbsp;
+    <%= link_to_function "Back", "history.back()" %>
   </div>  
   <%= render 'menu_tabs', :f => f %>  
 <% end %>
