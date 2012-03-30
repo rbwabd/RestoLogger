@@ -75,6 +75,7 @@ header {
 }
 #logo h1 a {
 	color: #FFFFFF;
+  text-decoration: none;
 }
 
 /* Search Box*/
@@ -198,9 +199,11 @@ header {
 	border: none;
 	color: #000000;
   padding-left: 20px;
+  display: block;
 }
 #sidebar a:hover {
-	text-decoration: underline;
+	text-decoration: none;
+  background: #F3EBD9;
 }
 /* cart sidebar element */
 #cart-sidebar table th {
@@ -213,13 +216,29 @@ header {
   padding: 0px 0px 0px 15px;
   vertical-align: top;
 }
+#cart-sidebar h2 {
+  text-align: center;
+}
 #cart-sidebar h3 {
 	color: #000000;
   padding: 50px 0px 0px 15px;
   font-weight: bold;
   text-align: center;
 }
-a.link-button {
+.sb-hl{ /* to highlight selected sidebar element */
+  background-color: #F3EBD9;
+}
+.sb-hl a{
+  /*color: #EEEEEE !important;*/
+}
+.sidebar-button{ /* used in cart sidebar */
+  text-align: center;
+}
+#cart .sidebar-button a{
+  border: 1px solid black;
+  color: #0000FF !important; /* font color, doesn't work because of jquery-ui button override */
+}
+a.link-button { /* cart + / - item buttons */
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -414,18 +433,12 @@ table.listing {
    color: #000000 !important;
 }
 .smallbutton{ /* for jquery-ui submit buttons to manage size of button and font */
-   padding: 3px 8px 3px 8px !important;
+   padding: 2px 8px 2px 8px !important;
    font-size: 1em !important;
    color: #000000 !important;
 }
 .action{ /* for jquery-ui buttons to manage margin around buttons */
   margin: 10px 0px 10px 0px;
-}
-.sidebar-highlight{ /* to highlight selected sidebar element */
-  background-color: #726B63;
-}
-.sidebar-highlight a{
-  color: #eeeeee !important;
 }
 
 /* 2 process 
@@ -456,8 +469,6 @@ carrierwave railcast 235 defs
   text-align: center;
   color: #777;
 }
-
-
 
 .post {
 	overflow: hidden;

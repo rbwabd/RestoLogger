@@ -9,6 +9,8 @@
       </tr>          
       <%= render({ :partial => "cart_item", :collection => session[:cart].cart_items }) %>
     </table>
-    <h3><%= link_to "Empty cart", change_cart_path(:delall => "y"), :confirm => "Are you sure?", :remote => true %></h3>
+    <div class="sidebar-button action">
+      <%= link_to "Empty cart", change_cart_path(:delall => "y"), :confirm => "Are you sure?", :remote => true %>
+    </div>  
   <% end %>
 </div>

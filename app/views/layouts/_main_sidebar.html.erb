@@ -3,15 +3,15 @@
       <li>
         <% if user_signed_in? %>
           <ul>
-            <li class="sidebar-highlight"><%= link_to "My Visits", visits_path %></li>
-            <li><%= link_to "My Favourite Places", "#" %></li>
-            <li><%= link_to "My Favourite Dishes", "#" %></li>
-            <li><%= link_to "My Dish Reviews", "#" %></li>
-            <li><%= link_to "My Network", "#" %></li>
-            <li><%= link_to "My Statistics", "#" %></li>
+            <li class="<% if current_page?(visits_path) %>sb-hl<%end%>"><%= link_to "My Visits", visits_path %></li>
+            <li class="<% if false %>sb-hl<%end%>"><%= link_to "My Favourite Places", "#" %></li>
+            <li class="<% if false %>sb-hl<%end%>"><%= link_to "My Favourite Dishes", "#" %></li>
+            <li class="<% if false %>sb-hl<%end%>"><%= link_to "My Dish Reviews", "#" %></li>
+            <li class="<% if false %>sb-hl<%end%>"><%= link_to "My Network", "#" %></li>
+            <li class="<% if false %>sb-hl<%end%>"><%= link_to "My Statistics", "#" %></li>
             <br/>
-            <li><%= link_to "Find a Store", search_store_path %></li>
-            <li><%= link_to "List all Stores", stores_path %></li>
+            <li class="<% if current_page?(search_store_path) %>sb-hl<%end%>"><%= link_to "Find a Store", search_store_path %></li>
+            <li class="<% if current_page?(stores_path) %>sb-hl<%end%>"><%= link_to "List all Stores", stores_path %></li>
           </ul>
         <% end %>
       </li>

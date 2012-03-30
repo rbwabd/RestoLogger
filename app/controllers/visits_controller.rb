@@ -7,7 +7,6 @@ class VisitsController < ApplicationController
   require 'will_paginate/array'
 
   def index
-    @title = "visits.index_title"
     @visits = Array.new
     @current_user.visits.each do |v|
       entry = Hash.new

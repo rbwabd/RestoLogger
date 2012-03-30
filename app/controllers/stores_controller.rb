@@ -6,7 +6,6 @@ class StoresController < ApplicationController
   require 'will_paginate/array'
   
   def index
-    @title = "stores.index_title"
     @button = "stores.new_visit_button"
     @button2 = "stores.show_menu_button"
     @stores = Store.all.paginate(:page => params[:page], :per_page => 10)
@@ -56,7 +55,6 @@ class StoresController < ApplicationController
   end
   
   def search
-    @title = "stores.search_title"
     @button = "stores.search_button"
     @store  = Store.new
     @country = Country.find_by_name("United Kingdom")
