@@ -13,13 +13,6 @@
         <% end %>
         <%= @user.name %>
       </h1>
-      <%= render 'follow_form' if signed_in? %>
-      <% if @user.visits.any? %>
-        <table class="visits" summary="User visits">
-          <%= render @visits %>
-        </table>
-        <%= will_paginate @visits %>
-      <% end %>
     </td>
     <td class="round">
       <strong>Name</strong> <%= @user.name %><br />
