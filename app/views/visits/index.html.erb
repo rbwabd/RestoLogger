@@ -6,13 +6,13 @@
 <%= will_paginate %>
   <table class="pretty">
     <tr>
-      <th><%= "Date" %></th>
-      <th><%= "name" %></th>
-      <th><%= "Spend" %></th>
-      <th><%= "# Items" %></th>
-      <th><%= "# Guests" %></th>
-      <th><%= "Rating" %></th>
-      <th><%= "Visits to Store" %></th>
+      <th><%= sortable "date", "Date" %></th>
+      <th><%= sortable "store_name", "Name" %></th>
+      <th><%= sortable "", "Spend" %></th>
+      <th><%= sortable "dish_nb", "# Items" %></th>
+      <th><%= sortable "guest_number", "# Guests" %></th>
+      <th><%= sortable "overall_rating", "Rating" %></th>
+      <th><%= sortable "", "Visits to Store" %></th>
     </tr>
     <% for visit in @visits %>
       <tr>
