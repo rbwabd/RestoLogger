@@ -2,7 +2,7 @@ class StoresController < ApplicationController
   before_filter :authenticate_user!
   #before_filter :authorized_user, :only => :destroy
   
-  # 2do: this is needed due to Store.all.paginate call (static array - can remove after i take that code out)
+  # 2do: this is needed due to Store.all.paginate call that is on an array as opposed to active record call somehow
   require 'will_paginate/array'
   
   def index

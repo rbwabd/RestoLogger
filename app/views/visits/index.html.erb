@@ -6,22 +6,22 @@
 <%= will_paginate %>
   <table class="pretty">
     <tr>
-      <th><%= sortable "Date" %></th>
-      <th><%= sortable "name" %></th>
-      <th><%= sortable "Spend" %></th>
-      <th><%= sortable "# Items" %></th>
-      <th><%= sortable "# Guests" %></th>
-      <th><%= sortable "Rating" %></th>
-      <th><%= sortable "Visits to Store" %></th>
+      <th><%= "Date" %></th>
+      <th><%= "name" %></th>
+      <th><%= "Spend" %></th>
+      <th><%= "# Items" %></th>
+      <th><%= "# Guests" %></th>
+      <th><%= "Rating" %></th>
+      <th><%= "Visits to Store" %></th>
     </tr>
     <% for visit in @visits %>
       <tr>
-        <td><%= link_to visit.visit_date ? visit.visit_date.strftime("%B %e, %Y") : "No date set", visit %></td>
-        <td><%= link_to visit.store.name, visit.store %></td>
-        <td><%= number_to_currency(34) %></td>
-        <td><%= visit.dish_reviews.size %></td>
-        <td><%= visit.guest_number %></td>
-        <td><%= visit.overall_rating %></td>
+        <td><%= link_to visit["date"]!=Date.new(3000,1,1) ? visit["date"].strftime("%B %e, %Y") : "No date set", visit %></td>
+        <td><%= link_to visit["store_name"], visit_path(visit["store_id"]) %></td>
+        <td><%= number_to_currency(0) %></td>
+        <td><%= visit["dish_nb"] %></td>
+        <td><%= visit["guest_number"] %></td>
+        <td><%= visit["overall_rating"] %></td>
         <td><%= 1 %></td>
       </tr>
     <% end %>

@@ -8,7 +8,6 @@ class Visit < ActiveRecord::Base
   has_many :dish_reviews
   has_many :pictures
 
-  
   #validates :content, :presence => true, :length => { :maximum => 140 }
   #validates :user_id, :presence => true
   

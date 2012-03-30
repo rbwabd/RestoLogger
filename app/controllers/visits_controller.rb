@@ -3,28 +3,27 @@ class VisitsController < ApplicationController
   before_filter :authorized_user, :only => :destroy
 
   helper_method :sort_column, :sort_direction
-  
+
+  require 'will_paginate/array'
+
   def index
     @title = "visits.index_title"
-    @visits = @current_user.visits.order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 10)
-    #  entry = Hash new
-    #  entry[:date] = visit.visit_date
-    #  entry[:store_name] = visit.store.name
-    #  entry[:guest_number] = visit.guest_number
-    #  entry[:dishes] = visit.dish_reviews.size
-    #  entry[:overall_rating] = 
-    # #date, store_name, #visits, people, nb dishes overall_rating, spending
-	  p "hello"
-	  p "hello"
-	  p "hello"
-	  p "hello"
-	  p "hello"
-	  p "hello"
-	  p "hello"
-    
-    p params[:sort]
-    p sort_column
-    p sort_direction
+    @visits = Array.new
+    @current_user.visits.each do |v|
+      entry = Hash.new
+      entry["date"] = v.visit_date ? v.visit_date : Date.new(3000,1,1) 
+      entry["store_name"] = v.store.name
+      entry["store_id"] = v.store.id
+      entry["guest_number"] = v.guest_number
+      entry["dish_nb"] = v.dish_reviews.size
+      entry["overall_rating"] = v.overall_rating
+      @visits << entry
+    end
+    @visits = @visits.sort_by{ |a| a[ params[:sort] ? params[:sort] : "date" ] }
+    if params[:direction].nil? || params[:direction] == "desc"
+      @visits.reverse!
+    end
+    @visits = @visits.paginate(:page => params[:page], :per_page => 10)
   end
   
   def show
