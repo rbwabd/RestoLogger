@@ -14,10 +14,6 @@ class Visit < ActiveRecord::Base
   default_scope :order => 'visits.created_at DESC'
   
   scope :from_users_followed_by, lambda { |user| followed_by(user) }
-
-  def initialize
-
-  end
   
   def pictures?
     return pictures

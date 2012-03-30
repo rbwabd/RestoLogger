@@ -3,16 +3,26 @@ Design by Free CSS Templates
 http://www.freecsstemplates.org
 Released for free under a Creative Commons Attribution 2.5 License
 */
+/* 
+layout is
+body
+  container
+    header
+    page
+      sidebar
+      content
+    footer
+*/
+
 body {
 	margin: 0;  /* external margin around body (edge of screen) */
-	padding: 0; /* unclear whether does anything useful */
+	padding: 0; 
 	background: #EEEBDA;  /* background color */
 	/* sets default fonts throughout document */
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   color: #000000;
 }
-
 /* header texts */
 h1, h2, h3 {
 	margin: 0;
@@ -21,15 +31,6 @@ h1, h2, h3 {
 	font-family: 'Arvo', serif;
 	color: #056303;
 }
-h1 {	font-size: 2em; }
-h2 {	font-size: 2.8em; }
-h3 {	font-size: 1.6em; }
-
-/* paragraph, unordered list, ordered list */
-p, ul, ol {
-	line-height: 240%;
-}
-
 /* links */
 a {
 	text-decoration: none; /* removes underline */
@@ -153,13 +154,6 @@ header {
   overflow: hidden; /* part of trick to allow equal height columns (together with neg margin-bottom and larget padding bottom see sidebar) */
 }
 
-/* Content */
-#content {
-	margin-left: 300px;
-	padding: 15px 0px 0px 30px; /* can define a bit of gap between header menu and page */
-  max-width: 1000px;
-}
-
 /* Sidebar */
 #sidebar {
 	width: 317px;
@@ -209,6 +203,27 @@ header {
 	text-decoration: underline;
 }
 
+/* Content */
+#content {
+	margin-left: 300px;
+	padding: 15px 0px 10px 30px; /* can define a bit of gap between header menu and page */
+  max-width: 1000px;
+}
+#content ul {
+	list-style: none;
+}
+#content h1, h2, h3 {
+  padding: 0px 0px 15px 15px; /*top right bottom left */
+}
+#content div div ul li { /* specific styling for jquery-ui tabbed list elements */
+  margin: 0 5px 5px 5px; 
+  padding: 5px; 
+  font-size: 1.2em;
+}
+#content .field {  /* add padding for all entry fields */
+  padding-bottom: 10px; 
+}  
+
 /* Footer */
 #footer {
 	width: 100%;
@@ -235,26 +250,21 @@ header {
 	color: #949085;
 }
 
-
-
 /* rails tutorial defs */
 .round {
   -moz-border-radius:    10px;
   -webkit-border-radius: 10px;
   border-radius:         10px;
 }
-
 .field_with_errors {
   margin-top: 10px;
   padding: 2px;
   background-color: red;
   display: table;
 }
-
 .field_with_errors label {
   color: #fff;
 }
-
 #error_explanation {
   width: 400px;
   border: 2px solid red;
@@ -263,7 +273,6 @@ header {
   margin-bottom: 20px;
   background-color: #f0f0f0;
 }
-
 #error_explanation h2 {
   text-align: left;
   font-weight: bold;
@@ -273,50 +282,16 @@ header {
   background-color: #c00;
   color: #fff;
 }
-
 #error_explanation p {
   color: #333;
   margin-bottom: 0;
   padding: 5px;
 }
-
 #error_explanation ul li {
   font-size: 12px;
   list-style: square;
 }
 
-.visitreview {
-  margin-top: 1em;
-  height: 180px;
-  #width: 300px;
-  #display: block;
-  #font-size: 85%;
-  #color: #666;
-} 
-
-.visitreview label{
-  vertical-align: top;
-}
-
-div.user_info img {
-  padding-right: 0.1em;
-}
-
-div.user_info a {
-  text-decoration: none;
-}
-
-div.user_info span.user_name {
-  position: absolute;
-}
-
-div.user_info span.visits {
-  font-size: 80%;
-}
-
-div.field, div.actions {
-  margin-bottom: 10px;
-}
 /* omniauth railcast defs*/
 .authentications {
   margin-bottom: 30px;
@@ -371,82 +346,62 @@ div.field, div.actions {
   margin-bottom: 10px;
 }
 
-/* from railcast 240 for store list */
-
-table.pretty {
+/* from railcast 240 for store list table */
+table.listing {
   border-collapse: collapse;
 }
-
-.pretty td, .pretty th {
+.listing td, .listing th {
   padding: 4px 10px;
 
 }
-
-.pretty .price {
+.listing .price {
   text-align: right;
 }
-
-.pretty th .current {
+.listing th .current {
   padding-right: 12px;
   background-repeat: no-repeat;
   background-position: right center;
 }
-
-.pretty th .asc {
+.listing th .asc {
   background-image: url('images/up_arrow.gif');
 }
-
-.pretty th .desc {
+.listing th .desc {
   background-image: url('images/down_arrow.gif');
 }
 
-/* Arby defs */
-.vertical_align {
+/* my own definitions */
+.vertical_align { /* used to align the user profile pic logos in middle vs. the text */
   vertical-align: middle;
   margin-bottom: 5px;
 }
-
-/* for jquery-ui buttons placed next to anchors (did not align vertically properly) */
-.buttonvalign { 
+.buttonvalign { /* for jquery-ui buttons placed next to anchors (did not align vertically properly) */
   vertical-align: top;
 }
-
-/* for jquery-ui link buttons to manage size of button and font */
-.ui-button .ui-button-text{
+.ui-button .ui-button-text{ /* for jquery-ui link buttons to manage size of button and font */
    padding: 2px 8px 2px 8px !important;
    font-size: 0.9em !important;
    color: #000000 !important;
 }
-
-/* for jquery-ui submit buttons to manage size of button and font */
-.smallbutton{
+.smallbutton{ /* for jquery-ui submit buttons to manage size of button and font */
    padding: 3px 8px 3px 8px !important;
    font-size: 1em !important;
    color: #000000 !important;
 }
-
-/* for jquery-ui buttons to manage margin around buttons */
-.action{
+.action{ /* for jquery-ui buttons to manage margin around buttons */
   margin: 10px 0px 10px 0px;
 }
-
-.hell{
+.sidebar-highlight{ /* to highlight selected sidebar element */
   background-color: #726B63;
-  color: #ff0000 !important;
+}
+.sidebar-highlight a{
+  color: #eeeeee !important;
 }
 
-#cart{
+#cart{ /* for the order cart element 2do: integrate into sidebar classes*/
 	float: left;
 	width: 288px;
 	margin: 0px;
 	color: #726B63;
-}
-
-/* 2do: for tabbed list sortable menu somehow can't get this to work so using hardcoded class in the html file*/
-.sortable_menu_entry {
-  margin: 0 5px 5px 5px; 
-  padding: 5px; 
-  font-size: 1.2em;
 }
 
 /* 2 process 

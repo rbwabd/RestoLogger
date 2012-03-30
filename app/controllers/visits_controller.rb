@@ -36,8 +36,8 @@ class VisitsController < ApplicationController
 
   def new
     @title = "visits.new_title"
-    @button = "visits.new_button"
-    @visit  = Visit.new
+    @button = "visits.edit_button"
+    @visit = Visit.new
     @store = Store.find(params[:id])
     @dishes = @store.get_menu
     # if a session cart already existed for same store we keep it otherwise put in new one

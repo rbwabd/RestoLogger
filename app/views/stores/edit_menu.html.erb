@@ -4,11 +4,6 @@
 
 <h1><%= I18n.t(@title) %><%= link_to @store.name, store_path(:id => @store.id)%></h1><br>
 
-<!-- 2do: hack because I can't get css class to work -->
-<style>
-  <% @dishes.keys.each_with_index do |k, c| %>#sortable<%=c%> li <%= if c < @dishes.keys.size-1 then "," end%> <% end %>{ margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em;}
-</style>
-
 <%= form_for(@store, :url => update_menu_path) do |f| %>
   <div class="action">
     <%= f.submit I18n.t(@button) %>

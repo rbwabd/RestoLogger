@@ -3,7 +3,7 @@
       <li>
         <% if user_signed_in? %>
           <ul>
-            <li class="hell"><%= link_to "My Visits", visits_path %></li>
+            <li class="sidebar-highlight"><%= link_to "My Visits", visits_path %></li>
             <li><%= link_to "My Favourite Places", "#" %></li>
             <li><%= link_to "My Favourite Dishes", "#" %></li>
             <li><%= link_to "My Dish Reviews", "#" %></li>
@@ -21,9 +21,9 @@
             Messages
           </h2>
           <ul>
-            <li>Albert started following you</li>
-            <li>Frank posted a great review</li>
-            <li>John edited information you posted</li>
+            <li><a href="#">Albert started following you</a></li>
+            <li><a href="#">Frank posted a great review</a></li>
+            <li><a href="#">John edited information you posted</a></li>
           </ul>
         <% end %>
       </li>
