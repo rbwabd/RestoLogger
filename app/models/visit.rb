@@ -16,8 +16,7 @@ class Visit < ActiveRecord::Base
   scope :from_users_followed_by, lambda { |user| followed_by(user) }
 
   def initialize
-    guest_number = 1
-    visit_date = Date.today
+
   end
   
   def pictures?

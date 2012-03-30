@@ -11,15 +11,16 @@ class VisitsController < ApplicationController
     @visits = Array.new
     @current_user.visits.each do |v|
       entry = Hash.new
-      entry["date"] = v.visit_date ? v.visit_date : Date.new(3000,1,1) 
+      entry["date"] = v.visit_date.to_s ? v.visit_date : Date.new(3000,1,1) #hack to allow sort
+      entry[:visit_id] = v.id
       entry["store_name"] = v.store.name
-      entry["store_id"] = v.store.id
-      entry["guest_number"] = v.guest_number
+      entry[:store_id] = v.store.id
+      entry["guest_number"] = v.guest_number.to_s  #to_s is to avoid sort issues with nil
       entry["dish_nb"] = v.dish_reviews.size
-      entry["overall_rating"] = v.overall_rating
+      entry["overall_rating"] = v.overall_rating.to_s
       @visits << entry
     end
-    @visits = @visits.sort_by{ |a| a[ params[:sort] ? params[:sort] : "date" ] }
+    @visits = @visits.sort_by{ |a| a[ params[:sort] ? params[:sort].to_s : "date".to_s ] }
     if params[:direction].nil? || params[:direction] == "desc"
       @visits.reverse!
     end

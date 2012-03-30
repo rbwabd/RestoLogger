@@ -16,8 +16,8 @@
     </tr>
     <% for visit in @visits %>
       <tr>
-        <td><%= link_to visit["date"]!=Date.new(3000,1,1) ? visit["date"].strftime("%B %e, %Y") : "No date set", visit %></td>
-        <td><%= link_to visit["store_name"], visit_path(visit["store_id"]) %></td>
+        <td><%= link_to visit["date"]!=Date.new(3000,1,1) ? visit["date"].strftime("%B %e, %Y") : "No date set", visit_path(visit[:visit_id]) %></td>
+        <td><%= link_to visit["store_name"], store_path(visit[:store_id]) %></td>
         <td><%= number_to_currency(0) %></td>
         <td><%= visit["dish_nb"] %></td>
         <td><%= visit["guest_number"] %></td>
