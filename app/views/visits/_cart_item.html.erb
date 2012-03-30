@@ -1,8 +1,10 @@
 <tr>
   <td><%= cart_item.name %></td>
   <td>
-    <b><%= link_to '-', change_cart_path(:dish_name => cart_item.name, :del => "y"), :remote => true %></b>
-    &nbsp;<%= cart_item.quantity %>&nbsp;
-    <b><%= link_to '+', change_cart_path(:dish_id => cart_item.dish_id, :dish_name => cart_item.name), :remote => true %></b>
+    <%= link_to '-', change_cart_path(:dish_name => cart_item.name, :del => "y"), :remote => true, :class => "link-button round-small" %>
+    <% if cart_item.quantity < 10 %>&nbsp;<% end %>
+    <%= cart_item.quantity %>
+    &nbsp;
+    <%= link_to '+', change_cart_path(:dish_id => cart_item.dish_id, :dish_name => cart_item.name), :remote => true, :class => "link-button round-small" %>
   </td>
 </tr>

@@ -11,7 +11,7 @@ class VisitsController < ApplicationController
     @visits = Array.new
     @current_user.visits.each do |v|
       entry = Hash.new
-      entry["date"] = v.visit_date.to_s ? v.visit_date : Date.new(3000,1,1) #hack to allow sort
+      entry["date"] = v.visit_date ? v.visit_date : Date.new(3000,1,1) #hack to allow sort
       entry[:visit_id] = v.id
       entry["store_name"] = v.store.name
       entry[:store_id] = v.store.id
