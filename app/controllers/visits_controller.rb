@@ -96,7 +96,7 @@ class VisitsController < ApplicationController
     visit.overall_rating = params[:visit][:overall_rating]
     visit.service_rating = params[:visit][:service_rating]
     visit.speed_rating = params[:visit][:speed_rating]
-    visit.mood_rating = params[:visit][:modd_rating]
+    visit.mood_rating = params[:visit][:mood_rating]
     visit.tagline = params[:visit][:tagline]
     visit.review = params[:visit][:review]
     visit.guest_number = params[:visit][:guest_number]

@@ -576,9 +576,9 @@ table.listing {
 a:active{
   outline: none;
 }		
-
-
-
+#visit-ratings tr td{
+  padding: 0px 15px 0px 15px;
+}
 /* 2 process 
 
 carrierwave railcast 235 defs
