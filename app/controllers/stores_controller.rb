@@ -15,23 +15,23 @@ class StoresController < ApplicationController
     @title = "stores.show_title"
     @button = "stores.new_visit_button"
     @button2 = "stores.show_menu_button"
-    @store = Store.find(params[:id])
+    @store = Store.find_by_zid(params[:id])
   end
 
   def new
     @title = "stores.new_title"
     @button = "stores.new_button"
-    @store  = Store.new( {:name => params[:name], :address => params[:address]})
-    @country=Country.find(params[:param][:country][:id])
-    @state=State.find(params[:param][:state][:id])
-    @city=City.find(params[:param][:city][:id])
+    @store = Store.new( {:name => params[:name], :address => params[:address]})
+    @country = Country.find(params[:param][:country][:id])
+    @state = State.find(params[:param][:state][:id])
+    @city = City.find(params[:param][:city][:id])
   end
 
   def create
     @store = Store.new
-    @store.city_id=params[:city][:id]
-    @store.name=params[:store][:name]
-    @store.address=params[:store][:address]
+    @store.city_id = params[:city][:id]
+    @store.name = params[:store][:name]
+    @store.address = params[:store][:address]
     if !params[:store_type]["Category1"].empty? then
       @store.store_type_relationships.build({:store_type_id =>params[:store_type]["Category1"]})
     end  
@@ -47,9 +47,9 @@ class StoresController < ApplicationController
       @title = "stores.new_title"
       @button = "stores.new_button"
       @store  = Store.new( {:name => params[:store][:name], :address => params[:store][:address]})
-      @country=Country.find(params[:country][:id])
-      @state=State.find(params[:state][:id])
-      @city=City.find(params[:city][:id])
+      @country = Country.find(params[:country][:id])
+      @state = State.find(params[:state][:id])
+      @city = City.find(params[:city][:id])
       render 'new'
     end
   end
@@ -60,45 +60,45 @@ class StoresController < ApplicationController
     @country = Country.find_by_name("United Kingdom")
     @state = State.find_by_name("London")
     @city = City.find_city("London", "London", "United Kingdom").first
-    @res=Array.new
+    @res = Array.new
   end
   
   def search_results
-    #if params[:commit]==I18n.t("stores.search_button") then
-    @country=Country.find(params[:country][:id])
-    @state=State.find(params[:state][:id])
-    @city=City.find(params[:city][:id])
     @title = "stores.new_title"
     @button = "stores.search_button"
     @button2 = "stores.add_as_new_link"
-    new_name=params[:store_search_name]
-    @res=Store.store_search(new_name.gsub(' ','+'), @city.name.gsub(' ','+'), @state.name.gsub(' ','+'), @country.name.gsub(' ','+'))
+    #if params[:commit]==I18n.t("stores.search_button") then
+    @country = Country.find(params[:country][:id])
+    @state = State.find(params[:state][:id])
+    @city = City.find(params[:city][:id])
+    new_name = params[:store_search_name]
+    @res = Store.store_search(new_name.gsub(' ','+'), @city.name.gsub(' ','+'), @state.name.gsub(' ','+'), @country.name.gsub(' ','+'))
     # 2do: need to test for when nothing is returned!!!
     # 2do: need to test @res for entries already in DB!!! (i.e. google id = same
     
     @store  = Store.new(:name => new_name)
     render 'search'
-    #http://stackoverflow.com/questions/4766383/rails-3-link-to-to-call-partial-using-jquery-ajax
   end
   
   def show_menu
     @title = "stores.show_menu_title"
     @button = "stores.new_dish_button"
     @button2 = "stores.edit_menu_button"
-    @store=Store.find(params[:id])
-    @dishes=@store.get_menu
+    @store = Store.find_by_zid(params[:id])
+    @dishes = @store.get_menu
   end
 
   def edit_menu
     @title = "stores.edit_menu_title"
     @button = "stores.save_button"
-    @store=Store.find(params[:id])
-    @dishes=@store.get_menu
+    @store = Store.find_by_zid(params[:id])
+    @dishes = @store.get_menu
+    session[:store_id] = params[:id]
   end
 
   def update_menu
-    @store=Store.find(params[:storeid])
-    store_dishes=@store.dishes
+    @store = Store.find_by_zid(session[:store_id])
+    store_dishes = @store.dishes
     store_dishes.each { |dish|
       if params["taborder_"+dish.dish_type.id.to_s] != ""
         dish.dish_type.rank=params["taborder_"+dish.dish_type.id.to_s]
@@ -109,7 +109,7 @@ class StoresController < ApplicationController
         dish.save
       end
     }
-    redirect_to show_menu_path(:id => @store.id)
+    redirect_to show_menu_path(:id => @store.zid)
   end
 
   def destroy

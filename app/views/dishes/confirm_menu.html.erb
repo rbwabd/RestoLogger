@@ -32,7 +32,6 @@
       <% count += 1 %>
     <% end %>
   </table>
-  <%= hidden_field_tag 'storeid', @storeid %>
   <%= hidden_field_tag 'count', @entries.size %>
   <div class="action">
     <%= f.submit I18n.t(@button) %>

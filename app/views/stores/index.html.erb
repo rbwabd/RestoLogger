@@ -5,7 +5,7 @@
 <%= will_paginate %>
 <% for store in @stores %>
   <div class="store">
-    <strong>Name:</strong> <%= link_to store.name, store_path(store)%>
+    <strong>Name:</strong> <%= link_to store.name, store_path(store.zid)%>
     </br>
     <strong>City:</strong> <%= store.city.name %>
     </br>
@@ -17,8 +17,8 @@
       <% end %>
     </div>
     <div class="action">
-      <%= link_to I18n.t(@button), new_visit_path(:id => store.id)%>
-      <%= link_to I18n.t(@button2), show_menu_path(:id => store.id)%>
+      <%= link_to I18n.t(@button), new_visit_path(:id => store.zid)%>
+      <%= link_to I18n.t(@button2), show_menu_path(:id => store.zid)%>
     </div>    
   </div>
 <% end %>

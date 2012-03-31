@@ -5,7 +5,7 @@
     <%= image_tag(user.profilepicurl, :size => "35x35", :alt => "", :class => "round vertical_align")%> 
   <% end %>
   
-  <%= link_to user.name, user %>
+  <%= link_to user.name, user_path(user.zid) %>
   <% if current_user.admin? %>
   
   <%= link_to "delete", user, :method => :delete, :confirm => "You sure?",

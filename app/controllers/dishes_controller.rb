@@ -10,14 +10,15 @@ class DishesController < ApplicationController
   def show
     @title = "dishes.show_title"
     @button = "dishes.new_visit_button"
-    @dish = Dish.find(params[:id])
+    @dish = Dish.find_by_zid(params[:id])
   end
 
   def add_menu
     @title = "dishes.add_menu_title"
     @button = "dishes.add_menu_button"
     @dish = Dish.new
-    @store = Store.find(params[:id])
+    @store = Store.find_by_zid(params[:id])
+    session[:store_id] = params[:id]
     ectmp = DishType.find_all_by_store_id(@store.id)
     arraytmp = Array.new
     ectmp.each {|x| arraytmp << x.name}
@@ -28,7 +29,6 @@ class DishesController < ApplicationController
     @title = "dishes.confirm_menu_title"
     @button = "dishes.confirm_menu_button"
     @dish  = Dish.new
-    @storeid = params[:storeid]
     entries_text = params[:entries]
     category = I18n.t('dishes.default_category')
     @entries = Array.new
@@ -95,13 +95,13 @@ class DishesController < ApplicationController
   end
   
   def save_menu
-    store = Store.find(params[:storeid])
+    store = Store.find_by_zid(session[:store_id])
     tmphash = Hash.new
     
     # 2do: need to check for cases where entry already exists, using name.downcase to compare downcase
     #validates_uniqueness_of :name, :case_sensitive => false
     #Please note that by default the setting is :case_sensitive => false, so you don't even need to write this option if you haven't changed other ways.
-
+ 
     for count in 0..params[:count].to_i-1
       category = params["category"+count.to_s]
       name = params["name"+count.to_s]
@@ -144,7 +144,7 @@ class DishesController < ApplicationController
         }          
       end
     }
-    redirect_to show_menu_path({ :id => store.id }), :flash => { :success => (count+1).to_s+" New Dishes Saved" }
+    redirect_to show_menu_path({ :id => store.zid }), :flash => { :success => (count ? count+1 : 0).to_s+" New Dishes Saved" }
   end
   
   def destroy

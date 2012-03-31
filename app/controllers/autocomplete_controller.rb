@@ -6,7 +6,7 @@ class AutocompleteController < ApplicationController
       #CREATE INDEX id_lower_content ON mytable(lower(column_name))
       cities = City.where("name ILIKE ?", like)
     else
-      #cities = City.all
+      # 2do: cities = City.all
     end
     list = cities.map {|c| Hash[ id: c.id, label: c.name, name: c.name]}
     render json: list
@@ -18,9 +18,9 @@ class AutocompleteController < ApplicationController
       like= "%".concat(params[:term].concat("%"))
       stores = Store.where("name ILIKE ? and city_id = ?", like, params[:city_id])
     else
-      #stores = Store.all
+      # 2do: stores = Store.all
     end
-    list = stores.map {|s| Hash[ id: s.id, label: s.name, name: s.name]}
+    list = stores.map {|s| Hash[ id: s.zid, label: s.name, name: s.name]}
     render json: list
   end
 
@@ -29,9 +29,9 @@ class AutocompleteController < ApplicationController
       like= "%".concat(params[:term].concat("%"))
       dishes = Dish.where("name ILIKE ? and store_id = ?", like, session[:store_id])
     else
-      #stores = Store.all
+      # 2do: stores = Store.all
     end
-    list = dishes.map {|d| Hash[ id: d.id, label: d.name, name: d.name]}
+    list = dishes.map {|d| Hash[ id: d.zid, label: d.name, name: d.name]}
     render json: list
   end
 end

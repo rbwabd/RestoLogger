@@ -18,7 +18,7 @@
         </tr>
         <% for dish in @dishes[k] %>
           <tr>
-            <td style="vertical-align:top"><b><%= link_to 'Add', change_cart_path(:dish_id => dish.id, :dish_name => dish.name), :remote => true %></b> </td>
+            <td style="vertical-align:top"><b><%= link_to 'Add', change_cart_path(:dish_id => dish.zid, :dish_name => dish.name), :remote => true %></b> </td>
             <td style="vertical-align:top"><%= link_to dish.name, dish_path(dish)%>&nbsp;<%= dish.option_description %></td>
             <td style="vertical-align:top; text-align:right"><%= dish.price_comment %>&nbsp;<%= dish.price %></td>
             <td style="vertical-align:top"><%= dish.description %></td>

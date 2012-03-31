@@ -16,7 +16,7 @@
     </td>
     <td class="round">
       <strong>Name</strong> <%= @user.name %><br />
-      <strong>URL</strong>  <%= link_to user_path(@user), @user %><br />
+      <strong>URL</strong>  <%= link_to user_path(@user.zid), @user.zid %><br />
       <strong>Visits</strong> <%= @user.visits.count %>
       <%= render 'shared/stats' %>
     </td>

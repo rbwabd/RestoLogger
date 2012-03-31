@@ -11,9 +11,9 @@ class VisitsController < ApplicationController
     @current_user.visits.each do |v|
       entry = Hash.new
       entry["date"] = v.visit_date ? v.visit_date : Date.new(3000,1,1) #hack to allow sort
-      entry[:visit_id] = v.id
+      entry[:visit_id] = v.zid
       entry["store_name"] = v.store.name
-      entry[:store_id] = v.store.id
+      entry[:store_id] = v.store.zid
       entry["guest_number"] = v.guest_number.to_s  #to_s is to avoid sort issues with nil
       entry["dish_nb"] = v.dish_reviews.size
       entry["overall_rating"] = v.overall_rating.to_s
@@ -28,7 +28,7 @@ class VisitsController < ApplicationController
   
   def show
     @title = "visits.show_title"
-    @visit = Visit.find(params[:id])
+    @visit = Visit.find_by_zid(params[:id])
     @store = Store.find(@visit.store_id)
     @city = City.find(@visit.city_id)
   end
@@ -37,7 +37,7 @@ class VisitsController < ApplicationController
     @title = "visits.new_title"
     @button = "visits.new_button"
     @visit = Visit.new
-    @store = Store.find(params[:id])
+    @store = Store.find_by_zid(params[:id])
     @dishes = @store.get_menu
     # if a session cart already existed for same store we keep it otherwise put in new one
     if !(session[:store_id] and session[:store_id].to_i==@store.id and session[:cart])
@@ -47,7 +47,7 @@ class VisitsController < ApplicationController
   end
   
   def create
-    store = Store.find(session[:store_id])
+    store = Store.find_by_zid(session[:store_id])
     visit = Visit.new
     visit.user_id = current_user.id
     visit.store_id = store.id
@@ -58,14 +58,14 @@ class VisitsController < ApplicationController
     need_confirmation = false
     
     for ci in session[:cart].cart_items
-      if ci.dish_id < 0
+      if ci.dish_id == -1
         need_confirmation = true
         # dish not already in DB
         # 2do: populate an array to be displayed to user for confirmation
       else      
         dreview = DishReview.new
         dreview.user_id = current_user.id
-        dreview.dish_id = ci.dish_id
+        dreview.dish_id = Dish.find_by_zid(ci.dish_id).id
         dreview.quantity = ci.quantity
         visit.dish_reviews << dreview
       end
@@ -76,7 +76,7 @@ class VisitsController < ApplicationController
     else  
       if visit.save
         session[:cart] = nil
-        redirect_to edit_visit_path(visit), :flash => { :success => "Visit created!" }
+        redirect_to edit_visit_path(visit.zid), :flash => { :success => "Visit created!" }
       else
         #2do: error messages
       end
@@ -86,12 +86,12 @@ class VisitsController < ApplicationController
   def edit
     @title = "visits.edit_title"
     @button = "visits.edit_button"
-    @visit  = Visit.find(params[:id])
+    @visit  = Visit.find_by_zid(params[:id])
     @store = @visit.store
   end
 
   def update
-    visit  = Visit.find(params[:id])
+    visit  = Visit.find_by_zid(params[:id])
     
     visit.user_id = current_user.id
     visit.overall_rating = params[:visit][:overall_rating]
@@ -140,11 +140,11 @@ class VisitsController < ApplicationController
     elsif params[:del]
       session[:cart].remove_dish(params[:dish_name])
     else
-      if !dish=Dish.find(params[:dish_id]) and params[:dish_name] and params[:dish_name].size > 0 
+      if !dish=Dish.find_by_zid(params[:dish_id]) and params[:dish_name] and params[:dish_name].size > 0 
         #new dish, to be added to DB
         session[:cart].add_dish(params[:dish_name], 0, -1)
       else
-        session[:cart].add_dish(dish.name, dish.price, dish.id)
+        session[:cart].add_dish(dish.name, dish.price, dish.zid)
       end
     end
     respond_to do |format|
@@ -161,7 +161,7 @@ class VisitsController < ApplicationController
   
   private
     def authorized_user
-      @visit = current_user.visits.find_by_id(params[:id])
+      @visit = current_user.visits.find_by_zid(params[:id])
       redirect_to root_path if @visit.nil?
     end
 	

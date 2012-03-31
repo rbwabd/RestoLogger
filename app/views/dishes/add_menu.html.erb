@@ -2,7 +2,7 @@
   <%= render 'layouts/main_sidebar' %>
 <% end %>
 
-<h1><%= I18n.t(@title) %><%= link_to @store.name, store_path(:id => @store.id)%></h1><br>
+<h1><%= I18n.t(@title) %><%= link_to @store.name, store_path(:id => @store.zid)%></h1><br>
 
 <%= form_for(@dish, :url => submit_menu_path) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
@@ -10,7 +10,6 @@
     <%= label_tag "Dish Entries:" %><br>
     <%= text_area_tag "entries", @existing_categories, :size => "120x20" %>
   </div>
-  <%= hidden_field_tag 'storeid', @store.id %>
   <div class="action">
     <%= f.submit I18n.t(@button), :class => "smallbutton" %>
   </div>

@@ -7,8 +7,8 @@ class SessionsController < Devise::SessionsController
 		authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])#.tap do |a|
     #  a.update_attributes(:token => omniauth["credentials"]["token"]) if a
     #end
+    
 		if authentication && authentication.user.present?
-
 			session[:user_id] = authentication.user.id 
       check_updated_profilepic(authentication.user, omniauth)
 			flash[:notice] = "Signed in successfully."
