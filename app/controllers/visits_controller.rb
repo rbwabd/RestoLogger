@@ -91,8 +91,7 @@ class VisitsController < ApplicationController
   end
 
   def update
-    visit  = Visit.find_by_zid(params[:id])
-    
+    visit = Visit.find(params[:id])
     visit.user_id = current_user.id
     visit.overall_rating = params[:visit][:overall_rating]
     visit.service_rating = params[:visit][:service_rating]
@@ -127,7 +126,7 @@ class VisitsController < ApplicationController
     end
 	     
     if visit.save
-      redirect_to visit_path(visit), :flash => { :success => "Visit updated!" }
+      redirect_to visit_path(visit.zid), :flash => { :success => "Visit updated!" }
     else
       @feed_items = []
       render 'pages/home'

@@ -7,6 +7,7 @@
 // require jquery.ui.autocomplete
 // require jquery.ui.tabs
 // require jquery.ui.datepicker
+//= require jquery-star-rating
 //= require_tree .
 
 var $ = jQuery.noConflict();
