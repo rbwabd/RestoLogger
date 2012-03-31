@@ -6,15 +6,17 @@
 
 <%= form_for @visit, :html => {:multipart => true} do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
-  <div class="field">
-    <%= f.label :visit_date, "Visit Date:" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <%= f.text_field :visit_date, :size => 10, :value => Date.today.to_s %>
-  </div>
-  <div class="field">
-    <%= label_tag 'dish_search_label', "Dish Name:" %>&nbsp;
-    <%= text_field_tag 'dish_search_name', '', :size =>60 %>
-    <%= hidden_field :dish, :id %>
-  </div>
+  <table>
+    <tr class="padded-row">
+      <td> <%= f.label :visit_date, "Visit Date" %> </td>
+      <td> <%= f.text_field :visit_date, :size => 10, :value => Date.today.to_s %> </td>
+    </tr>
+    <tr class="padded-row">
+      <td> <%= label_tag 'dish_search_label', "Dish Name" %> </td>
+      <td> <%= text_field_tag 'dish_search_name', '', :size =>60 %>
+           <%= hidden_field :dish, :id %> </td>
+    </tr>
+  </table>
   <div class="action">
     <%= f.submit I18n.t(@button)%> 
     <%= link_to_function "Back", "history.back()"%>

@@ -35,7 +35,7 @@ class VisitsController < ApplicationController
 
   def new
     @title = "visits.new_title"
-    @button = "visits.edit_button"
+    @button = "visits.new_button"
     @visit = Visit.new
     @store = Store.find(params[:id])
     @dishes = @store.get_menu

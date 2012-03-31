@@ -1,7 +1,7 @@
 <% content_for :sidebar do %>
   <%= render 'layouts/main_sidebar' %>
 <% end %>
-
+<p>
 <%= will_paginate %>
   <table class="listing">
     <tr>
@@ -15,13 +15,13 @@
     </tr>
     <% for visit in @visits %>
       <tr>
-        <td><%= link_to visit["date"]!=Date.new(3000,1,1) ? visit["date"].strftime("%B %e, %Y") : "No date set", visit_path(visit[:visit_id]) %></td>
-        <td><%= link_to visit["store_name"], store_path(visit[:store_id]) %></td>
-        <td><%= number_to_currency(0) %></td>
-        <td><%= visit["dish_nb"] %></td>
-        <td><%= visit["guest_number"] %></td>
-        <td><%= visit["overall_rating"] %></td>
-        <td><%= 1 %></td>
+        <td class="ca"><%= link_to visit["date"]!=Date.new(3000,1,1) ? visit["date"].strftime("%B %e, %Y") : "No date set", visit_path(visit[:visit_id]) %></td>
+        <td class="la"><%= link_to visit["store_name"], store_path(visit[:store_id]) %></td>
+        <td class="ra"><%= number_to_currency(0) %></td>
+        <td class="ca"><%= visit["dish_nb"] %></td>
+        <td class="ca"><%= visit["guest_number"] %></td>
+        <td class="ca"><%= visit["overall_rating"] %></td>
+        <td class="ca"><%= 1 %></td>
       </tr>
     <% end %>
   </table>
