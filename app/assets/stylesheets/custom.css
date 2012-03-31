@@ -24,7 +24,6 @@ body {
   font-size: 14px;
   color: #000000;
 }
-/* header texts */
 h1, h2, h3 {
 	margin: 0;
 	padding: 0;
@@ -32,7 +31,11 @@ h1, h2, h3 {
 	font-family: 'Arvo', serif;
 	color: #056303;
 }
-/* links */
+
+textarea, input{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+}
 a {
 	text-decoration: none; /* removes underline */
 	color: #856323;
@@ -163,7 +166,7 @@ header {
 #menu li {
 	float: left;
 }
-.extravertpadding {
+#menu .extravertpadding {
   padding: 10px 15px 0px 15px; /* padding on the header menu links */
 }
 #menu a {
@@ -365,7 +368,6 @@ header {
 /* error handling */
 .flash {
 }
-
 /* from blueprint css package */
 .error, .notice, .success {padding:.8em;margin-bottom:1em;border:2px solid #ddd;}
 .error {background:#FBE3E4;color:#8a1f11;border-color:#FBC2C4;}
@@ -472,7 +474,6 @@ table.listing {
 }
 .listing td, .listing th {
   padding: 4px 10px;
-
 }
 .listing .price {
   text-align: right;
@@ -491,6 +492,7 @@ table.listing {
 .listing .la{  text-align: left;}
 .listing .ra{  text-align: right;}
 .listing .ca{  text-align: center;}
+
 /* my own definitions */
 .vertical_align { /* used to align the user profile pic logos in middle vs. the text */
   vertical-align: middle;

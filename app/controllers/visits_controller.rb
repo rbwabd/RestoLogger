@@ -104,11 +104,23 @@ class VisitsController < ApplicationController
     #2do: need to check again that date not in future or too far past (do it in model.rb)
     visit.visit_date = params[:visit][:visit_date]
 
+    p params
     visit.dish_reviews.each_with_index do | dr, i |
       if params['dr'+i.to_s]
         params['dr'+i.to_s].each do | pic |
-          tmppic=Picture.new
-          tmppic.image=pic
+          tmppic = Picture.new
+          # hackish way of setting the filename to a new random string - note it can't be done in image_uploader as the random routine gets called for each version of picture which breaks things
+          # there is still a chance in a gazillion of a filename collision with another file not yet saved (either in this order or by another user) but worth the shot... worst is that one of the saves fails which is not catastrophic
+          begin
+            zid = rand(36**12).to_s(36)
+          end while Picture.find_by_zid(zid) 
+          pic.original_filename = "#{zid}#{File.extname(pic.original_filename)}" 
+          tmppic.image = pic
+          tmppic.zid = zid
+          tmppic.genre = ""
+          tmppic.user_id = current_user.id
+          tmppic.vote_count = 0
+          tmppic.rank = 0
           dr.pictures << tmppic    
         end
       end

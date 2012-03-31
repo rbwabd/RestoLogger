@@ -2,6 +2,10 @@ class Store < ActiveRecord::Base
   belongs_to :city
   attr_accessible :name, :address
   
+  validates_presence_of :zid
+  validates_uniqueness_of :zid
+  before_validation(:on => :create) { set_zid }
+  
   has_many :store_type_relationships
   has_many :dishes
   
@@ -77,7 +81,14 @@ class Store < ActiveRecord::Base
     }
     return dish_hash
   end
-  
+
+  protected
+    def set_zid
+      begin
+        self.zid = rand(36**12).to_s(36)
+      end while self.class.find_by_zid(zid) 
+    end   
+    
   private
     def self.find_str(line, offset, sstr1, sstr2)
       idx1=line.index(sstr1, offset)

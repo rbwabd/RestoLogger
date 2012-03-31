@@ -1,7 +1,11 @@
 class Visit < ActiveRecord::Base
   attr_accessor :city_name, :store_name
   attr_accessible :city_name, :store_name
-    
+  
+  validates_presence_of :zid
+  validates_uniqueness_of :zid
+  before_validation(:on => :create) { set_zid }
+  
   belongs_to :user
   belongs_to :store
   belongs_to :city
@@ -19,6 +23,13 @@ class Visit < ActiveRecord::Base
     return pictures
   end
 
+  protected
+    def set_zid
+      begin
+        self.zid = rand(36**12).to_s(36)
+      end while self.class.find_by_zid(zid) 
+    end 
+    
   private 
     def self.followed_by(user)
       following_ids = %(SELECT followed_id FROM relationships

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120329110920) do
+ActiveRecord::Schema.define(:version => 20120331152323) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -56,9 +56,11 @@ ActiveRecord::Schema.define(:version => 20120329110920) do
     t.integer  "quantity"
     t.integer  "perimated"
     t.integer  "rank"
+    t.string   "zid"
   end
 
   add_index "dish_reviews", ["dish_id", "user_id", "visit_id"], :name => "index_dish_reviews_on_dish_id_and_user_id_and_visit_id"
+  add_index "dish_reviews", ["zid"], :name => "index_dish_reviews_on_zid", :unique => true
 
   create_table "dish_types", :force => true do |t|
     t.string   "name"
@@ -85,9 +87,11 @@ ActiveRecord::Schema.define(:version => 20120329110920) do
     t.string   "pic_url"
     t.string   "description"
     t.string   "code"
+    t.string   "zid"
   end
 
   add_index "dishes", ["dish_type_id"], :name => "index_dishes_on_dish_type_id"
+  add_index "dishes", ["zid"], :name => "index_dishes_on_zid", :unique => true
 
   create_table "pictures", :force => true do |t|
     t.string   "genre"
@@ -105,7 +109,10 @@ ActiveRecord::Schema.define(:version => 20120329110920) do
     t.integer  "vote_count"
     t.integer  "perimated"
     t.integer  "rank"
+    t.string   "zid"
   end
+
+  add_index "pictures", ["zid"], :name => "index_pictures_on_zid", :unique => true
 
   create_table "profile_pictures", :force => true do |t|
     t.string   "filename"
@@ -166,7 +173,10 @@ ActiveRecord::Schema.define(:version => 20120329110920) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "fxcode"
+    t.string   "zid"
   end
+
+  add_index "stores", ["zid"], :name => "index_stores_on_zid", :unique => true
 
   create_table "user_settings", :force => true do |t|
     t.string   "locale"
@@ -203,10 +213,12 @@ ActiveRecord::Schema.define(:version => 20120329110920) do
     t.string   "phone2"
     t.string   "address"
     t.integer  "gender"
+    t.string   "zid"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["zid"], :name => "index_users_on_zid", :unique => true
 
   create_table "visits", :force => true do |t|
     t.string   "content"
@@ -225,9 +237,11 @@ ActiveRecord::Schema.define(:version => 20120329110920) do
     t.date     "visit_date"
     t.float    "spend"
     t.integer  "perimated"
+    t.string   "zid"
   end
 
   add_index "visits", ["city_id", "store_id"], :name => "index_visits_on_city_id_and_store_id"
   add_index "visits", ["user_id", "created_at"], :name => "index_visits_on_user_id_and_created_at"
+  add_index "visits", ["zid"], :name => "index_visits_on_zid", :unique => true
 
 end

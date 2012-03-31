@@ -19,4 +19,4 @@ doc/
 *~
 .project
 .DS_Store
-public/uploads/
+/public/uploads/

@@ -2,9 +2,11 @@ class User < ActiveRecord::Base
   attr_accessor   :password
   attr_accessible :name, :email, :locale, :profilepicurl, :remote_profilepicurl#, :password, :password_confirmation, :remember_me
   
-  validates :name,  :presence => true,
-                    :length   => { :maximum => 50 }
-
+  validates :name,  :presence => true, :length   => { :maximum => 50 }
+  validates_presence_of :zid
+  validates_uniqueness_of :zid
+  before_validation(:on => :create) { set_zid }
+  
 	has_many :authentications
   has_many :visits,    :dependent => :destroy
   has_many :pictures,   :dependent => :destroy
@@ -71,7 +73,13 @@ class User < ActiveRecord::Base
   end
 	
 	protected
-		def apply_facebook(omniauth)
+    def set_zid
+      begin
+        self.zid = rand(36**12).to_s(36)
+      end while self.class.find_by_zid(zid) 
+    end  
+    
+    def apply_facebook(omniauth)
 			self.email = omniauth["info"]["email"] if email.blank?
 		  self.name = omniauth["info"]["name"] if name.blank?
 		end	
