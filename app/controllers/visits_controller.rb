@@ -91,7 +91,7 @@ class VisitsController < ApplicationController
   end
 
   def update
-    visit = Visit.find(params[:id])
+    visit = Visit.find_by_zid(params[:id])
     visit.user_id = current_user.id
     visit.overall_rating = params[:visit][:overall_rating]
     visit.service_rating = params[:visit][:service_rating]
