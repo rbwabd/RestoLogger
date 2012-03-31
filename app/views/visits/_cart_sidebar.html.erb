@@ -1,6 +1,15 @@
   <div id="cart-sidebar">
     <ul>
       <li>
+        <h3>
+          <% if current_user.profilepicurl.nil? %>
+            <%= gravatar_image_tag(current_user.email, :gravatar => { :size => 35 }, :alt => "", :class => "round vertical_align")%>
+          <% else %>
+            <%= image_tag(current_user.profilepicurl, :size => "60x60", :alt => "", :class => "round vertical_align")%>
+          <% end %>
+          &nbsp;<%= current_user.name %>
+        </h3>
+        <p>
         <h2>Your Order</h2>
         <%= render "cart" %>
     </ul>

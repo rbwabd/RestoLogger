@@ -16,8 +16,8 @@
     <%= hidden_field :dish, :id %>
   </div>
   <div class="action">
-    <%= f.submit I18n.t(@button), :class => "buttonvalign smallbutton" %> 
-    <%= link_to_function content_tag(:span, "Back"), "history.back()" %>
+    <%= f.submit I18n.t(@button)%> 
+    <%= link_to_function "Back", "history.back()"%>
   </div>
   <%= render 'menu_tabs', :f => f %>  
 <% end %>

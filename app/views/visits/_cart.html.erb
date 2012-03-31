@@ -1,6 +1,6 @@
 <div id="cart">
   <% if session[:cart].cart_items.size == 0 then  %>
-    <h3>No dishes in Order</h3>
+    <div class="cart-message">No dishes in Order</div>
   <% else %>
     <table>
       <tr>
@@ -9,7 +9,7 @@
       </tr>          
       <%= render({ :partial => "cart_item", :collection => session[:cart].cart_items }) %>
     </table>
-    <div class="sidebar-button action">
+    <div class="action">
       <%= link_to "Empty cart", change_cart_path(:delall => "y"), :confirm => "Are you sure?", :remote => true %>
     </div>  
   <% end %>

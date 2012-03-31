@@ -11,10 +11,6 @@
 
 var $ = jQuery.noConflict();
 
-$(function() {
-  $( "input:submit, a, button", ".action" ).button();
-});
-
 //function to prevent submission of form on enter
 $(function() {
   $("input").not( $(":button") ).keypress(function (evt) {
