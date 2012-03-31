@@ -27,7 +27,8 @@ class AutocompleteController < ApplicationController
   def dishes
     if params[:term]
       like= "%".concat(params[:term].concat("%"))
-      dishes = Dish.where("name ILIKE ? and store_id = ?", like, session[:store_id])
+      store=Store.find_by_zid(session[:store_id])
+      dishes = Dish.where("name ILIKE ? and store_id = ?", like, store.id)
     else
       # 2do: stores = Store.all
     end
