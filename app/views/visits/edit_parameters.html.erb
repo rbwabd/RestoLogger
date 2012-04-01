@@ -4,7 +4,7 @@
 
 <h1><%= I18n.t(@title) %><%= link_to @store.name, store_path(:id => @store.zid)%></h1><br>
 
-<%= form_for(@visit, :url => visit_path(@visit.zid), :html => {:multipart => true}) do |f| %>
+<%= form_for(@visit, :url => update_visit_parameters_path(:id => @visit.zid), :html => {:multipart => true}) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <table>
     <tr class="padded-row">
@@ -59,7 +59,7 @@
   <% end %>
   <div class="action">
     <%= f.submit I18n.t(@button) %>
-    <%= link_to I18n.t(@button2), edit_visit_path(:id => @visit.zid) %>
+    <%= f.submit I18n.t(@button2), :name => "change_dish[]" %>
     <%= link_to I18n.t(@button3), visit_path(:id => @visit.zid), :confirm => I18n.t('visits.delete_warning'), :method => :delete %>
   </div>   
 <% end %>

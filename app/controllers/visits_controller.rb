@@ -41,7 +41,7 @@ class VisitsController < ApplicationController
     @store = Store.find_by_zid(params[:id])
     @dishes = @store.get_menu
     # if a session cart already existed for same store we keep it otherwise put in new one
-    if !(session[:store_id] and session[:store_id].to_i==@store.zid.to_i and session[:cart])
+    if !(session[:store_id] and session[:store_id]==@store.zid and session[:cart])
       session[:store_id] = params[:id]
       session[:cart] = Cart.new
     end
@@ -113,15 +113,6 @@ class VisitsController < ApplicationController
   end
   
   def update_dish_reviews_from_cart
-    p "Test Output-------------"
-    p "Test Output-------------"
-    p "Test Output-------------"
-    p "Test Output-------------"
-    p params
-    p "Test Output-------------"
-    p "Test Output-------------"
-    p "Test Output-------------"
-    p "Test Output-------------"
     for ci in session[:cart].cart_items
       if ci.dish_id == -1
         if params[:confirmed]
@@ -218,7 +209,13 @@ class VisitsController < ApplicationController
     end
     
     if @visit.save
-      redirect_to visit_path(@visit.zid), :flash => { :success => "Visit updated!" }
+      # we also call this method with an alternative submit that requests (after the changes are saved) to redirect to the change dishes page
+      # this is done so we don't lose any changes the user may have already made to the page
+      if params[:change_dish]
+        redirect_to edit_visit_path(:id => @visit.zid), :flash => { :success => "Visit updated!" }
+      else      
+        redirect_to visit_path(@visit.zid), :flash => { :success => "Visit updated!" }
+      end  
     else
       #2do:
     end    
