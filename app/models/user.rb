@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
   before_validation(:on => :create) { set_zid }
   
 	has_many :authentications
-  has_many :visits,    :dependent => :destroy
-  has_many :pictures,   :dependent => :destroy
+  has_one :user_setting
+
   has_many :relationships, :dependent => :destroy,
                            :foreign_key => "follower_id"
   has_many :reverse_relationships, :dependent => :destroy,
@@ -19,8 +19,11 @@ class User < ActiveRecord::Base
 											 :source => :followed
   has_many :followers, :through => :reverse_relationships, 
 											 :source  => :follower
-  has_one :user_setting
   
+  has_many :visits,       :dependent => :destroy
+  has_many :pictures,     :dependent => :destroy
+  has_many :dish_reviews, :dependent => :destroy
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable

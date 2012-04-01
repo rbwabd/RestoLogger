@@ -48,7 +48,8 @@
   </table>
   <% @visit.dish_reviews.each_with_index do |dr, i| %>
     </br>
-    <b>Dish Name: </b> <%= dr.dish.name %>&nbsp;<%= dr.quantity %>&times;
+    <b>Dish Name: </b> <%= dr.dish.name %>&nbsp;<%= dr.quantity %>&times;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="action"> <%= link_to I18n.t(@button3), dish_review_path(:id => dr.zid), :confirm => I18n.t('dish_reviews.delete_warning'), :method => :delete %></span>
     </br>
     <% dr.pictures.each do |pic| %>
       <% if pic.image? %>
@@ -59,6 +60,7 @@
   <% end %>
   <div class="action">
     <%= f.submit I18n.t(@button) %>
+    <%= link_to I18n.t(@button2), visit_path(:id => @visit.zid), :confirm => I18n.t('visits.delete_warning'), :method => :delete %>
   </div>   
 <% end %>
 

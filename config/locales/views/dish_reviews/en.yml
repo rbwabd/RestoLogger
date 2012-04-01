@@ -1,0 +1,8 @@
+en:
+  dish_reviews:
+    delete_button: "Delete this Dish"
+    delete_warning: |
+      Are you sure you want to delete this dish? 
+      This action cannot be reversed!
+    destroy_success: "Dish deleted"   
+  

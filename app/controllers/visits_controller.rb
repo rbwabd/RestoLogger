@@ -28,7 +28,7 @@ class VisitsController < ApplicationController
   
   def show
     @title = "visits.show_title"
-    @button = "visits.delete_button"
+    @button = "visits.to_edit_button"
     @visit = Visit.find_by_zid(params[:id])
     @store = Store.find(@visit.store_id)
     @city = City.find(@visit.city_id)
@@ -87,7 +87,9 @@ class VisitsController < ApplicationController
   def edit
     @title = "visits.edit_title"
     @button = "visits.edit_button"
-    @visit  = Visit.find_by_zid(params[:id])
+    @button2 = "visits.delete_button"
+    @button3 = "dish_reviews.delete_button"
+    @visit = Visit.find_by_zid(params[:id])
     @store = @visit.store
   end
 
@@ -154,6 +156,7 @@ class VisitsController < ApplicationController
   end
 
   def destroy
+    #@visit initialized in authorized_user routine
     @visit.destroy
     redirect_to root_path, :flash => { :success => "Visit deleted!" }
   end
