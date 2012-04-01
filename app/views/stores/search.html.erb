@@ -2,7 +2,7 @@
   <%= render 'layouts/main_sidebar' %>
 <% end %>
 
-<%= form_for(@store, :url => search_store_results_path) do |f| %>
+<%= form_for(@store, :url => search_results_stores_path) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <span>
     <%= label :city, :name, "City:" %>&nbsp;

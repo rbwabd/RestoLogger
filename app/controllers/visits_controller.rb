@@ -68,7 +68,7 @@ class VisitsController < ApplicationController
     else  
       if @visit.save
         session[:cart] = nil
-        redirect_to edit_visit_parameters_path(:id => @visit.zid), :flash => { :success => "Visit created!" }
+        redirect_to edit_parameters_visit_path(@visit.zid), :flash => { :success => "Visit created!" }
       else
         #2do: error messages
       end
@@ -106,7 +106,7 @@ class VisitsController < ApplicationController
     else  
       if @visit.save
         session[:cart] = nil
-        redirect_to edit_visit_parameters_path(:id => @visit.zid), :flash => { :success => "Visit updated!" }
+        redirect_to edit_parameters_visit_path(@visit.zid), :flash => { :success => "Visit updated!" }
       else
         #2do:
       end    

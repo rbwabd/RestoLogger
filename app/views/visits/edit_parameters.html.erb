@@ -4,7 +4,7 @@
 
 <h1><%= I18n.t(@title) %><%= link_to @store.name, store_path(:id => @store.zid)%></h1><br>
 
-<%= form_for(@visit, :url => update_visit_parameters_path(:id => @visit.zid), :html => {:multipart => true}) do |f| %>
+<%= form_for(@visit, :url => update_parameters_visit_path(@visit.zid), :html => {:multipart => true}) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <table>
     <tr class="padded-row">

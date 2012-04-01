@@ -34,6 +34,6 @@
   <% end %>
 </div>
 <div class="action">
-  <%= link_to I18n.t(@button), add_menu_path(:id => @store.zid)%>
-  <%= link_to I18n.t(@button2), edit_menu_order_path(:id => @store.zid)%>
+  <%= link_to I18n.t(@button), add_menu_store_path(@store.zid)%>
+  <%= link_to I18n.t(@button2), edit_menu_order_store_path(@store.zid)%>
 </div>

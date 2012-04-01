@@ -93,7 +93,6 @@ class StoresController < ApplicationController
     @button = "dishes.add_menu_button"
     @dish = Dish.new
     @store = Store.find_by_zid(params[:id])
-    session[:store_id] = params[:id]
     ectmp = DishType.find_all_by_store_id(@store.id)
     arraytmp = Array.new
     ectmp.each {|x| arraytmp << x.name}
@@ -103,7 +102,8 @@ class StoresController < ApplicationController
   def submit_menu
     @title = "dishes.confirm_menu_title"
     @button = "dishes.confirm_menu_button"
-    @dish  = Dish.new
+    @dish = Dish.new
+    @store = Store.find_by_zid(params[:id])
     entries_text = params[:entries]
     category = I18n.t('dishes.default_category')
     @entries = Array.new
@@ -170,7 +170,7 @@ class StoresController < ApplicationController
   end
   
   def save_menu
-    store = Store.find_by_zid(session[:store_id])
+    store = Store.find_by_zid(params[:id])
     tmphash = Hash.new
     
     # 2do: need to check for cases where entry already exists, using name.downcase to compare downcase
@@ -219,7 +219,7 @@ class StoresController < ApplicationController
         end
       end
     end
-    redirect_to show_menu_path({ :id => store.zid }), :flash => { :success => (count ? count+1 : 0).to_s+" New Dishes Saved" }
+    redirect_to show_menu_store_path(store.zid), :flash => { :success => (count ? count+1 : 0).to_s+" New Dishes Saved" }
   end
 
   def edit_menu_order
@@ -227,11 +227,10 @@ class StoresController < ApplicationController
     @button = "stores.save_button"
     @store = Store.find_by_zid(params[:id])
     @dishes = @store.get_menu
-    session[:store_id] = params[:id]
   end
 
   def update_menu_order
-    @store = Store.find_by_zid(session[:store_id])
+    @store = Store.find_by_zid(params[:id])
     store_dishes = @store.dishes
     store_dishes.each do |dish|
       if params["taborder_"+dish.dish_type.id.to_s] != ""
@@ -243,7 +242,7 @@ class StoresController < ApplicationController
         dish.save
       end
     end
-    redirect_to show_menu_path(:id => @store.zid)
+    redirect_to show_menu_store_path(@store.zid)
   end
 
   def destroy

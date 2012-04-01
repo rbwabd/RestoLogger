@@ -105,7 +105,7 @@ $(function() {
     },
     select: function(event, ui) {
       $('#store_id').val(ui.item.id);
-      $("#display").load('stores/'+$('#store_id').val()+" #store");
+      $("#display").load(''+$('#store_id').val()+" #store");
       return false;
     }
   });
