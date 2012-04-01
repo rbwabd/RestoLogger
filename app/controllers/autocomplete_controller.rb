@@ -1,33 +1,33 @@
 class AutocompleteController < ApplicationController
   def cities
     if params[:term]
-      like= "%".concat(params[:term].concat("%"))
+      like = "%".concat(params[:term].concat("%"))
       #2do: ILIKE is slower than LIKE, so convert using a _lower_ index fieled
       #CREATE INDEX id_lower_content ON mytable(lower(column_name))
       cities = City.where("name ILIKE ?", like)
     else
       # 2do: cities = City.all
     end
-    list = cities.map {|c| Hash[ id: c.id, label: c.name, name: c.name]}
+    list = cities.map{|c| Hash[ id: c.id, label: c.name, name: c.name]}
     render json: list
   end
 
   def stores
     #p params.to_s
     if params[:term]
-      like= "%".concat(params[:term].concat("%"))
+      like = "%".concat(params[:term].concat("%"))
       stores = Store.where("name ILIKE ? and city_id = ?", like, params[:city_id])
     else
       # 2do: stores = Store.all
     end
-    list = stores.map {|s| Hash[ id: s.zid, label: s.name, name: s.name]}
+    list = stores.map{|s| Hash[ id: s.zid, label: s.name, name: s.name]}
     render json: list
   end
 
   def dishes
     if params[:term]
-      like= "%".concat(params[:term].concat("%"))
-      store=Store.find_by_zid(session[:store_id])
+      like = "%".concat(params[:term].concat("%"))
+      store = Store.find_by_zid(session[:store_id])
       dishes = Dish.where("name ILIKE ? and store_id = ?", like, store.id)
     else
       # 2do: stores = Store.all

@@ -1,5 +1,5 @@
 class DishesController < ApplicationController
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
   #before_filter :authorized_user, :only => :destroy
   
   def index
@@ -22,7 +22,7 @@ class DishesController < ApplicationController
     ectmp = DishType.find_all_by_store_id(@store.id)
     arraytmp = Array.new
     ectmp.each {|x| arraytmp << x.name}
-    @existing_categories=arraytmp.join("\r\n\r\n")
+    @existing_categories = arraytmp.join("\r\n\r\n")
   end
 
   def submit_menu
@@ -32,7 +32,7 @@ class DishesController < ApplicationController
     entries_text = params[:entries]
     category = I18n.t('dishes.default_category')
     @entries = Array.new
-    entries_text.each_line {|s| 
+    entries_text.each_line do |s| 
       # remove newline
       l = s.gsub(/(\r)?\n/, '')
       start = 0
@@ -59,38 +59,38 @@ class DishesController < ApplicationController
         end
         
         #the name and price could include [] signs, between which are some optional comments
-        tmpentry=entry[1]
-        start=tmpentry.index('[')
-        finish=tmpentry.index(']')
+        tmpentry = entry[1]
+        start = tmpentry.index('[')
+        finish = tmpentry.index(']')
         if start and finish
-          item= tmpentry[start+1..finish-1]
-          entry[1]=tmpentry.gsub(/\[.*\]/,'')
+          item = tmpentry[start+1..finish-1]
+          entry[1] = tmpentry.gsub(/\[.*\]/,'')
           entry << item
         else
           entry << ""
         end
 
-        tmpentry=entry[2]
-        start=tmpentry.index('[')
-        finish=tmpentry.index(']')
+        tmpentry = entry[2]
+        start = tmpentry.index('[')
+        finish = tmpentry.index(']')
         if start and finish
-          item= tmpentry[start+1..finish-1]
-          entry[2]=tmpentry.gsub(/\[.*\]/,'')
+          item = tmpentry[start+1..finish-1]
+          entry[2] = tmpentry.gsub(/\[.*\]/,'')
           entry << item
         else
           entry << ""
         end
         #put price at 0 if empty
-        if entry[2].nil? or entry[2].size==0
+        if entry[2].nil? or entry[2].size == 0
           entry[2] = '0' 
         end          
         #only add entries with a name
-        if !(entry[1].nil? or entry[1].size==0)
+        if !(entry[1].nil? or entry[1].size == 0)
           # 2do: need to add error message if name empty
           @entries << entry
         end  
       end      
-    }
+    end
     render 'confirm_menu'
   end
   
@@ -120,7 +120,7 @@ class DishesController < ApplicationController
       
     typeCnt = DishType.count( :conditions => ["store_id = ?", store.id])
 
-    tmphash.each { |cat, dish_array|
+    tmphash.each do |cat, dish_array|
       if !dt=DishType.find_by_name_and_store_id(cat, store.id) 
         dt=DishType.new({ :name => cat, :store_id => store.id, :rank => typeCnt })
         if dt.save
@@ -132,7 +132,7 @@ class DishesController < ApplicationController
 
       if !dt.id.nil?
         dishCnt = Dish.count( :conditions => ["dish_type_id = ?", dt.id])
-        dish_array.each { |dish|
+        dish_array.each do |dish|
           # need to check dish doesn't already exist. check across categories as users may put in wrong category
           if !Dish.where(:name => dish.name, :store_id => store.id).exists?
             dish.dish_type_id = dt.id
@@ -141,9 +141,9 @@ class DishesController < ApplicationController
             dish.save
             dishCnt+=1
           end
-        }          
+        end
       end
-    }
+    end
     redirect_to show_menu_path({ :id => store.zid }), :flash => { :success => (count ? count+1 : 0).to_s+" New Dishes Saved" }
   end
   

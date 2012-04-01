@@ -1,5 +1,5 @@
 class StoresController < ApplicationController
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
   #before_filter :authorized_user, :only => :destroy
   
   # 2do: this is needed due to Store.all.paginate call that is on an array as opposed to active record call somehow
@@ -99,7 +99,7 @@ class StoresController < ApplicationController
   def update_menu
     @store = Store.find_by_zid(session[:store_id])
     store_dishes = @store.dishes
-    store_dishes.each { |dish|
+    store_dishes.each do |dish|
       if params["taborder_"+dish.dish_type.id.to_s] != ""
         dish.dish_type.rank=params["taborder_"+dish.dish_type.id.to_s]
         dish.dish_type.save
@@ -108,7 +108,7 @@ class StoresController < ApplicationController
         dish.rank=params["dd_"+dish.id.to_s]
         dish.save
       end
-    }
+    end
     redirect_to show_menu_path(:id => @store.zid)
   end
 

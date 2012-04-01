@@ -28,6 +28,7 @@ class VisitsController < ApplicationController
   
   def show
     @title = "visits.show_title"
+    @button = "visits.delete_button"
     @visit = Visit.find_by_zid(params[:id])
     @store = Store.find(@visit.store_id)
     @city = City.find(@visit.city_id)
@@ -103,7 +104,6 @@ class VisitsController < ApplicationController
     #2do: need to check again that date not in future or too far past (do it in model.rb)
     visit.visit_date = params[:visit][:visit_date]
 
-    p params
     visit.dish_reviews.each_with_index do | dr, i |
       if params['dr'+i.to_s]
         params['dr'+i.to_s].each do | pic |

@@ -33,7 +33,7 @@ class Cart
   
   private 
     def find_by_name(name)
-      a=@cart_items.index{|x|x.name == name}
+      a = @cart_items.index{|x|x.name == name}
       a.nil? ?   nil : @cart_items[a]
     end
 end

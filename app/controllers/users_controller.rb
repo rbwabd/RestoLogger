@@ -13,7 +13,8 @@ class UsersController < ApplicationController
     @title = @user.name #2do: fix that can just show in view
     @user = User.find_by_zid(params[:id])
   end
-
+=begin
+  #think this code is directly from the tutorial book and doens't work here...
   def following
     @title = "users.following"
     @user = User.find_by_zid(params[:id])
@@ -27,8 +28,8 @@ class UsersController < ApplicationController
     @users = @user.followers.paginate(:page => params[:page])
     render 'show_follow'
   end
-=begin
-  #think this code is directly from the tutorial book and doens't work here...
+
+  
   def new
     @title = "users.new_title"
     @button = "users.new_button"

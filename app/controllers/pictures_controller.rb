@@ -1,4 +1,5 @@
 class PicturesController < ApplicationController
+=begin
   def destroy
     @picture = Picture.find(params[:id])
     #AWS::S3::S3Object.find(@picture.filename, @@BUCKET).delete
@@ -6,4 +7,5 @@ class PicturesController < ApplicationController
     flash[:notice] = "Successfully destroyed picture."
     redirect_to root_path
   end
+=end  
 end

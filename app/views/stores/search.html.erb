@@ -7,7 +7,7 @@
   <span>
     <%= label :city, :name, "City:" %>&nbsp;
     <%= text_field_tag 'city_search_name', @city.name %>
-    <%= hidden_field 'city', 'id' %>
+    <%= hidden_field :city, :id %>
   </span>  
   <span>
     <%= label :state, :name, "State:" %>&nbsp;

@@ -9,7 +9,7 @@ class DishReview < ActiveRecord::Base
   belongs_to :visit
   belongs_to :dish
   
-  has_many :pictures
+  has_many :pictures, :dependent => :destroy
     
   protected
     def set_zid

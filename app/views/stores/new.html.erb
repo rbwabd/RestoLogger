@@ -8,8 +8,8 @@
   <%= render 'shared/error_messages', :object => f.object %>
   <span>
     <%= label :city, :name, "City:" %>&nbsp;
-    <%= text_field 'city', 'name' %>
-    <%= hidden_field 'city', 'id' %>
+    <%= text_field :city, :name %>
+    <%= hidden_field :city, :id %>
   </span>  
   <span>
     <%= label :state, :name, "State:" %>&nbsp;
@@ -23,11 +23,11 @@
   <br/>
   <div class="field">
     <%= f.label :name, "Restaurant Name:" %>&nbsp;
-    <%= f.text_field :name, :size =>50 %>
+    <%= f.text_field :name, :size => 50 %>
   </div>
   <div class="field">
     <%= f.label :address, "Address:" %>&nbsp;
-    <%= f.text_field :address, :size =>100 %>
+    <%= f.text_field :address, :size => 100 %>
   </div>
   <div class="field">
     <%= label :store_type, :name, "Category 1:" %>&nbsp;

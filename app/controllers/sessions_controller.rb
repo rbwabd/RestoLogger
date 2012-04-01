@@ -44,7 +44,7 @@ class SessionsController < Devise::SessionsController
   
   def destroy
     sign_out
-    I18n.locale="en"
+    I18n.locale = "en"
     flash[:notice] = "Sign out successful."
     redirect_to root_path
   end
@@ -53,7 +53,7 @@ class SessionsController < Devise::SessionsController
     #check whether profile pic url for user exists, if not update through omniauth
     def check_updated_profilepic(user, omniauth)
       if user.profilepicurl.nil? then 
-        user.profilepicurl=set_user_profilepic(omniauth)
+        user.profilepicurl = set_user_profilepic(omniauth)
         if !user.save
           flash[:error] = "Profile Picture update failed!"
         end
@@ -66,7 +66,7 @@ class SessionsController < Devise::SessionsController
       when 'facebook'
         fb_user = FbGraph::User.me(omniauth["credentials"]["token"]).fetch
         picture = ProfilePicture.new()
-        picture.remote_image_url=fb_user.picture
+        picture.remote_image_url = fb_user.picture
         picture.save
         return picture.image_url
       end

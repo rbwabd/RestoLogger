@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
-require 'json'
-require 'open-uri'
+  #require 'json'
+  #require 'open-uri'
 
   def home
     @title = "Home"

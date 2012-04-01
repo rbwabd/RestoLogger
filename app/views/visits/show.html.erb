@@ -14,32 +14,22 @@
   </br>
   </br>
   <span id="visit-ratings">
-  <table>
-    <tr>
-      <th></th>
-      <th>Overall</th>
-      <th>Service Quality</th>
-      <th>Service Speed</th>
-      <th>Atmosphere</th>
-    </tr>
-    <tr>
-      <td>
-        <b>Ratings</b>
-      </td>
-      <td>
-        <%= render :partial => 'shared/star_rating', :locals => {:rating => @visit.overall_rating} %>
-      </td>
-      <td>
-        <%= render :partial => 'shared/star_rating', :locals => {:rating => @visit.service_rating} %>
-      </td>
-      <td>
-        <%= render :partial => 'shared/star_rating', :locals => {:rating => @visit.speed_rating} %>
-      </td>
-      <td>
-        <%= render :partial => 'shared/star_rating', :locals => {:rating => @visit.mood_rating} %>
-      </td>
-    </tr>
-  </table>  
+    <table>
+      <tr>
+        <th></th>
+        <th>Overall</th>
+        <th>Service Quality</th>
+        <th>Service Speed</th>
+        <th>Atmosphere</th>
+      </tr>
+      <tr>
+        <td><b>Ratings</b></td>
+        <td><%= render :partial => 'shared/star_rating', :locals => {:rating => @visit.overall_rating} %></td>
+        <td><%= render :partial => 'shared/star_rating', :locals => {:rating => @visit.service_rating} %></td>
+        <td><%= render :partial => 'shared/star_rating', :locals => {:rating => @visit.speed_rating} %></td>
+        <td><%= render :partial => 'shared/star_rating', :locals => {:rating => @visit.mood_rating} %></td>
+      </tr>
+    </table>  
   </span>
   </br>
   <strong>Tagline:</strong> <%= @visit.tagline %>
@@ -55,6 +45,10 @@
       <%= image_tag pic.image_url(:thumb) if pic.image? %>
     <% end %>
   <% end %>
+  <br>
+  <div class="action">
+    <%= link_to I18n.t(@button), add_menu_path(:id => @store.zid)%>
+  </div>
 </div>
 
 
