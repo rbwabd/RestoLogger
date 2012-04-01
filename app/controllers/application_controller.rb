@@ -10,6 +10,6 @@ class ApplicationController < ActionController::Base
 
   # decode the id url param if there is one
   def decode_id
-    params[:id] = IdCrypt::decode_id(params[:id]).to_s if params[:id]
+    params[:id] = Hid::dec(params[:id]).to_s if params[:id]
   end
 end
