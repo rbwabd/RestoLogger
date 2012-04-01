@@ -48,14 +48,16 @@
   </table>
   <% @visit.dish_reviews.each_with_index do |dr, i| %>
     </br>
-    <b>Dish Name: </b> <%= dr.dish.name %>&nbsp;<%= dr.quantity %>&times;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <b><%= dr.dish.name %>&nbsp;<%= dr.quantity %>&times;</b>
     </br>
     <% dr.pictures.each do |pic| %>
       <% if pic.image? %>
         <%= image_tag(pic.image_url(:thumb), {:size => '150x100', :alt => 'image'}) %>
       <% end %>
     <% end %>
-    <%= file_field_tag 'dr'+i.to_s+'[]', :accept => 'image/jpeg', :multiple => true, :value => 'Add Pictures', :size => "74" %> 
+    <br/>
+    <b>Add Pictures:&nbsp;</b> <%= file_field_tag 'dr'+i.to_s+'[]', :accept => 'image/jpeg', :multiple => true, :value => 'Add Pictures', :size => "60" %> 
+    <br/>  
   <% end %>
   <div class="action">
     <%= f.submit I18n.t(@button) %>

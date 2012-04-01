@@ -9,12 +9,12 @@ RestoLogger::Application.routes.draw do
   get "countries/create"
   get "countries/destroy"
   
-  match '/add_menu',                :to => 'dishes#add_menu'
-  match '/submit_menu',             :to => 'dishes#submit_menu'
-  match '/confirm_menu',            :to => 'dishes#confirm_menu'
-  match '/save_menu',               :to => 'dishes#save_menu'
-  match '/edit_menu',               :to => 'stores#edit_menu'
-  match '/update_menu',             :to => 'stores#update_menu'
+  match '/add_menu',                :to => 'stores#add_menu'
+  match '/submit_menu',             :to => 'stores#submit_menu'
+  match '/confirm_menu',            :to => 'stores#confirm_menu'
+  match '/save_menu',               :to => 'stores#save_menu'
+  match '/edit_menu_order',         :to => 'stores#edit_menu_order'
+  match '/update_menu_order',       :to => 'stores#update_menu_order'
   match '/show_menu',               :to => 'stores#show_menu'
   match '/search_store',            :to => 'stores#search'
   match '/search_store_results',    :to => 'stores#search_results'

@@ -105,6 +105,7 @@ class VisitsController < ApplicationController
       render 'visits/confirm_visit'
     else  
       if @visit.save
+        session[:cart] = nil
         redirect_to edit_visit_parameters_path(:id => @visit.zid), :flash => { :success => "Visit updated!" }
       else
         #2do:
