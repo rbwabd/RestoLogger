@@ -4,7 +4,6 @@ class DishReviewsController < ApplicationController
 
   def destroy
     @dr.destroy
-    redirect_to root_path, :flash => { :success => I18n.t('dish_reviews.destroy_success') }
   end
   
   private

@@ -1,0 +1,71 @@
+<% content_for :sidebar do %>
+  <%= render 'layouts/main_sidebar' %>
+<% end %>
+
+<h1><%= I18n.t(@title) %><%= link_to @store.name, store_path(:id => @store.zid)%></h1><br>
+
+<%= form_for(@visit, :url => visit_path(@visit.zid), :html => {:multipart => true}) do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  <table>
+    <tr class="padded-row">
+      <td> <%= f.label :visit_date, "Visit Date" %> </td>
+      <td> <%= f.text_field :visit_date, :size => 7 %> </td>
+    </tr>
+    <tr class="padded-row">
+      <td> <%= f.label :guest_number, "Number of Guests" %> </td>
+      <td> <%= f.text_field :guest_number, :size => "1" %> </td>
+    </tr>
+    <tr class="padded-row">
+      <td> <%= f.label :overall_rating, "Overall Rating" %> </td>
+      <td> <%= f.text_field :overall_rating, :size => 1 %> </td>
+    </tr>
+    <tr class="padded-row">
+      <td> <%= f.label :service_rating, "Service Quality Rating" %> </td>
+      <td> <%= f.text_field :service_rating, :size => 1 %> </td>
+    </tr>
+    <tr class="padded-row">
+      <td> <%= f.label :speed_rating, "Service Speed Rating" %> </td>
+      <td> <%= f.text_field :speed_rating, :size => 1 %> </td>
+    </tr>
+    <tr class="padded-row">
+      <td> <%= f.label :mood_rating, "Store Atmosphere Rating" %> </td>
+      <td> <%= f.text_field :mood_rating, :size => 1 %> </td>
+    </tr>
+  </table>
+  <table>  
+    <tr> 
+      <td> <%= f.label :tagline, "Tagline" %> </td>
+    </tr>    
+    <tr>
+      <td> <%= f.text_field :tagline, :size =>73 %> </td>
+    </tr>
+    <tr> 
+      <td> <%= f.label :review, "Review" %> </td>
+    </tr>
+    <tr> 
+      <td> <%= f.text_area :review, :size => "70x5" %> </td>
+    </tr>
+  </table>
+  <% @visit.dish_reviews.each_with_index do |dr, i| %>
+    </br>
+    <b>Dish Name: </b> <%= dr.dish.name %>&nbsp;<%= dr.quantity %>&times;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </br>
+    <% dr.pictures.each do |pic| %>
+      <% if pic.image? %>
+        <%= image_tag(pic.image_url(:thumb), {:size => '150x100', :alt => 'image'}) %>
+      <% end %>
+    <% end %>
+    <%= file_field_tag 'dr'+i.to_s+'[]', :accept => 'image/jpeg', :multiple => true, :value => 'Add Pictures', :size => "74" %> 
+  <% end %>
+  <div class="action">
+    <%= f.submit I18n.t(@button) %>
+    <%= link_to I18n.t(@button2), edit_visit_path(:id => @visit.zid) %>
+    <%= link_to I18n.t(@button3), visit_path(:id => @visit.zid), :confirm => I18n.t('visits.delete_warning'), :method => :delete %>
+  </div>   
+<% end %>
+
+
+
+
+
+

@@ -1,0 +1,127 @@
+#sidebar { /* Main sidebar*/
+	width: 317px;
+	float: left;
+  margin: 0px;
+	color: #000000; /* font color */
+  background: #D0C9B7;
+  margin-bottom: -3000px; /* part of trick to get sidebar to fill entire page see also */
+  padding-bottom: 3000px; /* the page overflow hidden setting */
+	overflow: hidden;
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    margin: 0;
+    padding: 0;
+    ul {
+      margin: 0px 0px;
+      padding-bottom: 30px;
+    }
+    li {
+      line-height: 35px;
+      border-bottom: 1px dashed #A5A08C;
+      margin: 0px 0px;
+      font-size: 14px;
+      font-weight: normal;
+    }
+  }
+  h2 {
+    margin: 0px;
+    padding: 0px 0px 0px 20px;
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: normal;
+    color: #2E2E2E;
+  }
+  h3 { /*used for profile pic */
+    padding: 20px 0px 0px 20px;
+    font-weight: bold;
+  }
+  a {
+    border: none;
+    color: #000000;
+    padding-left: 20px;
+    display: block;
+    &:hover {
+      text-decoration: none;
+      background: #F3EBD9;
+    }
+  }
+  .sb-hl{ /* to highlight selected sidebar element */
+    background-color: #F3EBD9;
+  }
+}
+
+#cart-sidebar { /* cart sidebar element */
+	width: 317px;
+	float: left;
+  margin: 0px;
+	color: #000000; /* font color */
+  background: #D0C9B7;
+  margin-bottom: -3000px; /* part of trick to get sidebar to fill entire page see also */
+  padding-bottom: 3000px; /* the page overflow hidden setting */
+	overflow: hidden;
+  ul  {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    margin: 0;
+    padding: 0;
+  }
+  table th {
+    color: #000000;
+    padding: 0px 0px 0px 15px;
+    text-align: left;
+  }
+  table td {
+    color: #000000;
+    padding: 0px 0px 0px 15px;
+    vertical-align: top;
+  }
+  h2 {
+    text-align: center;
+  }
+  h3 { /*used for profile pic */
+    padding: 20px 0px 0px 20px;
+    font-weight: bold;
+  }
+  .cart-message{
+    color: #000000;
+    padding: 30px 0px 0px 20px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .action{ /* used in cart sidebar button*/
+    text-align: center;
+  }
+  a {
+    text-align: center;
+    color: #FFFFFF;
+    background: #555555;
+    font-weight: bold;
+    border: 0px;  
+    &:hover{
+      background: #E4E4E4;
+      color: #212121;  
+    }
+    &:active{
+      background: #888888;
+      color: #212121;  
+    }
+    &.link-button { /* cart + / - item buttons */
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      color: #FFFFFF;
+      background: #555555;
+      font-weight: bold;
+      padding: 0px 5px 0px 5px;
+      text-decoration: none;
+    }
+  }
+}

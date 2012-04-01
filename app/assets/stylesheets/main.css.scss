@@ -1,0 +1,323 @@
+/*
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+*/
+/* 
+layout is
+body
+  container
+    header
+    page
+      sidebar
+      content
+    footer
+
+padding order: top right bottom left 
+darken($main-color, 10%); */
+
+$background-color: #EEEBDA;
+$h-text-color: #056303;
+@mixin rounded-corners($radius) {
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+
+body {
+	margin: 0;  /* external margin around body (edge of screen) */
+	padding: 0; 
+	background: $background-color;  /* background color */
+	/* sets default fonts throughout document */
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: black;
+}
+h1, h2, h3 {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	font-family: 'Arvo', serif;
+	color: $h-text-color;
+}
+
+textarea, input{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+}
+a {
+	text-decoration: none; /* removes underline */
+	color: #856323;
+  &:hover { text-decoration: underline; }
+}
+.action a, .action input{ /* buttons and links styled as buttons */
+  margin: 10px 0px 10px 8px;
+  padding: 0px 8px 0px 8px;
+  display: inline-block;
+  border: 1px solid #CCCCCC;  
+  background: #E4E4E4;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #444444;
+  font-size: 100%;
+  text-decoration: none;
+  @include rounded-corners(7px);  
+}
+.action a { /*somehow with same height the submit button is a bit smaller... */
+  height: 21px;
+  line-height:23px;
+}
+.action  input {
+  height: 23px;
+  line-height:23px;
+}
+.action a:hover, .action a:focus, .action input:hover, .action input:focus {
+	text-decoration: none;
+  color: #000000;
+  background: #FDFDFD;  
+}
+.action a:active, .action input:active {
+  background: #CCCCCC; 
+  border: 1px solid white;   
+}
+.action a:visited {
+  background: #E4E4E4;
+  border: 1px solid #CCCCCC;  
+}
+.round {
+  @include rounded-corners(10px);  
+}
+.round-small {
+  @include rounded-corners(4px);
+}
+
+.container {
+	width: 100%;
+	margin: 0px auto;
+}
+
+#page { /* Page */
+	width: 100%;
+	margin: 0px auto;
+	padding: 0px 0px 0px 0px; /* can define a bit of vertical gap between header menu and page */
+  min-height: 800px;
+  overflow: hidden; /* part of trick to allow equal height columns (together with neg margin-bottom and larget padding bottom see sidebar) */
+}
+
+#content { /* Content */
+	margin-left: 300px;
+	padding: 15px 0px 10px 30px; /* can define a bit of gap between header menu and page */
+  max-width: 1000px;
+  ul {
+    list-style: none;
+  }
+  h1, h2, h3 {
+    padding: 0px 0px 15px 15px; 
+  }
+  div div ul li { /* specific styling for jquery-ui tabbed list elements */
+    margin: 0 5px 5px 5px; 
+    padding: 5px; 
+    font-size: 1.2em;
+  }
+  .field {  /* add padding for all entry fields */
+    padding-bottom: 10px; 
+  }  
+  td label {  /* add padding for all entry fields */
+    padding-right: 5px;
+    font-weight: bold;
+  }
+  .padded-row td input{
+    margin: 5px 0px 5px 0px;  
+  }
+}
+
+/* from railcast 240 for store list table */
+table.listing {
+  border-collapse: collapse;
+}
+.listing td, .listing th {
+  padding: 4px 10px;
+}
+.listing .price {
+  text-align: right;
+}
+.listing th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+.listing th .asc {
+  background-image: url('images/up_arrow.gif');
+}
+.listing th .desc {
+  background-image: url('images/down_arrow.gif');
+}
+.listing .la{  text-align: left;}
+.listing .ra{  text-align: right;}
+.listing .ca{  text-align: center;}
+
+/* my own definitions */
+.vertical_align { /* used to align the user profile pic logos in middle vs. the text */
+  vertical-align: middle;
+  margin-bottom: 5px;
+}
+/* star rating from http://www.komodomedia.com/blog/2006/01/css-star-rating-part-deux/# */
+.star-rating{
+  list-style:none;
+  margin: 0px;
+  padding:0px;
+  width: 125px;
+  height: 25px;
+  position: relative;
+  overflow:hidden;
+  background: url('images/alt_star.png') top left repeat-x;		
+}
+.star-rating li{
+  padding:0px;
+  margin:0px;
+  width:25px;
+  height:25px;
+  float: left;
+}
+.star-rating li a{
+  display:block;
+  width:25px;
+  height: 25px;
+  line-height:25px;		
+  text-decoration: none;
+  text-indent: -9000px;
+  z-index: 20;
+  position: absolute;
+  padding: 0px;
+  overflow:hidden;
+}
+/*.star-rating li a:hover{
+  background: url('images/alt_star.png') left bottom;
+  z-index: 2;
+  left: 0px;
+  border:none;
+}
+.star-rating a.one-star{
+  left: 0px;
+}
+.star-rating a.one-star:hover{
+  width:25px;
+}
+.star-rating a.two-stars{
+  left:25px;
+}
+.star-rating a.two-stars:hover{
+  width: 50px;
+}
+.star-rating a.three-stars{
+  left: 50px;
+}
+.star-rating a.three-stars:hover{
+  width: 75px;
+}
+.star-rating a.four-stars{
+  left: 75px;
+}	
+.star-rating a.four-stars:hover{
+  width: 100px;
+}
+.star-rating a.five-stars{
+  left: 100px;
+}
+.star-rating a.five-stars:hover{
+  width: 125px;
+}*/
+.star-rating li.current-rating{
+  background: url('images/alt_star.png') left center;
+  position: absolute;
+  height: 25px;
+  display: block;
+  text-indent: -9000px;
+  z-index: 1;
+}
+/* remove halo effect in firefox   */
+a:active{
+  outline: none;
+}		
+#visit-ratings tr td{
+  padding: 0px 15px 0px 15px;
+}
+/* 2 process 
+
+carrierwave railcast 235 defs
+.picture {
+  border: solid 1px #CCC;
+  padding: 10px 10px;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.picture .genre {
+  padding-top: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.picture .image_placeholder {
+  width: 200px;
+  height: 150px;
+  background-color: #B6B6B6;
+}
+
+.picture .actions {
+  font-size: 10px;
+  text-align: center;
+  color: #777;
+}
+
+.post {
+	overflow: hidden;
+	margin-bottom: 20px;
+	border-bottom: 1px dashed #CACACA;
+}
+
+.post .title {
+	margin: 0px;
+	padding: 7px 0px 0px 0px;
+	letter-spacing: -1px;
+}
+
+.post .title a {
+	border: none;
+	letter-spacing: 1px;
+	letter-spacing: -1px;
+	text-align: left;
+	text-transform: uppercase;
+	font-size: 26px;
+	font-weight: normal;
+	color: #C16C2F;
+}
+
+.post .meta {
+	margin-bottom: 30px;
+	padding: 0px;
+	letter-spacing: 1px;
+	text-align: left;
+	text-transform: uppercase;
+	font-family: 'Arvo', serif;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.post .meta .date {
+	float: left;
+}
+
+.post .meta .posted {
+	float: right;
+}
+
+.post .entry {
+	padding: 0px 0px 30px 0px;
+	padding-bottom: 20px;
+	text-align: justify;
+}
+*/

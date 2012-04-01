@@ -9,18 +9,19 @@ RestoLogger::Application.routes.draw do
   get "countries/create"
   get "countries/destroy"
   
-  match '/search_store',          :to => 'stores#search'
-  match '/search_store_results',  :to => 'stores#search_results'
-  match '/add_menu',              :to => 'dishes#add_menu'
-  match '/submit_menu',           :to => 'dishes#submit_menu'
-  match '/confirm_menu',          :to => 'dishes#confirm_menu'
-  match '/save_menu',             :to => 'dishes#save_menu'
-  match '/show_menu',             :to => 'stores#show_menu'
-  match '/edit_menu',             :to => 'stores#edit_menu'
-  match '/update_menu',           :to => 'stores#update_menu'
-  match '/change_cart',           :to => 'visits#change_cart'
-  match '/change_visit',          :to => 'visits#update'
-
+  match '/add_menu',                :to => 'dishes#add_menu'
+  match '/submit_menu',             :to => 'dishes#submit_menu'
+  match '/confirm_menu',            :to => 'dishes#confirm_menu'
+  match '/save_menu',               :to => 'dishes#save_menu'
+  match '/edit_menu',               :to => 'stores#edit_menu'
+  match '/update_menu',             :to => 'stores#update_menu'
+  match '/show_menu',               :to => 'stores#show_menu'
+  match '/search_store',            :to => 'stores#search'
+  match '/search_store_results',    :to => 'stores#search_results'
+  match '/change_cart',             :to => 'visits#change_cart'
+  match '/edit_visit_parameters',   :to => 'visits#edit_parameters'
+  match '/update_visit_parameters', :to => 'visits#update_parameters'
+  
   devise_for :users  #, :skip => [:sessions]
   #as :user do is the same as devise_scope :user do
 	as :user do
@@ -40,7 +41,7 @@ RestoLogger::Application.routes.draw do
 
   resources :sessions,        :only => [:new, :create, :destroy]
   resources :visits
-  resources :dish_reviews,    :only => [:destroy]
+  #resources :dish_reviews,    :only => [:destroy]
   resources :relationships,   :only => [:create, :destroy]
 	resources :authentications
   resources :stores

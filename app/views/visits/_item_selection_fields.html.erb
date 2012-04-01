@@ -1,0 +1,17 @@
+<%= render 'shared/error_messages', :object => f.object %>
+<table>
+  <tr class="padded-row">
+    <td> <%= f.label :visit_date, "Visit Date" %> </td>
+    <td> <%= f.text_field :visit_date, :size => 10, :value => Date.today.to_s %> </td>
+  </tr>
+  <tr class="padded-row">
+    <td> <%= label_tag 'dish_search_label', "Dish Name" %> </td>
+    <td> <%= text_field_tag 'dish_search_name', '', :size =>60 %>
+         <%= hidden_field :dish, :id %> </td>
+  </tr>
+</table>
+<div class="action">
+  <%= f.submit I18n.t(@button)%> 
+  <%= link_to_function "Back", "history.back()"%>
+</div>
+<%= render 'menu_tabs', :f => f %>  

@@ -41,7 +41,7 @@ class VisitsController < ApplicationController
     @store = Store.find_by_zid(params[:id])
     @dishes = @store.get_menu
     # if a session cart already existed for same store we keep it otherwise put in new one
-    if !(session[:store_id] and session[:store_id].to_i==@store.id and session[:cart])
+    if !(session[:store_id] and session[:store_id].to_i==@store.zid.to_i and session[:cart])
       session[:store_id] = params[:id]
       session[:cart] = Cart.new
     end
@@ -49,35 +49,23 @@ class VisitsController < ApplicationController
   
   def create
     store = Store.find_by_zid(session[:store_id])
-    visit = Visit.new
-    visit.user_id = current_user.id
-    visit.store_id = store.id
-    visit.city_id = store.city_id
+    @visit = Visit.new
+    @visit.user_id = current_user.id
+    @visit.store_id = store.id
+    @visit.city_id = store.city_id
     #2do: not sure storing city_id in both visit and store is optimal...
-    visit.visit_date = params[:visit][:visit_date]
+    @visit.visit_date = params[:visit][:visit_date]
     #2do: need to check again that date not in future or too far past (do it in model.rb)
-    need_confirmation = false
+    @need_confirmation = false
     
-    for ci in session[:cart].cart_items
-      if ci.dish_id == -1
-        need_confirmation = true
-        # dish not already in DB
-        # 2do: populate an array to be displayed to user for confirmation
-      else      
-        dreview = DishReview.new
-        dreview.user_id = current_user.id
-        dreview.dish_id = Dish.find_by_zid(ci.dish_id).id
-        dreview.quantity = ci.quantity
-        visit.dish_reviews << dreview
-      end
-    end
+    update_dish_reviews_from_cart
     
-    if need_confirmation
+    if @need_confirmation
       #2do: display a confirmation screen for new dishes only
     else  
-      if visit.save
+      if @visit.save
         session[:cart] = nil
-        redirect_to edit_visit_path(visit.zid), :flash => { :success => "Visit created!" }
+        redirect_to edit_visit_parameters_path(:id => @visit.zid), :flash => { :success => "Visit created!" }
       else
         #2do: error messages
       end
@@ -87,26 +75,59 @@ class VisitsController < ApplicationController
   def edit
     @title = "visits.edit_title"
     @button = "visits.edit_button"
-    @button2 = "visits.delete_button"
-    @button3 = "dish_reviews.delete_button"
     @visit = Visit.find_by_zid(params[:id])
     @store = @visit.store
+    @dishes = @store.get_menu
+    # if a session cart already existed for same store we keep it otherwise put in new one
+    if !(session[:store_id] and session[:store_id].to_i==@store.zid.to_i and session[:cart])
+      session[:store_id] = params[:id]
+      session[:cart] = Cart.new
+      #load existing items
+      for dr in @visit.dish_reviews
+        session[:cart].add_dish(dr.dish.name, dr.dish.price, dr.dish.zid)
+      end
+    end
   end
 
   def update
-    visit = Visit.find_by_zid(params[:id])
-    visit.user_id = current_user.id
-    visit.overall_rating = params[:visit][:overall_rating]
-    visit.service_rating = params[:visit][:service_rating]
-    visit.speed_rating = params[:visit][:speed_rating]
-    visit.mood_rating = params[:visit][:mood_rating]
-    visit.tagline = params[:visit][:tagline]
-    visit.review = params[:visit][:review]
-    visit.guest_number = params[:visit][:guest_number]
+    @visit = Visit.find_by_zid(params[:id])
+	  
+    update_dish_reviews_from_cart
+    
+    if @need_confirmation
+      #2do: display a confirmation screen for new dishes only
+    else  
+      if @visit.save
+        redirect_to edit_visit_parameters_path(:id => @visit.zid), :flash => { :success => "Visit updated!" }
+      else
+        #2do:
+      end    
+    end
+  end
+  
+  def edit_parameters
+    @title = "visits.edit_title"
+    @button = "visits.edit_button"
+    @button2 = "visits.edit_dishes_button"
+    @button3 = "visits.delete_button"
+    @visit = Visit.find_by_zid(params[:id])
+    @store = @visit.store
+  end  
+  
+  def update_parameters
+    @visit = Visit.find_by_zid(params[:id])
+    @visit.user_id = current_user.id
+    @visit.overall_rating = params[:visit][:overall_rating]
+    @visit.service_rating = params[:visit][:service_rating]
+    @visit.speed_rating = params[:visit][:speed_rating]
+    @visit.mood_rating = params[:visit][:mood_rating]
+    @visit.tagline = params[:visit][:tagline]
+    @visit.review = params[:visit][:review]
+    @visit.guest_number = params[:visit][:guest_number]
     #2do: need to check again that date not in future or too far past (do it in model.rb)
-    visit.visit_date = params[:visit][:visit_date]
+    @visit.visit_date = params[:visit][:visit_date]
 
-    visit.dish_reviews.each_with_index do | dr, i |
+    @visit.dish_reviews.each_with_index do | dr, i |
       if params['dr'+i.to_s]
         params['dr'+i.to_s].each do | pic |
           tmppic = Picture.new
@@ -126,13 +147,35 @@ class VisitsController < ApplicationController
         end
       end
     end
-	     
-    if visit.save
-      redirect_to visit_path(visit.zid), :flash => { :success => "Visit updated!" }
+    
+    if @visit.save
+      redirect_to visit_path(@visit.zid), :flash => { :success => "Visit updated!" }
     else
-      @feed_items = []
-      render 'pages/home'
+      #2do:
     end    
+  end
+  
+  def update_dish_reviews_from_cart
+    for ci in session[:cart].cart_items
+      if ci.dish_id == -1
+        @need_confirmation = true
+        # dish not already in DB
+        # 2do: populate an array to be displayed to user for confirmation
+      else      
+        
+        # this method also called when user is updating their dish selection hence the possibility that the dish_reviews already exist
+        if dreview = @visit.dish_reviews.find_by_dish_id(Dish.find_by_zid(ci.dish_id).id)
+          dreview.quantity = ci.quantity
+          @visit.dish_reviews << dreview
+        else  
+          dreview = DishReview.new
+          dreview.user_id = current_user.id
+          dreview.dish_id = Dish.find_by_zid(ci.dish_id).id
+          dreview.quantity = ci.quantity
+          @visit.dish_reviews << dreview
+        end
+      end  
+    end
   end
   
   def change_cart
