@@ -1,0 +1,23 @@
+<% content_for :sidebar do %>
+  <%= render 'layouts/main_sidebar' %>
+<% end %>
+
+<h1><%= I18n.t(@title) %></h1><br>
+
+<%= form_for(@visit, :url => visit_path( :id => @visit.zid, :confirmed => true )) do |f| %>
+  <% for item in @need_confirmation_list %>
+    <% if item[:type] == :new %>
+      <div>
+        New dish to be added to menu: <%= item[:name] %>
+      </div>
+    <% elsif item[:type] == :del %>  
+      <div>
+        Already saved dish to be deleted from order: <%= item[:name] %>  
+      </div>
+    <% end %> 
+  <% end %>
+  <div class="action">
+    <%= f.submit I18n.t(@button)%> 
+    <%= link_to_function I18n.t(@button2), "history.back()"%>  
+  </div>
+<% end %>

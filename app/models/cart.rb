@@ -23,10 +23,11 @@ class Cart
     if current_item
       @total_quantity -= 1
       @total_price -= current_item.price
-      if current_item.quantity > 1
+      # allow quantity to go to 0 because the case of deleting existing dishes needs to be treated as special case
+      if current_item.quantity >= 1
         current_item.quantity -= 1
       else
-        @cart_items.delete_at(@cart_items.index{|x|x.name == name})
+        #@cart_items.delete_at(@cart_items.index{|x|x.name == name})
       end
     end
   end

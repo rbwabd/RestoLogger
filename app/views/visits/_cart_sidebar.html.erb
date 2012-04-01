@@ -12,6 +12,11 @@
         <p>
         <h2>Your Order</h2>
         <%= render "cart" %>
+        <% if @visit.nil? %>
+          <div class="action">
+            <%= link_to "Empty cart", change_cart_path(:delall => "y"), :confirm => "Are you sure?", :remote => true %>
+          </div>  
+        <% end %>            
     </ul>
   </div>
 

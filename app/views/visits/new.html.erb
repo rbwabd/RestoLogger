@@ -5,5 +5,5 @@
 <h1><%= I18n.t(@title) %><%= link_to @store.name, store_path(:id => @store.zid)%></h1>
 
 <%= form_for(@visit) do |f| %>
-  <%= render 'item_selection_fields', :f => f %>  
+  <%= render 'item_selection_fields', :f => f %>
 <% end %>

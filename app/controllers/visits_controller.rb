@@ -56,12 +56,15 @@ class VisitsController < ApplicationController
     #2do: not sure storing city_id in both visit and store is optimal...
     @visit.visit_date = params[:visit][:visit_date]
     #2do: need to check again that date not in future or too far past (do it in model.rb)
-    @need_confirmation = false
+    @need_confirmation_list = Array.new
     
     update_dish_reviews_from_cart
     
-    if @need_confirmation
-      #2do: display a confirmation screen for new dishes only
+    if @need_confirmation_list.size > 0
+      @title = "visits.confirm_title"
+      @button = "visits.confirm_button"
+      @button2 = "visits.cancel_button"
+      render 'visits/confirm_visit'
     else  
       if @visit.save
         session[:cart] = nil
@@ -91,11 +94,15 @@ class VisitsController < ApplicationController
 
   def update
     @visit = Visit.find_by_zid(params[:id])
+    @need_confirmation_list = Array.new
 	  
     update_dish_reviews_from_cart
     
-    if @need_confirmation
-      #2do: display a confirmation screen for new dishes only
+    if @need_confirmation_list.size > 0
+      @title = "visits.confirm_title"
+      @button = "visits.confirm_button"
+      @button2 = "visits.cancel_button"
+      render 'visits/confirm_visit'
     else  
       if @visit.save
         redirect_to edit_visit_parameters_path(:id => @visit.zid), :flash => { :success => "Visit updated!" }
@@ -103,6 +110,68 @@ class VisitsController < ApplicationController
         #2do:
       end    
     end
+  end
+  
+  def update_dish_reviews_from_cart
+    p "Test Output-------------"
+    p "Test Output-------------"
+    p "Test Output-------------"
+    p "Test Output-------------"
+    p params
+    p "Test Output-------------"
+    p "Test Output-------------"
+    p "Test Output-------------"
+    p "Test Output-------------"
+    for ci in session[:cart].cart_items
+      if ci.dish_id == -1
+        if params[:confirmed]
+          # dish not already in DB 2do: create new dish, then dishreview, then add to visit
+          # also need to check at some point the dish with that name doesn't already exist
+        else
+          @need_confirmation_list << { :type => :new, :name => ci.name }
+        end
+      else      
+        # this method also called when user is updating their dish selection hence the possibility that the dish_reviews already exist
+        if dreview = @visit.dish_reviews.find_by_dish_id(Dish.find_by_zid(ci.dish_id).id)
+          if ci.quantity == 0
+            if params[:confirmed]
+              dreview.destroy
+            else
+              @need_confirmation_list << { :type => :del, :name => ci.name }
+            end
+          else
+            dreview.quantity = ci.quantity
+            @visit.dish_reviews << dreview
+          end
+        elsif ci.quantity > 0  
+          dreview = DishReview.new
+          dreview.user_id = current_user.id
+          dreview.dish_id = Dish.find_by_zid(ci.dish_id).id
+          dreview.quantity = ci.quantity
+          @visit.dish_reviews << dreview
+        end
+      end  
+    end
+  end
+  
+  def change_cart
+    if params[:delall]
+      session[:cart] = Cart.new
+    elsif params[:del]
+      session[:cart].remove_dish(params[:dish_name])
+    else
+      if !dish=Dish.find_by_zid(params[:dish_id]) and params[:dish_name] and params[:dish_name].size > 0 
+        #new dish, to be added to DB
+        session[:cart].add_dish(params[:dish_name], 0, -1)
+      else
+        session[:cart].add_dish(dish.name, dish.price, dish.zid)
+      end
+    end
+    respond_to do |format|
+      format.html { render :partial => "cart", :object => session[:cart] }
+      format.js 
+    end
+    # 2do: use number_to_currency(cart_item.price) in views
   end
   
   def edit_parameters
@@ -155,49 +224,6 @@ class VisitsController < ApplicationController
     end    
   end
   
-  def update_dish_reviews_from_cart
-    for ci in session[:cart].cart_items
-      if ci.dish_id == -1
-        @need_confirmation = true
-        # dish not already in DB
-        # 2do: populate an array to be displayed to user for confirmation
-      else      
-        
-        # this method also called when user is updating their dish selection hence the possibility that the dish_reviews already exist
-        if dreview = @visit.dish_reviews.find_by_dish_id(Dish.find_by_zid(ci.dish_id).id)
-          dreview.quantity = ci.quantity
-          @visit.dish_reviews << dreview
-        else  
-          dreview = DishReview.new
-          dreview.user_id = current_user.id
-          dreview.dish_id = Dish.find_by_zid(ci.dish_id).id
-          dreview.quantity = ci.quantity
-          @visit.dish_reviews << dreview
-        end
-      end  
-    end
-  end
-  
-  def change_cart
-    if params[:delall]
-      session[:cart] = Cart.new
-    elsif params[:del]
-      session[:cart].remove_dish(params[:dish_name])
-    else
-      if !dish=Dish.find_by_zid(params[:dish_id]) and params[:dish_name] and params[:dish_name].size > 0 
-        #new dish, to be added to DB
-        session[:cart].add_dish(params[:dish_name], 0, -1)
-      else
-        session[:cart].add_dish(dish.name, dish.price, dish.zid)
-      end
-    end
-    respond_to do |format|
-      format.html { render :partial => "cart", :object => session[:cart] }
-      format.js 
-    end
-    # 2do: use number_to_currency(cart_item.price) in views
-  end
-
   def destroy
     #@visit initialized in authorized_user routine
     @visit.destroy
