@@ -1,16 +1,22 @@
-class Hideous
+class Hid
   MAXID =         562949953421311   # (2**49 - 1)
   PRIME =         26096431117637    #The 874,054,030,204th prime is 26,096,431,117,637.
   PRIME_INVERSE = 91990477149581    #another big integer number so that (PRIME * PRIME_INVERSE) & MAXID == 1
   RNDXOR =        432898291034718   #some random big integer number, just not bigger than MAXID
-
-  def self.hide(bare_integer)
+  #http://robvs.wordpress.com/2010/07/08/obfuscating-ids-in-urls-with-rails/
+  
+  def self.enc(bare_integer)
     (((bare_integer * PRIME) & MAXID) ^ RNDXOR).to_s(36)
   end
 
-  def self.bare(hide_integer)
+  def self.dec(hide_integer)
     ((hide_integer.to_i(36) ^ RNDXOR) * PRIME_INVERSE) & MAXID
   end
+  
+  def self.dec_param( symbol )
+    params[symbol] = Hid::dec(symbol).to_s if params[symbol]
+  end  
+  
 =begin  
   def self.inverse
     prime_inverse = modinv(PRIME,MAXID+1)

@@ -1,6 +1,7 @@
 class DishesController < ApplicationController
   #before_filter :authenticate_user!
   #before_filter :authorized_user, :only => :destroy
+  before_filter :decode_id
   
   def index
     @title = "dishes.index_title"
@@ -10,7 +11,7 @@ class DishesController < ApplicationController
   def show
     @title = "dishes.show_title"
     @button = "dishes.new_visit_button"
-    @dish = Dish.find_by_zid(params[:id])
+    @dish = Dish.find(params[:id])
   end
   
   def destroy

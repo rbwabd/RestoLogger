@@ -4,7 +4,7 @@
 
 <h1><%= I18n.t(@title) %></h1><br>
 
-<%= form_for(@visit, :url => visit_path( :id => @visit.zid, :confirmed => true )) do |f| %>
+<%= form_for(@visit, :url => visit_path( :id => Hid.enc(@visit.id), :confirmed => true )) do |f| %>
   <% for item in @need_confirmation_list %>
     <% if item[:type] == :new %>
       <div>

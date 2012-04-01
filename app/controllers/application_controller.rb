@@ -7,4 +7,9 @@ class ApplicationController < ActionController::Base
 	  #I18n.locale = params[:locale] || I18n.default_locale
     I18n.locale = current_user.nil? ? I18n.default_locale : current_user.locale
 	end
+
+  # decode the id url param if there is one
+  def decode_id
+    params[:id] = IdCrypt::decode_id(params[:id]).to_s if params[:id]
+  end
 end

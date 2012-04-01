@@ -4,7 +4,7 @@
 
 <h1><%= I18n.t(@title) %></h1><br>
 
-<%= form_for(@dish, :url => save_menu_store_path(@store.zid)) do |f| %>
+<%= form_for(@dish, :url => save_menu_store_path(@store)) do |f| %>
   <div class="action">
     <%= f.submit I18n.t(@button) %>
   </div>

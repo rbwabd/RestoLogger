@@ -2,7 +2,7 @@
   <%= render 'layouts/main_sidebar' %>
 <% end %>
 
-<h1><%= I18n.t(@title) %><%= link_to @store.name, store_path(:id => @store.zid)%></h1><br>
+<h1><%= I18n.t(@title) %><%= link_to @store.name, store_path(@store)%></h1><br>
 
 <% c=0 %>
 <div id="tabs">
@@ -34,6 +34,6 @@
   <% end %>
 </div>
 <div class="action">
-  <%= link_to I18n.t(@button), add_menu_store_path(@store.zid)%>
-  <%= link_to I18n.t(@button2), edit_menu_order_store_path(@store.zid)%>
+  <%= link_to I18n.t(@button), add_menu_store_path(@store)%>
+  <%= link_to I18n.t(@button2), edit_menu_order_store_path(@store)%>
 </div>

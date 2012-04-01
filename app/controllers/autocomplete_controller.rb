@@ -20,19 +20,19 @@ class AutocompleteController < ApplicationController
     else
       # 2do: stores = Store.all
     end
-    list = stores.map{|s| Hash[ id: s.zid, label: s.name, name: s.name]}
+    list = stores.map{|s| Hash[ id: Hid.enc(s.id), label: s.name, name: s.name]}
     render json: list
   end
 
   def dishes
     if params[:term]
       like = "%".concat(params[:term].concat("%"))
-      store = Store.find_by_zid(session[:store_id])
+      store = Store.find(session[:store_id])
       dishes = Dish.where("name ILIKE ? and store_id = ?", like, store.id)
     else
       # 2do: stores = Store.all
     end
-    list = dishes.map {|d| Hash[ id: d.zid, label: d.name, name: d.name]}
+    list = dishes.map {|d| Hash[ id: Hid.enc(d.id), label: d.name, name: d.name]}
     render json: list
   end
 end

@@ -3,9 +3,6 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :locale, :profilepicurl, :remote_profilepicurl#, :password, :password_confirmation, :remember_me
   
   validates :name,  :presence => true, :length   => { :maximum => 50 }
-  validates_presence_of :zid
-  validates_uniqueness_of :zid
-  before_validation(:on => :create) { set_zid }
   
 	has_many :authentications
   has_one :user_setting
@@ -75,13 +72,14 @@ class User < ActiveRecord::Base
     user_setting.locale
   end
 	
-	protected
-    def set_zid
-      begin
-        self.zid = rand(36**12).to_s(36)
-      end while self.class.find_by_zid(zid) 
-    end  
-    
+  def id_encoded
+    Hid.enc( self.id )
+  end
+  def to_param
+    Hid.enc( self.id )
+  end
+
+	protected 
     def apply_facebook(omniauth)
 			self.email = omniauth["info"]["email"] if email.blank?
 		  self.name = omniauth["info"]["name"] if name.blank?

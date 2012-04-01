@@ -1,7 +1,8 @@
 class VisitsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :authorized_user, :only => :destroy
-
+  before_filter :decode_id
+    
   helper_method :sort_column, :sort_direction
 
   require 'will_paginate/array'
@@ -11,9 +12,9 @@ class VisitsController < ApplicationController
     @current_user.visits.each do |v|
       entry = Hash.new
       entry["date"] = v.visit_date ? v.visit_date : Date.new(3000,1,1) #hack to allow sort
-      entry[:visit_id] = v.zid
+      entry[:visit_id] = Hid.enc(v.id)
       entry["store_name"] = v.store.name
-      entry[:store_id] = v.store.zid
+      entry[:store_id] = Hid.enc(v.store.id)
       entry["guest_number"] = v.guest_number.to_s  #to_s is to avoid sort issues with nil
       entry["dish_nb"] = v.dish_reviews.size
       entry["overall_rating"] = v.overall_rating.to_s
@@ -29,7 +30,7 @@ class VisitsController < ApplicationController
   def show
     @title = "visits.show_title"
     @button = "visits.to_edit_button"
-    @visit = Visit.find_by_zid(params[:id])
+    @visit = Visit.find(params[:id])
     @store = Store.find(@visit.store_id)
     @city = City.find(@visit.city_id)
   end
@@ -38,17 +39,17 @@ class VisitsController < ApplicationController
     @title = "visits.new_title"
     @button = "visits.new_button"
     @visit = Visit.new
-    @store = Store.find_by_zid(params[:id])
+    @store = Store.find(params[:id])
     @dishes = @store.get_menu
     # if a session cart already existed for same store we keep it otherwise put in new one
-    if !(session[:store_id] and session[:store_id]==@store.zid and session[:cart])
+    if !(session[:store_id] and session[:store_id] == Hid.enc(@store.id) and session[:cart])
       session[:store_id] = params[:id]
       session[:cart] = Cart.new
     end
   end
   
   def create
-    store = Store.find_by_zid(session[:store_id])
+    store = Store.find(session[:store_id])
     @visit = Visit.new
     @visit.user_id = current_user.id
     @visit.store_id = store.id
@@ -68,7 +69,7 @@ class VisitsController < ApplicationController
     else  
       if @visit.save
         session[:cart] = nil
-        redirect_to edit_parameters_visit_path(@visit.zid), :flash => { :success => "Visit created!" }
+        redirect_to edit_parameters_visit_path(@visit), :flash => { :success => "Visit created!" }
       else
         #2do: error messages
       end
@@ -78,22 +79,22 @@ class VisitsController < ApplicationController
   def edit
     @title = "visits.edit_title"
     @button = "visits.edit_button"
-    @visit = Visit.find_by_zid(params[:id])
+    @visit = Visit.find(params[:id])
     @store = @visit.store
     @dishes = @store.get_menu
     # if a session cart already existed for same store we keep it otherwise put in new one
-    if !(session[:store_id] and session[:store_id].to_i==@store.zid.to_i and session[:cart])
+    if !(session[:store_id] and session[:store_id] == Hid.enc(@store.id) and session[:cart])
       session[:store_id] = params[:id]
       session[:cart] = Cart.new
       #load existing items
       for dr in @visit.dish_reviews
-        session[:cart].add_dish(dr.dish.name, dr.dish.price, dr.dish.zid)
+        session[:cart].add_dish(dr.dish.name, dr.dish.price, Hid.enc(dr.dish.id))
       end
     end
   end
 
   def update
-    @visit = Visit.find_by_zid(params[:id])
+    @visit = Visit.find(params[:id])
     @need_confirmation_list = Array.new
 	  
     update_dish_reviews_from_cart
@@ -106,7 +107,7 @@ class VisitsController < ApplicationController
     else  
       if @visit.save
         session[:cart] = nil
-        redirect_to edit_parameters_visit_path(@visit.zid), :flash => { :success => "Visit updated!" }
+        redirect_to edit_parameters_visit_path(@visit), :flash => { :success => "Visit updated!" }
       else
         #2do:
       end    
@@ -124,7 +125,7 @@ class VisitsController < ApplicationController
         end
       else      
         # this method also called when user is updating their dish selection hence the possibility that the dish_reviews already exist
-        if dreview = @visit.dish_reviews.find_by_dish_id(Dish.find_by_zid(ci.dish_id).id)
+        if dreview = @visit.dish_reviews.find_by_dish_id(Dish.find(ci.dish_id).id)
           if ci.quantity == 0
             if params[:confirmed]
               dreview.destroy
@@ -138,7 +139,7 @@ class VisitsController < ApplicationController
         elsif ci.quantity > 0  
           dreview = DishReview.new
           dreview.user_id = current_user.id
-          dreview.dish_id = Dish.find_by_zid(ci.dish_id).id
+          dreview.dish_id = Dish.find(ci.dish_id).id
           dreview.quantity = ci.quantity
           @visit.dish_reviews << dreview
         end
@@ -152,11 +153,11 @@ class VisitsController < ApplicationController
     elsif params[:del]
       session[:cart].remove_dish(params[:dish_name])
     else
-      if !dish=Dish.find_by_zid(params[:dish_id]) and params[:dish_name] and params[:dish_name].size > 0 
+      if !dish=Dish.find(Hid.dec(params[:dish_id])) and params[:dish_name] and params[:dish_name].size > 0 
         #new dish, to be added to DB
         session[:cart].add_dish(params[:dish_name], 0, -1)
       else
-        session[:cart].add_dish(dish.name, dish.price, dish.zid)
+        session[:cart].add_dish(dish.name, dish.price, Hid.enc(dish.id))
       end
     end
     respond_to do |format|
@@ -171,12 +172,12 @@ class VisitsController < ApplicationController
     @button = "visits.edit_button"
     @button2 = "visits.edit_dishes_button"
     @button3 = "visits.delete_button"
-    @visit = Visit.find_by_zid(params[:id])
+    @visit = Visit.find(params[:id])
     @store = @visit.store
   end  
   
   def update_parameters
-    @visit = Visit.find_by_zid(params[:id])
+    @visit = Visit.find(params[:id])
     @visit.user_id = current_user.id
     @visit.overall_rating = params[:visit][:overall_rating]
     @visit.service_rating = params[:visit][:service_rating]
@@ -196,10 +197,9 @@ class VisitsController < ApplicationController
           # there is still a chance in a gazillion of a filename collision with another file not yet saved (either in this order or by another user) but worth the shot... worst is that one of the saves fails which is not catastrophic
           begin
             zid = rand(36**12).to_s(36)
-          end while Picture.find_by_zid(zid) 
+          end while Picture.find(zid) 
           pic.original_filename = "#{zid}#{File.extname(pic.original_filename)}" 
           tmppic.image = pic
-          tmppic.zid = zid
           tmppic.genre = ""
           tmppic.user_id = current_user.id
           tmppic.vote_count = 0
@@ -213,9 +213,9 @@ class VisitsController < ApplicationController
       # we also call this method with an alternative submit that requests (after the changes are saved) to redirect to the change dishes page
       # this is done so we don't lose any changes the user may have already made to the page
       if params[:change_dish]
-        redirect_to edit_visit_path(:id => @visit.zid), :flash => { :success => "Visit updated!" }
+        redirect_to edit_visit_path(@visit), :flash => { :success => "Visit updated!" }
       else      
-        redirect_to visit_path(@visit.zid), :flash => { :success => "Visit updated!" }
+        redirect_to visit_path(@visit), :flash => { :success => "Visit updated!" }
       end  
     else
       #2do:
@@ -230,7 +230,7 @@ class VisitsController < ApplicationController
   
   private
     def authorized_user
-      @visit = current_user.visits.find_by_zid(params[:id])
+      @visit = current_user.visits.find(params[:id])
       redirect_to root_path if @visit.nil?
     end
 	

@@ -1,4 +1,6 @@
 class PicturesController < ApplicationController
+  before_filter :decode_id
+  
 =begin
   def destroy
     @picture = Picture.find(params[:id])

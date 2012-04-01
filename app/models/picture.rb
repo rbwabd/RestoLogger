@@ -8,4 +8,11 @@ class Picture < ActiveRecord::Base
   belongs_to :store
   
   mount_uploader :image, ImageUploader
+  
+  def id_encoded
+    Hid.enc( self.id )
+  end
+  def to_param
+    Hid.enc( self.id )
+  end  
 end

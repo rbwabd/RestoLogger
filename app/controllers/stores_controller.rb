@@ -1,7 +1,8 @@
 class StoresController < ApplicationController
   #before_filter :authenticate_user!
   #before_filter :authorized_user, :only => :destroy
-  
+  before_filter :decode_id
+    
   # 2do: this is needed due to Store.all.paginate call that is on an array as opposed to active record call somehow
   require 'will_paginate/array'
   
@@ -15,7 +16,7 @@ class StoresController < ApplicationController
     @title = "stores.show_title"
     @button = "stores.new_visit_button"
     @button2 = "stores.show_menu_button"
-    @store = Store.find_by_zid(params[:id])
+    @store = Store.find(params[:id])
   end
 
   def new
@@ -67,7 +68,6 @@ class StoresController < ApplicationController
     @title = "stores.new_title"
     @button = "stores.search_button"
     @button2 = "stores.add_as_new_link"
-    #if params[:commit]==I18n.t("stores.search_button") then
     @country = Country.find(params[:country][:id])
     @state = State.find(params[:state][:id])
     @city = City.find(params[:city][:id])
@@ -84,7 +84,7 @@ class StoresController < ApplicationController
     @title = "stores.show_menu_title"
     @button = "stores.new_dish_button"
     @button2 = "stores.edit_menu_button"
-    @store = Store.find_by_zid(params[:id])
+    @store = Store.find(params[:id])
     @dishes = @store.get_menu
   end
 
@@ -92,7 +92,7 @@ class StoresController < ApplicationController
     @title = "dishes.add_menu_title"
     @button = "dishes.add_menu_button"
     @dish = Dish.new
-    @store = Store.find_by_zid(params[:id])
+    @store = Store.find(params[:id])
     ectmp = DishType.find_all_by_store_id(@store.id)
     arraytmp = Array.new
     ectmp.each {|x| arraytmp << x.name}
@@ -103,7 +103,7 @@ class StoresController < ApplicationController
     @title = "dishes.confirm_menu_title"
     @button = "dishes.confirm_menu_button"
     @dish = Dish.new
-    @store = Store.find_by_zid(params[:id])
+    @store = Store.find(params[:id])
     entries_text = params[:entries]
     category = I18n.t('dishes.default_category')
     @entries = Array.new
@@ -170,7 +170,7 @@ class StoresController < ApplicationController
   end
   
   def save_menu
-    store = Store.find_by_zid(params[:id])
+    store = Store.find(params[:id])
     tmphash = Hash.new
     
     # 2do: need to check for cases where entry already exists, using name.downcase to compare downcase
@@ -219,18 +219,18 @@ class StoresController < ApplicationController
         end
       end
     end
-    redirect_to show_menu_store_path(store.zid), :flash => { :success => (count ? count+1 : 0).to_s+" New Dishes Saved" }
+    redirect_to show_menu_store_path(store), :flash => { :success => (count ? count+1 : 0).to_s+" New Dishes Saved" }
   end
 
   def edit_menu_order
     @title = "stores.edit_menu_title"
     @button = "stores.save_button"
-    @store = Store.find_by_zid(params[:id])
+    @store = Store.find(params[:id])
     @dishes = @store.get_menu
   end
 
   def update_menu_order
-    @store = Store.find_by_zid(params[:id])
+    @store = Store.find(params[:id])
     store_dishes = @store.dishes
     store_dishes.each do |dish|
       if params["taborder_"+dish.dish_type.id.to_s] != ""
@@ -242,7 +242,7 @@ class StoresController < ApplicationController
         dish.save
       end
     end
-    redirect_to show_menu_store_path(@store.zid)
+    redirect_to show_menu_store_path(@store)
   end
 
   def destroy
