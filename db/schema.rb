@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120331152323) do
+ActiveRecord::Schema.define(:version => 20120401165504) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -92,6 +92,13 @@ ActiveRecord::Schema.define(:version => 20120331152323) do
 
   add_index "dishes", ["dish_type_id"], :name => "index_dishes_on_dish_type_id"
   add_index "dishes", ["zid"], :name => "index_dishes_on_zid", :unique => true
+
+  create_table "menus", :force => true do |t|
+    t.integer  "store_id"
+    t.string   "currency"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "pictures", :force => true do |t|
     t.string   "genre"
