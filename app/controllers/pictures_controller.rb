@@ -1,9 +1,9 @@
 class PicturesController < ApplicationController
   before_filter :decode_id
+  load_and_authorize_resource 
   
 =begin
   def destroy
-    @picture = Picture.find(params[:id])
     #AWS::S3::S3Object.find(@picture.filename, @@BUCKET).delete
     @picture.destroy
     flash[:notice] = "Successfully destroyed picture."

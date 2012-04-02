@@ -13,7 +13,7 @@
       <th><%= sortable "overall_rating", "Rating" %></th>
       <th><%= sortable "", "Visits to Store" %></th>
     </tr>
-    <% for visit in @visits %>
+    <% for visit in @visitslist %>
       <tr>
         <td class="ca"><%= link_to visit["date"]!=Date.new(3000,1,1) ? visit["date"].strftime("%B %e, %Y") : "No date set", visit_path(visit[:visit_id]) %></td>
         <td class="la"><%= link_to visit["store_name"], store_path(visit[:store_id]) %></td>

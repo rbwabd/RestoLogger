@@ -1,12 +1,12 @@
 en:
   pages:
-    about_title: About us
-    about_message: This is the RestoLogger application
-    help_title: Help
-    help_message: No help will be coming
+    home_title: What's up?
+    home_login_prompt: Please login through one of the providers below: (only facebook enabled for now...)
     contact_title: 'Contacts:'
     contact_message: You can't contact us
-    home_whats_up: What's up?
-    home_login_prompt: 'Please login through one of the providers below: (only facebook enabled for now...)'
+    about_title: About us
+    about_message: This is the Minu application
+    help_title: Help
+    help_message: No help will be coming
   
   

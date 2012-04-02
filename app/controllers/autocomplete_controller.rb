@@ -1,4 +1,6 @@
 class AutocompleteController < ApplicationController
+  # This page includes autocomplete actions only and does not require authentication/authorization 
+
   def cities
     if params[:term]
       like = "%".concat(params[:term].concat("%"))
@@ -13,7 +15,6 @@ class AutocompleteController < ApplicationController
   end
 
   def stores
-    #p params.to_s
     if params[:term]
       like = "%".concat(params[:term].concat("%"))
       stores = Store.where("name ILIKE ? and city_id = ?", like, params[:city_id])

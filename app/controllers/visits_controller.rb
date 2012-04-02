@@ -1,16 +1,17 @@
 class VisitsController < ApplicationController
   before_filter :decode_id
   before_filter :authenticate_user!
-  before_filter :authorized_user, :only => :destroy
-    
+  load_and_authorize_resource :except => :change_cart
+
   helper_method :sort_column, :sort_direction
   
   include ActionView::Helpers::TextHelper
   require 'will_paginate/array'
   
   def index
-    @visits = Array.new
-    @current_user.visits.each do |v|
+    #2do: implement a sortable table that doesn't require building an ad-hoc array
+    @visitslist = Array.new
+    @visits.each do |v|
       entry = Hash.new
       entry["date"] = v.visit_date ? v.visit_date : Date.new(3000,1,1) #hack to allow sort
       entry[:visit_id] = Hid.enc(v.id)
@@ -19,19 +20,18 @@ class VisitsController < ApplicationController
       entry["guest_number"] = v.guest_number.to_s  #to_s is to avoid sort issues with nil
       entry["dish_nb"] = v.dish_reviews.size
       entry["overall_rating"] = v.overall_rating.to_s
-      @visits << entry
+      @visitslist << entry
     end
-    @visits = @visits.sort_by{ |a| a[ params[:sort] ? params[:sort].to_s : "date".to_s ] }
+    @visitslist = @visitslist.sort_by{ |a| a[ params[:sort] ? params[:sort].to_s : "date".to_s ] }
     if params[:direction].nil? || params[:direction] == "desc"
-      @visits.reverse!
+      @visitslist.reverse!
     end
-    @visits = @visits.paginate(:page => params[:page], :per_page => 10)
+    @visitslist = @visitslist.paginate(:page => params[:page], :per_page => 10)
   end
   
   def show
     @title = "visits.show_title"
     @button = "visits.edit_button"
-    @visit = Visit.find(params[:id])
     @store = Store.find(@visit.store_id)
     @city = City.find(@visit.city_id)
   end
@@ -39,7 +39,6 @@ class VisitsController < ApplicationController
   def new
     @title = "visits.new_title"
     @button = "visits.new_button"
-    @visit = Visit.new
     @store = Store.find(params[:id])
     @dishes = @store.menu.get_dish_hash
     # if a session cart already existed for same store we keep it otherwise put in new one
@@ -51,7 +50,6 @@ class VisitsController < ApplicationController
   
   def create
     store = Store.find(session[:store_id])
-    @visit = Visit.new
     @visit.user_id = current_user.id
     @visit.store_id = store.id
     @visit.city_id = store.city_id
@@ -81,7 +79,6 @@ class VisitsController < ApplicationController
   def edit
     @title = "visits.edit_title"
     @button = "update_button"
-    @visit = Visit.find(params[:id])
     @store = @visit.store
     @dishes = @store.menu.get_dish_hash
     # if a session cart already existed for same store we keep it otherwise put in new one
@@ -96,7 +93,6 @@ class VisitsController < ApplicationController
   end
 
   def update
-    @visit = Visit.find(params[:id])
     @need_confirmation_list = Array.new
 	  
     update_dish_reviews_from_cart
@@ -116,46 +112,14 @@ class VisitsController < ApplicationController
     end
   end
   
-  def update_dish_reviews_from_cart
-    for ci in session[:cart].cart_items
-      if ci.dish_id == -1
-        if params[:confirmed]
-          # dish not already in DB 2do: create new dish, then dishreview, then add to visit
-          # also need to check at some point the dish with that name doesn't already exist
-        else
-          @need_confirmation_list << { :type => :new, :name => ci.name }
-        end
-      else      
-        # this method also called when user is updating their dish selection hence the possibility that the dish_reviews already exist
-        if dreview = @visit.dish_reviews.find_by_dish_id(Dish.find(Hid.dec(ci.dish_id)).id)
-          if ci.quantity == 0
-            if params[:confirmed]
-              dreview.destroy
-            else
-              @need_confirmation_list << { :type => :del, :name => ci.name }
-            end
-          else
-            dreview.quantity = ci.quantity
-            @visit.dish_reviews << dreview
-          end
-        elsif ci.quantity > 0  
-          dreview = DishReview.new
-          dreview.user_id = current_user.id
-          dreview.dish_id = Dish.find(Hid.dec(ci.dish_id)).id
-          dreview.quantity = ci.quantity
-          @visit.dish_reviews << dreview
-        end
-      end  
-    end
-  end
-  
   def change_cart
+    #this action does not run through authorization but that's ok as can only effect the session cart
     if params[:delall]
       session[:cart] = Cart.new
     elsif params[:del]
       session[:cart].remove_dish(params[:dish_name])
     else
-      if !dish=Dish.find(Hid.dec(params[:dish_id])) and params[:dish_name] and params[:dish_name].size > 0 
+      if !dish = Dish.find(Hid.dec(params[:dish_id])) and params[:dish_name] and params[:dish_name].size > 0 
         #new dish, to be added to DB
         session[:cart].add_dish(params[:dish_name], 0, -1)
       else
@@ -174,13 +138,11 @@ class VisitsController < ApplicationController
     @button = "update_button"
     @button2 = "visits.edit_dishes_button"
     @button3 = "visits.delete_button"
-    @visit = Visit.find(params[:id])
     @store = @visit.store
     @rating_options = [[0,0],[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]]
   end  
   
   def update_parameters
-    @visit = Visit.find(params[:id])
     @visit.user_id = current_user.id
     @visit.overall_rating = params[:visit][:overall_rating]
     @visit.service_rating = params[:visit][:service_rating]
@@ -224,17 +186,44 @@ class VisitsController < ApplicationController
   end
   
   def destroy
-    #@visit initialized in authorized_user routine
     @visit.destroy
     redirect_to root_path, :flash => { :success => "Visit deleted!" }
   end
   
   private
-    def authorized_user
-      @visit = current_user.visits.find(params[:id])
-      redirect_to root_path if @visit.nil?
+    def update_dish_reviews_from_cart
+      for ci in session[:cart].cart_items
+        if ci.dish_id == -1
+          if params[:confirmed]
+            # dish not already in DB 2do: create new dish, then dishreview, then add to visit
+            # also need to check at some point the dish with that name doesn't already exist
+          else
+            @need_confirmation_list << { :type => :new, :name => ci.name }
+          end
+        else      
+          # this method also called when user is updating their dish selection hence the possibility that the dish_reviews already exist
+          if dreview = @visit.dish_reviews.find_by_dish_id(Dish.find(Hid.dec(ci.dish_id)).id)
+            if ci.quantity == 0
+              if params[:confirmed]
+                dreview.destroy
+              else
+                @need_confirmation_list << { :type => :del, :name => ci.name }
+              end
+            else
+              dreview.quantity = ci.quantity
+              @visit.dish_reviews << dreview
+            end
+          elsif ci.quantity > 0  
+            dreview = DishReview.new
+            dreview.user_id = current_user.id
+            dreview.dish_id = Dish.find(Hid.dec(ci.dish_id)).id
+            dreview.quantity = ci.quantity
+            @visit.dish_reviews << dreview
+          end
+        end  
+      end
     end
-	
+    
     def sort_column
       Visit.column_names.include?(params[:sort]) ? params[:sort] : "visit_date"
     end

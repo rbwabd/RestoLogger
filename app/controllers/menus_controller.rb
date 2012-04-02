@@ -1,23 +1,23 @@
 class MenusController < ApplicationController
   before_filter :decode_id
   before_filter :authenticate_user!
-  #before_filter :authorized_user, :only => :destroy
+  load_and_authorize_resource 
     
   def show
     @title = "menus.show_menu_title"
     @button = "menus.new_dish_button"
     @button2 = "menus.edit_menu_button"
     @button3 = "menus.return_to_store_button"
-    @store = Store.find(params[:id])
-    @dishes = @store.menu.get_dish_hash
+    @store = @menu.store
+    @dishes = @menu.get_dish_hash
   end
 
   def add
     @title = "menus.add_menu_title"
     @button = "add_button"
     @dish = Dish.new
-    @store = Store.find(params[:id])
-    ectmp = DishType.find_all_by_menu_id(@store.menu.id)
+    @store = @menu.store
+    ectmp = DishType.find_all_by_menu_id(@menu.id)
     arraytmp = Array.new
     ectmp.each {|x| arraytmp << x.name}
     @existing_categories = arraytmp.join("\r\n\r\n")
@@ -27,7 +27,7 @@ class MenusController < ApplicationController
     @title = "menus.confirm_menu_title"
     @button = "confirm_button"
     @dish = Dish.new
-    @store = Store.find(params[:id])
+    @store = @menu.store
     entries_text = params[:entries]
     category = I18n.t('dishes.default_category')
     @entries = Array.new
@@ -94,7 +94,7 @@ class MenusController < ApplicationController
   end
   
   def save
-    store = Store.find(params[:id])
+    @store = @menu.store
     tmphash = Hash.new
     
     # 2do: need to check for cases where entry already exists, using name.downcase to compare downcase
@@ -110,18 +110,18 @@ class MenusController < ApplicationController
       description = params["description"+count.to_s]
       code = params["code"+count.to_s]
       
-      dish = Dish.new({ :menu_id => store.menu.id, :name => name, :option_description => option_description, :price_comment => price_comment, :price => price, :description => description, :code => code})
+      dish = Dish.new({ :menu_id => @menu.id, :name => name, :option_description => option_description, :price_comment => price_comment, :price => price, :description => description, :code => code})
       if !tmphash.has_key?(category)
         tmphash[category] = Array.new
       end
       tmphash[category] << dish
     end  
       
-    typeCnt = DishType.count( :conditions => ["menu_id = ?", store.menu.id])
+    typeCnt = DishType.count( :conditions => ["menu_id = ?", @menu.id])
 
     tmphash.each do |cat, dish_array|
-      if !dt=DishType.find_by_name_and_menu_id(cat, store.menu.id) 
-        dt=DishType.new({ :name => cat, :menu_id => store.menu.id, :rank => typeCnt })
+      if !dt=DishType.find_by_name_and_menu_id(cat, @menu.id) 
+        dt=DishType.new({ :name => cat, :menu_id => @menu.id, :rank => typeCnt })
         if dt.save
           typeCnt+=1
         else
@@ -133,7 +133,7 @@ class MenusController < ApplicationController
         dishCnt = Dish.count( :conditions => ["dish_type_id = ?", dt.id])
         dish_array.each do |dish|
           # need to check dish doesn't already exist. check across categories as users may put in wrong category
-          if !Dish.where(:name => dish.name, :menu_id => store.menu.id).exists?
+          if !Dish.where(:name => dish.name, :menu_id => @menu.id).exists?
             dish.dish_type_id = dt.id
             dish.rank = dishCnt
             #2do: need to add error message if save fails
@@ -143,19 +143,19 @@ class MenusController < ApplicationController
         end
       end
     end
-    redirect_to menu_path(store), :flash => { :success => (count ? count+1 : 0).to_s+" New Dishes Saved" }
+    redirect_to menu_path(@menu), :flash => { :success => (count ? count+1 : 0).to_s+" New Dishes Saved" }
   end
 
   def edit_order
     @title = "menus.edit_menu_title"
     @button = "save_button"
-    @store = Store.find(params[:id])
-    @dishes = @store.menu.get_dish_hash
+    @store = @menu.store
+    @dishes = @menu.get_dish_hash
   end
 
   def update_order
-    @store = Store.find(params[:id])
-    store_dishes = @store.menu.dishes
+    @store = @menu.store
+    store_dishes = @menu.dishes
     store_dishes.each do |dish|
       if params["taborder_"+dish.dish_type.id.to_s] != ""
         dish.dish_type.rank=params["taborder_"+dish.dish_type.id.to_s]
@@ -166,12 +166,7 @@ class MenusController < ApplicationController
         dish.save
       end
     end
-    redirect_to menu_path(@store)
+    redirect_to menu_path(@menu)
   end
-
-  private
-    def authorized_user
-      @visit = current_user.visits.find(params[:id])
-      redirect_to root_path if @visit.nil?
-    end
-	end
+  
+end

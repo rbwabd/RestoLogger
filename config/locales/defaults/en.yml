@@ -11,4 +11,9 @@ en:
   save_button: Save
   update_button: Update  
   confirm_button: Confirm
-  cancel_button: Cancel  
+  cancel_button: Cancel
+  
+  authentications:
+    sign_in_title: Sign in please
+    destroy_success_message: Successfully destroyed authentication.
+  

@@ -1,21 +1,19 @@
 class PagesController < ApplicationController
+  # This page should have static pages only and not require authentication/authorization 
+
   def home
-    @title = "Home"
-    if user_signed_in?
-      @visit = Visit.new
-      @feed_items = current_user.feed.paginate(:page => params[:page])
-    end
+    @title = "pages.home_title"
   end
 
   def contact
-    @title = "Contact"
+    @title = "pages.contact_title"
   end
   
   def about
-    @title = "About"
+    @title = "pages.about_title"
   end
   
   def help
-    @title = "Help"
+    @title = "pages.help_title"
   end
 end

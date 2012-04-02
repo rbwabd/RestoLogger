@@ -1,35 +1,34 @@
 class StoresController < ApplicationController
   before_filter :decode_id
-  #before_filter :authenticate_user!
-  #before_filter :authorized_user, :only => :destroy
+  before_filter :authenticate_user!
+  load_and_authorize_resource :except => :search, :search_results
     
   # 2do: this is needed due to Store.all.paginate call that is on an array as opposed to active record call somehow
-  require 'will_paginate/array'
+  #require 'will_paginate/array'
   
   def index
     @button = "stores.new_visit_button"
     @button2 = "stores.show_menu_button"
-    @stores = Store.all.paginate(:page => params[:page], :per_page => 10)
+    @stores = @stores.paginate(:page => params[:page], :per_page => 10)
   end
   
   def show
     @title = "empty"
     @button = "stores.new_visit_button"
     @button2 = "stores.show_menu_button"
-    @store = Store.find(params[:id])
   end
 
   def new
     @title = "stores.new_title"
     @button = "stores.new_button"
-    @store = Store.new( {:name => params[:name], :address => params[:address]})
+    @store.name = params[:name]
+    @store.address = params[:address]
     @country = Country.find(params[:param][:country][:id])
     @state = State.find(params[:param][:state][:id])
     @city = City.find(params[:param][:city][:id])
   end
 
   def create
-    @store = Store.new
     @store.city_id = params[:city][:id]
     @store.name = params[:store][:name]
     @store.address = params[:store][:address]
@@ -58,6 +57,7 @@ class StoresController < ApplicationController
   end
   
   def search
+    authorize! :search, :stores
     @button = "search_button"
     @store  = Store.new
     @country = Country.find_by_name("United Kingdom")
@@ -67,6 +67,7 @@ class StoresController < ApplicationController
   end
   
   def search_results
+    authorize! :search, :stores
     @title = "stores.new_title"
     @button = "search_button"
     @button2 = "stores.add_as_new_store_button"

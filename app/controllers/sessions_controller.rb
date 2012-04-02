@@ -1,4 +1,5 @@
 class SessionsController < Devise::SessionsController
+  # This controller should not need authentication / authorization
   
   def create
 		omniauth = request.env["omniauth.auth"]
@@ -25,7 +26,9 @@ class SessionsController < Devise::SessionsController
       user = User.new
       #the below also creates a new authentication object in DB
       user.apply_omniauth(omniauth)
-      user.profilepicurl=set_user_profilepic(omniauth)
+      user.profilepicurl = set_user_profilepic(omniauth)
+      #set normal user role without any special qualifiers
+      user.role = 0
       session[:user_id] = user.id 
 			if user.save
         flash[:notice] = "Signed in new user successfully."

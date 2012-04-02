@@ -1,15 +1,15 @@
 class AuthenticationsController < ApplicationController
   before_filter :decode_id
-
+  load_and_authorize_resource 
+  
   def index
-		@title = "Sign In Options"
-    @authentications = current_user.authentications if current_user
+		@title = "authentications.sign_in_title"
   end
   
   def destroy
-    @authentication = current_user.authentications.find(params[:id])
     @authentication.destroy
-    flash[:notice] = "Successfully destroyed authentication."
-    redirect_to authentications_url
+    flash[:notice] = I18n.t("authentications.destroy_success_message")
+    #redirect_to authentications_url
+    redirect_to authentications_path
   end
 end

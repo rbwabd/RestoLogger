@@ -1,19 +1,15 @@
 class UsersController < ApplicationController
   before_filter :decode_id
-  #run these methods before the specific actions (e.g. edit)
-	before_filter :authenticate_user!#, :only => [:edit, :update]
-	before_filter :correct_user, :only => [:edit, :update]
-  #before_filter :admin_user,   :only => :destroy
+	before_filter :authenticate_user!
+	load_and_authorize_resource
   
   def index
     @title = "users.index_title"
-    @users = User.paginate(:page => params[:page])
+    @users = @users.paginate(:page => params[:page])
   end
   
   def show
-    @user = User.find(params[:id])
     @title = @user.name 
-    @user = User.find(params[:id])
   end
 
   def edit
@@ -72,14 +68,4 @@ class UsersController < ApplicationController
   end
 =end  
 
-  private
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_path) unless current_user == @user
-    end
-    
-    #def admin_user
-    #  @user = User.find(params[:id])
-    #  redirect_to(root_path) if !current_user.admin? || current_user?(@user)
-    #end
 end

@@ -7,16 +7,6 @@ class User < ActiveRecord::Base
 	has_many :authentications
   has_one :user_setting
 
-  has_many :relationships, :dependent => :destroy,
-                           :foreign_key => "follower_id"
-  has_many :reverse_relationships, :dependent => :destroy,
-                                   :foreign_key => "followed_id",
-                                   :class_name => "Relationship"
-  has_many :following, :through => :relationships, 
-											 :source => :followed
-  has_many :followers, :through => :reverse_relationships, 
-											 :source  => :follower
-  
   has_many :visits,       :dependent => :destroy
   has_many :pictures,     :dependent => :destroy
   has_many :dish_reviews, :dependent => :destroy
@@ -25,20 +15,20 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable
 
-  def feed
-    Visit.from_users_followed_by(self)
+  scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0 "} }
+
+  ROLES = %w[admin moderator owner banned]
+
+  def roles=(roles)
+    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
   end
-  
-  def following?(followed)
-    relationships.find_by_followed_id(followed)
+
+  def roles
+    ROLES.reject { |r| ((roles_mask || 0) & 2**ROLES.index(r)).zero? }
   end
-  
-  def follow!(followed)
-    relationships.create!(:followed_id => followed.id)
-  end
-  
-  def unfollow!(followed)
-    relationships.find_by_followed_id(followed).destroy
+
+  def role?(role)
+    roles.include? role.to_s
   end
 
   def apply_omniauth(omniauth)
