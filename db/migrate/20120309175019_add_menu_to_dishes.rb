@@ -1,6 +1,6 @@
 class AddStoreToDishes < ActiveRecord::Migration
   def change
-    add_column :dishes, :store_id, :integer
+    add_column :dishes, :menu_id, :integer
 
   end
 end

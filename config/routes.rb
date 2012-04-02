@@ -11,24 +11,25 @@ RestoLogger::Application.routes.draw do
     resources :states,          :only => [:create, :destroy]
     resources :dishes,          :only => [:show]
     resources :users
+    resources :stores do 
+      collection do
+        get 'search'
+        post 'search_results'
+      end
+    end
     resources :visits do
       member do
         get 'edit_parameters'
         put 'update_parameters'
       end
     end  
-    resources :stores do 
-      collection do
-        get 'search'
-        post 'search_results'
-      end
+    resources :menus, :only => [:show, :edit, :update] do
       member do
-        get 'add_menu'
-        post 'submit_menu'
-        post 'save_menu'
-        get 'show_menu'
-        get 'edit_menu_order'
-        put 'update_menu_order'
+        get 'add'
+        post 'confirm'
+        post 'save'
+        get 'edit_order'
+        put 'update_order'      
       end
     end
     

@@ -30,7 +30,7 @@ class VisitsController < ApplicationController
   
   def show
     @title = "visits.show_title"
-    @button = "visits.to_edit_button"
+    @button = "visits.edit_button"
     @visit = Visit.find(params[:id])
     @store = Store.find(@visit.store_id)
     @city = City.find(@visit.city_id)
@@ -41,7 +41,7 @@ class VisitsController < ApplicationController
     @button = "visits.new_button"
     @visit = Visit.new
     @store = Store.find(params[:id])
-    @dishes = @store.get_menu
+    @dishes = @store.menu.get_dish_hash
     # if a session cart already existed for same store we keep it otherwise put in new one
     if !(session[:store_id] and session[:store_id] == Hid.enc(@store.id) and session[:cart])
       session[:store_id] = params[:id]
@@ -58,14 +58,15 @@ class VisitsController < ApplicationController
     #2do: not sure storing city_id in both visit and store is optimal...
     @visit.visit_date = params[:visit][:visit_date]
     #2do: need to check again that date not in future or too far past (do it in model.rb)
+
     @need_confirmation_list = Array.new
     
     update_dish_reviews_from_cart
     
     if @need_confirmation_list.size > 0
       @title = "visits.confirm_title"
-      @button = "visits.confirm_button"
-      @button2 = "visits.cancel_button"
+      @button = "confirm_button"
+      @button2 = "cancel_button"
       render 'visits/confirm_visit'
     else  
       if @visit.save
@@ -79,10 +80,10 @@ class VisitsController < ApplicationController
 
   def edit
     @title = "visits.edit_title"
-    @button = "visits.edit_button"
+    @button = "update_button"
     @visit = Visit.find(params[:id])
     @store = @visit.store
-    @dishes = @store.get_menu
+    @dishes = @store.menu.get_dish_hash
     # if a session cart already existed for same store we keep it otherwise put in new one
     if !(session[:store_id] and session[:store_id] == Hid.enc(@store.id) and session[:cart])
       session[:store_id] = params[:id]
@@ -102,8 +103,8 @@ class VisitsController < ApplicationController
     
     if @need_confirmation_list.size > 0
       @title = "visits.confirm_title"
-      @button = "visits.confirm_button"
-      @button2 = "visits.cancel_button"
+      @button = "confirm_button"
+      @button2 = "cancel_button"
       render 'visits/confirm_visit'
     else  
       if @visit.save
@@ -170,7 +171,7 @@ class VisitsController < ApplicationController
   
   def edit_parameters
     @title = "visits.edit_title"
-    @button = "visits.edit_button"
+    @button = "update_button"
     @button2 = "visits.edit_dishes_button"
     @button3 = "visits.delete_button"
     @visit = Visit.find(params[:id])

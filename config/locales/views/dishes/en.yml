@@ -2,14 +2,7 @@ en:
   dishes:
     index_title: All Dishes
     show_title: Entry
-    new_title: Add New Dishes
-    new_button: Add
-    add_menu_title: "Add New Dishes to: "
-    add_menu_button: Add
-    confirm_menu_title: Please confirm your entries are correct
-    confirm_menu_button: Confirm
     edit_title: Edit Dish
-    edit_button: Update
     default_category: Uncategorized
 
  

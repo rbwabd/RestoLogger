@@ -18,7 +18,7 @@
     </div>
     <div class="action">
       <%= link_to I18n.t(@button), new_visit_path(:id => Hid.enc(store.id))%>
-      <%= link_to I18n.t(@button2), show_menu_store_path(store)%>
+      <%= link_to I18n.t(@button2), menu_path(store)%>
     </div>    
   </div>
 <% end %>

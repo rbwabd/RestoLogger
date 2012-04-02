@@ -4,5 +4,10 @@ en:
   french: French
   german: German
   update_button: Update
-  
-  
+  search_button: Search
+  add_button: Add
+  edit_button: Update
+  save_button: Save
+  update_button: Update  
+  confirm_button: Confirm
+  cancel_button: Cancel  

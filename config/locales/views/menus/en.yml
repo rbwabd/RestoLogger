@@ -1,0 +1,10 @@
+en:
+  menus:
+    show_menu_title: "Menu for "
+    new_dish_button: "Add Dishes for "
+    edit_menu_button: Change Menu Ordering
+    return_to_store_button: "Return to Store Page"
+    add_menu_title: "Add New Dishes to: "
+    confirm_menu_title: Please confirm your entries are correct
+    edit_menu_title: "Menu for "
+

@@ -1,19 +1,7 @@
 en:
   stores:
-    show_title: ""
     new_title: Create a New Store
-    new_button: Add
+    new_button: "Add as New Store"    
     new_visit_button: "Add Visit to "
-    new_dish_button: "Add Dishes for "
+    add_as_new_store_button: Add as New Store
     show_menu_button: Show Menu
-    edit_menu_button: Change Menu Ordering
-    search_button: Search
-    show_menu_title: "Menu for "
-    edit_menu_title: "Menu for "
-    add_as_new_link: Add as New Store
-    return_to_store_button: "Return to Store Page"
-    edit_title: "Edit "
-    edit_button: Update
-    save_button: Save Changes
-
- 

@@ -1,20 +1,19 @@
 en:
   visits:
+    # Titles and Buttons
     show_title: "Visit for "
+    edit_button: "Edit Visit"
     new_title: "Add a Visit to "
     new_button: "Add as new visit"
     edit_title: "Edit Visit to "
-    edit_button: "Save"
-    confirm_title: "Please confirm the items below"
-    confirm_button: "Confirm"
-    cancel_button: "Cancel"
     edit_dishes_button: "Change dishes selection"
-    to_edit_button: "Edit Visit"
     delete_button: "Delete this Visit"
     delete_warning: |
       Are you sure you want to delete this visit report? 
       This action cannot be reversed. 
       All associated picture, review and order information will be lost!
+    confirm_title: "Please confirm the items below"
+    # View fields and labels
     visit_date_title: Visit Date
     guest_nb_title: Number of Guests
     overall_rating_title: Overall Rating
