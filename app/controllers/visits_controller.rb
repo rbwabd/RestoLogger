@@ -1,7 +1,7 @@
 class VisitsController < ApplicationController
+  before_filter :decode_id
   before_filter :authenticate_user!
   before_filter :authorized_user, :only => :destroy
-  before_filter :decode_id
     
   helper_method :sort_column, :sort_direction
 
@@ -125,7 +125,7 @@ class VisitsController < ApplicationController
         end
       else      
         # this method also called when user is updating their dish selection hence the possibility that the dish_reviews already exist
-        if dreview = @visit.dish_reviews.find_by_dish_id(Dish.find(ci.dish_id).id)
+        if dreview = @visit.dish_reviews.find_by_dish_id(Dish.find(Hid.dec(ci.dish_id)).id)
           if ci.quantity == 0
             if params[:confirmed]
               dreview.destroy
@@ -139,7 +139,7 @@ class VisitsController < ApplicationController
         elsif ci.quantity > 0  
           dreview = DishReview.new
           dreview.user_id = current_user.id
-          dreview.dish_id = Dish.find(ci.dish_id).id
+          dreview.dish_id = Dish.find(Hid.dec(ci.dish_id)).id
           dreview.quantity = ci.quantity
           @visit.dish_reviews << dreview
         end

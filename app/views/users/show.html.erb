@@ -16,9 +16,8 @@
     </td>
     <td class="round">
       <strong>Name</strong> <%= @user.name %><br />
-      <strong>URL</strong>  <%= link_to user_path(@user), Hid.end(@user.id) %><br />
+      <strong>URL</strong>  <%= link_to user_path(@user), Hid.enc(@user.id) %><br />
       <strong>Visits</strong> <%= @user.visits.count %>
-      <%= render 'shared/stats' %>
     </td>
   </tr>
 </table>

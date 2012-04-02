@@ -1,4 +1,6 @@
 class AuthenticationsController < ApplicationController
+  before_filter :decode_id
+
   def index
 		@title = "Sign In Options"
     @authentications = current_user.authentications if current_user

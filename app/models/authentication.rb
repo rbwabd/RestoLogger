@@ -8,4 +8,12 @@ class Authentication < ActiveRecord::Base
       provider.titleize
     end
   end
+  
+  def id_encoded
+    Hid.enc( self.id )
+  end
+  
+  def to_param
+    Hid.enc( self.id )
+  end 
 end

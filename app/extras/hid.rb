@@ -13,11 +13,8 @@ class Hid
     ((hide_integer.to_i(36) ^ RNDXOR) * PRIME_INVERSE) & MAXID
   end
   
-  def self.dec_param( symbol )
-    params[symbol] = Hid::dec(symbol).to_s if params[symbol]
-  end  
-  
 =begin  
+  #code to find the inverse of the prime, only needed if we wanted ever to change the encoding prime
   def self.inverse
     prime_inverse = modinv(PRIME,MAXID+1)
     p "Test "+((PRIME*PRIME_INVERSE) & MAXID ).to_s

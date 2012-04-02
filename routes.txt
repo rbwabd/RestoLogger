@@ -1,0 +1,65 @@
+                    root        /                                       authentications#index
+                sessions POST   /sessions(.:format)                     sessions#create
+             new_session GET    /sessions/new(.:format)                 sessions#new
+                 session DELETE /sessions/:id(.:format)                 sessions#destroy
+           relationships POST   /relationships(.:format)                relationships#create
+            relationship DELETE /relationships/:id(.:format)            relationships#destroy
+         authentications GET    /authentications(.:format)              authentications#index
+                         POST   /authentications(.:format)              authentications#create
+      new_authentication GET    /authentications/new(.:format)          authentications#new
+     edit_authentication GET    /authentications/:id/edit(.:format)     authentications#edit
+          authentication GET    /authentications/:id(.:format)          authentications#show
+                         PUT    /authentications/:id(.:format)          authentications#update
+                         DELETE /authentications/:id(.:format)          authentications#destroy
+               countries POST   /countries(.:format)                    countries#create
+                 country DELETE /countries/:id(.:format)                countries#destroy
+                  states POST   /states(.:format)                       states#create
+                   state DELETE /states/:id(.:format)                   states#destroy
+   edit_parameters_visit GET    /visits/:id/edit_parameters(.:format)   visits#edit_parameters
+ update_parameters_visit PUT    /visits/:id/update_parameters(.:format) visits#update_parameters
+                  visits GET    /visits(.:format)                       visits#index
+                         POST   /visits(.:format)                       visits#create
+               new_visit GET    /visits/new(.:format)                   visits#new
+              edit_visit GET    /visits/:id/edit(.:format)              visits#edit
+                   visit GET    /visits/:id(.:format)                   visits#show
+                         PUT    /visits/:id(.:format)                   visits#update
+                         DELETE /visits/:id(.:format)                   visits#destroy
+           search_stores GET    /stores/search(.:format)                stores#search
+   search_results_stores POST   /stores/search_results(.:format)        stores#search_results
+          add_menu_store GET    /stores/:id/add_menu(.:format)          stores#add_menu
+       submit_menu_store POST   /stores/:id/submit_menu(.:format)       stores#submit_menu
+         save_menu_store POST   /stores/:id/save_menu(.:format)         stores#save_menu
+         show_menu_store GET    /stores/:id/show_menu(.:format)         stores#show_menu
+   edit_menu_order_store GET    /stores/:id/edit_menu_order(.:format)   stores#edit_menu_order
+ update_menu_order_store PUT    /stores/:id/update_menu_order(.:format) stores#update_menu_order
+                  stores GET    /stores(.:format)                       stores#index
+                         POST   /stores(.:format)                       stores#create
+               new_store GET    /stores/new(.:format)                   stores#new
+              edit_store GET    /stores/:id/edit(.:format)              stores#edit
+                   store GET    /stores/:id(.:format)                   stores#show
+                         PUT    /stores/:id(.:format)                   stores#update
+                         DELETE /stores/:id(.:format)                   stores#destroy
+             change_cart        /change_cart(.:format)                  visits#change_cart
+                 contact        /contact(.:format)                      pages#contact
+                   about        /about(.:format)                        pages#about
+                    help        /help(.:format)                         pages#help
+     autocomplete_cities GET    /autocomplete/cities(.:format)          autocomplete#cities
+     autocomplete_stores GET    /autocomplete/stores(.:format)          autocomplete#stores
+     autocomplete_dishes GET    /autocomplete/dishes(.:format)          autocomplete#dishes
+        new_user_session GET    /users/sign_in(.:format)                devise/sessions#new
+            user_session POST   /users/sign_in(.:format)                devise/sessions#create
+    destroy_user_session DELETE /users/sign_out(.:format)               devise/sessions#destroy
+           user_password POST   /users/password(.:format)               devise/passwords#create
+       new_user_password GET    /users/password/new(.:format)           devise/passwords#new
+      edit_user_password GET    /users/password/edit(.:format)          devise/passwords#edit
+                         PUT    /users/password(.:format)               devise/passwords#update
+cancel_user_registration GET    /users/cancel(.:format)                 devise/registrations#cancel
+       user_registration POST   /users(.:format)                        devise/registrations#create
+   new_user_registration GET    /users/sign_up(.:format)                devise/registrations#new
+  edit_user_registration GET    /users/edit(.:format)                   devise/registrations#edit
+                         PUT    /users(.:format)                        devise/registrations#update
+                         DELETE /users(.:format)                        devise/registrations#destroy
+        new_user_session GET    /signin(.:format)                       authentications#index
+            user_session POST   /signin(.:format)                       users#show
+    destroy_user_session DELETE /signout(.:format)                      sessions#destroy
+                                /auth/:provider/callback(.:format)      sessions#create

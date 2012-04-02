@@ -4,12 +4,13 @@ RestoLogger::Application.routes.draw do
   
   # Resource routing: covers index, show, new, edit, create, update and destroy actions
     resources :sessions,        :only => [:new, :create, :destroy]
-    #resources :dish_reviews,    :only => [:destroy]
+    resources :dish_reviews,    :only => [:show]
     resources :relationships,   :only => [:create, :destroy]
     resources :authentications
     resources :countries,       :only => [:create, :destroy]
     resources :states,          :only => [:create, :destroy]
-    #resources :dishes
+    resources :dishes,          :only => [:show]
+    resources :users
     resources :visits do
       member do
         get 'edit_parameters'

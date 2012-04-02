@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-  #run these methods before the specific actions (e.g. edit)
-	#before_filter :authenticate_user!#, :only => [:edit, :update]
-	#before_filter :correct_user, :only => [:edit, :update]
-  #before_filter :admin_user,   :only => :destroy
   before_filter :decode_id
+  #run these methods before the specific actions (e.g. edit)
+	before_filter :authenticate_user!#, :only => [:edit, :update]
+	before_filter :correct_user, :only => [:edit, :update]
+  #before_filter :admin_user,   :only => :destroy
   
   def index
     @title = "users.index_title"
@@ -11,9 +11,31 @@ class UsersController < ApplicationController
   end
   
   def show
-    @title = @user.name #2do: fix that can just show in view
+    @user = User.find(params[:id])
+    @title = @user.name 
     @user = User.find(params[:id])
   end
+
+  def edit
+    @title = "users.edit_title"
+    @button = "users.edit_button"
+    @user_setting = @user.user_setting
+  end
+  
+  def update
+    if @user.update_attributes(params[:user]) && @user.user_setting.update_attributes(params[:user_setting])
+      redirect_to user_path(@user), :flash => { :success => "Profile updated." }
+    else
+      @title = "users.edit_title"
+      @button = "users.edit_button"
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @user.destroy
+    redirect_to users_path, :flash => { :success => "User destroyed." }
+  end  
 =begin
   #think this code is directly from the tutorial book and doens't work here...
   def following
@@ -49,41 +71,15 @@ class UsersController < ApplicationController
     end
   end
 =end  
-  def edit
-    @title = "users.edit_title"
-    @button = "users.edit_button"
-    #need to set user_setting so the form knows how to initialize the field
-    #@user = User.find(params[:id])
-    @user_setting = @user.user_setting
-  end
-  
-  def update
-    @user = User.find(params[:id])
-    if @user.update_attributes(params[:user]) && @user.user_setting.update_attributes(params[:user_setting])
-      redirect_to user_path(@user), :flash => { :success => "Profile updated." }
-    else
-      @title = "users.edit_title"
-      @button = "users.edit_button"
-      render 'edit'
-    end
-  end
-
-  def destroy
-    @user.destroy
-    redirect_to users_path, :flash => { :success => "User destroyed." }
-  end
 
   private
-=begin
-  #from rails tutorial
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_path) unless current_user?(@user)
+      redirect_to(root_path) unless current_user == @user
     end
     
-    def admin_user
-      @user = User.find(params[:id])
-      redirect_to(root_path) if !current_user.admin? || current_user?(@user)
-    end
-=end    
+    #def admin_user
+    #  @user = User.find(params[:id])
+    #  redirect_to(root_path) if !current_user.admin? || current_user?(@user)
+    #end
 end
