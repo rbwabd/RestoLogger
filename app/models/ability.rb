@@ -12,7 +12,9 @@ class Ability
     elsif user.role? :admin
       can :manage, :all
     else #basically normal users without special rights
-      can :read, Visit
+      can :read, Visit do |visit|
+        visit.try(:user) == user
+      end
       can :create, Visit
       # update on visit updates the items ordered, while update_parameters changes the ratings, review text, pictures etc.
       can [:update, :destroy, :edit_parameters, :update_parameters], Visit do |visit|
