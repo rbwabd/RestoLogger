@@ -2,7 +2,7 @@
   <%= render 'layouts/main_sidebar' %>
 <% end %>
 <p>
-<%= will_paginate %>
+<%= will_paginate @visitslist %>
   <table class="listing">
     <tr>
       <th><%= sortable "date", "Date" %></th>
@@ -25,5 +25,5 @@
       </tr>
     <% end %>
   </table>
-<%= will_paginate %>
+<%= will_paginate @visitslist %>
 

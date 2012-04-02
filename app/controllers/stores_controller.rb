@@ -1,7 +1,7 @@
 class StoresController < ApplicationController
   before_filter :decode_id
   before_filter :authenticate_user!
-  load_and_authorize_resource :except => :search, :search_results
+  load_and_authorize_resource :except => [:search, :search_results]
     
   # 2do: this is needed due to Store.all.paginate call that is on an array as opposed to active record call somehow
   #require 'will_paginate/array'

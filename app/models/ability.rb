@@ -15,11 +15,11 @@ class Ability
       can :read, Visit
       can :create, Visit
       # update on visit updates the items ordered, while update_parameters changes the ratings, review text, pictures etc.
-      can [:update, :destroy, :edit_parameters, :update_parameters] Visit do |visit|
+      can [:update, :destroy, :edit_parameters, :update_parameters], Visit do |visit|
         visit.try(:user) == user
       end
       
-      can :destroy DishReview do |dish_review|
+      can :destroy, DishReview do |dish_review|
         dish_review.try(:user) == user
       end
 
@@ -32,7 +32,7 @@ class Ability
       
       can :show, Menu
       can [:add, :confirm, :save], Menu       # add new items to menu
-      can [:edit_order, update_order], Menu   # change order which menu items and categories are presented
+      can [:edit_order, :update_order], Menu   # change order which menu items and categories are presented
     
       can :show, Dish
       can :destroy, Dish do |dish|
@@ -44,10 +44,10 @@ class Ability
         authentication.try(:user) == user
       end
       
-      can :read User do |u|
+      can :read, User do |u|
         # u.try(:friend?, user)  #verify u and user are friends
       end
-      can :update User do |u|
+      can :update, User do |u|
         u == user
       end
     end

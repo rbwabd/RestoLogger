@@ -28,7 +28,7 @@ class SessionsController < Devise::SessionsController
       user.apply_omniauth(omniauth)
       user.profilepicurl = set_user_profilepic(omniauth)
       #set normal user role without any special qualifiers
-      user.role = 0
+      user.roles_mask = 0
       session[:user_id] = user.id 
 			if user.save
         flash[:notice] = "Signed in new user successfully."

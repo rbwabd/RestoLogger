@@ -1,3 +1,5 @@
+
+$highlight-color: #F3EBD9;
 #sidebar { /* Main sidebar*/
 	width: 317px;
 	float: left;
@@ -45,13 +47,13 @@
     color: #000000;
     padding-left: 20px;
     display: block;
-    &:hover {
+    &:hover { /* highlight link segment when hovering above it */
       text-decoration: none;
-      background: #F3EBD9;
+      background: darken($highlight-color, 10%);  
     }
   }
   .sb-hl{ /* to highlight selected sidebar element */
-    background-color: #F3EBD9;
+    background-color: $highlight-color;
   }
 }
 

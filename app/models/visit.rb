@@ -1,6 +1,6 @@
 class Visit < ActiveRecord::Base
   attr_accessor :city_name, :store_name
-  attr_accessible :city_name, :store_name
+  attr_accessible :city_name, :store_name, :visit_date
   
   belongs_to :user
   belongs_to :store
