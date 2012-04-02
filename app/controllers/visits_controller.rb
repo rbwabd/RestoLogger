@@ -4,9 +4,10 @@ class VisitsController < ApplicationController
   before_filter :authorized_user, :only => :destroy
     
   helper_method :sort_column, :sort_direction
-
+  
+  include ActionView::Helpers::TextHelper
   require 'will_paginate/array'
-
+  
   def index
     @visits = Array.new
     @current_user.visits.each do |v|
@@ -174,6 +175,7 @@ class VisitsController < ApplicationController
     @button3 = "visits.delete_button"
     @visit = Visit.find(params[:id])
     @store = @visit.store
+    @rating_options = [[0,0],[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]]
   end  
   
   def update_parameters
@@ -183,21 +185,19 @@ class VisitsController < ApplicationController
     @visit.service_rating = params[:visit][:service_rating]
     @visit.speed_rating = params[:visit][:speed_rating]
     @visit.mood_rating = params[:visit][:mood_rating]
+    @visit.value_rating = params[:visit][:value_rating]
     @visit.tagline = params[:visit][:tagline]
-    @visit.review = params[:visit][:review]
+    @visit.review = simple_format(params[:visit][:review])
     @visit.guest_number = params[:visit][:guest_number]
     #2do: need to check again that date not in future or too far past (do it in model.rb)
     @visit.visit_date = params[:visit][:visit_date]
 
     @visit.dish_reviews.each_with_index do | dr, i |
       if params['dr'+i.to_s]
-        params['dr'+i.to_s].each do | pic |
+        params['dr'+i.to_s].each_with_index do | pic, j |
           tmppic = Picture.new
           # hackish way of setting the filename to a new random string - note it can't be done in image_uploader as the random routine gets called for each version of picture which breaks things
-          # there is still a chance in a gazillion of a filename collision with another file not yet saved (either in this order or by another user) but worth the shot... worst is that one of the saves fails which is not catastrophic
-          begin
-            zid = rand(36**12).to_s(36)
-          end while Picture.find(zid) 
+          zid = Hid.enc(dr.id * 10000 + j)
           pic.original_filename = "#{zid}#{File.extname(pic.original_filename)}" 
           tmppic.image = pic
           tmppic.genre = ""

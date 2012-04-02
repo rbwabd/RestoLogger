@@ -8,39 +8,43 @@
   <%= render 'shared/error_messages', :object => f.object %>
   <table>
     <tr class="padded-row">
-      <td> <%= f.label :visit_date, "Visit Date" %> </td>
+      <td> <%= f.label :visit_date, I18n.t('visits.visit_date_title') %> </td>
       <td> <%= f.text_field :visit_date, :size => 7 %> </td>
     </tr>
     <tr class="padded-row">
-      <td> <%= f.label :guest_number, "Number of Guests" %> </td>
+      <td> <%= f.label :guest_number, I18n.t('visits.guest_nb_title') %> </td>
       <td> <%= f.text_field :guest_number, :size => "1" %> </td>
     </tr>
     <tr class="padded-row">
-      <td> <%= f.label :overall_rating, "Overall Rating" %> </td>
-      <td> <%= f.text_field :overall_rating, :size => 1 %> </td>
+      <td> <%= f.label :overall_rating, I18n.t('visits.overall_rating_title') %> </td>
+      <td> <%= f.select :overall_rating, @rating_options, :include_blank => true, :size => 1 %> </td>
     </tr>
     <tr class="padded-row">
-      <td> <%= f.label :service_rating, "Service Quality Rating" %> </td>
-      <td> <%= f.text_field :service_rating, :size => 1 %> </td>
+      <td> <%= f.label :service_rating, I18n.t('visits.service_rating_title') %> </td>
+      <td> <%= f.select :service_rating, @rating_options, :include_blank => true, :size => 1 %> </td>
     </tr>
     <tr class="padded-row">
-      <td> <%= f.label :speed_rating, "Service Speed Rating" %> </td>
-      <td> <%= f.text_field :speed_rating, :size => 1 %> </td>
+      <td> <%= f.label :speed_rating, I18n.t('visits.speed_rating_title') %> </td>
+      <td> <%= f.select :speed_rating, @rating_options, :include_blank => true, :size => 1 %> </td>
     </tr>
     <tr class="padded-row">
-      <td> <%= f.label :mood_rating, "Store Atmosphere Rating" %> </td>
-      <td> <%= f.text_field :mood_rating, :size => 1 %> </td>
+      <td> <%= f.label :mood_rating, I18n.t('visits.mood_rating_title') %> </td>
+      <td> <%= f.select :mood_rating, @rating_options, :include_blank => true, :size => 1 %> </td>
+    </tr>
+    <tr class="padded-row">
+      <td> <%= f.label :value_rating, I18n.t('visits.value_rating_title') %> </td>
+      <td> <%= f.select :value_rating, @rating_options, :include_blank => true, :size => 1 %> </td>
     </tr>
   </table>
   <table>  
     <tr> 
-      <td> <%= f.label :tagline, "Tagline" %> </td>
+      <td> <%= f.label :tagline, I18n.t('visits.tagline_title') %> </td>
     </tr>    
     <tr>
       <td> <%= f.text_field :tagline, :size =>73 %> </td>
     </tr>
     <tr> 
-      <td> <%= f.label :review, "Review" %> </td>
+      <td> <%= f.label :review, I18n.t('visits.review_title') %> </td>
     </tr>
     <tr> 
       <td> <%= f.text_area :review, :size => "70x5" %> </td>

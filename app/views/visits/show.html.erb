@@ -10,17 +10,19 @@
   </br>
   <strong>Store:</strong> <%= @store.name %>
   </br>
-  <strong>Visit Date:</strong> <%= @visit.visit_date %>
+  <strong><%=I18n.t('visits.visit_date_title')%>:</strong> <%= @visit.visit_date %>
   </br>
+  <strong><%=I18n.t('visits.guest_nb_title')%>:</strong> <%= @visit.guest_number %>
   </br>
   <span id="visit-ratings">
     <table>
       <tr>
         <th></th>
-        <th>Overall</th>
-        <th>Service Quality</th>
-        <th>Service Speed</th>
-        <th>Atmosphere</th>
+        <th><%=I18n.t('visits.overall_rating_title')%></th>
+        <th><%=I18n.t('visits.service_rating_title')%></th>
+        <th><%=I18n.t('visits.speed_rating_title')%></th>
+        <th><%=I18n.t('visits.mood_rating_title')%></th>
+        <th><%=I18n.t('visits.value_rating_title')%></th>
       </tr>
       <tr>
         <td><b>Ratings</b></td>
@@ -28,18 +30,18 @@
         <td><%= render :partial => 'shared/star_rating', :locals => {:rating => @visit.service_rating} %></td>
         <td><%= render :partial => 'shared/star_rating', :locals => {:rating => @visit.speed_rating} %></td>
         <td><%= render :partial => 'shared/star_rating', :locals => {:rating => @visit.mood_rating} %></td>
+        <td><%= render :partial => 'shared/star_rating', :locals => {:rating => @visit.value_rating} %></td>
       </tr>
     </table>  
   </span>
   </br>
-  <strong>Tagline:</strong> <%= @visit.tagline %>
+  <strong><%=I18n.t('visits.tagline_title')%>:</strong> <%= @visit.tagline %>
   </br>
-  <strong>Review:</strong> <%= @visit.review %>
+  <strong><%=I18n.t('visits.review_title')%>:</strong> <%= @visit.review.html_safe %>
   </br>
-  <strong>Guest number:</strong> <%= @visit.guest_number %>
   <% @visit.dish_reviews.each do |dr| %>
     </br>
-    <strong>Dish Name: </strong> <%= dr.dish.name %>&nbsp;<%= dr.quantity %>&times;
+    <strong><%=I18n.t('visits.dish_name_title')%>: </strong> <%= dr.dish.name %>&nbsp;<%= dr.quantity %>&times;
     </br>
     <% for pic in dr.pictures %>
       <%= image_tag pic.image_url(:thumb) if pic.image? %>

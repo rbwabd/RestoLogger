@@ -11,6 +11,7 @@ en:
     show_menu_title: "Menu for "
     edit_menu_title: "Menu for "
     add_as_new_link: Add as New Store
+    return_to_store_button: "Return to Store Page"
     edit_title: "Edit "
     edit_button: Update
     save_button: Save Changes

@@ -84,6 +84,7 @@ class StoresController < ApplicationController
     @title = "stores.show_menu_title"
     @button = "stores.new_dish_button"
     @button2 = "stores.edit_menu_button"
+    @button3 = "stores.return_to_store_button"
     @store = Store.find(params[:id])
     @dishes = @store.get_menu
   end
