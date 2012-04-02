@@ -13,11 +13,12 @@ class StoresController < ApplicationController
   end
   
   def show
+    @title = "empty"
     @button = "stores.new_visit_button"
     @button2 = "stores.show_menu_button"
     @store = Store.find(params[:id])
   end
-=begin
+
   def new
     @title = "stores.new_title"
     @button = "stores.new_button"
@@ -26,7 +27,7 @@ class StoresController < ApplicationController
     @state = State.find(params[:param][:state][:id])
     @city = City.find(params[:param][:city][:id])
   end
-=end
+
   def create
     @store = Store.new
     @store.city_id = params[:city][:id]
@@ -57,7 +58,7 @@ class StoresController < ApplicationController
   end
   
   def search
-    @button = "stores.search_button"
+    @button = "search_button"
     @store  = Store.new
     @country = Country.find_by_name("United Kingdom")
     @state = State.find_by_name("London")

@@ -1,6 +1,6 @@
 class Menu < ActiveRecord::Base
   attr_accessible :currency
-  has_many :dishes
+  has_many :dishes, :dependent => :destroy
 
   def get_dish_hash
     store_dishes = dishes.sort_by { |a| [a.dish_type.rank, a.rank] }

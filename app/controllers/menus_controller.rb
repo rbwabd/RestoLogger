@@ -17,7 +17,7 @@ class MenusController < ApplicationController
     @button = "add_button"
     @dish = Dish.new
     @store = Store.find(params[:id])
-    ectmp = DishType.find_all_by_store_id(@store.id)
+    ectmp = DishType.find_all_by_menu_id(@store.menu.id)
     arraytmp = Array.new
     ectmp.each {|x| arraytmp << x.name}
     @existing_categories = arraytmp.join("\r\n\r\n")
@@ -90,7 +90,7 @@ class MenusController < ApplicationController
         end  
       end      
     end
-    render 'confirm_menu'
+    render 'confirm'
   end
   
   def save
@@ -143,7 +143,7 @@ class MenusController < ApplicationController
         end
       end
     end
-    redirect_to show_menu_store_path(store), :flash => { :success => (count ? count+1 : 0).to_s+" New Dishes Saved" }
+    redirect_to menu_path(store), :flash => { :success => (count ? count+1 : 0).to_s+" New Dishes Saved" }
   end
 
   def edit_order
@@ -166,7 +166,7 @@ class MenusController < ApplicationController
         dish.save
       end
     end
-    redirect_to show_menu_store_path(@store)
+    redirect_to menu_path(@store)
   end
 
   private

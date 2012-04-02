@@ -2,8 +2,8 @@ class Store < ActiveRecord::Base
   belongs_to :city
   attr_accessible :name, :address
   
-  has_one :menu
-  has_many :store_type_relationships
+  has_one :menu, :dependent => :destroy
+  has_many :store_type_relationships, :dependent => :destroy
   has_many :dishes, :through => :menu
   
   def self.create_store(params)
