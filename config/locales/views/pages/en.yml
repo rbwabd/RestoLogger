@@ -1,8 +1,8 @@
 en:
   pages:
-    home_title: What's up?
-    home_login_prompt: Please login through one of the providers below: (only facebook enabled for now...)
-    contact_title: 'Contacts:'
+    home_title: Whats up
+    home_login_prompt: Please login through one of the providers below
+    contact_title: Contacts
     contact_message: You can't contact us
     about_title: About us
     about_message: This is the Minu application
