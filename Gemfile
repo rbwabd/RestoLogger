@@ -1,51 +1,31 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.2'
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'rails', '3.2.2'                  # main rails gem
+gem 'jquery-rails'                    # jquery for rails
+gem "pg"                              # posgresql database
 
-gem "pg" 
+gem 'devise'                          # authentication package
+gem 'omniauth'                        # external authentication integration 
+gem 'omniauth-facebook'               # Facebook OAuth2 Strategy for OmniAuth 1.0.
+gem 'cancan'                          # authorization package
 
-# Gems used only for assets and not required
-# in production environments by default.
+gem 'carrierwave'                     # image upload package
+gem 'fog'                             # used by carrierwave to upload images to remote cloud
+gem 'mini_magick'                     # image processing
+gem 'aws-s3', :require => 'aws/s3'    # amazon S3 storage handling
+
+gem 'gravatar_image_tag'              # gravatar profile images (2do: consider removing)
+gem 'fb_graph'                        # allow to handle facebook graph
+gem 'will_paginate'                   # pagination package
+#gem 'jquery-star-rating-rails'        # enable star ratings (not used so far)
+
+# Gems used only for assets and not required in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  gem 'sass-rails',   '~> 3.2.3'      # sass css converter
+  gem 'coffee-rails', '~> 3.2.1'      # coffeescript javascript converter
   gem 'uglifier', '>= 1.0.3'
-  gem 'jquery-ui-rails'
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  gem 'jquery-ui-rails'               # jquery-ui UI elements
 end
-
-gem 'jquery-rails'
-gem 'jquery-star-rating-rails'
-
-gem 'devise'
-gem 'cancan'
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
-
-gem 'gravatar_image_tag', '1.0.0.pre2'
-gem 'will_paginate'
-gem 'omniauth'
-gem 'omniauth-facebook'
-gem 'fb_graph'
-gem 'carrierwave'
-gem 'fog'
-gem 'mini_magick'
-gem 'aws-s3', :require => 'aws/s3'
 
 group :development do
   gem 'rspec-rails', '2.6.1'
@@ -67,5 +47,8 @@ end
 group :production do
   # gems specifically for Heroku go here
   # gem 'thin'
-  gem 'admin_data', '>= 1.1.16'
+  gem 'admin_data', '>= 1.1.16'      # allows to see into production DB
 end
+
+# To use debugger
+# gem 'ruby-debug19', :require => 'ruby-debug'
