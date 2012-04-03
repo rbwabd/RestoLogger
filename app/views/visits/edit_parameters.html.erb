@@ -50,18 +50,28 @@
       <td> <%= f.text_area(:review, :size => "70x5", :escape => false) %> </td>
     </tr>
   </table>
-  <% @visit.dish_reviews.each_with_index do |dr, i| %>
-    </br>
-    <b><%= dr.dish.name %>&nbsp;<%= dr.quantity %>&times;</b>
-    </br>
-    <% dr.pictures.each do |pic| %>
-      <% if pic.image? %>
-        <%= image_tag(pic.image_url(:thumb), {:size => '150x100', :alt => 'image'}) %>
+  <% @visit.dish_reviews.each do |dr| %>
+     <div id="visit-dish"
+      </br>
+      <b><%= dr.dish.name %>&nbsp;</b><%= dr.quantity %>&times;
+      <b><%= label :dish_review, :rating, I18n.t('visits.dish_rating_title') %>&nbsp;</b> </td>
+      <%= select "dish_review_"+Hid.enc(dr.id), :rating, @rating_options, :include_blank => true, :size => 1 %> </td>
+      </br>
+      <% dr.pictures.each do |pic| %>
+        <% if pic.image? %>
+          <%= image_tag(pic.image_url(:thumb), {:size => '150x100', :alt => 'image'}) %>
+        <% end %>
       <% end %>
-    <% end %>
-    <br/>
-    <b>Add Pictures:&nbsp;</b> <%= file_field_tag 'dr'+i.to_s+'[]', :accept => 'image/jpeg', :multiple => true, :value => 'Add Pictures', :size => "1" %> 
-    <br/>  
+      <br/>
+      <b>Pictures:&nbsp;</b> <%= file_field "dish_review_"+Hid.enc(dr.id), :image, :accept => 'image/jpeg', :multiple => true, :size => "1" %> 
+      <br/>
+      <br/>
+      <div> 
+        <b><%= label :dish_review, :tagline, I18n.t('visits.tagline_title') %></b>
+        <%= text_field "dish_review_"+Hid.enc(dr.id), :tagline, :size =>73 %>
+      </div>
+    </div>  
+    <br>
   <% end %>
   <div class="action">
     <%= f.submit I18n.t(@button) %>

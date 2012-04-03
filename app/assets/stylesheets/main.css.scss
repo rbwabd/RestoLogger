@@ -116,7 +116,7 @@ a {
   h1, h2, h3 {
     padding: 0px 0px 15px 15px; 
   }
-  div div ul li { /* specific styling for jquery-ui tabbed list elements */
+  #tabssortable div ul li { /* specific styling for jquery-ui tabbed list elements */
     margin: 0 5px 5px 5px; 
     padding: 5px; 
     font-size: 1.2em;
@@ -244,6 +244,13 @@ a:active{
 #visit-ratings tr td{
   padding: 0px 15px 0px 15px;
 }
+#visit-dish {
+  background: lighten($background-color, 5%);
+  border: solid 2px darken($background-color, 25%);
+  padding: 7px 12px 7px 12px;
+  @include rounded-corners(15px); 
+}
+
 /* 2 process 
 
 carrierwave railcast 235 defs

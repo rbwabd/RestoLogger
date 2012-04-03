@@ -40,12 +40,21 @@
   <strong><%=I18n.t('visits.review_title')%>:</strong> <%= simple_format(@visit.review).html_safe %>
   </br>
   <% @visit.dish_reviews.each do |dr| %>
+    <div id="visit-dish">
+      </br>
+      <strong><%=I18n.t('visits.dish_name_title')%>: </strong> <%= dr.dish.name %>&nbsp;<%= dr.quantity %>&times;&nbsp;&nbsp;<b>Rating:&nbsp</b><%= render :partial => 'shared/star_rating', :locals => {:rating => dr.rating} %>
+      </br>
+      
+      </br>
+      <% for pic in dr.pictures %>
+        <%= image_tag pic.image_url(:thumb) if pic.image? %>
+      <% end %>
+      </br>
+      <strong><%=I18n.t('visits.tagline_title')%>:</strong> <%= dr.tagline %>
+      </br>
+      <strong><%=I18n.t('visits.review_title')%>:</strong> <%= simple_format(dr.review).html_safe %>
+    </div>  
     </br>
-    <strong><%=I18n.t('visits.dish_name_title')%>: </strong> <%= dr.dish.name %>&nbsp;<%= dr.quantity %>&times;
-    </br>
-    <% for pic in dr.pictures %>
-      <%= image_tag pic.image_url(:thumb) if pic.image? %>
-    <% end %>
   <% end %>
   <br>
   <div class="action">

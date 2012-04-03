@@ -155,15 +155,16 @@ class VisitsController < ApplicationController
     #2do: need to check again that date not in future or too far past (do it in model.rb)
     @visit.visit_date = params[:visit][:visit_date]
 
-    @visit.dish_reviews.each_with_index do | dr, i |
-      if params['dr'+i.to_s]
-        params['dr'+i.to_s].each_with_index do | pic, j |
+    @visit.dish_reviews.each do |dr|
+      tag = 'dish_review_' + Hid.enc(dr.id)
+      dr.rating = params[tag][:rating]
+      dr.tagline = params[tag][:tagline]
+      if img = params[tag][:image]
+        img.each_with_index do | pic, i |
           tmppic = Picture.new
-          # hackish way of setting the filename to a new random string - note it can't be done in image_uploader as the random routine gets called for each version of picture which breaks things
-          zid = Hid.enc(dr.id * 10000 + j)
-          pic.original_filename = "#{zid}#{File.extname(pic.original_filename)}" 
+          # hackish way of setting the filename to a string based on dish_review id and a counter. Maybe there is a way of setting this in the pic uploader instead.
+          pic.original_filename = "#{Hid.enc(dr.id * 10000 + i)}#{File.extname(pic.original_filename)}" 
           tmppic.image = pic
-          tmppic.genre = ""
           tmppic.user_id = current_user.id
           tmppic.vote_count = 0
           tmppic.rank = 0

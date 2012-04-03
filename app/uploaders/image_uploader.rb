@@ -13,10 +13,18 @@ class ImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}"
   end
 
+  version :full do
+    process :resize_to_fit => [800, 800]
+  end
+
   version :thumb do
-    process :resize_to_fill => [300, 200]
+    process :resize_to_fit => [300, 300]
   end
   
+  version :mini do
+    process :resize_to_fit => [100, 100]
+  end
+
   def extension_white_list
     %w(jpg jpeg gif png)
   end
