@@ -5,7 +5,6 @@ class VisitsController < ApplicationController
 
   helper_method :sort_column, :sort_direction
   
-  include ActionView::Helpers::TextHelper
   require 'will_paginate/array'
   
   def index
@@ -151,7 +150,7 @@ class VisitsController < ApplicationController
     @visit.mood_rating = params[:visit][:mood_rating]
     @visit.value_rating = params[:visit][:value_rating]
     @visit.tagline = params[:visit][:tagline]
-    @visit.review = simple_format(params[:visit][:review]) # 2do: need to remove <p> </p> around
+    @visit.review = params[:visit][:review]
     @visit.guest_number = params[:visit][:guest_number]
     #2do: need to check again that date not in future or too far past (do it in model.rb)
     @visit.visit_date = params[:visit][:visit_date]

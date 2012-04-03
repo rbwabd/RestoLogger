@@ -47,7 +47,7 @@
       <td> <%= f.label :review, I18n.t('visits.review_title') %> </td>
     </tr>
     <tr> 
-      <td> <%= f.text_area :review, :size => "70x5" %> </td>
+      <td> <%= f.text_area(:review, :size => "70x5", :escape => false) %> </td>
     </tr>
   </table>
   <% @visit.dish_reviews.each_with_index do |dr, i| %>

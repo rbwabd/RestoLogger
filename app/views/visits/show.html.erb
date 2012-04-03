@@ -37,7 +37,7 @@
   </br>
   <strong><%=I18n.t('visits.tagline_title')%>:</strong> <%= @visit.tagline %>
   </br>
-  <strong><%=I18n.t('visits.review_title')%>:</strong> <%= @visit.review.html_safe %>
+  <strong><%=I18n.t('visits.review_title')%>:</strong> <%= simple_format(@visit.review).html_safe %>
   </br>
   <% @visit.dish_reviews.each do |dr| %>
     </br>
