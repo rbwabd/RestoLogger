@@ -1,0 +1,8 @@
+<div id="pic_partial_<%= Hid.enc(tmp_dr.id) %>">
+  <% tmp_dr.pictures.each do |pic| %>
+    <% if pic.image? %>
+      <%= image_tag(pic.image_url(:thumb), { :alt => 'image'}) %>
+      <%= link_to "Delete", delete_picture_dish_review_path( :id => Hid.enc(tmp_dr.id), :pic_id => Hid.enc(pic.id)), :confirm => I18n.t('visits.pic_delete_warning'), :remote => true %>
+    <% end %>
+  <% end %>
+</div>  

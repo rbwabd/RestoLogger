@@ -1,0 +1,1 @@
+jQuery('#pic_partial_<%= Hid.enc(@dish_review.id) %>').replaceWith("<%= escape_javascript(render( :partial => 'visits/dr_pic', :locals => {:tmp_dr => @dish_review})) %>")

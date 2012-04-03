@@ -164,6 +164,8 @@ class VisitsController < ApplicationController
         img.each_with_index do | pic, i |
           tmppic = Picture.new
           # hackish way of setting the filename to a string based on dish_review id and a counter. Maybe there is a way of setting this in the pic uploader instead.
+          # 2do: a bug is that if user deletes a pic and add another one, filename will be same and old pic may have stayed in cache
+          # only way to avoid that while guaranteeing no collision is to add a field in dish_review counting all pic uploads incl deletes... not very efficient...
           pic.original_filename = "#{Hid.enc(dr.id * 10000 + i + j)}#{File.extname(pic.original_filename)}" 
           tmppic.image = pic
           tmppic.user_id = current_user.id

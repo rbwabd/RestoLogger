@@ -10,7 +10,11 @@ RestoLogger::Application.routes.draw do
         post 'search_results'
       end
     end
-    resources :dish_reviews,    :only => [:destroy]
+    resources :dish_reviews,    :only => [:destroy] do
+      member do
+        get 'delete_picture'
+      end
+    end
     resources :menus,           :only => [:show, :edit, :update] do
       member do
         get 'add'

@@ -12,6 +12,9 @@ en:
       Are you sure you want to delete this visit report? 
       This action cannot be reversed. 
       All associated picture, review and order information will be lost!
+    delete_warning: |
+      Are you sure you want to delete this picture?
+      Associated comments and descriptions will be lost!
     confirm_title: "Please confirm the items below"
     # View fields and labels
     visit_date_title: Visit Date

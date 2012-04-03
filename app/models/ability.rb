@@ -36,7 +36,7 @@ class Ability
         visit.try(:user) == user
       end
       
-      can :destroy, DishReview do |dish_review|
+      can [:destroy, delete_picture], DishReview do |dish_review|
         dish_review.try(:user) == user
       end
 

@@ -57,11 +57,7 @@
       <b><%= label :dish_review, :rating, I18n.t('visits.dish_rating_title') %>&nbsp;</b> </td>
       <%= select "dish_review_"+Hid.enc(dr.id), :rating, @rating_options, :include_blank => true, :selected => dr.rating, :size => 1 %> </td>
       </br>
-      <% dr.pictures.each do |pic| %>
-        <% if pic.image? %>
-          <%= image_tag(pic.image_url(:thumb), { :alt => 'image'}) %>
-        <% end %>
-      <% end %>
+      <%= render :partial => "dr_pic", :locals => {:tmp_dr => dr} %>   
       <br/>
       <b>Pictures:&nbsp;</b> <%= file_field "dish_review_"+Hid.enc(dr.id), :image, :accept => 'image/jpeg', :multiple => true, :size => "1" %> 
       <br/>
