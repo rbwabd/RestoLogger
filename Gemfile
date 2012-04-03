@@ -9,7 +9,6 @@ gem 'omniauth'                        # external authentication integration
 gem 'omniauth-facebook'               # Facebook OAuth2 Strategy for OmniAuth 1.0.
 gem 'cancan'                          # authorization package
 gem 'activeadmin'                     # admin package
-gem 'sass-rails'                      # required by active admin
 gem "meta_search",    '>= 1.1.0.pre'  # required by active admin
   
 gem 'carrierwave'                     # image upload package
