@@ -7,14 +7,29 @@ class Ability
   
   def initialize(user)
     user ||= User.new # guest user (not logged in)
+
     if user.role? :banned
       cannot :manage, :all
     elsif user.role? :admin
       can :manage, :all
     else #basically normal users without special rights
-      can :read, Visit do |visit|
-        visit.try(:user) == user
+      can :read, Store
+      can [:create, :update], Store
+      can :destroy, Store do |store|
+        store.try(:user) == user
       end
+      can :search, :stores                    # two non-RESTful actions that allow user to search for a store
+      
+      can :show, Menu
+      can [:add, :confirm, :save], Menu       # add new items to menu
+      can [:edit_order, :update_order], Menu  # change order which menu items and categories are presented
+    
+      can :show, Dish
+      can :destroy, Dish do |dish|
+        dish.try(:user) == user
+      end
+      
+      can :read, Visit, :user_id => user.id   # 2do: add ability to see friend's visits but not in index only in store-specific lists (so maybe no need here)
       can :create, Visit
       # update on visit updates the items ordered, while update_parameters changes the ratings, review text, pictures etc.
       can [:update, :destroy, :edit_parameters, :update_parameters], Visit do |visit|
@@ -25,33 +40,16 @@ class Ability
         dish_review.try(:user) == user
       end
 
-      can :read, Store
-      can [:create, :update], Store
-      can :destroy, Store do |store|
-        store.try(:user) == user
-      end
-      can :search, :stores                    # two non-RESTful actions that allow user to search for a store
-      
-      can :show, Menu
-      can [:add, :confirm, :save], Menu       # add new items to menu
-      can [:edit_order, :update_order], Menu   # change order which menu items and categories are presented
-    
-      can :show, Dish
-      can :destroy, Dish do |dish|
-        dish.try(:user) == user
-      end
-      
-      can :read, Authentication
-      can :destroy, Authentication do |authentication|
-        authentication.try(:user) == user
-      end
-      
       can :read, User do |u|
         # u.try(:friend?, user)  #verify u and user are friends
+        # be careful this must work in the context of accessible_by etc.
       end
       can :update, User do |u|
         u == user
       end
+
+      can [:read, :destroy], Authentication, :user_id => user.id
+      
     end
   end
 end

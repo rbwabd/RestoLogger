@@ -4,6 +4,7 @@ class AuthenticationsController < ApplicationController
   
   def index
 		@title = "authentications.sign_in_title"
+    @authentications ||= Array.new # if we can't access anything load_resource returns nil. If user account is created outside of external auth this can be true
   end
   
   def destroy

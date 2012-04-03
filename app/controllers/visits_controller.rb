@@ -11,6 +11,7 @@ class VisitsController < ApplicationController
   def index
     #2do: implement a sortable table that doesn't require building an ad-hoc array
     @visitslist = Array.new
+    @visits ||= Array.new # if we can't access anything load_resource returns nil
     @visits.each do |v|
       entry = Hash.new
       entry["date"] = v.visit_date ? v.visit_date : Date.new(3000,1,1) #hack to allow sort

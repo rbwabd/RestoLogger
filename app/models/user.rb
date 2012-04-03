@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
 
   scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0 "} }
 
+  # so 1 = admin, 2 = moderator, 4 = owner and 8 = banned
   ROLES = %w[admin moderator owner banned]
 
   def roles=(roles)
