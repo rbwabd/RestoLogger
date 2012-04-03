@@ -4,7 +4,12 @@
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
  * require jquery-star-rating
- *= require_tree .
+ * require_tree .
+ *= require main
+ *= require sidebars
+ *= require errors
+ *= require header_footer
+ *= require omniauth
  *= require_tree ../../../vendor/assets/stylesheets
  * require jquery.ui.autocomplete
  * require jquery.ui.tabs

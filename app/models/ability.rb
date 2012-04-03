@@ -6,11 +6,12 @@ class Ability
   # user classesadmin moderator owner banned
   
   def initialize(user)
-    user ||= User.new # guest user (not logged in)
+    user ||= AdminUser.new # guest user (not logged in)
 
-    if user.role? :banned
-      cannot :manage, :all
-    elsif user.role? :admin
+    #if user.role? :banned
+    #  cannot :manage, :all
+    #elsif user.role? :admin
+    if user.role = "admin"
       can :manage, :all
     else #basically normal users without special rights
       can :read, Store

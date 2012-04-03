@@ -13,11 +13,11 @@ body
       content
     footer
 
-padding order: top right bottom left 
-darken($main-color, 10%); */
+padding order is always top right bottom left */
 
 $background-color: #EEEBDA;
 $h-text-color: #056303;
+
 @mixin rounded-corners($radius) {
   border-radius: $radius;
   -moz-border-radius: $radius;
@@ -49,42 +49,6 @@ a {
 	text-decoration: none; /* removes underline */
 	color: #856323;
   &:hover { text-decoration: underline; }
-}
-.action a, .action input{ /* buttons and links styled as buttons */
-  margin: 10px 0px 10px 8px;
-  padding: 0px 8px 0px 8px;
-  display: inline-block;
-  border: 1px solid #CCCCCC;  
-  background: #E4E4E4;
-  text-align: center;
-  vertical-align: middle;
-  font-weight: bold;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #444444;
-  font-size: 100%;
-  text-decoration: none;
-  @include rounded-corners(7px);  
-}
-.action a { /*somehow with same height the submit button is a bit smaller... */
-  height: 21px;
-  line-height:23px;
-}
-.action  input {
-  height: 23px;
-  line-height:23px;
-}
-.action a:hover, .action a:focus, .action input:hover, .action input:focus {
-	text-decoration: none;
-  color: #000000;
-  background: #FDFDFD;  
-}
-.action a:active, .action input:active {
-  background: #CCCCCC; 
-  border: 1px solid white;   
-}
-.action a:visited {
-  background: #E4E4E4;
-  border: 1px solid #CCCCCC;  
 }
 .round {
   @include rounded-corners(10px);  
@@ -130,6 +94,45 @@ a {
   }
   .padded-row td input{
     margin: 5px 0px 5px 0px;  
+  }
+  
+  .action { /* buttons and links styled as buttons */
+    a, input {
+      margin: 10px 0px 10px 8px;
+      padding: 0px 8px 0px 8px;
+      display: inline-block;
+      border: 1px solid #CCCCCC;  
+      background: #E4E4E4;
+      text-align: center;
+      vertical-align: middle;
+      font-weight: bold;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #444444;
+      font-size: 100%;
+      text-decoration: none;
+      @include rounded-corners(7px);  
+    }
+    a { /*somehow with same height the submit button is a bit smaller... */
+      height: 21px;
+      line-height:23px;
+    }
+    input {
+      height: 23px;
+      line-height:23px;
+    }    
+    a:hover, a:focus, input:hover, input:focus {
+      text-decoration: none;
+      color: #000000;
+      background: #FDFDFD;  
+    }
+    a:active, input:active {
+      background: #CCCCCC; 
+      border: 1px solid white;   
+    }
+    a:visited {
+      background: #E4E4E4;
+      border: 1px solid #CCCCCC;  
+    }  
   }
 }
 
@@ -274,7 +277,7 @@ carrierwave railcast 235 defs
   background-color: #B6B6B6;
 }
 
-.picture .actions {
+.picture {
   font-size: 10px;
   text-align: center;
   color: #777;

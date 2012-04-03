@@ -8,6 +8,7 @@ gem 'devise'                          # authentication package
 gem 'omniauth'                        # external authentication integration 
 gem 'omniauth-facebook'               # Facebook OAuth2 Strategy for OmniAuth 1.0.
 gem 'cancan'                          # authorization package
+gem 'activeadmin'                     # admin package
 
 gem 'carrierwave'                     # image upload package
 gem 'fog'                             # used by carrierwave to upload images to remote cloud
