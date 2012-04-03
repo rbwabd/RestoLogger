@@ -55,11 +55,11 @@
       </br>
       <b><%= dr.dish.name %>&nbsp;</b><%= dr.quantity %>&times;
       <b><%= label :dish_review, :rating, I18n.t('visits.dish_rating_title') %>&nbsp;</b> </td>
-      <%= select "dish_review_"+Hid.enc(dr.id), :rating, @rating_options, :include_blank => true, :size => 1 %> </td>
+      <%= select "dish_review_"+Hid.enc(dr.id), :rating, @rating_options, :include_blank => true, :selected => dr.rating, :size => 1 %> </td>
       </br>
       <% dr.pictures.each do |pic| %>
         <% if pic.image? %>
-          <%= image_tag(pic.image_url(:thumb), {:size => '150x100', :alt => 'image'}) %>
+          <%= image_tag(pic.image_url(:thumb), { :alt => 'image'}) %>
         <% end %>
       <% end %>
       <br/>
@@ -68,7 +68,7 @@
       <br/>
       <div> 
         <b><%= label :dish_review, :tagline, I18n.t('visits.tagline_title') %></b>
-        <%= text_field "dish_review_"+Hid.enc(dr.id), :tagline, :size =>73 %>
+        <%= text_field "dish_review_"+Hid.enc(dr.id), :tagline, :value => dr.tagline, :size =>73 %>
       </div>
     </div>  
     <br>

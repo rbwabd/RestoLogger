@@ -159,11 +159,12 @@ class VisitsController < ApplicationController
       tag = 'dish_review_' + Hid.enc(dr.id)
       dr.rating = params[tag][:rating]
       dr.tagline = params[tag][:tagline]
+      j = dr.pictures.size
       if img = params[tag][:image]
         img.each_with_index do | pic, i |
           tmppic = Picture.new
           # hackish way of setting the filename to a string based on dish_review id and a counter. Maybe there is a way of setting this in the pic uploader instead.
-          pic.original_filename = "#{Hid.enc(dr.id * 10000 + i)}#{File.extname(pic.original_filename)}" 
+          pic.original_filename = "#{Hid.enc(dr.id * 10000 + i + j)}#{File.extname(pic.original_filename)}" 
           tmppic.image = pic
           tmppic.user_id = current_user.id
           tmppic.vote_count = 0
