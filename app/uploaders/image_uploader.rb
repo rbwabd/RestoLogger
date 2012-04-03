@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class ImageUploader < CarrierWave::Uploader::Base
+  #this sorta works but then images are not displayed - 2do: further investigate
+  #after :store, :delete_original_file
 
   include CarrierWave::MiniMagick
 
@@ -24,6 +26,10 @@ class ImageUploader < CarrierWave::Uploader::Base
   version :mini do
     process :resize_to_fit => [85, 85]
   end
+  
+  #def delete_original_file(new_file)
+  #  File.delete path if version_name.blank?
+  #end
 
   def extension_white_list
     %w(jpg jpeg gif png)
