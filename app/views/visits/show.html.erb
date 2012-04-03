@@ -47,7 +47,7 @@
       
       </br>
       <% for pic in dr.pictures %>
-        <%= image_tag pic.image_url(:thumb) if pic.image? %>
+        <%= image_tag pic.image_url(:thumb), { :alt => I18n.t('image_link_broken_message')} %>
       <% end %>
       </br>
       <strong><%=I18n.t('visits.tagline_title')%>:</strong> <%= dr.tagline %>
