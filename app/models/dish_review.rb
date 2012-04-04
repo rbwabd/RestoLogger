@@ -24,7 +24,7 @@ class DishReview < ActiveRecord::Base
   belongs_to :dish
   
   has_many :pictures, :dependent => :destroy
-    
+  
   def id_encoded
     Hid.enc( self.id )
   end

@@ -15,6 +15,8 @@ class Menu < ActiveRecord::Base
   belongs_to :store
   has_many :dishes, :dependent => :destroy
   
+  has_paper_trail
+
   def get_dish_hash
     store_dishes = dishes.sort_by { |a| [a.dish_type.rank, a.rank] }
     #use number_to_currency to fix price display <%= number_to_currency(product.price) %>

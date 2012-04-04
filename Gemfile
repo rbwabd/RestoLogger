@@ -4,19 +4,20 @@ gem 'rails', '3.2.2'                  # main rails gem
 gem 'jquery-rails'                    # jquery for rails
 gem "pg"                              # posgresql database
 
-# admin gems
+# admin 
 gem 'devise'                          # authentication package
 gem 'omniauth'                        # external providers authentication integration 
 gem 'omniauth-facebook'               # Facebook OAuth2 Strategy for OmniAuth 1.0.
 gem 'cancan'                          # authorization package
 gem 'activeadmin'                     # admin package
-gem "meta_search",    '>= 1.1.0.pre'  # required by active admin
+gem 'meta_search',    '>= 1.1.0.pre'  # required by active admin
+gem 'paper_trail'                     # logging of user actions
   
-# image upload and hosting
+# imaging
 gem 'carrierwave'                     # image upload package
 gem 'mini_magick'                     # image processing
 
-# cloud services
+# cloud 
 gem 'fog'                             # used by carrierwave to upload images to remote cloud
 gem 'aws-s3', :require => 'aws/s3'    # amazon S3 storage handling
 

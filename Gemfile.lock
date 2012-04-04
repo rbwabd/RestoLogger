@@ -47,9 +47,6 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     addressable (2.2.7)
-    admin_data (1.2.0)
-      rails (~> 3.1)
-      will_paginate (>= 3.0.0)
     arel (3.0.2)
     attr_required (0.0.5)
     aws-s3 (0.6.2)
@@ -161,6 +158,9 @@ GEM
       oauth2 (~> 0.5.0)
       omniauth (~> 1.0)
     orm_adapter (0.0.7)
+    paper_trail (2.6.3)
+      activerecord (~> 3.0)
+      railties (~> 3.0)
     pg (0.13.2)
     pg (0.13.2-x86-mingw32)
     polyamorous (0.5.0)
@@ -242,7 +242,6 @@ GEM
       nokogiri (>= 1.2.0)
       rack (>= 1.0)
       rack-test (>= 0.5.3)
-    will_paginate (3.0.3)
     win32-api (1.4.8-x86-mingw32)
     win32-process (0.6.5)
       windows-pr (>= 1.1.2)
@@ -259,7 +258,6 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin
-  admin_data (>= 1.1.16)
   annotate!
   aws-s3
   cancan
@@ -279,6 +277,7 @@ DEPENDENCIES
   mini_magick
   omniauth
   omniauth-facebook
+  paper_trail
   pg
   rails (= 3.2.2)
   rspec-rails (= 2.6.1)

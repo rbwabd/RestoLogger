@@ -10,6 +10,8 @@
 #
 
 class Chain < ActiveRecord::Base
+
+  has_paper_trail
   
   def id_encoded
     Hid.enc( self.id )

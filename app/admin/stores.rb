@@ -5,9 +5,10 @@ ActiveAdmin.register Store do
     column "Address", :address
     column "Post Code", :postcode
     column :user_id
-    default_actions
-  end
-  member_action :view do
-    redirect_to show_path(Hid.dec(store.id))
+    column "Actions" do |store|
+      link_to("View", admin_store_path(store.id)) + " " +
+      link_to("Edit", edit_admin_store_path(store.id)) + " " +
+      link_to("Delete", admin_store_path(store.id), :method => :destroy)
+    end
   end
 end
