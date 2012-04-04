@@ -24,7 +24,9 @@ class Dish < ActiveRecord::Base
   
   belongs_to :dish_type
   has_many :dish_reviews
-  has_paper_trail
+  
+  #has_paper_trail
+  acts_as_audited
   
   def id_encoded
     Hid.enc( self.id )

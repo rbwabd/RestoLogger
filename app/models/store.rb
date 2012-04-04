@@ -26,7 +26,9 @@ class Store < ActiveRecord::Base
   has_one :menu, :dependent => :destroy
   has_many :store_type_relationships, :dependent => :destroy
   has_many :dishes, :through => :menu
-  has_paper_trail
+  
+  #has_paper_trail
+  acts_as_audited
   
   def self.create_store(params)
     #puts params[:city]

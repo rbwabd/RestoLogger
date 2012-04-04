@@ -37,7 +37,9 @@ class Visit < ActiveRecord::Base
   default_scope :order => 'visits.created_at DESC'
   
   scope :from_users_followed_by, lambda { |user| followed_by(user) }
-  
+
+  acts_as_audited
+
   def pictures?
     return pictures
   end
