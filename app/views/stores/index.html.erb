@@ -2,7 +2,7 @@
   <%= render 'layouts/main_sidebar' %>
 <% end %>
 
-<%= will_paginate %>
+<%= paginate @stores %>
 <% for store in @stores %>
   <div class="store">
     <strong>Name:</strong> <%= link_to store.name, store_path(store)%>
@@ -22,5 +22,5 @@
     </div>    
   </div>
 <% end %>
-<%= will_paginate %>
+<%= paginate @stores %>
 

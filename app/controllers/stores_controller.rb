@@ -4,12 +4,11 @@ class StoresController < ApplicationController
   load_and_authorize_resource :except => [:search, :search_results]
     
   # 2do: this is needed due to Store.all.paginate call that is on an array as opposed to active record call somehow
-  #require 'will_paginate/array'
   
   def index
     @button = "stores.new_visit_button"
     @button2 = "stores.show_menu_button"
-    @stores = @stores.paginate(:page => params[:page], :per_page => 10)
+    @stores = @stores.page(params[:page]).per(10)
   end
   
   def show

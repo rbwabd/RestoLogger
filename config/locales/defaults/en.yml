@@ -13,3 +13,8 @@ en:
   confirm_button: Confirm
   cancel_button: Cancel
   image_link_broken_message: image link broken
+  views:
+    pagination:
+      previous: "&lt; Previous"
+      next: "Next &gt;"
+      truncate: "&hellip;&rdquo;"

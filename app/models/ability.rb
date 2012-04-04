@@ -36,14 +36,13 @@ class Ability
         visit.try(:user) == user
       end
       
-      can [:destroy, delete_picture], DishReview do |dish_review|
+      can [:destroy, :delete_picture], DishReview do |dish_review|
         dish_review.try(:user) == user
       end
 
-      can :read, User do |u|
+      can :read, User, :id => user.id
         # u.try(:friend?, user)  #verify u and user are friends
         # be careful this must work in the context of accessible_by etc.
-      end
       can :update, User do |u|
         u == user
       end

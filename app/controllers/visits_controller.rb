@@ -5,8 +5,6 @@ class VisitsController < ApplicationController
 
   helper_method :sort_column, :sort_direction
   
-  require 'will_paginate/array'
-  
   def index
     #2do: implement a sortable table that doesn't require building an ad-hoc array
     @visitslist = Array.new
@@ -26,7 +24,8 @@ class VisitsController < ApplicationController
     if params[:direction].nil? || params[:direction] == "desc"
       @visitslist.reverse!
     end
-    @visitslist = @visitslist.paginate(:page => params[:page], :per_page => 10)
+    @visitslist = Kaminari.paginate_array(@visitslist).page(params[:page]).per(10)
+    #@visitslist = @visitslist.page(params[:page]).per(10)
   end
   
   def show

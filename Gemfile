@@ -18,7 +18,7 @@ gem 'aws-s3', :require => 'aws/s3'    # amazon S3 storage handling
 
 gem 'gravatar_image_tag'              # gravatar profile images (2do: consider removing)
 gem 'fb_graph'                        # allow to handle facebook graph
-gem 'will_paginate'                   # pagination package
+gem 'kaminari'                        # pagination package
 #gem 'jquery-star-rating-rails'        # enable star ratings (not used so far)
 
 # Gems used only for assets and not required in production environments by default.

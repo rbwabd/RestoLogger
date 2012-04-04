@@ -7,4 +7,7 @@ ActiveAdmin.register Store do
     column :user_id
     default_actions
   end
+  member_action :view do
+    redirect_to show_path(Hid.dec(store.id))
+  end
 end
