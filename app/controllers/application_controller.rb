@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
     redirect_to admin_dashboard_path, :alert => exception.message
   end
 	
+  # don't think this is necessary?
+  #def user_for_paper_trail
+  #  user_signed_in? ? current_user : 'Unknown user'
+  #end
+
   def set_locale
 	  #I18n.locale = params[:locale] || I18n.default_locale
     I18n.locale = current_user.nil? ? I18n.default_locale : current_user.locale

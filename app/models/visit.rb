@@ -38,7 +38,7 @@ class Visit < ActiveRecord::Base
   
   scope :from_users_followed_by, lambda { |user| followed_by(user) }
 
-  acts_as_audited
+  has_paper_trail
 
   def pictures?
     return pictures

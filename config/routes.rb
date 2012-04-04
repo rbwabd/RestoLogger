@@ -40,7 +40,6 @@ RestoLogger::Application.routes.draw do
     #resources :countries,       :only => [:create, :destroy]
     #resources :states,          :only => [:create, :destroy]
     #resources :relationships,   :only => [:create, :destroy]
-    #resources :audits
     
   # Specific Routes
     match '/change_cart',             :to => 'visits#change_cart'

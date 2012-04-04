@@ -11,8 +11,7 @@ gem 'omniauth-facebook'               # Facebook OAuth2 Strategy for OmniAuth 1.
 gem 'cancan'                          # authorization package
 gem 'activeadmin'                     # admin package
 gem 'meta_search',    '>= 1.1.0.pre'  # required by active admin
-#gem 'paper_trail'                     # versioning of records - use for items where we need to know what has changed
-gem 'acts_as_audited'                 # audit (track changes to) of records - use for items where we only need to know about change event
+gem 'paper_trail'                     # audit/versioning of records
   
 # imaging
 gem 'carrierwave'                     # image upload package
