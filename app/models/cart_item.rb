@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: active_forms
+#
+#  name     :
+#  dish_id  :
+#  price    :
+#  quantity :
+#
+
 class CartItem < ActiveForm
   attr_accessible :name, :dish_id, :price, :quantity
 

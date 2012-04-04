@@ -1,3 +1,34 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :integer         not null, primary key
+#  email                  :string(255)     default(""), not null
+#  encrypted_password     :string(255)     default(""), not null
+#  reset_password_token   :string(255)
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer         default(0)
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :string(255)
+#  last_sign_in_ip        :string(255)
+#  created_at             :datetime        not null
+#  updated_at             :datetime        not null
+#  name                   :string(255)
+#  profilepicurl          :string(255)
+#  rank                   :string(255)
+#  status                 :integer
+#  first_name             :string(255)
+#  last_name              :string(255)
+#  birth_date             :date
+#  phone                  :string(255)
+#  phone2                 :string(255)
+#  address                :string(255)
+#  gender                 :integer
+#  roles_mask             :integer
+#
+
 class User < ActiveRecord::Base
   attr_accessor   :password
   attr_accessible :name, :email, :locale, :profilepicurl, :remote_profilepicurl#, :password, :password_confirmation, :remember_me

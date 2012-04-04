@@ -1,3 +1,26 @@
+# == Schema Information
+#
+# Table name: visits
+#
+#  id             :integer         not null, primary key
+#  user_id        :integer
+#  created_at     :datetime        not null
+#  updated_at     :datetime        not null
+#  overall_rating :integer
+#  service_rating :integer
+#  speed_rating   :integer
+#  mood_rating    :integer
+#  tagline        :string(255)
+#  review         :text
+#  guest_number   :integer
+#  city_id        :integer
+#  store_id       :integer
+#  visit_date     :date
+#  spend          :float
+#  perimated      :integer
+#  value_rating   :integer
+#
+
 class Visit < ActiveRecord::Base
   attr_accessor :city_name, :store_name
   attr_accessible :city_name, :store_name, :visit_date
