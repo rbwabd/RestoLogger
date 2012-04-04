@@ -1,0 +1,16 @@
+<% content_for :sidebar do %>
+  <%= render 'layouts/main_sidebar' %>
+<% end %>
+
+<h1><%= I18n.t(@title) %></h1>
+
+<%= form_for(@store_list) do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+  <div class="field">
+    <%= f.label :name, "Name:" %>&nbsp;
+    <%= f.text_field :name, :size => 80 %>
+  </div>
+  <div class="action">
+    <%= f.submit I18n.t(@button) %>
+  </div>
+<% end %>

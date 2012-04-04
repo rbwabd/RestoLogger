@@ -10,4 +10,6 @@
 #
 
 class StoreList < ActiveRecord::Base
+
+  has_many :store_list_entries
 end

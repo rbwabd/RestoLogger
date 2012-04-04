@@ -40,6 +40,12 @@ class Ability
         dish_review.try(:user) == user
       end
 
+      can :read, StoreList, :user_id => user.id
+      can :create, StoreList
+      can :update, User do |sl|
+        sl.try(:user) == user
+      end
+           
       can :read, User, :id => user.id
         # u.try(:friend?, user)  #verify u and user are friends
         # be careful this must work in the context of accessible_by etc.

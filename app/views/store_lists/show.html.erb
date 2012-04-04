@@ -1,0 +1,16 @@
+<% content_for :sidebar do %>
+  <%= render 'layouts/main_sidebar' %>
+<% end %>
+
+<h1><%= I18n.t(@title) %><%= @store_list.name %></h1><br>
+
+<div>
+  <% for sle in @store_list.store_list_entries %>
+    <%= Store(sle.store_id).name %>
+  <% end %>
+    
+
+</div>
+
+
+
