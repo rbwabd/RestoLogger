@@ -268,9 +268,17 @@ table.listing {
 a:active{
   outline: none;
 }		
-#visit-ratings tr td{
-  padding: 0px 15px 0px 15px;
+#visit-ratings  table{
+	display: inline-table;
+  vertical-align: top;
+  tr td{
+    padding: 0px 15px 0px 15px;
+    text-align: center;
+    vertical-align: top;
+    font-weight: bold;
+  }
 }
+
 #visit-dish {
   background: lighten($background-color, 5%);
   border: solid 2px darken($background-color, 25%);

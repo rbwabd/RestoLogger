@@ -15,22 +15,14 @@
   <strong><%=I18n.t('visits.guest_nb_title')%>:</strong> <%= @visit.guest_number %>
   </br>
   <span id="visit-ratings">
+    <b>Ratings:</b>
     <table>
       <tr>
-        <th></th>
-        <th><%=I18n.t('visits.overall_rating_title')%></th>
-        <th><%=I18n.t('visits.service_rating_title')%></th>
-        <th><%=I18n.t('visits.speed_rating_title')%></th>
-        <th><%=I18n.t('visits.mood_rating_title')%></th>
-        <th><%=I18n.t('visits.value_rating_title')%></th>
-      </tr>
-      <tr>
-        <td><b>Ratings</b></td>
-        <td><%= render :partial => 'shared/star_rating', :locals => {:rating => @visit.overall_rating} %></td>
-        <td><%= render :partial => 'shared/star_rating', :locals => {:rating => @visit.service_rating} %></td>
-        <td><%= render :partial => 'shared/star_rating', :locals => {:rating => @visit.speed_rating} %></td>
-        <td><%= render :partial => 'shared/star_rating', :locals => {:rating => @visit.mood_rating} %></td>
-        <td><%= render :partial => 'shared/star_rating', :locals => {:rating => @visit.value_rating} %></td>
+        <td><%=I18n.t('visits.overall_rating_title')%><br><br><%= render :partial => 'shared/star_rating', :locals => {:rating => @visit.overall_rating} %></td>
+        <td><%=I18n.t('visits.service_rating_title')%><br><br><%= render :partial => 'shared/star_rating', :locals => {:rating => @visit.service_rating} %></td>
+        <td><%=I18n.t('visits.speed_rating_title')%><br><br><%= render :partial => 'shared/star_rating', :locals => {:rating => @visit.speed_rating} %></td>
+        <td><%=I18n.t('visits.mood_rating_title')%><br><br><%= render :partial => 'shared/star_rating', :locals => {:rating => @visit.mood_rating} %></td>
+        <td><%=I18n.t('visits.value_rating_title')%><br><br><%= render :partial => 'shared/star_rating', :locals => {:rating => @visit.value_rating} %></td>
       </tr>
     </table>  
   </span>
