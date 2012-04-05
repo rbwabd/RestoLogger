@@ -6,7 +6,7 @@
 
 <div>
   <% for store in @store_list.stores %>
-    <br><%= store.name %>
+    <br><%= link_to store.name, store_path(store) %>
   <% end %>
 </div>
 

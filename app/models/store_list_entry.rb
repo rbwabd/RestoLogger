@@ -3,8 +3,8 @@
 # Table name: store_list_entries
 #
 #  id              :integer         not null, primary key
-#  store_list_id         :integer
-#  store_id   :integer
+#  store_list_id   :integer
+#  store_id        :integer
 #  tag             :string(255)
 #  rank            :integer
 #  comment         :string(255)

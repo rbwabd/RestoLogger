@@ -16,6 +16,14 @@ class StoresController < ApplicationController
     @button = "stores.new_visit_button"
     @button2 = "stores.show_menu_button"
     @store_lists = StoreList.find_all_by_user_id(current_user.id)
+    @present_list = Array.new
+    @store_lists.each do |sl|
+      if sl.stores.index(@store)
+        @present_list << sl.name
+        @store_lists.delete(sl)
+      end
+    end 
+    # dummy for the select options array
     @store_lists << StoreList.new( {:id => -1, :name => "New List"} )
   end
 

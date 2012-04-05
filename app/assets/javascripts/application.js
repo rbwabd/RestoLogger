@@ -27,7 +27,7 @@ $(function() {
       }
       else {
         $(this).removeAttr('selected');
-        window.location.href = "/store_lists/"+$(this).val()+"/add_item?store_id="+$('#hidden_store_id').text();
+        window.location.href = "/store_lists/"+$(this).val()+"/add_item?store_id="+$('#hidden_store_id').val();
       }
     });  
     return false;

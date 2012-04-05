@@ -11,7 +11,11 @@
   </br>
   <strong>Address:</strong> <%= @store.address %>
   <br>
-  <span id="hidden_store_id"><%= Hid.enc(@store.id) %></span>
+  <%= hidden_field_tag "hidden_store_id", Hid.enc(@store.id) %>
+  Already present in lists:
+  <% for listname in @present_list %>
+    <%= listname %>
+  <% end %>
   <div id="select-as-button">
     <%= select :store_list, :select, @store_lists.collect {|p| [ p.name, p.id == -1 ? p.id : Hid.enc(p.id) ] }, :prompt => "Add to list:", :size => 1 %>
   </div>

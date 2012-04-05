@@ -8,6 +8,7 @@ class StoreListsController < ApplicationController
   end
 
   def show
+    @title = "empty"
   end
 
   def new 
@@ -21,7 +22,7 @@ class StoreListsController < ApplicationController
     sle.rank = @store_list.store_list_entries.size + 1
     sle.store_list_id = @store_list.id;
     if sle.save
-      redirect_to store_list_path(@store_list.id)
+      redirect_to store_list_path(Hid.enc(@store_list.id))
       #respond_to do |format|
       #  format.html 
       #  format.js 
