@@ -35,13 +35,13 @@ class User < ActiveRecord::Base
   
   validates :name,  :presence => true, :length   => { :maximum => 50 }
   
-	has_many :authentications
-  has_one :user_setting
-
-  has_many :visits,       :dependent => :destroy
-  has_many :pictures,     :dependent => :destroy
-  has_many :dish_reviews, :dependent => :destroy
-
+  has_one :user_setting,     :dependent => :destroy
+	has_many :authentications, :dependent => :destroy
+  has_many :visits,          :dependent => :destroy
+  has_many :pictures,        :dependent => :destroy
+  has_many :dish_reviews,    :dependent => :destroy
+  has_many :store_lists,     :dependent => :destroy
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable

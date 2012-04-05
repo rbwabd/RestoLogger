@@ -134,6 +134,30 @@ a {
       border: 1px solid #CCCCCC;  
     }  
   }
+  #select-as-button {
+    width: 90px;
+    margin: 10px 0px 10px 8px;
+    padding: 0px;
+    overflow: hidden;
+    @include rounded-corners(7px);    
+    border: 1px solid #CCCCCC;  
+    background: #E4E4E4;
+    
+    select{
+      padding: 0px 8px 0px 8px;
+      border: 0px;
+      width: 128px;
+      background: #E4E4E4;
+      vertical-align: middle;
+      font-weight: bold;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #444444;
+      option{
+        background: white;
+        font-weight: normal;
+      }
+    }
+  }
 }
 
 /* from railcast 240 for store list table */

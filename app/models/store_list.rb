@@ -10,6 +10,7 @@
 #
 
 class StoreList < ActiveRecord::Base
-
-  has_many :store_list_entries
+  attr_accessible :id, :name
+  belongs_to :user
+  has_many :store_list_entries,  :dependent => :destroy
 end

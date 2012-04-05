@@ -15,6 +15,8 @@ class StoresController < ApplicationController
     @title = "empty"
     @button = "stores.new_visit_button"
     @button2 = "stores.show_menu_button"
+    @store_lists = StoreList.find_all_by_user_id(current_user.id)
+    @store_lists << StoreList.new( {:id => -1, :name => "New List"} )
   end
 
   def new
