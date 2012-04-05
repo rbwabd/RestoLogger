@@ -5,11 +5,9 @@
 <h1><%= I18n.t(@title) %><%= @store_list.name %></h1><br>
 
 <div>
-  <% for sle in @store_list.store_list_entries %>
-    <%= Store(sle.store_id).name %>
+  <% for store in @store_list.stores %>
+    <br><%= store.name %>
   <% end %>
-    
-
 </div>
 
 

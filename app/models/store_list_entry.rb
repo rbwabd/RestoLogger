@@ -14,5 +14,5 @@
 
 class StoreListEntry < ActiveRecord::Base
   belongs_to :store_list
-  has_many :store
+  belongs_to :store
 end

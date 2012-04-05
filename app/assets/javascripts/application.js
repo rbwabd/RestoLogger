@@ -12,6 +12,28 @@
 
 var $ = jQuery.noConflict();
 
+// function to submit a store to a list
+$(function() {
+  $('#store_list_select').change(function() {
+    $("#store_list_select option:selected").each(function () {
+      // if a valid existing list selected, redirect to add_to list page
+      if ($(this).val() == "") {     
+      }
+      // if "new list" option selected, redirect to list creation page
+      else if ($(this).val() == -1) {
+        // reset selection so that same prompt text is displayed (otherwise selection would be displayed)
+        $(this).removeAttr('selected');
+        window.location.href = "/store_lists/new";
+      }
+      else {
+        $(this).removeAttr('selected');
+        window.location.href = "/store_lists/"+$(this).val()+"/add_item?store_id="+$('#hidden_store_id').text();
+      }
+    });  
+    return false;
+  });
+});
+
 //function to prevent submission of form on enter
 $(function() {
   $("input").not( $(":button") ).keypress(function (evt) {

@@ -42,9 +42,10 @@ class Ability
 
       can :read, StoreList, :user_id => user.id
       can :create, StoreList
-      can :update, User do |sl|
+      can [:update, :add_item], StoreList do |sl|
         sl.try(:user) == user
       end
+      
            
       can :read, User, :id => user.id
         # u.try(:friend?, user)  #verify u and user are friends

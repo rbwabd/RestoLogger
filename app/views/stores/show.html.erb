@@ -11,8 +11,9 @@
   </br>
   <strong>Address:</strong> <%= @store.address %>
   <br>
+  <span id="hidden_store_id"><%= Hid.enc(@store.id) %></span>
   <div id="select-as-button">
-    <%= select_tag "store_list_select", options_from_collection_for_select(@store_lists, "id", "name"), :prompt => "Add to list:", :size => 1 %>
+    <%= select :store_list, :select, @store_lists.collect {|p| [ p.name, p.id == -1 ? p.id : Hid.enc(p.id) ] }, :prompt => "Add to list:", :size => 1 %>
   </div>
   <div class="">
     <strong>Categories:</strong>

@@ -11,6 +11,8 @@
 
 class StoreList < ActiveRecord::Base
   attr_accessible :id, :name
+  
   belongs_to :user
   has_many :store_list_entries,  :dependent => :destroy
+  has_many :stores, :through => :store_list_entries
 end

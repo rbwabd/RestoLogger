@@ -36,6 +36,9 @@ RestoLogger::Application.routes.draw do
       end
     end  
     resources :store_lists do
+      member do
+        get 'add_item'
+      end
     end
     resources :sessions,        :only => [:create, :destroy]
     resources :authentications, :only => [:index, :destroy]
