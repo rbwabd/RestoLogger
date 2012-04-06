@@ -41,7 +41,7 @@ class VisitsController < ApplicationController
     @store = Store.find(params[:id])
     @dishes = @store.menu.get_dish_hash
     # if a session cart already existed for same store we keep it otherwise put in new one
-    if !(session[:store_id] and session[:store_id] == Hid.enc(@store.id) and session[:cart])
+    if !(session[:store_id] and session[:store_id].to_i == @store.id and session[:cart])
       session[:store_id] = params[:id]
       session[:cart] = Cart.new
     end

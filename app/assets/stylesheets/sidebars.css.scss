@@ -1,11 +1,10 @@
-
-$highlight-color: #F3EBD9;
+@import 'colors';
 #sidebar { /* Main sidebar*/
 	width: 317px;
 	float: left;
   margin: 0px;
-	color: #000000; /* font color */
-  background: #D0C9B7;
+	color: $sidebar-font-color;
+  background: $sidebar-color;
   margin-bottom: -3000px; /* part of trick to get sidebar to fill entire page see also */
   padding-bottom: 3000px; /* the page overflow hidden setting */
 	overflow: hidden;
@@ -23,7 +22,7 @@ $highlight-color: #F3EBD9;
     }
     li {
       line-height: 35px;
-      border-bottom: 1px dashed #A5A08C;
+      border-bottom: 1px dashed $sidebar-dash-color;
       margin: 0px 0px;
       font-size: 14px;
       font-weight: normal;
@@ -36,7 +35,7 @@ $highlight-color: #F3EBD9;
     text-transform: uppercase;
     font-size: 20px;
     font-weight: normal;
-    color: #2E2E2E;
+    color: $sidebar-h-color;
   }
   h3 { /*used for profile pic */
     padding: 20px 0px 0px 20px;
@@ -44,16 +43,16 @@ $highlight-color: #F3EBD9;
   }
   a {
     border: none;
-    color: #000000;
+    color: $sidebar-link-color;
     padding-left: 20px;
     display: block;
     &:hover { /* highlight link segment when hovering above it */
       text-decoration: none;
-      background: darken($highlight-color, 10%);  
+      background: darken($sidebar-highlight-color, 10%);  
     }
   }
   .sb-hl{ /* to highlight selected sidebar element */
-    background-color: $highlight-color;
+    background-color: $sidebar-highlight-color;
   }
 }
 
@@ -61,8 +60,8 @@ $highlight-color: #F3EBD9;
 	width: 317px;
 	float: left;
   margin: 0px;
-	color: #000000; /* font color */
-  background: #D0C9B7;
+	color: $sidebar-font-color;
+  background: $sidebar-color;
   margin-bottom: -3000px; /* part of trick to get sidebar to fill entire page see also */
   padding-bottom: 3000px; /* the page overflow hidden setting */
 	overflow: hidden;
@@ -76,12 +75,12 @@ $highlight-color: #F3EBD9;
     padding: 0;
   }
   table th {
-    color: #000000;
+	  color: $sidebar-font-color;
     padding: 0px 0px 0px 15px;
     text-align: left;
   }
   table td {
-    color: #000000;
+	  color: $sidebar-font-color;
     padding: 0px 0px 0px 15px;
     vertical-align: top;
   }
@@ -93,7 +92,7 @@ $highlight-color: #F3EBD9;
     font-weight: bold;
   }
   .cart-message{
-    color: #000000;
+	  color: $sidebar-font-color;
     padding: 30px 0px 0px 20px;
     font-weight: bold;
     text-align: center;
@@ -103,24 +102,20 @@ $highlight-color: #F3EBD9;
   }
   a {
     text-align: center;
-    color: #FFFFFF;
-    background: #555555;
+    color: $sidebar-font-color;
+    background: $cart-link-color;
     font-weight: bold;
     border: 0px;  
-    &:hover{
-      background: #E4E4E4;
-      color: #212121;  
+    &:hover{ 
     }
     &:active{
-      background: #888888;
-      color: #212121;  
     }
     &.link-button { /* cart + / - item buttons */
       margin-left: auto;
       margin-right: auto;
       text-align: center;
-      color: #FFFFFF;
-      background: #555555;
+	    color: $cart-button-text-color;
+      background: $cart-button-color;
       font-weight: bold;
       padding: 0px 5px 0px 5px;
       text-decoration: none;
