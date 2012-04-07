@@ -1,4 +1,5 @@
 <div id="list-sidebar">
+  <b>My Lists</b>
   <% for list in @store_lists %>
     <%= link_to list.name, store_list_path(list) %>
   <% end %>  

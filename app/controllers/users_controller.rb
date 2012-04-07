@@ -48,7 +48,6 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
-  
   def new
     @title = "users.new_title"
     @button = "users.new_button"

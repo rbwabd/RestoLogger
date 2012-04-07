@@ -129,8 +129,10 @@
   border: solid 1px $list-sidebar-border-color;
   @include rounded-corners(15px); 
   padding: 5px 10px 5px 10px;  
-  
+  text-align: center;
+
   a{
+    text-align: left;
     padding: 10px 10px 10px 10px; 
     margin: 5px 0px 5px 0px;
     background: darken($list-sidebar-color, 10%);

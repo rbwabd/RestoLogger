@@ -138,6 +138,15 @@ a {
       border: 1px solid $button-border-color;  
     }  
   }
+  .delete-button {
+    float: right;
+    border: solid 1px darken($background-color, 65%);
+    background: darken($background-color, 15%);
+    @include rounded-corners(7px);  
+    a {
+      display: block;
+    }
+  }
 }
 
 /* from railcast 240 for store list table */

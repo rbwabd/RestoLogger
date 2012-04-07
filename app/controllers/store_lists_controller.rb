@@ -1,19 +1,20 @@
 class StoreListsController < ApplicationController
   before_filter :decode_id
   before_filter :authenticate_user!
-  load_and_authorize_resource :except => :show
+  load_and_authorize_resource
 
-  #def index
-  #  @title = "store_lists.index_title"
-  #end
+  def index
+    @title = "empty"
+
+    if @store_lists.nil? || @store_lists.size == 0
+      @store_lists = Array.new()
+    else
+      @store_list = @store_lists.first
+      render 'show'
+    end
+  end
 
   def show
-    authorize! :show, StoreList
-    if params[:first]
-      @store_list = current_user.store_lists.first
-    else
-      @store_list = StoreList.find(params[:id])
-    end
     @title = "empty"
     @store_lists = StoreList.where("user_id = ?", current_user.id).order("name asc")
   end
@@ -31,17 +32,6 @@ class StoreListsController < ApplicationController
     @store_list.user_id = current_user.id
 
     if params[:add_store_id]
-    
-    p "Test Output-------------"
-    p "Test Output-------------"
-    p "Test Output-------------"
-    p "Test Output-------------"
-    p params[:add_store_id]
-    p "Test Output-------------"
-    p "Test Output-------------"
-    p "Test Output-------------"
-    p "Test Output-------------"
-    
       @store_list.stores << Store.find(Hid.dec(params[:add_store_id]))
     end
     if @store_list.save

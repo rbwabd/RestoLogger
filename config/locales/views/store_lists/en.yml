@@ -8,3 +8,13 @@ en:
     delete_confirmation_message: |
       Are you sure you want to delete this list of stores?
       This operation is irreversible!
+    no_list_message: |
+      You do not have any lists yet. 
+      Add one by going on the page of any restaurant 
+      and choosing "add new" in the menu on the right.
+    no_item_in_list_message: |  
+      This list does not have any items yet. Add some
+      through searching for a restaurant and picking this
+      list on the menu on the right
+    delete_store_list_entry_confirm_message: |
+      Are you sure you want to delete this restaurant from the list?

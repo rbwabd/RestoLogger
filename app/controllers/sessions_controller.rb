@@ -10,13 +10,13 @@ class SessionsController < Devise::SessionsController
     #end
     
 		if authentication && authentication.user.present?
-			session[:user_id] = authentication.user.id 
+			#session[:user_id] = authentication.user.id 
       check_updated_profilepic(authentication.user, omniauth)
 			flash[:notice] = "Signed in successfully."
 			#this is a devise method
       sign_in_and_redirect(:user, authentication.user)
     elsif current_user
-			session[:user_id] = current_user.id 
+			#session[:user_id] = current_user.id 
 			#this is when user is logged in but is adding another authentication method
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'], :token => omniauth["credentials"]["token"])
       check_updated_profilepic(current_user, omniauth)
@@ -29,14 +29,24 @@ class SessionsController < Devise::SessionsController
       user.profilepicurl = set_user_profilepic(omniauth)
       #set normal user role without any special qualifiers
       user.roles_mask = 0
-      session[:user_id] = user.id 
-      user.store_lists << StoreList.new( :name => I18n.t("store_lists.default_store_list"), :user_id => user.id)
 			if user.save
+        #session[:user_id] = user.id 
+        #p "new user id: "+user.id.to_s
         flash[:notice] = "Signed in new user successfully."
 				sign_in_and_redirect(:user, user)
 			else
 			  #2do: this part needs to be rewritten...
-
+        
+        p "Test Output-------------"
+        p "Test Output-------------"
+        p "Test Output-------------"
+        p "Test Output-------------"
+        p "User save failed"
+        p "Test Output-------------"
+        p "Test Output-------------"
+        p "Test Output-------------"
+        p "Test Output-------------"
+        
         #next statementcould result in cookie-overflow due to exceeding 4k size in session - better use session[:omniauth] = omniauth.except('extra')
 				#session[:omniauth] = omniauth
         #could be because DB got corrupted and there are orphan authentications without allocated user (but user was recreated with new authentication

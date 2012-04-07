@@ -8,11 +8,19 @@
 <div id="right-float-container">
   <%= render 'list_sidebar' %>
   <div>
-    <% for store in @store_list.stores %>
+    <% for sle in @store_list.store_list_entries %>
+      <% if can? :destroy, sle %>
+        <div class="delete-button">
+          <%= link_to "X", store_list_entry_path(sle), :confirm => I18n.t('store_lists.delete_store_list_entry_confirm_message'), :method => :delete %>
+        </div>
+      <% end %>
       <div class="store">
-        <%= render 'stores/store_fields', :store => store %>
+        <%= render 'stores/store_fields', :store => sle.store %>
       </div>
       <br/>
+    <% end %>
+    <% if @store_list.stores.size == 0 %>
+      <%= I18n.t('store_lists.no_item_in_list_message') %>
     <% end %>
   </div>
 </div>

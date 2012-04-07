@@ -46,6 +46,10 @@ class Ability
       can [:update, :destroy, :add_item], StoreList do |sl|
         sl.try(:user) == user
       end
+    #StoreListEntry
+      can :destroy, StoreListEntry do |sle|
+        sle.try(:store_list).user == user
+      end  
     #User  
       can :read, User, :id => user.id
         # u.try(:friend?, user)  #verify u and user are friends
