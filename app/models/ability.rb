@@ -43,7 +43,7 @@ class Ability
     #StoreList
       can :read, StoreList, :user_id => user.id
       can :create, StoreList
-      can [:update, :add_item], StoreList do |sl|
+      can [:update, :destroy, :add_item], StoreList do |sl|
         sl.try(:user) == user
       end
     #User  

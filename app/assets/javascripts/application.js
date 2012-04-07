@@ -23,11 +23,11 @@ $(function() {
       else if ($(this).val() == -1) {
         // reset selection so that same prompt text is displayed (otherwise selection would be displayed)
         $(this).removeAttr('selected');
-        window.location.href = "/store_lists/new";
+        window.location.href = "/store_lists/new?add_store_id=" + $("#store_id").val();
       }
       else {
         $(this).removeAttr('selected');
-        window.location.href = "/store_lists/"+$(this).val()+"/add_item?store_id="+$('#hidden_store_id').val();
+        window.location.href = "/store_lists/"+$(this).val()+"/add_item?store_id="+$('#store_id').val();
       }
     });  
     return false;

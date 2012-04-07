@@ -1,8 +1,9 @@
 <div class="field">
   <%= f.label :name, "Name:" %>&nbsp;
   <%= f.text_field :name, :size => 80 %>
+  <% if @add_store_id %>
+    <%= hidden_field_tag :add_store_id, @add_store_id %>
+  <% end %>
 </div>
-<div class="action">
-  <%= f.submit I18n.t(@button) %>
-</div>
+
   

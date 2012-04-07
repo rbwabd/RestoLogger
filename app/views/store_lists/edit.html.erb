@@ -7,4 +7,10 @@
 <%= form_for(@store_list) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <%= render 'fields', :f => f %>
+  <div class="action">
+    <%= f.submit I18n.t(@button) %>
+    <% if can? :destroy, @store_list %>
+      <%= link_to I18n.t('delete_button'), store_list_path(@store_list), :confirm => I18n.t('store_lists.delete_confirmation_message'), :method => :delete %>
+    <% end%>  
+  </div>
 <% end %>
