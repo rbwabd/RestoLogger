@@ -5,6 +5,7 @@ class StoreListsController < ApplicationController
 
   def index
     @title = "empty"
+    @store_lists = @store_lists.order("name asc")
 
     if @store_lists.nil? || @store_lists.size == 0
       @store_lists = Array.new()
@@ -57,7 +58,7 @@ class StoreListsController < ApplicationController
   
   def destroy
     @store_list.destroy
-    redirect_to root_path, :flash => { :success => "Store List deleted!" }
+    redirect_to store_lists_path, :flash => { :success => "Store List deleted!" }
   end
 
   def add_item
