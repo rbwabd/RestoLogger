@@ -1,0 +1,24 @@
+  <div id="store">
+    <div id="store-search-result">
+      <b>Name:</b> <%= link_to @store.name, store_path(@store) %>
+      </br>
+      <b>City:</b> <%= @store.city.name %>
+      </br>
+      <b>Address:</b> <%= @store.address %>
+      <br>
+      <%= hidden_field_tag "store_id", Hid.enc(@store.id) %>
+      <div class="">
+        <b>Categories:</b>
+        <% for rel in @store.store_type_relationships %>
+          &nbsp;<%= rel.store_type.name %>
+        <% end %>
+      </div>
+    </div>
+    <div class="action">
+      <%= link_to I18n.t(@button), new_visit_path(:id => Hid.enc(@store.id))%>
+      <%= link_to I18n.t(@button2), menu_path(@store.menu)%>
+      <% if can? :destroy, @store %>
+        <%= link_to I18n.t('delete_button'), store_path(@store), :confirm => I18n.t('stores.delete_confirmation_message'), :method => :delete %>
+      <% end%>
+    </div>    
+  </div>

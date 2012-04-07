@@ -12,21 +12,13 @@ class StoresController < ApplicationController
   end
   
   def show
-    @title = "empty"
-    @button = "stores.new_visit_button"
-    @button2 = "stores.show_menu_button"
-    @store_lists = StoreList.find_all_by_user_id(current_user.id)
-    @present_list = Array.new
-    @store_lists.each do |sl|
-      if sl.stores.index(@store)
-        @present_list << sl
-        @store_lists.delete(sl)
-      end
-    end 
-    # dummy for the select options array
-    @store_lists << StoreList.new( {:id => -1, :name => "New List"} )
+    load_show
   end
-
+  
+  def show_search_result
+    load_show
+  end
+  
   def new
     @title = "stores.new_title"
     @button = "stores.new_button"
@@ -98,4 +90,21 @@ class StoresController < ApplicationController
     @store.destroy
     redirect_to root_path, :flash => { :success => "Store deleted!" }
   end
+  
+  private
+    def load_show
+      @title = "empty"
+      @button = "stores.new_visit_button"
+      @button2 = "stores.show_menu_button"
+      @store_lists = StoreList.find_all_by_user_id(current_user.id)
+      @present_list = Array.new
+      @store_lists.each do |sl|
+        if sl.stores.index(@store)
+          @present_list << sl
+          @store_lists.delete(sl)
+        end
+      end 
+      # dummy for the select options array
+      @store_lists << StoreList.new( {:id => -1, :name => "New List"} )
+    end
 end

@@ -14,7 +14,7 @@ class Ability
       can :manage, :all
     else #basically normal users without special rights
     #Store
-      can :read, Store
+      can [:read, :show_search_result], Store
       can [:create, :update], Store
       can :destroy, Store do |store|
         store.try(:user) == user

@@ -145,12 +145,21 @@ a {
     }
     .delete-button {
       float: right;
-      border: solid 1px darken($background-color, 65%);
-      background: darken($background-color, 15%);
-      @include rounded-corners(7px);  
       a {
+        padding: 0px 5px 0px 5px;
         display: block;
+        text-decoration: none;      
+        color: black;
       }
+    }
+  }
+  #store-search-result{
+    border: solid 2px darken($background-color, 35%);
+    padding: 5px 5px 5px 5px;
+    @include rounded-corners(12px);  
+    a {
+      display: inline-block;
+      text-decoration: none;  
     }
   }
 }

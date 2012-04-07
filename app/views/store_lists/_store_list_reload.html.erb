@@ -1,0 +1,17 @@
+<td id ="store_list_reload">
+  <% for sle in @store_list.store_list_entries %>
+    <% if can? :destroy, sle %>
+      <div class="delete-button">
+        <%= link_to "X", store_list_entry_path(sle), :confirm => I18n.t('store_lists.delete_store_list_entry_confirm_message'), :method => :delete, :remote => true %>
+      </div>
+    <% end %>
+    <div class="store">
+      <%= render 'stores/store_fields', :store => sle.store %>
+    </div>
+    <br/>
+  <% end %>
+  <% if @store_list.stores.size == 0 %>
+    <%= I18n.t('store_lists.no_item_in_list_message') %>
+  <% end %>
+</td>
+
