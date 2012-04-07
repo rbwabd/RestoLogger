@@ -38,6 +38,9 @@ h1, h2, h3 {
 	font-family: 'Arvo', serif;
 	color: $h-color;
 }
+.largefont1 {
+  font-size: 2em;
+}
 
 textarea, input{
   font-family: Arial, Helvetica, sans-serif;
@@ -77,6 +80,9 @@ a {
   }
   h1, h2, h3 {
     padding: 0px 0px 15px 15px; 
+  }
+  #right-float-container {
+    max-width: 750px;
   }
   #tabssortable div ul li { /* specific styling for jquery-ui tabbed list elements */
     margin: 0 5px 5px 5px; 

@@ -2,17 +2,20 @@
   <%= render 'layouts/main_sidebar' %>
 <% end %>
 
-<h1><%= I18n.t(@title) %><%= @store_list.name %></h1><br>
-
-<%= render 'list_sidebar' %>
-<div>
-  <% for store in @store_list.stores %>
-    <br><%= link_to store.name, store_path(store) %>
-  <% end %>
+<span class="largefont1"><%= I18n.t(@title) %><%= @store_list.name %></span>
+<%= link_to "(edit)", edit_store_list_path(@store_list) %><br/><br/>
+  
+<div id="right-float-container">
+  <%= render 'list_sidebar' %>
+  <div>
+    <% for store in @store_list.stores %>
+      <div class="store">
+        <%= render 'stores/store_fields', :store => store %>
+      </div>
+      <br/>
+    <% end %>
+  </div>
 </div>
-<div class="action">
-  <%= link_to "Edit List", edit_store_list_path(@store_list) %>
-</div>  
 
 
 

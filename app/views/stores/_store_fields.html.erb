@@ -1,0 +1,11 @@
+<strong>Name:</strong> <%= link_to store.name, store_path(store)%>
+</br>
+<strong>City:</strong> <%= store.city.name %>
+</br>
+<strong>Address:</strong> <%= store.address %>
+<div class="">
+  <strong>Categories:</strong>
+  <% for rel in store.store_type_relationships %>
+    &nbsp;<%= rel.store_type.name %>
+  <% end %>
+</div>
