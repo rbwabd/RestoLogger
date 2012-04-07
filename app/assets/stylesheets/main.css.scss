@@ -154,12 +154,18 @@ a {
     }
   }
   #store-search-result{
-    border: solid 2px darken($background-color, 35%);
-    padding: 5px 5px 5px 5px;
-    @include rounded-corners(12px);  
+    div{
+      border: solid 2px darken($background-color, 35%);
+      padding: 5px 5px 5px 5px;
+      @include rounded-corners(12px);  
+    }
     a {
-      display: inline-block;
+      display: block;
       text-decoration: none;  
+      color: black;
+      &:hover{
+        background: white;
+      }
     }
   }
 }
