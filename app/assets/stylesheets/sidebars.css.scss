@@ -122,3 +122,77 @@
     }
   }
 }
+
+#list-sidebar {
+  float: right;
+  background: $list-sidebar-color;
+  border: solid 1px $list-sidebar-border-color;
+  @include rounded-corners(15px); 
+  padding: 5px 10px 5px 10px;  
+  
+  a{
+    padding: 10px 10px 10px 10px; 
+    margin: 5px 0px 5px 0px;
+    background: darken($list-sidebar-color, 10%);
+    @include rounded-corners(10px);   
+    color: black;
+    font-weight: bold;
+    display: block;
+    &:hover {
+      background:lighten($list-sidebar-color,20%);
+      text-decoration: none;
+    }
+  }
+}
+
+#store-list-sidebar {
+  float: right;
+  background: $list-sidebar-color;
+  border: solid 1px $list-sidebar-border-color;
+  @include rounded-corners(15px); 
+  padding: 5px 10px 5px 10px;  
+  
+  a{
+    padding: 10px 10px 10px 10px; 
+    margin: 5px 0px 5px 0px;
+    background: $list-sidebar-color;
+    @include rounded-corners(10px);   
+    color: black;
+    font-weight: bold;
+    display: block;
+    &:hover {
+      background:lighten($list-sidebar-color,20%);
+      text-decoration: none;
+    }
+  }
+  #select-as-button {
+    width: 60px;
+    margin: 10px 0px 10px 8px;
+    padding: 0px;
+    overflow: hidden;
+    @include rounded-corners(7px);    
+    border: 1px solid $button-border-color;  
+    background: $button-color;
+    margin-left:auto;
+    margin-right:auto;
+    
+    select{
+      padding: 2px 8px 2px 8px;
+      border: 0px;
+      width: 100px;
+      background: $button-color;
+      vertical-align: middle;
+      font-weight: bold;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 100%;
+      color: $button-text;
+      option{
+        background: white;
+        font-weight: normal;
+      }
+      &:hover {
+        background: lighten($button-color, 50%);
+      }
+    }
+  }  
+}

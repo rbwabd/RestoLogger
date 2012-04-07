@@ -1,21 +1,52 @@
 class StoreListsController < ApplicationController
   before_filter :decode_id
   before_filter :authenticate_user!
-  load_and_authorize_resource
+  load_and_authorize_resource :except => :show
 
   def index
     @title = "store_lists.index_title"
   end
 
   def show
+    authorize! :show, StoreList
+    if params[:first]
+      @store_list = current_user.store_lists.first
+    else
+      @store_list = StoreList.find(params[:id])
+    end
     @title = "empty"
+    @store_lists = StoreList.where("user_id = ?", current_user.id).order("name asc")
   end
 
   def new 
     @title = "store_lists.new_title"
-    @button = "store_lists.new_button"
+    @button = "create_button"
   end
-  
+
+  def create
+    @store_list.name = params[:store_list][:name]
+    @store_list.user_id = current_user.id
+    if @store_list.save
+      redirect_to store_lists_path 
+    else
+      #2do:
+    end
+  end
+    
+  def edit
+    @title = "store_lists.edit_title"
+    @button = "update_button"
+  end
+
+  def update
+    @store_list.name = params[:store_list][:name]
+    if @store_list.save
+      redirect_to store_lists_path
+    else
+      #2do:
+    end
+  end
+
   def add_item
     sle = StoreListEntry.new
     sle.store_id = Hid.dec(params[:store_id])
@@ -31,17 +62,6 @@ class StoreListsController < ApplicationController
       #2do:
     end  
   end
-  
-  def create
-    @store_list.name = params[:store_list][:name]
-    @store_list.user_id = current_user.id
-    if @store_list.save
-      redirect_to store_lists_path
-    else
-      #2do:
-    end
-  end
-  
 end
 
 

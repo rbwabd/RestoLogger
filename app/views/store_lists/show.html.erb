@@ -4,11 +4,15 @@
 
 <h1><%= I18n.t(@title) %><%= @store_list.name %></h1><br>
 
+<%= render 'list_sidebar' %>
 <div>
   <% for store in @store_list.stores %>
     <br><%= link_to store.name, store_path(store) %>
   <% end %>
 </div>
+<div class="action">
+  <%= link_to "Edit List", edit_store_list_path(@store_list) %>
+</div>  
 
 
 

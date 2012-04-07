@@ -4,6 +4,7 @@
 
 <h1><%= I18n.t(@title) %><%= @store.name %></h1><br>
 
+<%= render 'store_list' %>
 <div id="store">
   <strong>Name:</strong> <%= @store.name %>
   </br>
@@ -12,13 +13,6 @@
   <strong>Address:</strong> <%= @store.address %>
   <br>
   <%= hidden_field_tag "hidden_store_id", Hid.enc(@store.id) %>
-  Already present in lists:
-  <% for listname in @present_list %>
-    <%= listname %>
-  <% end %>
-  <div id="select-as-button">
-    <%= select :store_list, :select, @store_lists.collect {|p| [ p.name, p.id == -1 ? p.id : Hid.enc(p.id) ] }, :prompt => "Add to list:", :size => 1 %>
-  </div>
   <div class="">
     <strong>Categories:</strong>
     <% for rel in @store.store_type_relationships %>

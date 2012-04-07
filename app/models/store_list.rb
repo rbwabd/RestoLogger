@@ -15,4 +15,11 @@ class StoreList < ActiveRecord::Base
   belongs_to :user
   has_many :store_list_entries,  :dependent => :destroy
   has_many :stores, :through => :store_list_entries
+    
+  def id_encoded
+    Hid.enc( self.id )
+  end
+  def to_param
+    Hid.enc( self.id )
+  end
 end

@@ -19,7 +19,7 @@ class StoresController < ApplicationController
     @present_list = Array.new
     @store_lists.each do |sl|
       if sl.stores.index(@store)
-        @present_list << sl.name
+        @present_list << sl
         @store_lists.delete(sl)
       end
     end 

@@ -1,0 +1,11 @@
+<div id="store-list-sidebar">
+  <% if @present_list %>
+    <b>Lists:</b>
+  <% end %>   
+  <% for list in @present_list %>
+    <br><%= link_to list.name, store_list_path(list) %>
+  <% end %>
+  <div id="select-as-button">
+    <%= select :store_list, :select, @store_lists.collect {|p| [ p.name, p.id == -1 ? p.id : Hid.enc(p.id) ] }, :prompt => "Add:", :size => 1 %>
+  </div>
+</div>

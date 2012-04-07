@@ -3,4 +3,4 @@ en:
     # Titles and Buttons
     index_title: My Restaurant Lists
     new_title: "List "
-    new_button: "Create New List"
+    edit_title: "List "

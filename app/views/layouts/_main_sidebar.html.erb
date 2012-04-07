@@ -13,7 +13,7 @@
           <p>
           <ul>
             <li class="<% if current_page?(visits_path) %>sb-hl<%end%>"><%= link_to "My Visits", visits_path %></li>
-            <li class="<% if current_page?(store_lists_path) %>sb-hl<%end%>"><%= link_to "My Restaurant Bookmarks", store_lists_path %></li>
+            <li class="<% if current_page?(store_lists_path) %>sb-hl<%end%>"><%= link_to "Favourite Restaurants", store_list_path(:id => 0, :first => true) %></li>
             <li class="<% if false %>sb-hl<%end%>"><%= link_to "My Favourite Dishes", "#" %></li>
             <li class="<% if false %>sb-hl<%end%>"><%= link_to "My Dish Reviews", "#" %></li>
             <li class="<% if false %>sb-hl<%end%>"><%= link_to "My Network", "#" %></li>
