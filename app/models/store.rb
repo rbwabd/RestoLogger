@@ -20,12 +20,15 @@
 #
 
 class Store < ActiveRecord::Base
-  belongs_to :city
-  attr_accessible :name, :address
+  attr_accessible :name, :address, :gid, :phone 
   
+  belongs_to :city
+  belongs_to :user
   has_one :menu,                        :dependent => :destroy
+  has_many :visits,                     :dependent => :destroy
   has_many :store_type_relationships,   :dependent => :destroy
   has_many :dishes, :through => :menu
+
   
   has_paper_trail
   
@@ -58,7 +61,7 @@ class Store < ActiveRecord::Base
             search_url = 'http://maps.google.com/maps/place?cid='+store_id
 
             found = Hash.new
-            found[:store_id] = store_id
+            found[:gid] = store_id
             #File.open("tmpzfile.txt",'w') do |filea|
               open("#{search_url}") do |f2|
                 #raise 'web service error' if (f.status.first != '200')
@@ -70,12 +73,22 @@ class Store < ActiveRecord::Base
                   if result_hash = Store.find_str(line, 0, 'gw:address="', '"') then
                     found[:address] = result_hash[:result_string]
                   end  
-                  if result_hash = Store.find_str(line, 0, 'gw:country="', '"') then
-                    found[:country] = result_hash[:result_string]
-                  end  
+                  if result_hash = Store.find_str(line, 0, '<span id="pp-cats-closed">', '<') then
+                    found[:category] = result_hash[:result_string]
+                  end
+                  #if result_hash = Store.find_str(line, 0, 'gw:country="', '"') then
+                  #  found[:country] = result_hash[:result_string]
+                  #end  
                   if result_hash = Store.find_str(line, 0, 'gw:phone="', '"') then
                     found[:phone] = result_hash[:result_string]
-                  end  
+                  end
+                  #if result_hash = Store.find_str(line, 0, '<td class="oh-day">', '<') then
+                  #  found[:opening_times]=Hash.new
+                  #  while result_hash
+                  #    found[:opening_times][result_hash[:result_string]] = Store.find_str(line, result_hash[:offset], '<td dir="ltr">', '<')[:result_string]
+                  #    result_hash = Store.find_str(line, result_hash[:offset] , '<td class="oh-day">', '<')
+                  #  end
+                  #end
                 end
               end
             #end

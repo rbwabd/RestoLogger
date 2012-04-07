@@ -41,6 +41,8 @@
     <%= label :store_type, :name, "Category 3:" %>&nbsp;
     <%= select :store_type, "Category3", StoreType.all.collect {|p| [ p.name, p.id ] }, { :include_blank => true } %>
   </div>
+  <%= hidden_field :store, :phone, :value => @result[:phone].to_s %>
+  <%= hidden_field :store, :gid, :value => @result[:gid].to_s %>
   <div class="action">
     <%= f.submit I18n.t(@button) %>
   </div>

@@ -30,8 +30,11 @@ class StoresController < ApplicationController
   def new
     @title = "stores.new_title"
     @button = "stores.new_button"
-    @store.name = params[:name]
-    @store.address = params[:address]
+    @result = params[:result]
+    #opening times not implemented (have a URI too large issue at the moment
+    #@store.opening_times = result[:opening_times].collect { |k, v| "{k}:{v} <br>" }.join
+    @store.name = @result[:name]
+    @store.address = @result[:address]
     @country = Country.find(params[:param][:country][:id])
     @state = State.find(params[:param][:state][:id])
     @city = City.find(params[:param][:city][:id])
@@ -39,8 +42,7 @@ class StoresController < ApplicationController
 
   def create
     @store.city_id = params[:city][:id]
-    @store.name = params[:store][:name]
-    @store.address = params[:store][:address]
+    @store.user_id = current_user.id 
     if !params[:store_type]["Category1"].empty? then
       @store.store_type_relationships.build({:store_type_id =>params[:store_type]["Category1"]})
     end  

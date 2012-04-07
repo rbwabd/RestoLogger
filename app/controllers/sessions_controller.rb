@@ -30,6 +30,7 @@ class SessionsController < Devise::SessionsController
       #set normal user role without any special qualifiers
       user.roles_mask = 0
       session[:user_id] = user.id 
+      user.store_lists << StoreList.new( :name => I18n.t("store_lists.default_store_list"), :user_id => user.id)
 			if user.save
         flash[:notice] = "Signed in new user successfully."
 				sign_in_and_redirect(:user, user)

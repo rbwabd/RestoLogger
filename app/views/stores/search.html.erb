@@ -27,15 +27,27 @@
       <%= f.submit I18n.t(@button) %>
     </span>  
   </div>
+  <!-- do not remove following div used by jscript to show store -->
   <div id="display">
-  </div>
+  </div>  
   <% for result in @res %>
-    <%= result[:name] %><br>
-    <%= result[:address] %><br>
-    <%= result[:country] %><br>
-    <%= result[:phone] %><br>
-    <%= result[:store_id] %><br>
-    <%= link_to I18n.t(@button2), new_store_path(:name => result[:name], :address => result[:address], :param => params)%>
+    <table>
+      <tr>
+        <td><b>Name: </b></td>
+        <td><%= result[:name] %></td>
+      </tr>
+      <tr>
+        <td><b>Address: </b></td>
+        <td><%= result[:address] %></td>
+      </tr>
+        <% if result[:category] %>
+          <tr>
+            <td><b>Categories: </b></td>
+            <td><%= result[:category] %></td>
+          </tr>  
+        <% end %>
+    </table>
+    <%= link_to I18n.t(@button2), new_store_path(:result => result, :param => params)%>
     <br><br>
     <% end %>
 <% end %>

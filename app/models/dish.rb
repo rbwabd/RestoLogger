@@ -20,8 +20,9 @@
 #
 
 class Dish < ActiveRecord::Base
-  attr_accessible :name, :menu_id, :rank, :price, :code, :description, :dish_type_id, :option_description, :price_comment
+  attr_accessible :user_id, :name, :menu_id, :rank, :price, :code, :description, :dish_type_id, :option_description, :price_comment
   
+  belongs_to :user
   belongs_to :dish_type
   has_many :dish_reviews
   

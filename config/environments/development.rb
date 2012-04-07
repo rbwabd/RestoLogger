@@ -36,5 +36,5 @@ RestoLogger::Application.configure do
   config.assets.debug = true
   
   # The available log levels are: :debug, :info, :warn, :error, :fatal. 
-  config.log_level = :warn
+  config.log_level = :debug
 end

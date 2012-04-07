@@ -6,22 +6,28 @@
 
 <%= render 'store_list' %>
 <div id="store">
-  <strong>Name:</strong> <%= @store.name %>
+  <b>Name:</b> <%= @store.name %>
   </br>
-  <strong>City:</strong> <%= @store.city.name %>
+  <b>City:</b> <%= @store.city.name %>
   </br>
-  <strong>Address:</strong> <%= @store.address %>
+  <b>Address:</b> <%= @store.address %>
   <br>
   <%= hidden_field_tag "hidden_store_id", Hid.enc(@store.id) %>
   <div class="">
-    <strong>Categories:</strong>
+    <b>Categories:</b>
     <% for rel in @store.store_type_relationships %>
       &nbsp;<%= rel.store_type.name %>
     <% end %>
   </div>
+  <% if @store.gid %> 
+    <a href="http://maps.google.com/maps/place?cid=<%=@store.gid%>" target="blank">Google place page</a>
+  <% end %>
   <br>
   <div class="action">
     <%= link_to I18n.t(@button), new_visit_path(:id => Hid.enc(@store.id))%>
     <%= link_to I18n.t(@button2), menu_path(@store.menu)%>
+    <% if can? :destroy, @store %>
+      <%= link_to I18n.t('delete_button'), store_path(@store), :confirm => I18n.t('stores.delete_confirmation_message'), :method => :delete %>
+    <% end%>
   </div>    
 </div>

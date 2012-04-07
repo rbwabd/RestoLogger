@@ -110,7 +110,7 @@ class MenusController < ApplicationController
       description = params["description"+count.to_s]
       code = params["code"+count.to_s]
       
-      dish = Dish.new({ :menu_id => @menu.id, :name => name, :option_description => option_description, :price_comment => price_comment, :price => price, :description => description, :code => code})
+      dish = Dish.new({ :user_id => current_user.id, :menu_id => @menu.id, :name => name, :option_description => option_description, :price_comment => price_comment, :price => price, :description => description, :code => code})
       if !tmphash.has_key?(category)
         tmphash[category] = Array.new
       end

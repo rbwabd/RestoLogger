@@ -13,47 +13,47 @@ class Ability
     elsif user.role? :admin
       can :manage, :all
     else #basically normal users without special rights
+    #Store
       can :read, Store
       can [:create, :update], Store
       can :destroy, Store do |store|
         store.try(:user) == user
       end
       can :search, :stores                    # two non-RESTful actions that allow user to search for a store
-      
+    #Menu  
       can :show, Menu
       can [:add, :confirm, :save], Menu       # add new items to menu
       can [:edit_order, :update_order], Menu  # change order which menu items and categories are presented
-    
+    #Dish
       can :show, Dish
       can :destroy, Dish do |dish|
         dish.try(:user) == user
       end
-      
+    #Visit  
       can :read, Visit, :user_id => user.id   # 2do: add ability to see friend's visits but not in index only in store-specific lists (so maybe no need here)
       can :create, Visit
       # update on visit updates the items ordered, while update_parameters changes the ratings, review text, pictures etc.
       can [:update, :destroy, :edit_parameters, :update_parameters], Visit do |visit|
         visit.try(:user) == user
       end
-      
+    #DishReview  
       can [:destroy, :delete_picture], DishReview do |dish_review|
         dish_review.try(:user) == user
       end
-
+    #StoreList
       can :read, StoreList, :user_id => user.id
       can :create, StoreList
       can [:update, :add_item], StoreList do |sl|
         sl.try(:user) == user
       end
-      
-           
+    #User  
       can :read, User, :id => user.id
         # u.try(:friend?, user)  #verify u and user are friends
         # be careful this must work in the context of accessible_by etc.
       can :update, User do |u|
         u == user
       end
-
+    #Authentication  
       can [:read, :destroy], Authentication, :user_id => user.id
       
     end

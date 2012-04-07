@@ -1,6 +1,7 @@
 en:
   store_lists:
     # Titles and Buttons
+    default_store_list: Favourites
     index_title: My Restaurant Lists
     new_title: "List "
     edit_title: "List "

@@ -8,7 +8,7 @@ CarrierWave.configure do |config|
     :region                 => 'eu-west-1'  # optional, defaults to 'us-east-1'  #eu-west-1 is ireland
   }
   config.permissions = 0777 
-  config.fog_directory  = 'resto-logger'                     # bucket name - required
+  config.fog_directory  = 'minu'                                   # bucket name - required
   #config.fog_host       = 'https://assets.example.com'            # optional, defaults to nil
   #config.fog_public     = false                                   # optional, defaults to true
   #config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}  # optional, defaults to {}
