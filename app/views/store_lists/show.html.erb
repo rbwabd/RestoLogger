@@ -5,25 +5,30 @@
 <span class="largefont1"><%= I18n.t(@title) %><%= @store_list.name %></span>
 <%= link_to "(edit)", edit_store_list_path(@store_list) %><br/><br/>
   
-<div id="right-float-container">
-  <%= render 'list_sidebar' %>
-  <div>
-    <% for sle in @store_list.store_list_entries %>
-      <% if can? :destroy, sle %>
-        <div class="delete-button">
-          <%= link_to "X", store_list_entry_path(sle), :confirm => I18n.t('store_lists.delete_store_list_entry_confirm_message'), :method => :delete %>
-        </div>
-      <% end %>
-      <div class="store">
-        <%= render 'stores/store_fields', :store => sle.store %>
-      </div>
-      <br/>
-    <% end %>
-    <% if @store_list.stores.size == 0 %>
-      <%= I18n.t('store_lists.no_item_in_list_message') %>
-    <% end %>
-  </div>
-</div>
+  <table id="store_list">
+    <tr>
+      <td>
+        <% for sle in @store_list.store_list_entries %>
+          <% if can? :destroy, sle %>
+            <div class="delete-button">
+              <%= link_to "X", store_list_entry_path(sle), :confirm => I18n.t('store_lists.delete_store_list_entry_confirm_message'), :method => :delete %>
+            </div>
+          <% end %>
+          <div class="store">
+            <%= render 'stores/store_fields', :store => sle.store %>
+          </div>
+          <br/>
+        <% end %>
+        <% if @store_list.stores.size == 0 %>
+          <%= I18n.t('store_lists.no_item_in_list_message') %>
+        <% end %>
+      </td>
+      <td>
+        <%= render 'list_sidebar' %>
+      </td>  
+    </tr>
+  </table>
+
 
 
 

@@ -81,9 +81,6 @@ a {
   h1, h2, h3 {
     padding: 0px 0px 15px 15px; 
   }
-  #right-float-container {
-    max-width: 750px;
-  }
   #tabssortable div ul li { /* specific styling for jquery-ui tabbed list elements */
     margin: 0 5px 5px 5px; 
     padding: 5px; 
@@ -138,13 +135,22 @@ a {
       border: 1px solid $button-border-color;  
     }  
   }
-  .delete-button {
-    float: right;
-    border: solid 1px darken($background-color, 65%);
-    background: darken($background-color, 15%);
-    @include rounded-corners(7px);  
-    a {
-      display: block;
+  #store_list {
+    min-width: 900px;
+    tr {
+      vertical-align: top;
+      td {
+        padding: 0px 0px 0px 20px;
+      }
+    }
+    .delete-button {
+      float: right;
+      border: solid 1px darken($background-color, 65%);
+      background: darken($background-color, 15%);
+      @include rounded-corners(7px);  
+      a {
+        display: block;
+      }
     }
   }
 }
