@@ -3,7 +3,6 @@ fr:
   new_title: S'inscrire
   new_button: S'inscrire
   edit_title: Modifier les parametres utilisateur
-  edit_button: Changer
   user_name:  Nom
   user_email:  Email
   user_locale: Langue

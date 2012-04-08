@@ -1,0 +1,30 @@
+<% content_for :sidebar do %>
+  <%= render 'layouts/main_sidebar' %>
+<% end %>
+
+<h1><%= t('visits.visited_store_list_title')%></h1>
+<p>
+<div class="action">
+  <%= link_to t('visits.show_visits_list_button'), visits_path%>
+</div>
+<p>  
+<% if @visited_store_list.stores.size == 0 %>
+  <%= t('visits.no_visits_yet_message') %>
+<% else %>
+  <table id="store_list">
+    <tr>
+      <th>Restaurant</th>
+      <th>Number of Visits</th>
+      <th>Last Visit Date</th>
+    </tr>
+    <% for vsle in @visited_store_list.visited_store_list_entries %>
+      <tr>
+        <td><%= link_to vsle.store.name, store_path(vsle.store) %></td>
+        <td><%= link_to vsle.visit_cnt, visit_path(vsle.store) %></td>
+        <td><%= vsle.last_visit_date %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
+

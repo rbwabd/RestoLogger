@@ -1,6 +1,8 @@
 <% content_for :sidebar do %>
   <%= render 'layouts/main_sidebar' %>
 <% end %>
+
+<h1><%= t('visits.visited_store_list_title')%></h1>
 <p>
 <div class="action">
   <%= link_to t('visits.show_visited_store_list_button'), visited_store_list_path(current_user.visited_store_list)%>

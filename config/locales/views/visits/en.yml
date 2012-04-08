@@ -9,6 +9,10 @@ en:
     edit_dishes_button: "Change dishes selection"
     delete_button: "Delete this Visit"
     show_visited_store_list_button: "Show visits grouped by restaurant"
+    show_visits_list_button: "Show visits individually"
+    visited_store_list_title: Places you have visited
+    visits_index_title: All your past visits
+    no_visits_yet_message: You have no visits yet
     delete_warning: |
       Are you sure you want to delete this visit report? 
       This action cannot be reversed. 

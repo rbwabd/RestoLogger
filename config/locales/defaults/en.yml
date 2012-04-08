@@ -9,7 +9,8 @@ en:
   add_button: Add
   create_button: Create
   delete_button: Delete
-  edit_button: Update
+  edit_button: Edit
+  update_button: Update
   save_button: Save
   update_button: Update  
   confirm_button: Confirm
