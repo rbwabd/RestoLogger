@@ -67,6 +67,15 @@ class VisitsController < ApplicationController
       render 'visits/confirm_visit'
     else  
       if @visit.save
+        #update visit_store_list entry
+        vsle = current_user.visited_store_list.visited_store_list_entries.where("store_id = ?", store.id)
+        if vsle
+          vsle.visit_cnt += 1
+          vsle.last_visit_date = @visit.visit_date
+        else
+          current_user.visited_store_list << VisitedStoreListEntry.new( :store_list
+        end
+        current_user.visited_store_list.save
         session[:cart] = nil
         redirect_to edit_parameters_visit_path(@visit), :flash => { :success => "Visit created!" }
       else

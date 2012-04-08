@@ -1,11 +1,11 @@
 class StoreListsController < ApplicationController
   before_filter :decode_id
   before_filter :authenticate_user!
-  load_and_authorize_resource :except => :index
+  load_and_authorize_resource 
 
   def index
     @title = "empty"
-    @store_lists = current_user.custom_store_lists.order("name asc")
+    @store_lists = @store_lists.order("name asc")
     if @store_lists.nil? || @store_lists.size == 0
       @store_lists = Array.new()
     else

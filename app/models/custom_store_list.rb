@@ -1,3 +1,0 @@
-class CustomStoreList < StoreList
-  
-end

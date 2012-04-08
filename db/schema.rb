@@ -190,7 +190,6 @@ ActiveRecord::Schema.define(:version => 20120408064709) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "type"
   end
 
   create_table "store_type_relationships", :force => true do |t|
@@ -279,6 +278,21 @@ ActiveRecord::Schema.define(:version => 20120408064709) do
   end
 
   add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
+
+  create_table "visited_store_list_entries", :force => true do |t|
+    t.integer  "store_list_id"
+    t.integer  "store_id"
+    t.integer  "visit_cnt"
+    t.date     "last_visit_date"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "visited_store_lists", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "visits", :force => true do |t|
     t.integer  "user_id"

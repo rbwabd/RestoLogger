@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
   has_many :pictures,           :dependent => :destroy
   has_many :dish_reviews,       :dependent => :destroy
   has_one :visited_store_list,  :dependent => :destroy
-  has_many :custom_store_lists, :dependent => :destroy
+  has_many :store_lists,        :dependent => :destroy
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
@@ -107,10 +107,10 @@ class User < ActiveRecord::Base
   def init_routine
     #set normal user role without any special qualifiers
     self.roles_mask = 0
-    #default favourites list
-    # 2do: self.custom_store_lists.build( :name => I18n.t("store_lists.default_store_list") )
     #create visited_stores_list
     self.build_visited_store_list
+    #default favourites list
+    self.store_lists.build( :name => I18n.t("store_lists.default_store_list") )
     self.build_user_setting(:locale => I18n.default_locale)
   end    
 
