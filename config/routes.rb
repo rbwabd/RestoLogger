@@ -45,6 +45,7 @@ RestoLogger::Application.routes.draw do
     end
     resources :store_list_entries, :only => :destroy
     resources :visited_store_lists, :only => :show
+    resources :visited_store_list_reports, :only => :index
     
     resources :sessions,        :only => [:create, :destroy]
     resources :authentications, :only => [:index, :destroy]

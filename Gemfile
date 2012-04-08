@@ -26,6 +26,7 @@ gem 'formtastic'                      # forms DSL package
 gem 'gravatar_image_tag'              # gravatar profile images (2do: consider removing)
 gem 'kaminari'                        # pagination package
 #gem 'jquery-star-rating-rails'        # enable star ratings (not used so far)
+gem 'datagrid'                        #sortable html tables
 
 # miscellaneous
 gem 'fb_graph'                        # allow to handle facebook graph

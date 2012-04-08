@@ -11,20 +11,25 @@
 <% if @visited_store_list.stores.size == 0 %>
   <%= t('visits.no_visits_yet_message') %>
 <% else %>
-  <table id="store_list">
-    <tr>
-      <th>Restaurant</th>
-      <th>Number of Visits</th>
-      <th>Last Visit Date</th>
-    </tr>
-    <% for vsle in @visited_store_list.visited_store_list_entries %>
-      <tr>
-        <td><%= link_to vsle.store.name, store_path(vsle.store) %></td>
-        <td><%= link_to vsle.visit_cnt, visit_path(vsle.store) %></td>
-        <td><%= vsle.last_visit_date %></td>
-      </tr>
+  <div class="left">
+    <%= form_for @vsl_report, :html => {:method => :get} do |f| %>
+      <% @vsl_report.filters.each do |filter| %>
+        <div class="filter">
+          <%= f.datagrid_label filter %>
+          <%= f.datagrid_filter filter %>
+        </div>
+        <div class="clear"></div>
+      <% end -%>
+
+      <div class="filter">
+        <%= f.submit %>
+      </div>
     <% end %>
-  </table>
+
+    <div class='total'>Total: <%= @vsl_report.assets.count %></div>
+    <%= datagrid_table(@vsl_report, @assets) %>
+    <%= paginate @assets %>
+  </div>
 <% end %>
 
 
