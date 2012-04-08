@@ -27,8 +27,7 @@ class SessionsController < Devise::SessionsController
       #the below also creates a new authentication object in DB
       user.apply_omniauth(omniauth)
       user.profilepicurl = set_user_profilepic(omniauth)
-      #set normal user role without any special qualifiers
-      user.roles_mask = 0
+      user.init_routine
 			if user.save
         #session[:user_id] = user.id 
         #p "new user id: "+user.id.to_s

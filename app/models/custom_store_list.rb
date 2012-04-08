@@ -1,0 +1,3 @@
+class CustomStoreList < StoreList
+  
+end

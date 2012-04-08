@@ -33,14 +33,17 @@ class User < ActiveRecord::Base
   attr_accessor   :password
   attr_accessible :name, :email, :locale, :profilepicurl, :remote_profilepicurl#, :password, :password_confirmation, :remember_me
   
+  #after_initialize :init_routine
+
   validates :name,  :presence => true, :length   => { :maximum => 50 }
   
-  has_one :user_setting,     :dependent => :destroy
-	has_many :authentications, :dependent => :destroy
-  has_many :visits,          :dependent => :destroy
-  has_many :pictures,        :dependent => :destroy
-  has_many :dish_reviews,    :dependent => :destroy
-  has_many :store_lists,     :dependent => :destroy
+  has_one :user_setting,        :dependent => :destroy
+  has_many :authentications,    :dependent => :destroy
+  has_many :visits,             :dependent => :destroy
+  has_many :pictures,           :dependent => :destroy
+  has_many :dish_reviews,       :dependent => :destroy
+  has_one :visited_store_list,  :dependent => :destroy
+  has_many :custom_store_lists, :dependent => :destroy
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
@@ -51,10 +54,6 @@ class User < ActiveRecord::Base
   # so 1 = admin, 2 = moderator, 4 = owner and 8 = banned
   ROLES = %w[admin moderator owner banned]
 
-  def initialized
-  
-  end
-  
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
   end
@@ -75,7 +74,6 @@ class User < ActiveRecord::Base
     #creates the authentication object in database that belongs to self (user object)
 		authentications.build(:provider => omniauth["provider"], :uid => omniauth["uid"], 
 													:token => omniauth["credentials"]["token"])
-    build_user_setting(:locale => I18n.default_locale)
   end
   
   # i added the fetch at the end so the user data is fetched. not sure if this is a performance hit
@@ -105,9 +103,24 @@ class User < ActiveRecord::Base
     Hid.enc( self.id )
   end
 
+  # should not override initialize as activerecord calls it
+  def init_routine
+    #set normal user role without any special qualifiers
+    self.roles_mask = 0
+    #default favourites list
+    # 2do: self.custom_store_lists.build( :name => I18n.t("store_lists.default_store_list") )
+    #create visited_stores_list
+    self.build_visited_store_list
+    self.build_user_setting(:locale => I18n.default_locale)
+  end    
+
 	protected 
     def apply_facebook(omniauth)
 			self.email = omniauth["info"]["email"] if email.blank?
 		  self.name = omniauth["info"]["name"] if name.blank?
 		end	
+
+  private
+    
+
 end

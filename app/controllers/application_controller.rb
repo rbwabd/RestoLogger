@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def set_locale
 	  #I18n.locale = params[:locale] || I18n.default_locale
-    I18n.locale = current_user.nil? ? I18n.default_locale : current_user.locale
+    I18n.locale = (current_user.nil? || current_user.user_setting.nil?) ? I18n.default_locale : current_user.locale
 	end
 
   def decode_id
