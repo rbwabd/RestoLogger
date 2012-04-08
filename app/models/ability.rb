@@ -52,6 +52,8 @@ class Ability
       end  
     #VisitedStoreList
       can :show, VisitedStoreList, :user_id => user.id
+    #VisitedStoreListReport
+      can :index, VisitedStoreListReport
     #User  
       can :read, User, :id => user.id
         # u.try(:friend?, user)  #verify u and user are friends
