@@ -31,15 +31,15 @@
   </div>
   <div class="field">
     <%= label :store_type, :name, "Category 1:" %>&nbsp;
-    <%= select :store_type, "Category1", StoreType.all.collect {|p| [ p.name, p.id ] }, { :include_blank => true } %>
+    <%= select :store_type, "Category1", StoreType.order("name asc").collect {|p| [ p.name, p.id ] }, { :include_blank => true } %>
   </div>
   <div class="field">
     <%= label :store_type, :name, "Category 2:" %>&nbsp;
-    <%= select :store_type, "Category2", StoreType.all.collect {|p| [ p.name, p.id ] }, { :include_blank => true } %>
+    <%= select :store_type, "Category2", StoreType.order("name asc").collect {|p| [ p.name, p.id ] }, { :include_blank => true } %>
   </div>
   <div class="field">
     <%= label :store_type, :name, "Category 3:" %>&nbsp;
-    <%= select :store_type, "Category3", StoreType.all.collect {|p| [ p.name, p.id ] }, { :include_blank => true } %>
+    <%= select :store_type, "Category3", StoreType.order("name asc").collect {|p| [ p.name, p.id ] }, { :include_blank => true } %>
   </div>
   <%= hidden_field :store, :phone, :value => @result[:phone].to_s %>
   <%= hidden_field :store, :gid, :value => @result[:gid].to_s %>

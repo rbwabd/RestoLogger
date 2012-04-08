@@ -15,7 +15,9 @@ class StoreList < ActiveRecord::Base
   belongs_to :user
   has_many :store_list_entries,  :dependent => :destroy
   has_many :stores, :through => :store_list_entries
-    
+
+  accepts_nested_attributes_for :store_list_entries
+  
   def id_encoded
     Hid.enc( self.id )
   end
