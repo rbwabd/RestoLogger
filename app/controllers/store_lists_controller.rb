@@ -1,10 +1,9 @@
-class StoreListsController < ApplicationController
+  class StoreListsController < ApplicationController
   before_filter :decode_id
   before_filter :authenticate_user!
   load_and_authorize_resource 
 
   def index
-    @title = "empty"
     @store_lists = @store_lists.order("name asc")
     if @store_lists.nil? || @store_lists.size == 0
       @store_lists = Array.new()
@@ -15,13 +14,10 @@ class StoreListsController < ApplicationController
   end
 
   def show
-    @title = "empty"
     @store_lists = StoreList.where("user_id = ?", current_user.id).order("name asc")
   end
 
   def new 
-    @title = "store_lists.new_title"
-    @button = "create_button"
     if params[:add_store_id]
       @add_store_id = params[:add_store_id]
     end
@@ -42,8 +38,6 @@ class StoreListsController < ApplicationController
   end
     
   def edit
-    @title = "store_lists.edit_title"
-    @button = "update_button"
   end
 
   def update

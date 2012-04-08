@@ -2,7 +2,7 @@
   <%= render 'layouts/main_sidebar' %>
 <% end %>
 
-<h1><%= I18n.t(@title) %><%= link_to @store.name, store_path(@store)%></h1><br>
+<h1><%= I18n.t("menus.add_menu_title") %><%= link_to @store.name, store_path(@store)%></h1><br>
 
 <%= form_for(@dish, :url => confirm_menu_path(@menu)) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
@@ -11,7 +11,7 @@
     <%= text_area_tag "entries", @existing_categories, :size => "120x20" %>
   </div>
   <div class="action">
-    <%= f.submit I18n.t(@button) %>
+    <%= f.submit I18n.t("add_button") %>
   </div>
 <% end %>
 

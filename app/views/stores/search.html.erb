@@ -24,7 +24,7 @@
     <%= text_field_tag 'store_search_name', '', :size =>50 %>
     <%= f.hidden_field :id %>&nbsp;
     <span class="action">  
-      <%= f.submit I18n.t(@button) %>
+      <%= f.submit I18n.t("search_button") %>
     </span>  
   </div>
   <!-- do not remove following div used by jscript to show store -->
@@ -47,7 +47,7 @@
           </tr>  
         <% end %>
     </table>
-    <%= link_to I18n.t(@button2), new_store_path(:result => result, :param => params)%>
+    <%= link_to I18n.t("stores.add_as_new_store_button"), new_store_path(:result => result, :param => params)%>
     <br><br>
     <% end %>
 <% end %>

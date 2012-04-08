@@ -4,17 +4,11 @@ class MenusController < ApplicationController
   load_and_authorize_resource 
     
   def show
-    @title = "menus.show_menu_title"
-    @button = "menus.new_dish_button"
-    @button2 = "menus.edit_menu_button"
-    @button3 = "menus.return_to_store_button"
     @store = @menu.store
     @dishes = @menu.get_dish_hash
   end
 
   def add
-    @title = "menus.add_menu_title"
-    @button = "add_button"
     @dish = Dish.new
     @store = @menu.store
     ectmp = DishType.find_all_by_menu_id(@menu.id)
@@ -24,8 +18,6 @@ class MenusController < ApplicationController
   end
 
   def confirm
-    @title = "menus.confirm_menu_title"
-    @button = "confirm_button"
     @dish = Dish.new
     @store = @menu.store
     entries_text = params[:entries]
@@ -147,8 +139,6 @@ class MenusController < ApplicationController
   end
 
   def edit_order
-    @title = "menus.edit_menu_title"
-    @button = "save_button"
     @store = @menu.store
     @dishes = @menu.get_dish_hash
   end
@@ -168,5 +158,4 @@ class MenusController < ApplicationController
     end
     redirect_to menu_path(@menu)
   end
-  
 end

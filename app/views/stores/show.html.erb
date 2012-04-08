@@ -2,7 +2,7 @@
   <%= render 'layouts/main_sidebar' %>
 <% end %>
 
-<h1><%= I18n.t(@title) %><%= @store.name %></h1><br>
+<h1><%= @store.name %></h1><br>
 
 <div id="right-float-container">
   <%= render 'store_list' %>
@@ -25,8 +25,8 @@
     <% end %>
     <br>
     <div class="action">
-      <%= link_to I18n.t(@button), new_visit_path(:id => Hid.enc(@store.id))%>
-      <%= link_to I18n.t(@button2), menu_path(@store.menu)%>
+      <%= link_to I18n.t("stores.new_visit_button"), new_visit_path(:id => Hid.enc(@store.id))%>
+      <%= link_to I18n.t("stores.show_menu_button"), menu_path(@store.menu)%>
       <% if can? :destroy, @store %>
         <%= link_to I18n.t('delete_button'), store_path(@store), :confirm => I18n.t('stores.delete_confirmation_message'), :method => :delete %>
       <% end%>

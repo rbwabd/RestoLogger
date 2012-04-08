@@ -2,6 +2,10 @@
   <%= render 'layouts/main_sidebar' %>
 <% end %>
 <p>
+<div class="action">
+  <%= link_to I18n.t('visits.show_visited_store_list_button'), visited_store_list_path(current_user.visited_store_list)%>
+</div>
+<p>
 <%= paginate @visitslist %>
   <table class="listing">
     <tr>
@@ -11,7 +15,6 @@
       <th><%= sortable "dish_nb", "# Items" %></th>
       <th><%= sortable "guest_number", "# Guests" %></th>
       <th><%= sortable "overall_rating", "Rating" %></th>
-      <th><%= sortable "", "Visits to Store" %></th>
     </tr>
     <% for visit in @visitslist %>
       <tr>
@@ -21,7 +24,6 @@
         <td class="ca"><%= visit["dish_nb"] %></td>
         <td class="ca"><%= visit["guest_number"] %></td>
         <td class="ca"><%= visit["overall_rating"] %></td>
-        <td class="ca"><%= 1 %></td>
       </tr>
     <% end %>
   </table>

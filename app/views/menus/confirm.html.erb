@@ -2,7 +2,7 @@
   <%= render 'layouts/main_sidebar' %>
 <% end %>
 
-<h1><%= I18n.t(@title) %></h1><br>
+<h1><%= I18n.t("menus.confirm_menu_title") %></h1><br>
 
 <%= form_for(@dish, :url => save_menu_path(@menu)) do |f| %>
   <div class="action">
@@ -34,6 +34,6 @@
   </table>
   <%= hidden_field_tag 'count', @entries.size %>
   <div class="action">
-    <%= f.submit I18n.t(@button) %>
+    <%= f.submit I18n.t("confirm_button") %>
   </div>
 <% end %>

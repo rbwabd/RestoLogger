@@ -12,6 +12,6 @@
 </table>
 <div class="action">
   <%= f.submit I18n.t(@button)%> 
-  <%= link_to_function "Back", "history.back()"%>
+  <%= link_to_function I18n.t('back_button'), "history.back()"%>
 </div>
 <%= render 'menu_tabs', :f => f %>  

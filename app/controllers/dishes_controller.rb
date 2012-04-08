@@ -4,8 +4,6 @@ class DishesController < ApplicationController
   load_and_authorize_resource
 
   def show
-    @title = "dishes.show_title"
-    @button = "dishes.new_visit_button"
   end
   
   def destroy

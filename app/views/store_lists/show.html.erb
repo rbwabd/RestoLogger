@@ -2,7 +2,7 @@
   <%= render 'layouts/main_sidebar' %>
 <% end %>
 
-<span class="largefont1"><%= I18n.t(@title) %><%= @store_list.name %></span>
+<span class="largefont1"><%= @store_list.name %></span>
 <%= link_to "(edit)", edit_store_list_path(@store_list) %><br/><br/>
   
 <table id="store_list">

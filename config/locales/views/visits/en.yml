@@ -8,6 +8,7 @@ en:
     edit_title: "Edit Visit to "
     edit_dishes_button: "Change dishes selection"
     delete_button: "Delete this Visit"
+    show_visited_store_list_button: "Show visits grouped by restaurant"
     delete_warning: |
       Are you sure you want to delete this visit report? 
       This action cannot be reversed. 

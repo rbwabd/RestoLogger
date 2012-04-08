@@ -29,15 +29,12 @@ class VisitsController < ApplicationController
   end
   
   def show
-    @title = "visits.show_title"
-    @button = "visits.edit_button"
     @store = Store.find(@visit.store_id)
     @city = City.find(@visit.city_id)
   end
 
   def new
-    @title = "visits.new_title"
-    @button = "visits.new_button"
+    @button = 'visits.new_button'
     @store = Store.find(params[:id])
     @dishes = @store.menu.get_dish_hash
     # if a session cart already existed for same store we keep it otherwise put in new one
@@ -61,21 +58,21 @@ class VisitsController < ApplicationController
     update_dish_reviews_from_cart
     
     if @need_confirmation_list.size > 0
-      @title = "visits.confirm_title"
-      @button = "confirm_button"
-      @button2 = "cancel_button"
       render 'visits/confirm_visit'
     else  
       if @visit.save
         #update visit_store_list entry
-        vsle = current_user.visited_store_list.visited_store_list_entries.where("store_id = ?", store.id)
+        vsle = current_user.visited_store_list.visited_store_list_entries.find_by_store_id(store.id)
         if vsle
           vsle.visit_cnt += 1
           vsle.last_visit_date = @visit.visit_date
         else
-          current_user.visited_store_list << VisitedStoreListEntry.new( :store_list
+          vsle = VisitedStoreListEntry.new( :visited_store_list_id => current_user.visited_store_list.id,
+                                            :store_id => store.id, 
+                                            :visit_cnt => 1, 
+                                            :last_visit_date => @visit.visit_date )
         end
-        current_user.visited_store_list.save
+        vsle.save
         session[:cart] = nil
         redirect_to edit_parameters_visit_path(@visit), :flash => { :success => "Visit created!" }
       else
@@ -85,7 +82,6 @@ class VisitsController < ApplicationController
   end
 
   def edit
-    @title = "visits.edit_title"
     @button = "update_button"
     @store = @visit.store
     @dishes = @store.menu.get_dish_hash
@@ -106,9 +102,6 @@ class VisitsController < ApplicationController
     update_dish_reviews_from_cart
     
     if @need_confirmation_list.size > 0
-      @title = "visits.confirm_title"
-      @button = "confirm_button"
-      @button2 = "cancel_button"
       render 'visits/confirm_visit'
     else  
       if @visit.save
@@ -142,10 +135,6 @@ class VisitsController < ApplicationController
   end
   
   def edit_parameters
-    @title = "visits.edit_title"
-    @button = "save_button"
-    @button2 = "visits.edit_dishes_button"
-    @button3 = "visits.delete_button"
     @store = @visit.store
     @rating_options = [[0,0],[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]]
   end  

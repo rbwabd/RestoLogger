@@ -35,17 +35,7 @@ class SessionsController < Devise::SessionsController
 				sign_in_and_redirect(:user, user)
 			else
 			  #2do: this part needs to be rewritten...
-        
-        p "Test Output-------------"
-        p "Test Output-------------"
-        p "Test Output-------------"
-        p "Test Output-------------"
-        p "User save failed"
-        p "Test Output-------------"
-        p "Test Output-------------"
-        p "Test Output-------------"
-        p "Test Output-------------"
-        
+       
         #next statementcould result in cookie-overflow due to exceeding 4k size in session - better use session[:omniauth] = omniauth.except('extra')
 				#session[:omniauth] = omniauth
         #could be because DB got corrupted and there are orphan authentications without allocated user (but user was recreated with new authentication

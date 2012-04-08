@@ -14,6 +14,7 @@ en:
   update_button: Update  
   confirm_button: Confirm
   cancel_button: Cancel
+  back_button: Back
   image_link_broken_message: image link broken
   views:
     pagination:

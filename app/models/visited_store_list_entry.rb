@@ -1,19 +1,18 @@
 # == Schema Information
 #
-# Table name: store_list_entries
+# Table name: visited_store_list_entries
 #
-#  id              :integer         not null, primary key
-#  store_list_id   :integer
-#  store_id        :integer
-#  tag             :string(255)
-#  rank            :integer
-#  comment         :string(255)
-#  created_at      :datetime        not null
-#  updated_at      :datetime        not null
+#  id                     :integer         not null, primary key
+#  visitedstore_list_id   :integer
+#  store_id               :integer
+#  visit_cnt              :integer
+#  last_visit_date        :date
+#  created_at             :datetime        not null
+#  updated_at             :datetime        not null
 #
 
 class VisitedStoreListEntry < ActiveRecord::Base
-  attr_accessible :store_id, :visit_cnt, :last_visit_date
+  attr_accessible :visited_store_list_id, :store_id, :visit_cnt, :last_visit_date
 
   belongs_to :visited_store_list
   belongs_to :store
