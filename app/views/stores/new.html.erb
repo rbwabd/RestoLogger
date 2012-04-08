@@ -2,7 +2,7 @@
   <%= render 'layouts/main_sidebar' %>
 <% end %>
 
-<h1><%= I18n.t("stores.new_title") %></h1>
+<h1><%= t("stores.new_title") %></h1>
 
 <%= form_for(@store) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
@@ -44,6 +44,6 @@
   <%= hidden_field :store, :phone, :value => @result[:phone].to_s %>
   <%= hidden_field :store, :gid, :value => @result[:gid].to_s %>
   <div class="action">
-    <%= f.submit I18n.t("stores.new_button") %>
+    <%= f.submit t("stores.new_button") %>
   </div>
 <% end %>

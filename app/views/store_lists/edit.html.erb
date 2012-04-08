@@ -2,16 +2,16 @@
   <%= render 'layouts/main_sidebar' %>
 <% end %>
 
-<h1><%= I18n.t("store_lists.edit_title") %></h1>
+<h1><%= t("store_lists.edit_title") %></h1>
 
 <%= semantic_form_for(@store_list) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <%= f.inputs :name %>
 
   <div class="action">
-    <%= f.submit I18n.t("update_button") %>
+    <%= f.submit t("update_button") %>
     <% if can? :destroy, @store_list %>
-      <%= link_to I18n.t('delete_button'), store_list_path(@store_list), :confirm => I18n.t('store_lists.delete_confirmation_message'), :method => :delete %>
+      <%= link_to t('delete_button'), store_list_path(@store_list), :confirm => t('store_lists.delete_confirmation_message'), :method => :delete %>
     <% end%>  
   </div>
   <%= f.inputs :for => :store_list_entries do |sle, i|%>

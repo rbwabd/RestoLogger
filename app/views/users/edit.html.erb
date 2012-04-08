@@ -2,12 +2,12 @@
   <%= render 'layouts/main_sidebar' %>
 <% end %>
 
-<h1><%= I18n.t("users.edit_title") %></h1>
+<h1><%= t("users.edit_title") %></h1>
 
 <%= form_for(@user) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <%= render 'fields', :f => f %>
   <div class="action">
-    <%= f.submit I18n.t("users.edit_button") %>
+    <%= f.submit t("users.edit_button") %>
   </div>
 <% end %>

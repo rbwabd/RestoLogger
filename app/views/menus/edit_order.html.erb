@@ -2,11 +2,11 @@
   <%= render 'layouts/main_sidebar' %>
 <% end %>
 
-<h1><%= I18n.t("menus.edit_menu_title") %><%= link_to @store.name, store_path(@store)%></h1><br>
+<h1><%= t("menus.edit_menu_title") %><%= link_to @store.name, store_path(@store)%></h1><br>
 
 <%= form_for(@store, :url => update_order_menu_path(@menu)) do |f| %>
   <div class="action">
-    <%= f.submit I18n.t(@button) %>
+    <%= f.submit t("save_button") %>
   </div><br>
   <div id="tabssortable">
     <ul>
@@ -33,6 +33,6 @@
   <% end %>
   <br>
   <div class="action">
-    <%= f.submit I18n.t("save_button") %>
+    <%= f.submit t("save_button") %>
   </div>
 <% end %>

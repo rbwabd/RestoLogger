@@ -2,7 +2,7 @@
   <%= render 'layouts/main_sidebar' %>
 <% end %>
 
-<h1><%= I18n.t("visits.confirm_title") %></h1><br>
+<h1><%= t("visits.confirm_title") %></h1><br>
 
 <%= form_for(@visit, :url => visit_path( :id => Hid.enc(@visit.id), :confirmed => true )) do |f| %>
   <% for item in @need_confirmation_list %>
@@ -17,7 +17,7 @@
     <% end %> 
   <% end %>
   <div class="action">
-    <%= f.submit I18n.t("confirm_button")%> 
-    <%= link_to_function I18n.t("cancel_button"), "history.back()"%>  
+    <%= f.submit t("confirm_button")%> 
+    <%= link_to_function t("cancel_button"), "history.back()"%>  
   </div>
 <% end %>

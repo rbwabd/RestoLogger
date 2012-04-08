@@ -7,8 +7,8 @@
   <div class="store">
     <%= render 'store_fields', :store => store %>
     <div class="action">
-      <%= link_to I18n.t("stores.new_visit_button"), new_visit_path(:id => Hid.enc(store.id))%>
-      <%= link_to I18n.t("stores.show_menu_button"), menu_path(store.menu)%>
+      <%= link_to t("stores.new_visit_button"), new_visit_path(:id => Hid.enc(store.id))%>
+      <%= link_to t("stores.show_menu_button"), menu_path(store.menu)%>
     </div>    
   </div>    
 <% end %>

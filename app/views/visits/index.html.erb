@@ -3,7 +3,7 @@
 <% end %>
 <p>
 <div class="action">
-  <%= link_to I18n.t('visits.show_visited_store_list_button'), visited_store_list_path(current_user.visited_store_list)%>
+  <%= link_to t('visits.show_visited_store_list_button'), visited_store_list_path(current_user.visited_store_list)%>
 </div>
 <p>
 <%= paginate @visitslist %>

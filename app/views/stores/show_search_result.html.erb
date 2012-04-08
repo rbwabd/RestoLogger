@@ -17,10 +17,10 @@
       </a>
     </div>  
     <div class="action">
-      <%= link_to I18n.t(@button), new_visit_path(:id => Hid.enc(@store.id))%>
-      <%= link_to I18n.t(@button2), menu_path(@store.menu)%>
+      <%= link_to t("stores.new_visit_button"), new_visit_path(:id => Hid.enc(@store.id))%>
+      <%= link_to t("stores.show_menu_button"), menu_path(@store.menu)%>
       <% if can? :destroy, @store %>
-        <%= link_to I18n.t('delete_button'), store_path(@store), :confirm => I18n.t('stores.delete_confirmation_message'), :method => :delete %>
+        <%= link_to t('delete_button'), store_path(@store), :confirm => t('stores.delete_confirmation_message'), :method => :delete %>
       <% end%>
     </div>    
   </div>
