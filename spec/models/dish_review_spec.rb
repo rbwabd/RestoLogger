@@ -2,18 +2,19 @@
 #
 # Table name: dish_reviews
 #
-#  id         :integer         not null, primary key
-#  rating     :integer
-#  tagline    :string(255)
-#  review     :text
-#  dish_id    :integer
-#  user_id    :integer
-#  visit_id   :integer
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
-#  quantity   :integer
-#  perimated  :integer
-#  rank       :integer
+#  id              :integer         not null, primary key
+#  rating          :integer
+#  tagline         :string(255)
+#  review          :text
+#  dish_id         :integer
+#  user_id         :integer
+#  visit_id        :integer
+#  created_at      :datetime        not null
+#  updated_at      :datetime        not null
+#  quantity        :integer
+#  perimated       :integer
+#  rank            :integer
+#  visibility_mask :integer
 #
 
 require 'spec_helper'

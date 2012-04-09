@@ -2,8 +2,6 @@ class VisitsController < ApplicationController
   before_filter :decode_id
   before_filter :authenticate_user!
   load_and_authorize_resource :except => :change_cart
-
-  helper_method :sort_column, :sort_direction
   
   def show
     @store = Store.find(@visit.store_id)
@@ -118,6 +116,10 @@ class VisitsController < ApplicationController
   
   def update_parameters
     @visit.user_id = current_user.id
+    #2do: need to check again that date not in future or too far past (do it in model.rb)
+    @visit.visit_date = params[:visit][:visit_date]
+    @visit.guest_number = params[:visit][:guest_number]
+    @visit.spend = params[:visit][:spend]
     @visit.overall_rating = params[:visit][:overall_rating]
     @visit.service_rating = params[:visit][:service_rating]
     @visit.speed_rating = params[:visit][:speed_rating]
@@ -125,9 +127,7 @@ class VisitsController < ApplicationController
     @visit.value_rating = params[:visit][:value_rating]
     @visit.tagline = params[:visit][:tagline]
     @visit.review = params[:visit][:review]
-    @visit.guest_number = params[:visit][:guest_number]
-    #2do: need to check again that date not in future or too far past (do it in model.rb)
-    @visit.visit_date = params[:visit][:visit_date]
+    @visit.private_comment = params[:visit][:private_comment]
 
     @visit.dish_reviews.each do |dr|
       tag = 'dish_review_' + Hid.enc(dr.id)
@@ -200,13 +200,5 @@ class VisitsController < ApplicationController
           end
         end  
       end
-    end
-    
-    def sort_column
-      Visit.column_names.include?(params[:sort]) ? params[:sort] : "visit_date"
-    end
-    
-    def sort_direction
-      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end
 end

@@ -13,7 +13,11 @@
     </tr>
     <tr class="padded-row">
       <td> <%= f.label :guest_number, t('visits.guest_nb_title') %> </td>
-      <td> <%= f.text_field :guest_number, :size => "1" %> </td>
+      <td> <%= f.text_field :guest_number, :size => "2" %> </td>
+    </tr>
+    <tr class="padded-row">
+      <td> <%= f.label :spend, t('visits.spend_title') %> </td>
+      <td> <%= f.text_field :spend, :size => "2" %> </td>
     </tr>
     <tr class="padded-row">
       <td> <%= f.label :overall_rating, t('visits.overall_rating_title') %> </td>
@@ -48,6 +52,12 @@
     </tr>
     <tr> 
       <td> <%= f.text_area(:review, :size => "70x5", :escape => false) %> </td>
+    </tr>
+    <tr> 
+      <td> <%= f.label :review, t('visits.private_comment_title_long') %> </td>
+    </tr>
+    <tr> 
+      <td> <%= f.text_field :private_comment, :size =>73 %> </td>
     </tr>
   </table>
   <% @visit.dish_reviews.each do |dr| %>

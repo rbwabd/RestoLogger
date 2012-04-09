@@ -13,6 +13,8 @@
   <strong><%=t('visits.visit_date_title')%>:</strong> <%= @visit.visit_date %>
   </br>
   <strong><%=t('visits.guest_nb_title')%>:</strong> <%= @visit.guest_number %>
+  &nbsp;&nbsp;&nbsp;
+  <strong><%=t('visits.spend_title')%>:</strong> <%= @visit.spend %>
   </br>
   <span id="visit-ratings">
     <b>Ratings:</b>
@@ -31,6 +33,10 @@
   </br>
   <strong><%=t('visits.review_title')%>:</strong> <%= simple_format(@visit.review).html_safe %>
   </br>
+  <% if @visit.user_id == current_user.id %>
+    <strong><%=t('visits.private_comment_title')%>:</strong> <%= @visit.private_comment %>
+    </br>
+  <% end %>  
   <% @visit.dish_reviews.each do |dr| %>
     <div id="visit-dish">
       </br>
