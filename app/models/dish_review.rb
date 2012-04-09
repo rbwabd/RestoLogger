@@ -16,11 +16,9 @@
 #  rank       :integer
 #
 
-class DishReview < Obfuscatable
+class DishReview < Hideable
   attr_accessible :user_id, :dish_id, :rating, :tagline, :review, :dish
 
-  after_initialize :init_routine
-  
   belongs_to :user
   belongs_to :visit
   belongs_to :dish
@@ -28,10 +26,4 @@ class DishReview < Obfuscatable
   has_many :pictures, :dependent => :destroy
 
   has_paper_trail
-
-  private 
-    def init_routine
-      #set visibility to 'all'
-      self.visibility_mask = 1;
-    end
 end

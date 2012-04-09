@@ -21,11 +21,9 @@
 #  value_rating   :integer
 #
 
-class Visit < Obfuscatable
+class Visit < Hideable
   attr_accessor :city_name, :store_name
   attr_accessible :city_name, :store_name, :visit_date
-
-  after_initialize :init_routine
   
   belongs_to :user
   belongs_to :store
@@ -42,25 +40,7 @@ class Visit < Obfuscatable
   
   scope :from_users_followed_by, lambda { |user| followed_by(user) }
 
-  scope :with_visibility, lambda { |visibility| {:conditions => "visibility_mask & #{2**VISIBILITIES.index(visibility.to_s)} > 0 "} }
-  # so 1 = all 2 = friends, 4 = me
-  VISIBILITIES = %w[all friends me]
-  def visibilities=(visibilities)
-    self.visibility_mask = (visibilities & VISIBILITIES).map { |r| 2**VISIBILITIES.index(r) }.sum
-  end
-  def visibilities
-    VISIBILITIES.reject { |r| ((visibility_mask || 0) & 2**VISIBILITIES.index(r)).zero? }
-  end
-  def visibility?(visibility)
-    visibilities.include? visibility.to_s
-  end
-
   private 
-    def init_routine
-      #set visibility to 'all'
-      self.visibility_mask = 1;
-    end
-  
     def self.followed_by(user)
       following_ids = %(SELECT followed_id FROM relationships
                         WHERE follower_id = :user_id)
