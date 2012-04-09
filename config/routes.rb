@@ -32,12 +32,13 @@ RestoLogger::Application.routes.draw do
       end
     end
     resources :dishes,          :only => [:show, :destroy]
-    resources :visits do
+    resources :visits do,       :except => :index
       member do
         get 'edit_parameters'
         put 'update_parameters'
       end
     end  
+    resources :visit_reports, :only => :index
     resources :store_lists do
       member do
         get 'add_item'

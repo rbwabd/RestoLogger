@@ -36,6 +36,8 @@ class Ability
       can [:update, :destroy, :edit_parameters, :update_parameters], Visit do |visit|
         visit.try(:user) == user
       end
+    #VisitReport
+      can :index, VisitReport
     #DishReview  
       can [:destroy, :delete_picture], DishReview do |dish_review|
         dish_review.try(:user) == user

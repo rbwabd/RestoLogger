@@ -8,14 +8,14 @@
   <%= t('visits.no_visits_yet_message') %>
 <% else %>
   <div class="action">
-    <%= link_to t('visits.show_visits_list_button'), visit_reports_path%>
+    <%= link_to t('visits.show_visited_store_list_button'), visited_store_list_reports_path%>
   </div>
   <p>  
   <div>
     <%= form_for @report, :html => {:method => :get} do |f| %>
       <table>
         <% @report.filters.each do |filter| %>
-          <% if filter.name.to_s != 'visited_store_list_id' %>
+          <% if filter.name.to_s != 'user_id' %>
             <tr>
               <td><%= f.datagrid_label filter %></td>
               <td><%= f.datagrid_filter filter %></td>

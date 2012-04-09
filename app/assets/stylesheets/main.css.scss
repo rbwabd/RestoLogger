@@ -175,31 +175,6 @@ a {
   } 
 }
 
-/* from railcast 240 for store list table */
-table.listing {
-  border-collapse: collapse;
-}
-.listing td, .listing th {
-  padding: 4px 10px;
-}
-.listing .price {
-  text-align: right;
-}
-.listing th .current {
-  padding-right: 12px;
-  background-repeat: no-repeat;
-  background-position: right center;
-}
-.listing th .asc {
-  background-image: url('images/up_arrow.gif');
-}
-.listing th .desc {
-  background-image: url('images/down_arrow.gif');
-}
-.listing .la{  text-align: left;}
-.listing .ra{  text-align: right;}
-.listing .ca{  text-align: center;}
-
 /* my own definitions */
 .vertical_align { /* used to align the user profile pic logos in middle vs. the text */
   vertical-align: middle;

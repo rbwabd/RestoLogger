@@ -5,29 +5,6 @@ class VisitsController < ApplicationController
 
   helper_method :sort_column, :sort_direction
   
-  def index
-    #2do: implement a sortable table that doesn't require building an ad-hoc array
-    @visitslist = Array.new
-    @visits ||= Array.new # if we can't access anything load_resource returns nil
-    @visits.each do |v|
-      entry = Hash.new
-      entry["date"] = v.visit_date ? v.visit_date : Date.new(3000,1,1) #hack to allow sort
-      entry[:visit_id] = Hid.enc(v.id)
-      entry["store_name"] = v.store.name
-      entry[:store_id] = Hid.enc(v.store.id)
-      entry["guest_number"] = v.guest_number.to_s  #to_s is to avoid sort issues with nil
-      entry["dish_nb"] = v.dish_reviews.size
-      entry["overall_rating"] = v.overall_rating.to_s
-      @visitslist << entry
-    end
-    @visitslist = @visitslist.sort_by{ |a| a[ params[:sort] ? params[:sort].to_s : "date".to_s ] }
-    if params[:direction].nil? || params[:direction] == "desc"
-      @visitslist.reverse!
-    end
-    @visitslist = Kaminari.paginate_array(@visitslist).page(params[:page]).per(10)
-    #@visitslist = @visitslist.page(params[:page]).per(10)
-  end
-  
   def show
     @store = Store.find(@visit.store_id)
     @city = City.find(@visit.city_id)
