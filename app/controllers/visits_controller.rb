@@ -93,11 +93,11 @@ class VisitsController < ApplicationController
     if params[:delall]
       session[:cart] = Cart.new
     elsif params[:del]
-      session[:cart].remove_dish(params[:dish_name])
+      session[:cart].remove_dish(params[:dish_search_name])
     else
-      if !dish = Dish.find(Hid.dec(params[:dish_id])) and params[:dish_name] and params[:dish_name].size > 0 
+      if !dish = Dish.find(Hid.dec(params[:dish_id])) and params[:dish_search_name] and params[:dish_name].size > 0 
         #new dish, to be added to DB
-        session[:cart].add_dish(params[:dish_name], 0, -1)
+        session[:cart].add_dish(params[:dish_search_name], 0, -1)
       else
         session[:cart].add_dish(dish.name, dish.price, Hid.enc(dish.id))
       end

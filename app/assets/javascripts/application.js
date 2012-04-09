@@ -131,23 +131,22 @@ $(function() {
       return false;
     }
   });
-  $('#dish_name').autocomplete({
+  $('#dish_search_name').autocomplete({
     minLength: 3,
     source: '/autocomplete/dishes',
     select: function(event, ui) {
       $('#dish_id').val(ui.item.id);
-      //$("#cart").load('/change_cart', { 'dish_id': ui.item.id, 'dish_name': ui.item.name } );
       $.ajax({
         url: "/change_cart",
         dataType: "html",
         data: {
           dish_id : ui.item.id,
-          dish_name: ui.item.name
+          dish_search_name: ui.item.name
         },
         success: function(data) {
-          $('#dish_name').val("");
+          $('#dish_search_name').val("");
           $("#cart").html(data);  
-          $('#dish_name').focus();
+          $('#dish_search_name').focus();
         }
       });
     }
