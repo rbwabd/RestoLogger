@@ -66,7 +66,6 @@ class Ability
       end
     #Authentication  
       can [:read, :destroy], Authentication, :user_id => user.id
-      
     end
   end
 end

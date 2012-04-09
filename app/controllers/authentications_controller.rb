@@ -1,9 +1,10 @@
 class AuthenticationsController < ApplicationController
   before_filter :decode_id
-  load_and_authorize_resource 
+  load_and_authorize_resource :except => :index
   
   def index
-    @authentications ||= Array.new # if we can't access anything load_resource returns nil. If user account is created outside of external auth this can be true
+    authorize! :index, Authentication
+    @authentications = current_user.authentications
   end
   
   def destroy

@@ -22,7 +22,7 @@
   <br/>
   <div class="field">
     <%= label 'store_search_label', "Restaurant Name:" %>&nbsp;
-    <%= text_field_tag 'store_search_name', '', :size =>50 %>
+    <%= text_field :store, :name, :autofocus => true, :size =>50 %>
     <%= f.hidden_field :id %>&nbsp;
     <span class="action">  
       <%= f.submit t("search_button") %>
