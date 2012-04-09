@@ -36,10 +36,11 @@ class User < Obfuscatable
   validates :name,  :presence => true, :length   => { :maximum => 50 }
   
   has_one :user_setting,        :dependent => :destroy
+  has_one :profile_picture,     :dependent => :destroy
   has_many :authentications,    :dependent => :destroy
   has_many :visits,             :dependent => :destroy
   has_many :pictures,           :dependent => :destroy
-  has_many :dish_reviews,       :dependent => :destroy
+  has_many :dish_reviews   #dish_reviews destroyed through visits, maybe this should be a "through" relationship
   has_one :visited_store_list,  :dependent => :destroy
   has_many :store_lists,        :dependent => :destroy
   
@@ -106,8 +107,4 @@ class User < Obfuscatable
 			self.email = omniauth["info"]["email"] if email.blank?
 		  self.name = omniauth["info"]["name"] if name.blank?
 		end	
-
-  private
-    
-
 end

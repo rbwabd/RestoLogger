@@ -26,6 +26,7 @@ class Dish < Obfuscatable
   
   belongs_to :user
   belongs_to :dish_type
+  belongs_to :menu
   has_many :dish_reviews
   
   has_paper_trail

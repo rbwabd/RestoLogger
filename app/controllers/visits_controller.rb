@@ -99,15 +99,28 @@ class VisitsController < ApplicationController
         #new dish, to be added to DB
         session[:cart].add_dish(params[:dish_name], 0, -1)
       else
+      
+      p "Test Output-------------"
+      p "Test Output-------------"
+      p "Test Output-------------"
+      p "Test Output-------------"
+      p "found"
+      p "Test Output-------------"
+      p "Test Output-------------"
+      p "Test Output-------------"
+      p "Test Output-------------"
+      
         session[:cart].add_dish(dish.name, dish.price, Hid.enc(dish.id))
       end
     end
+
     respond_to do |format|
       format.html { render :partial => "cart", :object => session[:cart] }
       format.js 
     end
     # 2do: use number_to_currency(cart_item.price) in views
-  end
+
+    end
   
   def edit_parameters
     @store = @visit.store
