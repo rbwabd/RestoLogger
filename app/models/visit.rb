@@ -24,6 +24,8 @@
 #
 
 class Visit < Hideable
+  after_initialize :init_routine
+
   attr_accessor :city_name, :store_name
   attr_accessible :city_name, :store_name, :visit_date
   
@@ -49,4 +51,9 @@ class Visit < Hideable
       where("user_id IN (#{following_ids}) OR user_id = :user_id",
             :user_id => user)
     end
+ 
+    def init_routine
+      #set visibility to 'all'
+      self.visibility_mask = 1;
+    end      
 end

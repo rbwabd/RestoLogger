@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   #def user_for_paper_trail
   #  user_signed_in? ? current_user : 'Unknown user'
   #end
-
+  
   def set_locale
 	  #I18n.locale = params[:locale] || I18n.default_locale
     I18n.locale = (current_user.nil? || current_user.user_setting.nil?) ? I18n.default_locale : current_user.locale

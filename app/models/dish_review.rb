@@ -18,6 +18,8 @@
 #
 
 class DishReview < Hideable
+  after_initialize :init_routine
+
   attr_accessible :user_id, :dish_id, :rating, :tagline, :review, :dish
 
   belongs_to :user
@@ -27,4 +29,10 @@ class DishReview < Hideable
   has_many :pictures, :dependent => :destroy
 
   has_paper_trail
+
+  private 
+    def init_routine
+      #set visibility to 'all'
+      self.visibility_mask = 1;
+    end  
 end

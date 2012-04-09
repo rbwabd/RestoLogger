@@ -3,6 +3,7 @@
 <% end %>
 
 <%= form_for(@store, :url => search_results_stores_path) do |f| %>
+  
   <%= render 'shared/error_messages', :object => f.object %>
   <span>
     <%= label :city, :name, "City:" %>&nbsp;
@@ -27,6 +28,7 @@
       <%= f.submit t("search_button") %>
     </span>  
   </div>
+
   <!-- do not remove following div used by jscript to show store -->
   <div id="display">
   </div>  
@@ -49,5 +51,6 @@
     </table>
     <%= link_to t("stores.add_as_new_store_button"), new_store_path(:result => result, :param => params)%>
     <br><br>
-    <% end %>
+  <% end %>
 <% end %>
+  

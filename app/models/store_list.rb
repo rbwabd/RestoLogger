@@ -11,6 +11,8 @@
 #
 
 class StoreList < Hideable
+  after_initialize :init_routine
+
   attr_accessible :id, :name, :user_id
   
   belongs_to :user
@@ -19,4 +21,10 @@ class StoreList < Hideable
 
   #2do: can remove following line once i move away from formtastic
   accepts_nested_attributes_for :store_list_entries
+
+  private 
+    def init_routine
+      #set visibility to 'all'
+      self.visibility_mask = 1;
+    end  
 end

@@ -1,5 +1,4 @@
 class Hideable < Obfuscatable
-  after_initialize :init_routine
   
   self.abstract_class = true
 
@@ -15,10 +14,4 @@ class Hideable < Obfuscatable
   def visibility?(visibility)
     visibilities.include? visibility.to_s
   end
-
-  private 
-    def init_routine
-      #set visibility to 'all'
-      self.visibility_mask = 1;
-    end
 end

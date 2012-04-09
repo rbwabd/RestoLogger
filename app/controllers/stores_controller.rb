@@ -8,7 +8,7 @@ class StoresController < ApplicationController
   def index
     @stores = @stores.page(params[:page]).per(10)
   end
-  
+
   def show
     load_store_lists
     #no ordering necessary as using default_scope in visit.rb
