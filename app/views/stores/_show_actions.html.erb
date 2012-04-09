@@ -1,0 +1,7 @@
+<div class="action">
+  <%= link_to t("stores.new_visit_button"), new_visit_path(:id => Hid.enc(@store.id))%>
+  <%= link_to t("stores.show_menu_button"), menu_path(@store.menu)%>
+  <% if can? :destroy, @store %>
+    <%= link_to t('delete_button'), store_path(@store), :confirm => t('stores.delete_confirmation_message'), :method => :delete %>
+  <% end%>
+</div>    

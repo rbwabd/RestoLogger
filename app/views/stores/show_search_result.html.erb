@@ -1,26 +1,22 @@
-  <div id="store">
-    <div id="store-search-result">
-      <a href="/stores/<%= Hid.enc(@store.id) %>">
-        <div>
-          <b>Name:</b> <%= @store.name %>
-          </br>
-          <b>City:</b> <%= @store.city.name %>
-          </br>
-          <b>Address:</b> <%= @store.address %>
-          <br>
-          <%= hidden_field_tag "store_id", Hid.enc(@store.id) %>
-          <b>Categories:</b>
-          <% for rel in @store.store_type_relationships %>
-            &nbsp;<%= rel.store_type.name %>
-          <% end %>
-        </div>
-      </a>
-    </div>  
-    <div class="action">
-      <%= link_to t("stores.new_visit_button"), new_visit_path(:id => Hid.enc(@store.id))%>
-      <%= link_to t("stores.show_menu_button"), menu_path(@store.menu)%>
-      <% if can? :destroy, @store %>
-        <%= link_to t('delete_button'), store_path(@store), :confirm => t('stores.delete_confirmation_message'), :method => :delete %>
-      <% end%>
-    </div>    
-  </div>
+<div id="store">
+  <div id="store-search-result">
+    <a href="/stores/<%= Hid.enc(@store.id) %>">
+      <div>
+        <b>Name:</b> <%= @store.name %>
+        </br>
+        <b>City:</b> <%= @store.city.name %>
+        </br>
+        <b>Address:</b> <%= @store.address %>
+        <br>
+        <%= hidden_field_tag "store_id", Hid.enc(@store.id) %>
+        <b>Categories:</b>
+        <% for rel in @store.store_type_relationships %>
+          &nbsp;<%= rel.store_type.name %>
+        <% end %>
+      </div>
+    </a>
+  </div>  
+  <%= render 'show_actions' %>   
+</div>
+<%= render 'store_visits' %>
+  

@@ -135,7 +135,7 @@ a {
       border: 1px solid $button-border-color;  
     }  
   }
-  #store_list {
+  #store_list { /*store lists */
     min-width: 900px;
     tr {
       vertical-align: top;
@@ -153,7 +153,7 @@ a {
       }
     }
   }
-  #store-search-result{
+  #store-search-result{ /* link to the store from search store, as a single clickable block */
     div{
       border: solid 2px darken($background-color, 35%);
       padding: 5px 5px 5px 5px;
@@ -168,11 +168,21 @@ a {
       }
     }
   }
-  .datagrid{
+  .datagrid{ /* all the report-type tables */
     td{
-      padding: 4px 10px 4px 10px
+      padding: 5px 5px 5px 5px;
     }
   } 
+  .store-visits-list  {
+    th{
+      text-align: center;
+      padding: 5px 10px 0px 10px;
+    }
+    td{
+      text-align: center;
+      padding: 5px 5px 5px 5px;
+    }
+  }
 }
 
 /* my own definitions */

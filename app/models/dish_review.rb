@@ -18,6 +18,8 @@
 
 class DishReview < ActiveRecord::Base
   attr_accessible :user_id, :dish_id, :rating, :tagline, :review, :dish
+
+  after_initialize :init_routine
   
   belongs_to :user
   belongs_to :visit
@@ -34,4 +36,9 @@ class DishReview < ActiveRecord::Base
     Hid.enc( self.id )
   end
 
+  private 
+    def init_routine
+      #set visibility to 'all'
+      self.visibility_mask = 1;
+    end
 end

@@ -32,8 +32,6 @@
 class User < ActiveRecord::Base
   attr_accessor   :password
   attr_accessible :name, :email, :locale, :profilepicurl, :remote_profilepicurl#, :password, :password_confirmation, :remember_me
-  
-  #after_initialize :init_routine
 
   validates :name,  :presence => true, :length   => { :maximum => 50 }
   
@@ -50,18 +48,14 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable
 
   scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0 "} }
-
   # so 1 = admin, 2 = moderator, 4 = owner and 8 = banned
   ROLES = %w[admin moderator owner banned]
-
   def roles=(roles)
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
   end
-
   def roles
     ROLES.reject { |r| ((roles_mask || 0) & 2**ROLES.index(r)).zero? }
   end
-
   def role?(role)
     roles.include? role.to_s
   end

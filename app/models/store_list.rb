@@ -12,6 +12,8 @@
 class StoreList < ActiveRecord::Base
   attr_accessible :id, :name, :user_id
   
+  after_initialize :init_routine
+  
   belongs_to :user
   has_many :store_list_entries,  :dependent => :destroy
   has_many :stores, :through => :store_list_entries
@@ -24,4 +26,10 @@ class StoreList < ActiveRecord::Base
   def to_param
     Hid.enc( self.id )
   end
+  
+  private 
+    def init_routine
+      #set visibility to 'all'
+      self.visibility_mask = 1;
+    end  
 end

@@ -10,11 +10,14 @@ class StoresController < ApplicationController
   end
   
   def show
-    load_show
+    load_store_lists
+    #no ordering necessary as using default_scope in visit.rb
+    @visits = current_user.visits.where("store_id = ?", @store.id)#.order("visit_date desc")
   end
   
   def show_search_result
-    load_show
+    load_store_lists
+    @visits = current_user.visits.where("store_id = ?", @store.id)#.order("visit_date desc")
   end
   
   def new
@@ -82,7 +85,7 @@ class StoresController < ApplicationController
   end
   
   private
-    def load_show
+    def load_store_lists
       @store_lists = StoreList.find_all_by_user_id(current_user.id)
       @present_list = Array.new
       @store_lists.each do |sl|

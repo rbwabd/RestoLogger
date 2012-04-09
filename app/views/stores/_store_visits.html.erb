@@ -1,0 +1,16 @@
+<br/>
+<h3>Your Visits to this Restaurant</h3>
+<table class="store-visits-list">
+  <tr>
+    <th>Visit Date</th>
+    <th>Overall Rating</th>
+    <th>Spend</th>
+  </tr>  
+  <% for visit in @visits %>
+    <tr>
+      <td><%= visit.visit_date %></td>
+      <td><%= visit.overall_rating %></td>
+      <td><%= visit.spend %></td>
+    </tr>
+  <% end %>
+</table>

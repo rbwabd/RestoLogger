@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120408064709) do
+ActiveRecord::Schema.define(:version => 20120409124346) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -84,11 +84,12 @@ ActiveRecord::Schema.define(:version => 20120408064709) do
     t.integer  "dish_id"
     t.integer  "user_id"
     t.integer  "visit_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.integer  "quantity"
     t.integer  "perimated"
     t.integer  "rank"
+    t.integer  "visibility_mask"
   end
 
   add_index "dish_reviews", ["dish_id", "user_id", "visit_id"], :name => "index_dish_reviews_on_dish_id_and_user_id_and_visit_id"
@@ -280,12 +281,12 @@ ActiveRecord::Schema.define(:version => 20120408064709) do
   add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
 
   create_table "visited_store_list_entries", :force => true do |t|
-    t.integer  "store_list_id"
+    t.integer  "visited_store_list_id"
     t.integer  "store_id"
     t.integer  "visit_cnt"
     t.date     "last_visit_date"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
   end
 
   create_table "visited_store_lists", :force => true do |t|
@@ -296,8 +297,8 @@ ActiveRecord::Schema.define(:version => 20120408064709) do
 
   create_table "visits", :force => true do |t|
     t.integer  "user_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.integer  "overall_rating"
     t.integer  "service_rating"
     t.integer  "speed_rating"
@@ -311,6 +312,8 @@ ActiveRecord::Schema.define(:version => 20120408064709) do
     t.float    "spend"
     t.integer  "perimated"
     t.integer  "value_rating"
+    t.integer  "visibility_mask"
+    t.string   "private_comment"
   end
 
   add_index "visits", ["city_id", "store_id"], :name => "index_visits_on_city_id_and_store_id"
