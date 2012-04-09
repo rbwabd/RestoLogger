@@ -5,7 +5,7 @@ class Hideable < Obfuscatable
 
   scope :with_visibility, lambda { |visibility| {:conditions => "visibility_mask & #{2**VISIBILITIES.index(visibility.to_s)} > 0 "} }
   # so 1 = all 2 = friends, 4 = me
-  VISIBILITIES = %w[all friends me]
+  VISIBILITIES = [I18n.t('visibility_all'),I18n.t('visibility_friends'),I18n.t('visibility_me')]
   def visibilities=(visibilities)
     self.visibility_mask = (visibilities & VISIBILITIES).map { |r| 2**VISIBILITIES.index(r) }.sum
   end

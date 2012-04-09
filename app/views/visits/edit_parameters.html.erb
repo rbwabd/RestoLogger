@@ -6,36 +6,36 @@
 
 <%= form_for(@visit, :url => update_parameters_visit_path(@visit), :html => {:multipart => true}) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
-  <table>
-    <tr class="padded-row">
+  <table class="datagrid">
+    <tr>
       <td> <%= f.label :visit_date, t('visits.visit_date_title') %> </td>
       <td> <%= f.text_field :visit_date, :size => 7 %> </td>
     </tr>
-    <tr class="padded-row">
+    <tr>
       <td> <%= f.label :guest_number, t('visits.guest_nb_title') %> </td>
       <td> <%= f.text_field :guest_number, :size => "2" %> </td>
     </tr>
-    <tr class="padded-row">
+    <tr>
       <td> <%= f.label :spend, t('visits.spend_title') %> </td>
       <td> <%= f.text_field :spend, :size => "2" %> </td>
     </tr>
-    <tr class="padded-row">
+    <tr>
       <td> <%= f.label :overall_rating, t('visits.overall_rating_title') %> </td>
       <td> <%= f.select :overall_rating, @rating_options, :include_blank => true, :size => 1 %> </td>
     </tr>
-    <tr class="padded-row">
+    <tr>
       <td> <%= f.label :service_rating, t('visits.service_rating_title') %> </td>
       <td> <%= f.select :service_rating, @rating_options, :include_blank => true, :size => 1 %> </td>
     </tr>
-    <tr class="padded-row">
+    <tr>
       <td> <%= f.label :speed_rating, t('visits.speed_rating_title') %> </td>
       <td> <%= f.select :speed_rating, @rating_options, :include_blank => true, :size => 1 %> </td>
     </tr>
-    <tr class="padded-row">
+    <tr>
       <td> <%= f.label :mood_rating, t('visits.mood_rating_title') %> </td>
       <td> <%= f.select :mood_rating, @rating_options, :include_blank => true, :size => 1 %> </td>
     </tr>
-    <tr class="padded-row">
+    <tr>
       <td> <%= f.label :value_rating, t('visits.value_rating_title') %> </td>
       <td> <%= f.select :value_rating, @rating_options, :include_blank => true, :size => 1 %> </td>
     </tr>
@@ -58,6 +58,12 @@
     </tr>
     <tr> 
       <td> <%= f.text_field :private_comment, :size =>73 %> </td>
+    </tr>
+    <tr>
+      <td> <%= f.label :visibility_mask, t('visibility_title') %> </td>
+    </tr>
+    <tr>
+      <td> <%= f.select :visibility_mask, [[t('visibility_all'),1],[t('visibility_friends'),2],[t('visibility_me'),4]], :size => 2 %> </td>
     </tr>
   </table>
   <% @visit.dish_reviews.each do |dr| %>

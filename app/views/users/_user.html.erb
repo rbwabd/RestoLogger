@@ -7,8 +7,7 @@
   
   <%= link_to user.name, user_path(user) %>
   <% if can? :destroy, User %>
-  
-  <%= link_to "delete", user, :method => :delete, :confirm => "You sure?",
+    <%= link_to "delete", user, :method => :delete, :confirm => "You sure?",
                               :title => "Delete #{user.name}" %>
   <% end %>
 </li>

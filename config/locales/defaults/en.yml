@@ -18,6 +18,10 @@ en:
   back_button: Back
   filter_list_button: Filter List
   image_link_broken_message: image link broken
+  visibility_title: "Who can see this:"
+  visibility_all: Everyone
+  visibility_friends: Friends
+  visibility_me: Only me
   views:
     pagination:
       previous: "&lt; Previous"

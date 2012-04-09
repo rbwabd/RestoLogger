@@ -34,7 +34,9 @@
   <strong><%=t('visits.review_title')%>:</strong> <%= simple_format(@visit.review).html_safe %>
   </br>
   <% if @visit.user_id == current_user.id %>
-    <strong><%=t('visits.private_comment_title')%>:</strong> <%= @visit.private_comment %>
+    <strong><%=t('visits.private_comment_title')%></strong> <%= @visit.private_comment %>
+    </br>
+    <strong><%=t('visibility_title')%> </strong> <%= @visit.visibilities.first %>
     </br>
   <% end %>  
   <% @visit.dish_reviews.each do |dr| %>

@@ -31,6 +31,7 @@ class Ability
       end
     #Visit  
       can :read, Visit, :user_id => user.id   # 2do: add ability to see friend's visits but not in index only in store-specific lists (so maybe no need here)
+      can :show, Visit, :visibility_mask => 1   
       can :create, Visit
       # update on visit updates the items ordered, while update_parameters changes the ratings, review text, pictures etc.
       can [:update, :destroy, :edit_parameters, :update_parameters], Visit do |visit|
@@ -39,11 +40,13 @@ class Ability
     #VisitReport
       can :index, VisitReport
     #DishReview  
+      can :show, DishReview, :visibility_mask => 1   
       can [:destroy, :delete_picture], DishReview do |dish_review|
         dish_review.try(:user) == user
       end
     #StoreList
       can :read, StoreList, :user_id => user.id
+      can :show, StoreList, :visibility_mask => 1   
       can :create, StoreList
       can [:update, :destroy, :add_item], StoreList do |sl|
         sl.try(:user) == user

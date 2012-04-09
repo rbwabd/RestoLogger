@@ -117,6 +117,7 @@ class VisitsController < ApplicationController
   def update_parameters
     @visit.user_id = current_user.id
     #2do: need to check again that date not in future or too far past (do it in model.rb)
+    @visit.visibility_mask = params[:visit][:visibility_mask]
     @visit.visit_date = params[:visit][:visit_date]
     @visit.guest_number = params[:visit][:guest_number]
     @visit.spend = params[:visit][:spend]

@@ -1,10 +1,10 @@
 <%= render 'shared/error_messages', :object => f.object %>
-<table>
-  <tr class="padded-row">
+<table class="datagrid">
+  <tr>
     <td> <%= f.label :visit_date, "Visit Date" %> </td>
     <td> <%= f.text_field :visit_date, :size => 10, :value => Date.today.to_s %> </td>
   </tr>
-  <tr class="padded-row">
+  <tr>
     <td> <%= label_tag 'dish_search_label', "Dish Name" %> </td>
     <td> <%= text_field_tag 'dish_search_name', '', :size =>60 %>
          <%= hidden_field :dish, :id %> </td>
