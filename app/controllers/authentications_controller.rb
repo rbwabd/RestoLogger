@@ -4,7 +4,10 @@ class AuthenticationsController < ApplicationController
   
   def index
     authorize! :index, Authentication
-    @authentications = current_user.authentications
+    #2do: this method is called also when user not logged in - needs to be fixed
+    if current_user
+      @authentications = current_user.authentications
+    end  
   end
   
   def destroy
