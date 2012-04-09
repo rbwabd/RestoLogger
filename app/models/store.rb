@@ -25,10 +25,11 @@ class Store < ActiveRecord::Base
   
   belongs_to :city
   belongs_to :user
-  has_one :menu,                        :dependent => :destroy
-  has_many :visits,                     :dependent => :destroy
   has_many :store_type_relationships,   :dependent => :destroy
-  has_many :dishes, :through => :menu
+  has_many :store_types,                :through => :store_type_relationships
+  has_one :menu,                        :dependent => :destroy
+  has_many :dishes,                     :through => :menu
+  has_many :visits,                     :dependent => :destroy
 
   
   has_paper_trail

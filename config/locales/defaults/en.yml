@@ -16,6 +16,7 @@ en:
   confirm_button: Confirm
   cancel_button: Cancel
   back_button: Back
+  filter_list_button: Filter List
   image_link_broken_message: image link broken
   views:
     pagination:

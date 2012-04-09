@@ -12,8 +12,8 @@
           </h3>
           <p>
           <ul>
-            <li class="<% if current_page?(visits_path) %>sb-hl<%end%>"><%= link_to "My Visits", visits_path %></li>
-            <li class="<% if current_page?(store_lists_path) %>sb-hl<%end%>"><%= link_to "Restaurant Lists", store_lists_path %></li>
+            <li class="<% if current_page?(visited_store_list_reports_path) %>sb-hl<%end%>"><%= link_to "My Visits", visited_store_list_reports_path %></li>
+            <li class="<% if params[:controller] == 'store_lists' %>sb-hl<%end%>"><%= link_to "Restaurant Lists", store_lists_path %></li>
             <li class="<% if false %>sb-hl<%end%>"><%= link_to "My Favourite Dishes", "#" %></li>
             <li class="<% if false %>sb-hl<%end%>"><%= link_to "My Dish Reviews", "#" %></li>
             <li class="<% if false %>sb-hl<%end%>"><%= link_to "My Network", "#" %></li>

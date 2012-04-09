@@ -50,8 +50,6 @@ class Ability
       can :destroy, StoreListEntry do |sle|
         sle.try(:store_list).user == user
       end  
-    #VisitedStoreList
-      can :show, VisitedStoreList, :user_id => user.id
     #VisitedStoreListReport
       can :index, VisitedStoreListReport
     #User  

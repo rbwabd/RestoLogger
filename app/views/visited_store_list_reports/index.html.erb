@@ -11,20 +11,20 @@
 <% if @visited_store_list.stores.size == 0 %>
   <%= t('visits.no_visits_yet_message') %>
 <% else %>
-  <div class="left">
+  <div>
     <%= form_for @vsl_report, :html => {:method => :get} do |f| %>
-      <% @vsl_report.filters.each do |filter| %>
-        <% if filter.name.to_s != 'visited_store_list_id' %>
-          <div class="filter"> 
-            <%= f.datagrid_label filter %>
-            <%= f.datagrid_filter filter %>
-          </div>
-          <div class="clear"></div>
+      <table>
+        <% @vsl_report.filters.each do |filter| %>
+          <% if filter.name.to_s != 'visited_store_list_id' %>
+            <tr>
+              <td><%= f.datagrid_label filter %></td>
+              <td><%= f.datagrid_filter filter %></td>
+            </tr>
+          <% end %>
         <% end %>
-      <% end %>
-
-      <div class="filter">
-        <%= f.submit %>
+      </table>
+      <div class="action">
+        <%= f.submit t("filter_list_button") %>
       </div>
     <% end %>
 

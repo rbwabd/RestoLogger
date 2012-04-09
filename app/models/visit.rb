@@ -29,7 +29,7 @@ class Visit < ActiveRecord::Base
   belongs_to :store
   belongs_to :city
   has_many :dish_reviews, :autosave => true, :dependent => :destroy
-  has_many :pictures, :dependent => :destroy
+  has_many :pictures,     :dependent => :destroy
 
   #validates :content, :presence => true, :length => { :maximum => 140 }
   #validates :user_id, :presence => true
