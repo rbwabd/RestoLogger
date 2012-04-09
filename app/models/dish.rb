@@ -21,7 +21,7 @@
 #  user_id            :integer
 #
 
-class Dish < ActiveRecord::Base
+class Dish < Obfuscatable
   attr_accessible :user_id, :name, :menu_id, :rank, :price, :code, :description, :dish_type_id, :option_description, :price_comment
   
   belongs_to :user
@@ -30,11 +30,4 @@ class Dish < ActiveRecord::Base
   
   has_paper_trail
   
-  def id_encoded
-    Hid.enc( self.id )
-  end
-  
-  def to_param
-    Hid.enc( self.id )
-  end
 end

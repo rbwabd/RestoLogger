@@ -16,7 +16,7 @@
 #  rank       :integer
 #
 
-class DishReview < ActiveRecord::Base
+class DishReview < Obfuscatable
   attr_accessible :user_id, :dish_id, :rating, :tagline, :review, :dish
 
   after_initialize :init_routine
@@ -28,13 +28,6 @@ class DishReview < ActiveRecord::Base
   has_many :pictures, :dependent => :destroy
 
   has_paper_trail
-
-  def id_encoded
-    Hid.enc( self.id )
-  end
-  def to_param
-    Hid.enc( self.id )
-  end
 
   private 
     def init_routine

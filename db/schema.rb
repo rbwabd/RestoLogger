@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120409124346) do
+ActiveRecord::Schema.define(:version => 20120409130623) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -189,8 +189,9 @@ ActiveRecord::Schema.define(:version => 20120409124346) do
   create_table "store_lists", :force => true do |t|
     t.integer  "user_id"
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "visibility_mask"
   end
 
   create_table "store_type_relationships", :force => true do |t|

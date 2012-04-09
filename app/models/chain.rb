@@ -9,15 +9,8 @@
 #  updated_at :datetime        not null
 #
 
-class Chain < ActiveRecord::Base
+class Chain < Obfuscatable
 
   has_paper_trail
-  
-  def id_encoded
-    Hid.enc( self.id )
-  end
-  def to_param
-    Hid.enc( self.id )
-  end
 
 end

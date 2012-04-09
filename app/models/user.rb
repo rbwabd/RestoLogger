@@ -29,7 +29,7 @@
 #  roles_mask             :integer
 #
 
-class User < ActiveRecord::Base
+class User < Obfuscatable
   attr_accessor   :password
   attr_accessible :name, :email, :locale, :profilepicurl, :remote_profilepicurl#, :password, :password_confirmation, :remember_me
 
@@ -88,13 +88,6 @@ class User < ActiveRecord::Base
   
   def locale
     user_setting.locale
-  end
-	
-  def id_encoded
-    Hid.enc( self.id )
-  end
-  def to_param
-    Hid.enc( self.id )
   end
 
   # should not override initialize as activerecord calls it

@@ -12,14 +12,8 @@
 #  updated_at    :datetime        not null
 #
 
-class StoreListEntry < ActiveRecord::Base
+class StoreListEntry < Obfuscatable
   belongs_to :store_list
   belongs_to :store
-
-  def id_encoded
-    Hid.enc( self.id )
-  end
-  def to_param
-    Hid.enc( self.id )
-  end  
+ 
 end

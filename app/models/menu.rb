@@ -9,7 +9,7 @@
 #  updated_at :datetime        not null
 #
 
-class Menu < ActiveRecord::Base
+class Menu < Obfuscatable
   attr_accessible :currency
 
   belongs_to :store
@@ -31,10 +31,4 @@ class Menu < ActiveRecord::Base
     return dish_hash
   end  
   
-  def id_encoded
-    Hid.enc( self.id )
-  end
-  def to_param
-    Hid.enc( self.id )
-  end
 end

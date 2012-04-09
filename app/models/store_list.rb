@@ -9,7 +9,7 @@
 #  updated_at :datetime        not null
 #
 
-class StoreList < ActiveRecord::Base
+class StoreList < Obfuscatable
   attr_accessible :id, :name, :user_id
   
   after_initialize :init_routine
@@ -20,13 +20,19 @@ class StoreList < ActiveRecord::Base
 
   accepts_nested_attributes_for :store_list_entries
   
-  def id_encoded
-    Hid.enc( self.id )
+  scope :with_visibility, lambda { |visibility| {:conditions => "visibility_mask & #{2**VISIBILITIES.index(visibility.to_s)} > 0 "} }
+  # so 1 = all 2 = friends, 4 = me
+  VISIBILITIES = %w[all friends me]
+  def visibilities=(visibilities)
+    self.visibility_mask = (visibilities & VISIBILITIES).map { |r| 2**VISIBILITIES.index(r) }.sum
   end
-  def to_param
-    Hid.enc( self.id )
+  def visibilities
+    VISIBILITIES.reject { |r| ((visibility_mask || 0) & 2**VISIBILITIES.index(r)).zero? }
   end
-  
+  def visibility?(visibility)
+    visibilities.include? visibility.to_s
+  end
+
   private 
     def init_routine
       #set visibility to 'all'

@@ -11,7 +11,7 @@
 #  token      :string(255)
 #
 
-class Authentication < ActiveRecord::Base
+class Authentication < Obfuscatable
   belongs_to :user
   
   def provider_name
@@ -21,12 +21,4 @@ class Authentication < ActiveRecord::Base
       provider.titleize
     end
   end
-  
-  def id_encoded
-    Hid.enc( self.id )
-  end
-  
-  def to_param
-    Hid.enc( self.id )
-  end 
 end

@@ -20,7 +20,7 @@
 #  gid           :string(255)
 #
 
-class Store < ActiveRecord::Base
+class Store < Obfuscatable
   attr_accessible :name, :address, :gid, :phone 
   
   belongs_to :city
@@ -101,13 +101,6 @@ class Store < ActiveRecord::Base
     #end
    
     return results
-  end
-    
-  def id_encoded
-    Hid.enc( self.id )
-  end
-  def to_param
-    Hid.enc( self.id )
   end
 
   private

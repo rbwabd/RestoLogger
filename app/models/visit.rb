@@ -21,7 +21,7 @@
 #  value_rating   :integer
 #
 
-class Visit < ActiveRecord::Base
+class Visit < Obfuscatable
   attr_accessor :city_name, :store_name
   attr_accessible :city_name, :store_name, :visit_date
 
@@ -55,13 +55,6 @@ class Visit < ActiveRecord::Base
     visibilities.include? visibility.to_s
   end
 
-  def id_encoded
-    Hid.enc( self.id )
-  end
-  def to_param
-    Hid.enc( self.id )
-  end
-  
   private 
     def init_routine
       #set visibility to 'all'
