@@ -67,7 +67,7 @@ RestoLogger::Application.routes.draw do
   # devise
     devise_for :users  #, :skip => [:sessions]
     devise_scope :user do
-      #get 'signin' => 'authentications#index',    :as => :new_user_session
+      get 'signin' => 'authentications#index',    :as => :new_user_session    #redirected to after new user signs in
       #this is a dummy - we have no signin page at the moment so no create page
       #post 'signin' => 'sessions#create', :as => :user_session
       #post 'signin' => 'users#show',              :as => :user_session

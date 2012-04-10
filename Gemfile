@@ -12,7 +12,7 @@ gem 'cancan'                          # authorization package
 gem 'activeadmin'                     # admin package
 gem 'meta_search',    '>= 1.1.0.pre'  # required by active admin
 gem 'paper_trail'                     # audit/versioning of records
-  
+
 # imaging
 gem 'carrierwave'                     # image upload package
 gem 'mini_magick'                     # image processing
@@ -40,6 +40,7 @@ group :assets do
 end
 
 group :development do
+  gem 'yaml_db'                       # allows to dump the DB into yaml file
   gem 'rspec-rails', '2.6.1'          # runs test scenarios
   gem 'annotate', :git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'                    # adds summary of current ActiveRecord schema to model rb file (run "bundle exec annotate -p before" to use)
   gem 'faker', '0.3.1'                # generates fake test data
