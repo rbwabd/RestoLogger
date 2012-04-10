@@ -1,0 +1,19 @@
+<% content_for :sidebar do %>
+  <%= render 'layouts/main_sidebar' %>
+<% end %>
+
+<%= link_to "Refresh Facebook friends list" , update_friend_list_users_path %>
+
+<ul>
+  <% for user in current_user.following %>
+    <li>
+      <% if user.profilepicurl.nil? %>
+        <%= gravatar_image_tag(user.email, :gravatar => { :size => 35 }, :alt => "", :class => "round vertical_align")%>
+      <% else %>
+        <%= image_tag(user.profilepicurl, :size => "35x35", :alt => "", :class => "round vertical_align")%> 
+      <% end %>
+      
+      <%= link_to user.name, user_path(user) %>
+    </li>
+  <% end %>
+</ul>

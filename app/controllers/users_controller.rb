@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :decode_id
 	before_filter :authenticate_user!
-	load_and_authorize_resource
+	load_and_authorize_resource :except => [:show_my_following, :update_friend_list]
   
   def index
     @users = @users.page(params[:page]).per(20)
@@ -26,8 +26,20 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to users_path, :flash => { :success => "User destroyed." }
   end  
+  
+  def show_my_following
+    # nothing to load, data directly accessible in view
+  end
+  
+  def update_friend_list
+    token = Authentication.where("provider = 'facebook' and user_id = ?", current_user.id).first.token
+    current_user.load_fb_friends(token)
+    redirect_to show_my_following_users_path, :flash => { :success => "Friends List Updated" }
+  end
+  
+  
 =begin
-  #think this code is directly from the tutorial book and doens't work here...
+  #think this code is directly from the tutorial book and doesn't work here...
   def following
     @user = User.find(params[:id])
     @users = @user.following.paginate(:page => params[:page])

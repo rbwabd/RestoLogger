@@ -12,7 +12,8 @@ class SessionsController < Devise::SessionsController
 		if authentication && authentication.user.present?
 			#session[:user_id] = authentication.user.id 
       check_updated_profilepic(authentication.user, omniauth)
-			flash[:notice] = "Signed in successfully."
+
+      flash[:notice] = "Signed in successfully."
 			#this is a devise method
       sign_in_and_redirect(:user, authentication.user)
     elsif current_user
@@ -28,9 +29,12 @@ class SessionsController < Devise::SessionsController
       user.apply_omniauth(omniauth)
       user.profilepicurl = set_user_profilepic(omniauth)
       user.init_routine
+
 			if user.save
         #session[:user_id] = user.id 
-        #p "new user id: "+user.id.to_s
+        # update the friends connections in relationships table
+        user.load_fb_friends(omniauth["credentials"]["token"])
+        
         flash[:notice] = "Signed in new user successfully."
 				sign_in_and_redirect(:user, user)
 			else
@@ -74,4 +78,5 @@ class SessionsController < Devise::SessionsController
         return picture.image_url
       end
     end
+    
 end

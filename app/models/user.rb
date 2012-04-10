@@ -35,15 +35,20 @@ class User < Obfuscatable
 
   validates :name,  :presence => true, :length   => { :maximum => 50 }
   
-  has_one :user_setting,        :dependent => :destroy
-  has_one :profile_picture,     :dependent => :destroy
+  has_one  :user_setting,       :dependent => :destroy
+  has_one  :profile_picture,    :dependent => :destroy
   has_many :authentications,    :dependent => :destroy
   has_many :visits,             :dependent => :destroy
   has_many :pictures,           :dependent => :destroy
-  has_many :dish_reviews   #dish_reviews destroyed through visits, maybe this should be a "through" relationship
-  has_one :visited_store_list,  :dependent => :destroy
+  has_many :dish_reviews   #2do: dish_reviews destroyed through visits, maybe this should be a "through" relationship
+  has_one  :visited_store_list, :dependent => :destroy
   has_many :store_lists,        :dependent => :destroy
-  
+
+  has_many :relationships,          :dependent => :destroy, :foreign_key => "follower_id"
+  has_many :reverse_relationships,  :dependent => :destroy, :foreign_key => "followed_id", :class_name => "Relationship"
+  has_many :following, :through => :relationships,         :source => :followed
+  has_many :followers, :through => :reverse_relationships, :source  => :follower
+                       
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable
@@ -72,9 +77,35 @@ class User < Obfuscatable
   end
   
   # i added the fetch at the end so the user data is fetched. not sure if this is a performance hit
-	def facebook
+	# 2do: check where this is called, not clear to me if used at all
+  def facebook
 		@fb_user ||= FbGraph::User.me(self.authentications.find_by_provider('facebook').token).fetch
 	end
+
+  def load_fb_friends(token)
+    f_list = FbGraph::User.me(token).fetch.friends
+    for friend in f_list
+      # 2do: find a more efficient way of making less DB queries
+      p friend.identifier
+      auth = Authentication.where("provider = 'facebook' and uid = ?", friend.identifier).first
+      if auth
+        Relationship.find_or_create_by_followed_id_and_follower_id( :followed_id => self.id, :follower_id => auth.user_id )
+        Relationship.find_or_create_by_followed_id_and_follower_id( :followed_id => auth.user_id, :follower_id => self.id,  )
+      end
+    end
+  end
+
+  def following?(followed)
+    relationships.find_by_followed_id(followed)
+  end
+  
+  def follow!(followed)
+    relationships.create!(:followed_id => followed.id)
+  end
+  
+  def unfollow!(followed)
+    relationships.find_by_followed_id(followed).destroy
+  end
 
 	# this is an override of a default devise method! hence the call to super
   # if authentications is not empty AND password is blank then password is not required

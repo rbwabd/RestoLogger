@@ -7,7 +7,12 @@ RestoLogger::Application.routes.draw do
   root :to => "authentications#index"
   
   # Resource routing: covers index, show, new, edit, create, update and destroy actions
-    resources :users
+    resources :users do
+      collection do
+        get 'show_my_following'
+        get 'update_friend_list'
+      end
+    end  
     resources :stores do 
       collection do
         get 'search'
