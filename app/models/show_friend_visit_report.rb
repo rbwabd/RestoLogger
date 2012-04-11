@@ -28,13 +28,13 @@ class ShowFriendVisitReport
   #
   column( :store_name, 
           :header => "Name", 
-          :order => "stores.name") do |record|
+          :order => "name") do |record|
     record.name
   end
   column( :store_type, :header => "Type", :order => "store_types.name" ) do |record|
     record.store_types.collect{|st| st.name}.join(", ")
   end
-  column( :friends_visited, :header => "Friends that have visited" ) do |record|
+  column( :friends_visited, :header => "Friends that have visited", :order => "user_cnt" ) do |record|
     record.user_cnt
   end
   #column(:visit_date, :header => "Date")
