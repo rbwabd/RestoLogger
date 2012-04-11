@@ -47,6 +47,7 @@ RestoLogger::Application.routes.draw do
       end
     end  
     resources :visit_reports, :only => :index
+    resources :show_friend_visit_reports, :only => :index
     resources :store_lists do
       member do
         get 'add_item'

@@ -1,0 +1,34 @@
+<% content_for :sidebar do %>
+  <%= render 'layouts/main_sidebar' %>
+<% end %>
+
+<h1><%= t('visits.visited_store_list_title')%></h1>
+<p>
+<% if @report.assets.count == 0 %>
+  <%= t('visits.no_visits_yet_message') %>
+<% else %>
+  <div>
+    <%= form_for @report, :html => {:method => :get} do |f| %>
+      <table>
+        <% @report.filters.each do |filter| %>
+          <% if filter.name.to_s != 'user_id' %>
+            <tr>
+              <td><%= f.datagrid_label filter %></td>
+              <td><%= f.datagrid_filter filter %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+      <div class="action">
+        <%= f.submit t("filter_list_button") %>
+      </div>
+    <% end %>
+
+    <div class='total'>Total: <%= @report.assets.length %></div>
+    <%= datagrid_table(@report, @assets) %>
+    <%= paginate @assets %>
+  </div>
+  
+<% end %>
+
+

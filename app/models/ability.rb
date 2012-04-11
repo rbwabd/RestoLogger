@@ -39,6 +39,8 @@ class Ability
       end
     #VisitReport
       can :index, VisitReport
+    #ShowFriendVisitReport
+      can :index, ShowFriendVisitReport
     #DishReview  
       can :show, DishReview, :visibility_mask => 1   
       can [:destroy, :delete_picture], DishReview do |dish_review|
