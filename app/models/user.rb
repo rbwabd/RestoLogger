@@ -95,6 +95,25 @@ class User < Obfuscatable
     end
   end
 
+  #check whether profile pic url for user exists, if not update through omniauth
+  def check_update_profile_picture(omniauth)
+    if !self.profile_picture then 
+      self.update_profile_picture(omniauth)
+      self.save
+    end
+  end
+
+  # gets remote profile pic, uploads to AWS and puts url into user table
+  def update_profile_picture(omniauth)
+    case omniauth['provider']
+    when 'facebook'
+      fb_user = FbGraph::User.me(omniauth["credentials"]["token"]).fetch
+      picture = ProfilePicture.new()
+      picture.remote_image_url = fb_user.picture
+      self.profile_picture = picture
+    end
+  end
+      
   def following?(followed)
     relationships.find_by_followed_id(followed)
   end

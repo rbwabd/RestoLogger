@@ -40,7 +40,7 @@ group :assets do
 end
 
 group :development do
-  gem 'yaml_db'                       # allows to dump the DB into yaml file
+  gem 'yaml_db', :git => 'git://github.com/lostapathy/yaml_db.git'  # allows to dump the DB into yaml file
   gem 'rspec-rails', '2.6.1'          # runs test scenarios
   gem 'annotate', :git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'                    # adds summary of current ActiveRecord schema to model rb file (run "bundle exec annotate -p before" to use)
   gem 'faker', '0.3.1'                # generates fake test data

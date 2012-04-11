@@ -3,10 +3,10 @@
       <li>
         <% if user_signed_in? %>
           <h3>
-            <% if current_user.profilepicurl.nil? %>
+            <% if !current_user.profile_picture %>
               <%= gravatar_image_tag(current_user.email, :gravatar => { :size => 35 }, :alt => "", :class => "round vertical_align")%>
             <% else %>
-              <%= image_tag(current_user.profilepicurl, :size => "60x60", :alt => "", :class => "round vertical_align")%>
+              <%= image_tag(current_user.profile_picture.image_url, :size => "60x60", :alt => "", :class => "round vertical_align")%>
             <% end %>
             &nbsp;<%= current_user.name %>
           </h3>
