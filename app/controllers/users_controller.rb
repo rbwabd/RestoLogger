@@ -28,10 +28,12 @@ class UsersController < ApplicationController
   end  
   
   def show_my_following
+    authorize! :show_my_following, User
     # nothing to load, data directly accessible in view
   end
   
   def update_friend_list
+    authorize! :update_friend_list, User
     token = Authentication.where("provider = 'facebook' and user_id = ?", current_user.id).first.token
     current_user.load_fb_friends(token)
     redirect_to show_my_following_users_path, :flash => { :success => "Friends List Updated" }

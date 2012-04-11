@@ -32,7 +32,7 @@ class Ability
     #Visit  
       can :read, Visit, :user_id => user.id   # 2do: add ability to see friend's visits but not in index only in store-specific lists (so maybe no need here)
       can :show, Visit, :visibility_mask => 1   
-      can :create, Visit
+      can [:create, :show_friend], Visit
       # update on visit updates the items ordered, while update_parameters changes the ratings, review text, pictures etc.
       can [:update, :destroy, :edit_parameters, :update_parameters], Visit do |visit|
         visit.try(:user) == user
@@ -61,6 +61,7 @@ class Ability
       can :read, User, :id => user.id
         # u.try(:friend?, user)  #verify u and user are friends
         # be careful this must work in the context of accessible_by etc.
+      can [:show_my_following, :update_friend_list], User
       can :update, User do |u|
         u == user
       end

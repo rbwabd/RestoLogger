@@ -1,7 +1,7 @@
 class VisitsController < ApplicationController
   before_filter :decode_id
   before_filter :authenticate_user!
-  load_and_authorize_resource :except => :change_cart
+  load_and_authorize_resource :except => [:change_cart, :show_friend]
   
   def show
     @store = Store.find(@visit.store_id)
@@ -168,6 +168,38 @@ class VisitsController < ApplicationController
   def destroy
     @visit.destroy
     redirect_to root_path, :flash => { :success => "Visit deleted!" }
+  end
+  
+  def show_friend
+    authorize! :show_friend, Store
+    visits = Visit.includes({ :user => :reverse_relationships }).where("relationships.follower_id = ? and relationships.followed_id = visits.user_id", current_user.id)
+    
+    @visit_hash = Hash.new
+    
+=begin
+    for v in visits
+      store_id = v.store.id
+      if !@visit_hash[store_id]  
+        @visit_hash[store_id] = Hash.new 
+        #@visit_hash[store_id][:id] = v.store.id
+        @visit_hash[store_id][:name] = v.store.name
+        @visit_hash[store_id][:category] = v.store.store_types.collect{|st| st.name}.join(", ")
+        @visit_hash[store_id][:users] = Hash.new
+      end
+      if @visit_hash[store_id][:users][v.user_id]
+        @visit_hash[store_id][:users][v.user_id][:cnt] += 1
+        if @visit_hash[store_id][:users][v.user_id][:last] < v.visit_date
+          @visit_hash[store_id][:users][v.user_id][:last] = v.visit_date
+        end
+      else
+        @visit_hash[store_id][:users][v.user_id] = Hash.new
+        #@visit_hash[store_id][:users][v.user_id][:id] = v.user_id
+        @visit_hash[store_id][:users][v.user_id][:name] = v.user.name
+        @visit_hash[store_id][:users][v.user_id][:cnt] = 1
+        @visit_hash[store_id][:users][v.user_id][:last] = v.visit_date
+      end
+    end
+=end
   end
   
   private

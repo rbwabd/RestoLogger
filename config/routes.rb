@@ -42,6 +42,9 @@ RestoLogger::Application.routes.draw do
         get 'edit_parameters'
         put 'update_parameters'
       end
+      collection do 
+        get 'show_friend'
+      end
     end  
     resources :visit_reports, :only => :index
     resources :store_lists do
