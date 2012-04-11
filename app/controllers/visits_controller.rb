@@ -171,12 +171,13 @@ class VisitsController < ApplicationController
   end
   
   def show_friend
-    authorize! :show_friend, Store
-    visits = Visit.includes({ :user => :reverse_relationships }).where("relationships.follower_id = ? and relationships.followed_id = visits.user_id", current_user.id)
+    authorize! :show_friend, Visit
+    @visits = Store.joins(:visits => { :user => :reverse_relationships }).where("relationships.follower_id = ? and relationships.followed_id = visits.user_id", current_user.id).select("stores.id, stores.name, count(DISTINCT visits.user_id) as user_cnt").group("stores.id")
     
-    @visit_hash = Hash.new
     
 =begin
+    @visit_hash = Hash.new
+    
     for v in visits
       store_id = v.store.id
       if !@visit_hash[store_id]  

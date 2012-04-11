@@ -1,0 +1,19 @@
+<% content_for :sidebar do %>
+  <%= render 'layouts/main_sidebar' %>
+<% end %>
+
+<% @visit_hash.each_pair do |k, v| %>
+  <%= v[:name].to_s %>
+  <br/>
+  <%= v[:category] %>
+  <br/>
+  <% v[:users].each_pair do |k2, v2| %>
+    &nbsp;&nbsp;<%= v2[:name] %>
+    <br/>
+    &nbsp;&nbsp;<%= v2[:cnt] %>
+    <br/>
+    &nbsp;&nbsp;<%= v2[:last] %>
+    <br/>
+  <% end %>
+  <br/>
+<% end %>
